@@ -1,12 +1,17 @@
 package com.delek.heroland.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.delek.heroland.data.RoleRepository
+import com.delek.heroland.domain.model.RoleProvider
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel: ViewModel() {
-    private val _text = MutableLiveData<String>().apply {
-        value = "Touch the screen"
+@HiltViewModel
+class HomeViewModel @Inject constructor(private val repository: RoleRepository) : ViewModel() {
+
+    fun insertRoles() = viewModelScope.launch {
+        repository.insertRoles(RoleProvider.roles)
     }
-    val text: LiveData<String> = _text
 }

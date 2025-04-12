@@ -7,12 +7,15 @@ import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.delek.heroland.R
 import com.delek.heroland.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
+    private val homeViewModel: HomeViewModel by viewModels()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -22,10 +25,18 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        initUI()
+        return binding.root
+    }
+
+    private fun initUI() {
         binding.textHome.text = getString(R.string.text_home)
         binding.textVersion.text = getString(R.string.text_version)
         binding.textHome.blink()
-        return binding.root
+        binding.root.setOnClickListener {
+            homeViewModel.insertRoles()
+
+        }
     }
 
     private fun View.blink(

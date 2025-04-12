@@ -15,7 +15,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.delek.heroland.R
 import com.delek.heroland.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
