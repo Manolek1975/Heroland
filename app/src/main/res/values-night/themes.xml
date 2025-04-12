@@ -1,0 +1,12 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Heroland" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Status bar color. -->
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <!-- Customize your dark theme here. -->
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:fontFamily">@font/macondo</item>
+    </style>
+
+</resources>
