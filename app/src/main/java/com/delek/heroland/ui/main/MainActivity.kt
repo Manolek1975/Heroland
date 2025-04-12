@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         hideSystemBars()
+        hideItem()
         initUI()
     }
 
@@ -62,6 +63,12 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    private fun hideItem() {
+        val navigationView: NavigationView = this.findViewById(R.id.nav_view)
+        val navMenu: Menu = navigationView.menu
+        navMenu.findItem(R.id.nav_home).setVisible(false)
     }
 
     private fun hideSystemBars() {

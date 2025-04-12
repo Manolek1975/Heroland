@@ -8,6 +8,7 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.delek.heroland.R
 import com.delek.heroland.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,7 +36,9 @@ class HomeFragment : Fragment() {
         binding.textHome.blink()
         binding.root.setOnClickListener {
             homeViewModel.insertRoles()
-
+            findNavController().navigate(
+                HomeFragmentDirections.actionNavHomeToNavRolSelect()
+            )
         }
     }
 
