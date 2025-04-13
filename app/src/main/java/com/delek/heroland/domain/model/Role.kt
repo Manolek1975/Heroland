@@ -17,7 +17,7 @@ data class Role(
     val position: Int,
     val spells: Int,
     val relations: Int,
-    val difficulty: String
+    val dwellings: Int
 )
 
 fun RoleEntity.toDomain() = Role(
@@ -34,5 +34,5 @@ fun RoleEntity.toDomain() = Role(
     position,
     spells,
     relations,
-    difficulty
+    dwellings
 )

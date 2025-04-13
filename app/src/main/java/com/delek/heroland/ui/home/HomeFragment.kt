@@ -35,7 +35,8 @@ class HomeFragment : Fragment() {
         binding.textVersion.text = getString(R.string.text_version)
         binding.textHome.blink()
         binding.root.setOnClickListener {
-            homeViewModel.insertRoles()
+            homeViewModel.insertAll()
+            //homeViewModel.insertDwellings()
             findNavController().navigate(
                 HomeFragmentDirections.actionNavHomeToNavRolSelect()
             )

@@ -8,7 +8,8 @@ import com.delek.heroland.domain.model.Role
 
 @Entity(tableName = "roles")
 data class RoleEntity(
-    @ColumnInfo(name = "id") @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id") val id: Int,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "symbol") val symbol: String,
     @ColumnInfo(name = "icon") val icon: String,
@@ -21,7 +22,8 @@ data class RoleEntity(
     @ColumnInfo(name = "position") val position: Int,
     @ColumnInfo(name = "spells") val spells: Int,
     @ColumnInfo(name = "relations") val relations: Int,
-    @ColumnInfo(name = "difficulty") val difficulty: String
+    @ColumnInfo(name = "dwellings") val dwellings : Int,
+
 )
 
 fun Role.toDatabase() = RoleEntity(
@@ -38,7 +40,7 @@ fun Role.toDatabase() = RoleEntity(
     position,
     spells,
     relations,
-    difficulty
+    dwellings
 )
 
 

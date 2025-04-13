@@ -2,7 +2,7 @@ package com.delek.heroland.di
 
 import android.content.Context
 import androidx.room.Room
-import com.delek.heroland.data.database.RoleDatabase
+import com.delek.heroland.data.database.HerolandDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,10 +19,11 @@ object RoomModule {
     @Singleton
     @Provides
     fun provideRoom(@ApplicationContext context: Context) =
-        Room.databaseBuilder(context, RoleDatabase::class.java, DATABASE_NAME).build()
+        Room.databaseBuilder(context, HerolandDatabase::class.java, DATABASE_NAME).build()
 
     @Singleton
     @Provides
-    fun provideRoleDao(db: RoleDatabase) = db.getRoleDao()
+    fun provideRoleDao(db: HerolandDatabase) = db.getRoleDao()
+    //fun provideDwellingDao(db: RoleDatabase) = db.getDwellingDao()
 
 }
