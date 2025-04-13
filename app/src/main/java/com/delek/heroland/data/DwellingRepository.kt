@@ -9,7 +9,7 @@ import javax.inject.Inject
 class DwellingRepository @Inject constructor(private val dwellingDao: DwellingDao) {
 
     suspend fun insertDwellings(dwellings: List<DwellingEntity>) {
-        dwellingDao.insertAll(dwellings)
+        dwellingDao.insertDwellings(dwellings)
     }
 
     suspend fun getAllDwellings(): List<Dwelling> {

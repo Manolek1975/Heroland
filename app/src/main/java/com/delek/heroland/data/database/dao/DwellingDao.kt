@@ -10,7 +10,7 @@ import com.delek.heroland.data.database.entities.DwellingEntity
 interface DwellingDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(dwellings: List<DwellingEntity>)
+    suspend fun insertDwellings(dwellings: List<DwellingEntity>)
 
     @Query("SELECT * FROM dwellings")
     suspend fun getAllDwellings(): List<DwellingEntity>

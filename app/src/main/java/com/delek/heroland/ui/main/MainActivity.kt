@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         val navController = navHost.navController
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_character, R.id.nav_settings
+                R.id.nav_home, R.id.nav_role_select, R.id.nav_detail, R.id.nav_character, R.id.nav_settings
             ), drawerLayout
         )
         //Disable drawer layout in Home fragment

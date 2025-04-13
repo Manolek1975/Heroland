@@ -11,13 +11,14 @@ import com.delek.heroland.data.database.entities.RoleEntity
 interface RoleDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(roles: List<RoleEntity>)
+    suspend fun insertRoles(roles: List<RoleEntity>)
 
     @Query("SELECT * FROM roles")
     suspend fun getAllRoles(): List<RoleEntity>
 
     @Query("DELETE FROM roles")
     suspend fun deleteAllRoles()
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDwellings(dwellings: List<DwellingEntity>)

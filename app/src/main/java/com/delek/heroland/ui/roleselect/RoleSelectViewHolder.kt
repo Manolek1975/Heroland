@@ -19,7 +19,6 @@ class RoleSelectViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         binding.itemRole.setOnClickListener {
             flipRole(binding.ivRole, goRole = {onItemSelected(role)})
-            //onItemSelected(role)
         }
 
     }

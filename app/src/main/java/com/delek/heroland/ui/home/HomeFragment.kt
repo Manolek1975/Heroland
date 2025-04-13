@@ -36,9 +36,8 @@ class HomeFragment : Fragment() {
         binding.textHome.blink()
         binding.root.setOnClickListener {
             homeViewModel.insertAll()
-            //homeViewModel.insertDwellings()
             findNavController().navigate(
-                HomeFragmentDirections.actionNavHomeToNavRolSelect()
+                HomeFragmentDirections.actionNavHomeToNavRoleSelect()
             )
         }
     }

@@ -10,7 +10,7 @@ import javax.inject.Inject
 class RoleRepository @Inject constructor(private val roleDao: RoleDao) {
 
     suspend fun insertRoles(roles: List<RoleEntity>) {
-        roleDao.insertAll(roles)
+        roleDao.insertRoles(roles)
     }
 
     suspend fun insertDwellings(dwellings: List<DwellingEntity>) {

@@ -9,10 +9,13 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_rol_select"
+            android:id="@+id/nav_role_select"
             android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_character" />
-
+            android:title="@string/menu_select" />
+        <item
+            android:id="@+id/nav_detail"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_detail" />
         <item
             android:id="@+id/nav_character"
             android:icon="@drawable/ic_menu_gallery"

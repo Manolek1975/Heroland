@@ -1,17 +1,17 @@
 package com.delek.heroland.ui.roleselect
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.delek.heroland.databinding.FragmentRolSelectBinding
+import com.delek.heroland.databinding.FragmentRoleSelectBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 class RoleSelectFragment : Fragment() {
 
     private val viewModel: RoleSelectViewModel by viewModels()
-    private var _binding: FragmentRolSelectBinding? = null
+    private var _binding: FragmentRoleSelectBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: RoleSelectAdapter
 
@@ -27,14 +27,17 @@ class RoleSelectFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRolSelectBinding.inflate(inflater, container, false)
+        _binding = FragmentRoleSelectBinding.inflate(inflater, container, false)
         initUI()
         return binding.root
     }
 
     private fun initUI() {
         adapter = RoleSelectAdapter(onItemSelected = {
-            Toast.makeText(context, it.name, Toast.LENGTH_SHORT).show()} )
+            findNavController().navigate(
+                RoleSelectFragmentDirections.actionNavRoleSelectToNavDetail(it.id)
+            )
+        })
         binding.rvRole.layoutManager = GridLayoutManager(context, 2)
         binding.rvRole.adapter = adapter
 

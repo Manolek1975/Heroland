@@ -11,8 +11,28 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_nav_home_to_nav_rol_select"
-            app:destination="@id/nav_rol_select" />
+            android:id="@+id/action_nav_home_to_nav_role_select"
+            app:destination="@id/nav_role_select" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_role_select"
+        android:name="com.delek.heroland.ui.roleselect.RoleSelectFragment"
+        android:label="fragment_role_select"
+        tools:layout="@layout/fragment_role_select" >
+        <action
+            android:id="@+id/action_nav_role_select_to_nav_detail"
+            app:destination="@id/nav_detail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_detail"
+        android:name="com.delek.heroland.ui.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
     </fragment>
 
     <fragment
@@ -26,9 +46,4 @@
         android:name="com.delek.heroland.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
-    <fragment
-        android:id="@+id/nav_rol_select"
-        android:name="com.delek.heroland.ui.roleselect.RoleSelectFragment"
-        android:label="fragment_rol_select"
-        tools:layout="@layout/fragment_rol_select" />
 </navigation>
