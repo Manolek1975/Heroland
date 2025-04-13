@@ -24,5 +24,8 @@ object RoomModule {
     @Singleton
     @Provides
     fun provideRoleDao(db: HerolandDatabase) = db.getRoleDao()
+    @Singleton
+    @Provides
+    fun provideDwellingDao(db: HerolandDatabase) = db.getDwellingDao()
 
 }

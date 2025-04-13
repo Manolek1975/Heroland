@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.delek.heroland.data.database.entities.DwellingEntity
 import com.delek.heroland.data.database.entities.RoleEntity
 
 @Dao
@@ -20,13 +19,13 @@ interface RoleDao {
     suspend fun deleteAllRoles()
 
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+/*    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDwellings(dwellings: List<DwellingEntity>)
 
     @Query("SELECT * FROM dwellings")
     suspend fun getAllDwellings(): List<DwellingEntity>
 
     @Query("DELETE FROM dwellings")
-    suspend fun deleteAllDwellings()
+    suspend fun deleteAllDwellings()*/
 
 }
