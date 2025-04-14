@@ -18,4 +18,7 @@ interface RoleDao {
     @Query("DELETE FROM roles")
     suspend fun deleteAllRoles()
 
+    @Query("SELECT * FROM roles WHERE id = :id")
+    suspend fun getRoleById(id: Int): RoleEntity
+
 }
