@@ -21,7 +21,7 @@ class RoleSelectFragment : Fragment() {
     private val viewModel: RoleSelectViewModel by viewModels()
     private var _binding: FragmentRoleSelectBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: RoleSelectAdapter
+    private lateinit var roleAdapter: RoleSelectAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,18 +33,18 @@ class RoleSelectFragment : Fragment() {
     }
 
     private fun initUI() {
-        adapter = RoleSelectAdapter(onItemSelected = {
+        roleAdapter = RoleSelectAdapter(onItemSelected = {
             findNavController().navigate(
                 RoleSelectFragmentDirections.actionNavRoleSelectToNavDetail(it.id)
             )
         })
         binding.rvRole.layoutManager = GridLayoutManager(context, 2)
-        binding.rvRole.adapter = adapter
+        binding.rvRole.adapter = roleAdapter
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.roleEntity.observe(viewLifecycleOwner) {
-                    adapter.updateList(it)
+                    roleAdapter.updateList(it)
                 }
             }
         }

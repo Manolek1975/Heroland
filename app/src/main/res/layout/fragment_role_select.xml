@@ -10,11 +10,11 @@
     tools:context=".ui.roleselect.RoleSelectFragment">
 
     <TextView
-        android:id="@+id/textRole"
+        android:id="@+id/headRoleSelect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="@string/select_character"
+        android:text="@string/header_select_character"
         android:textAlignment="center"
         android:textSize="36sp"
         android:textStyle="bold" />

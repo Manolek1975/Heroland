@@ -34,8 +34,8 @@ class HomeFragment : Fragment() {
         binding.textHome.text = getString(R.string.text_home)
         binding.textVersion.text = getString(R.string.text_version)
         binding.textHome.blink()
+        homeViewModel.onCreate()
         binding.root.setOnClickListener {
-            homeViewModel.onCreate()
             findNavController().navigate(
                 HomeFragmentDirections.actionNavHomeToNavRoleSelect()
             )

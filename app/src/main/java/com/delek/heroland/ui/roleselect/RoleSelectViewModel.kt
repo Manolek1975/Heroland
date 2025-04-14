@@ -10,7 +10,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RoleSelectViewModel @Inject constructor(private val repository: RoleRepository) : ViewModel() {
+class RoleSelectViewModel @Inject constructor(private val repository: RoleRepository) :
+    ViewModel() {
+
     val roleEntity = MutableLiveData<List<Role>>()
 
     init {
@@ -18,4 +20,5 @@ class RoleSelectViewModel @Inject constructor(private val repository: RoleReposi
             roleEntity.value = repository.getAllRoles()
         }
     }
+
 }

@@ -11,12 +11,12 @@ class GetRolesUseCase @Inject constructor(private val repository: RoleRepository
         val roles = repository.getAllRoles()
 
         return if(roles.isEmpty()){
-            //repository.clearRoles()
             repository.insertRoles(RoleProvider.roles)
             roles
         }else{
             repository.getAllRoles()
         }
     }
+
 
 }

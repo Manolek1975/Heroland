@@ -11,7 +11,6 @@ class GetDwellingsUseCase @Inject constructor(private val repository: DwellingRe
         val dwellings = repository.getAllDwellings()
 
         return if(dwellings.isEmpty()){
-            //repository.clearDwellings()
             repository.insertDwellings(DwellingProvider.dwellings)
             dwellings
         }else{

@@ -13,7 +13,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    //private val repository: RoleRepository
     private val getRolesUseCase: GetRolesUseCase,
     private val getDwellingsUseCase: GetDwellingsUseCase
     ) : ViewModel() {
@@ -33,10 +32,5 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
-
-/*    fun insertAll() = viewModelScope.launch {
-        getRolesUseCase.insertRoles(RoleProvider.roles)
-        getDwellingsUseCase.insertDwellings(DwellingProvider.dwellings)
-    }*/
 
 }

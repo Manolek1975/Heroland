@@ -18,14 +18,4 @@ interface RoleDao {
     @Query("DELETE FROM roles")
     suspend fun deleteAllRoles()
 
-
-/*    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertDwellings(dwellings: List<DwellingEntity>)
-
-    @Query("SELECT * FROM dwellings")
-    suspend fun getAllDwellings(): List<DwellingEntity>
-
-    @Query("DELETE FROM dwellings")
-    suspend fun deleteAllDwellings()*/
-
 }
