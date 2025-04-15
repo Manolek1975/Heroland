@@ -17,9 +17,6 @@ class DetailViewModel @Inject constructor(
     private val repository: RoleRepository,
     private val repoAdv: AdvantageRepository,
     private val repoAdvRole: RoleAdvantagesRepository
-    //private val advantageDao: AdvantageDao,
-    //private val roleAdvantagesDao: RoleAdvantagesDao
-
 ): ViewModel() {
 
     val roleEntity = MutableLiveData<Role>()
@@ -34,7 +31,9 @@ class DetailViewModel @Inject constructor(
     fun getAdvantages(id: Int) {
         viewModelScope.launch {
             val rolAdv = repoAdvRole.getAdvantagesByRole(id)
-            advantages.value = repoAdv.getAdvantageById(rolAdv[0].advantageId)
+            for (i in rolAdv) {
+                advantages.value = repoAdv.getAdvantageById(i.advantageId)
+            }
         }
 
     }

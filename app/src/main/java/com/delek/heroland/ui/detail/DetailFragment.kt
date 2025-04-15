@@ -36,9 +36,14 @@ class DetailFragment : Fragment() {
     }
 
     private fun initUI() {
+        initHeader()
+        initAdvantages()
+    }
+
+    private fun initHeader() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.roleEntity.observe(viewLifecycleOwner){
+                viewModel.roleEntity.observe(viewLifecycleOwner) {
                     binding.tvName.text = it.name
                     binding.tvSymbol.text = it.symbol
                     binding.tvWeight.text = getString(R.string.weight_vulnerability, it.weight)
@@ -47,13 +52,18 @@ class DetailFragment : Fragment() {
                 }
             }
         }
+    }
 
-
+    private fun initAdvantages() {
+        var x = 0
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.advantages.observe(viewLifecycleOwner) {
-                    binding.tvAdv1.text = getString(R.string.advantage_1, it.name, it.description)
-                    binding.tvAdv2.text = getString(R.string.advantage_2, it.name, it.description)
+                    ++x
+                    if (x == 1)
+                        binding.tvAdv1.text = getString(R.string.advantage_1, it.name, it.description)
+                    if (x == 2)
+                        binding.tvAdv2.text = getString(R.string.advantage_2, it.name, it.description)
                 }
             }
         }
