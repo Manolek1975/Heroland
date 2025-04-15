@@ -1,6 +1,6 @@
 package com.delek.heroland.domain
 
-import com.delek.heroland.data.DwellingRepository
+import com.delek.heroland.data.repository.DwellingRepository
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.provider.DwellingProvider
 import javax.inject.Inject

@@ -9,21 +9,18 @@ import com.delek.heroland.domain.model.Role
 @Entity(tableName = "roles")
 data class RoleEntity(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id") val id: Int,
-    @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "symbol") val symbol: String,
-    @ColumnInfo(name = "icon") val icon: String,
-    @ColumnInfo(name = "thumb") val thumb: String,
-    @ColumnInfo(name = "image") val image: String,
-    @ColumnInfo(name = "detail") val detail: String,
-    @ColumnInfo(name = "weight") val weight: String,
-    @ColumnInfo(name = "advantages") val advantages: Int,
-    @ColumnInfo(name = "development") val development: Int,
-    @ColumnInfo(name = "position") val position: Int,
-    @ColumnInfo(name = "spells") val spells: Int,
-    @ColumnInfo(name = "relations") val relations: Int,
-    @ColumnInfo(name = "dwellings") val dwellings : Int,
-
+    @ColumnInfo("id") val id: Int,
+    @ColumnInfo("name") val name: String,
+    @ColumnInfo("symbol") val symbol: String,
+    @ColumnInfo("icon") val icon: String,
+    @ColumnInfo("thumb") val thumb: String,
+    @ColumnInfo("image") val image: String,
+    @ColumnInfo("weight") val weight: String,
+    @ColumnInfo("advantages") val advantages: Int,
+    @ColumnInfo("development") val development: Int,
+    @ColumnInfo("dwellings") val dwellings: Int,
+    @ColumnInfo("spells") val spells: Int,
+    @ColumnInfo("relations") val relations: Int,
 )
 
 fun Role.toDatabase() = RoleEntity(
@@ -33,14 +30,12 @@ fun Role.toDatabase() = RoleEntity(
     icon,
     thumb,
     image,
-    detail,
     weight,
     advantages,
     development,
-    position,
+    dwellings,
     spells,
-    relations,
-    dwellings
+    relations
 )
 
 

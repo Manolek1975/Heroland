@@ -1,4 +1,4 @@
-package com.delek.heroland.data
+package com.delek.heroland.data.repository
 
 import com.delek.heroland.data.database.dao.DwellingDao
 import com.delek.heroland.data.database.entities.DwellingEntity

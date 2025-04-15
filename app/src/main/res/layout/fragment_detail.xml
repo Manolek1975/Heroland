@@ -80,12 +80,14 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_adv1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="1. HEALTH: Get one extra Rest phase every day"
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/tv_adv2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="-4dp"

@@ -1,6 +1,6 @@
 package com.delek.heroland.domain
 
-import com.delek.heroland.data.RoleRepository
+import com.delek.heroland.data.repository.RoleRepository
 import com.delek.heroland.domain.model.Role
 import com.delek.heroland.domain.provider.RoleProvider
 import javax.inject.Inject
@@ -17,6 +17,5 @@ class GetRolesUseCase @Inject constructor(private val repository: RoleRepository
             repository.getAllRoles()
         }
     }
-
 
 }

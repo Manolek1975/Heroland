@@ -10,14 +10,12 @@ data class Role(
     val icon: String,
     val thumb: String,
     val image: String,
-    val detail: String,
     val weight: String,
     val advantages: Int,
     val development: Int,
-    val position: Int,
+    val dwellings: Int,
     val spells: Int,
-    val relations: Int,
-    val dwellings: Int
+    val relations: Int
 )
 
 fun RoleEntity.toDomain() = Role(
@@ -27,12 +25,10 @@ fun RoleEntity.toDomain() = Role(
     icon,
     thumb,
     image,
-    detail,
     weight,
     advantages,
     development,
-    position,
+    dwellings,
     spells,
-    relations,
-    dwellings
+    relations
 )

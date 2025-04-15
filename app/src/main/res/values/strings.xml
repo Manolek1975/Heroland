@@ -15,8 +15,10 @@
     <string name="menu_detail">Detail</string>
     <string name="menu_character">Character</string>
     <string name="menu_settings">Settings</string>
-
+    <!-- Detail -->
     <string name="header_select_character">Select character</string>
     <string name="advantages">Special Advantages</string>
-
+    <string name="weight_vulnerability">Weight/Vulnerability: <b>%1$s</b></string>
+    <string name="advantage_1">1. <b>%1$s:</b> %2$s</string>
+    <string name="advantage_2">2. <b>%1$s:</b> %2$s</string>
 </resources>

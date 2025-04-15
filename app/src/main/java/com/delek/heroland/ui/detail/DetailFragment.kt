@@ -30,6 +30,7 @@ class DetailFragment : Fragment() {
     ): View {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         viewModel.onCreate(args.id)
+        viewModel.getAdvantages(args.id)
         initUI()
         return binding.root
     }
@@ -40,9 +41,19 @@ class DetailFragment : Fragment() {
                 viewModel.roleEntity.observe(viewLifecycleOwner){
                     binding.tvName.text = it.name
                     binding.tvSymbol.text = it.symbol
-                    binding.tvWeight.text = it.weight
+                    binding.tvWeight.text = getString(R.string.weight_vulnerability, it.weight)
                     val id = getResId(it.icon, R.drawable::class.java)
                     binding.ivIcon.setImageResource(id)
+                }
+            }
+        }
+
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.advantages.observe(viewLifecycleOwner) {
+                    binding.tvAdv1.text = getString(R.string.advantage_1, it.name, it.description)
+                    binding.tvAdv2.text = getString(R.string.advantage_2, it.name, it.description)
                 }
             }
         }
