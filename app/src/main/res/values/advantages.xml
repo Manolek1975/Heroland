@@ -31,7 +31,30 @@
     </string-array>
 
     <string-array name="advantages_description">
-
+        <item>Subtracts one from each die roll whenever she
+rolls on the Missile Table to attack with a missile weapon.</item>
+        <item>The Amazon can record and do an extra Move phase
+each turn. She gets this bonus even when she is riding a horse - her
+stamina includes being an excellent horsewoman.</item>
+        <item>The Berserker can record and do an extra Rest phase
+each day.</item>
+        <item>The Berserker can play his Berserk chit to increase
+his vulnerability to Tremendous for the rest of the day. Once he plays
+it, it takes Tremendous harm to kill him. At Midnight he reverts to
+normal.</item>
+        <item>Whenever the Black Knight rolls on the Meeting Table he
+rolls one die instead of two. His deadly reputation makes it easier for
+him to trade and hire natives, and it makes his enemies think twice
+before blocking or battling him.</item>
+        <item>The Captain can record and do an extra phase
+each day he is at a Dwelling (including a campfire). He must be at the
+Dwelling when he starts to do the phase, not when he records it. He
+can use the extra phase to do any normal activity.</item>
+        <item>The Druid rolls one die instead of two each
+time he makes a Hide die roll. </item>
+        <item>When the Druid ends his turn, the
+Warning and Sound chits in his tile do not summon monsters.
+Individuals following the Druid will summon monsters normally.</item>
         <item>The Dwarf can never use sunlight phases, you rest an extra
 effort asterisk per rest phase, and you can play the DUCK chit to Duck.</item>
         <item>The Dwarf rolls one die instead of two
@@ -55,7 +78,8 @@ he cannot lure them into attacking, and they cannot be assigned to
 him randomly. He can block and attack them normally. His hirelings
 are not protected and can lure and be assigned Demons and Imps. </item>
         <item>The Pilgrim rolls one die instead of two each time he
-uses the Reading Runes table.</item>
+uses the Reading Runes table.
+Starting Location: Inn or Chapel</item>
         <item>Rolls one die instead of two each time he rolls on the Reading Runes table.</item>
         <item>Can record and do an extra Enchant phase each turn.</item>
         <item>The Swordsman rolls one die instead of two whenever

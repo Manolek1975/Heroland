@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -60,13 +61,30 @@ class DetailFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.advantages.observe(viewLifecycleOwner) {
                     ++x
-                    if (x == 1)
-                        binding.tvAdv1.text = getString(R.string.advantage_1, it.name, it.description)
-                    if (x == 2)
-                        binding.tvAdv2.text = getString(R.string.advantage_2, it.name, it.description)
+                    if (x == 1) {
+                        val name = it.name
+                        val description = it.description
+                        binding.tvAdv1.text = getString(R.string.advantage_1, name)
+                        binding.tvAdv1.setOnClickListener{showDescription(name, description)}
+                    }
+                    if (x == 2) {
+                        val name = it.name
+                        val description = it.description
+                        binding.tvAdv2.text = getString(R.string.advantage_2, name)
+                        binding.tvAdv2.setOnClickListener {showDescription(name, description)}
+                    }
                 }
             }
         }
+
+    }
+
+    private fun showDescription(name: String, description: String) {
+        val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.AppTheme_AlertDialogStyle)
+        dialogBuilder.setIcon(android.R.drawable.stat_notify_chat)
+        dialogBuilder.setTitle(name)
+        dialogBuilder.setMessage(description)
+        dialogBuilder.setPositiveButton("OK"){_, _: Int ->}.show()
     }
 
     private fun getResId(resName: String?, c: Class<*>): Int {

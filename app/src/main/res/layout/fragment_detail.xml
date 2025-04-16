@@ -83,6 +83,8 @@
             android:id="@+id/tv_adv1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:lineSpacingExtra="-4dp"
+            android:textStyle="bold"
             tools:text="1. HEALTH: Get one extra Rest phase every day"
             android:textSize="18sp" />
 
@@ -91,22 +93,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="-4dp"
+            android:textStyle="bold"
             tools:text="2. HONOR: Subtract 1 from all Meeting table die rolls"
             android:textSize="18sp" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="12" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,17 +1,21 @@
 package com.delek.heroland.domain
 
+import android.content.Context
 import com.delek.heroland.data.repository.AdvantageRepository
 import com.delek.heroland.domain.model.Advantage
 import com.delek.heroland.domain.provider.AdvantageProvider
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class GetAdvantagesUseCase @Inject constructor(private val repository: AdvantageRepository) {
+class GetAdvantagesUseCase @Inject constructor(
+    @ApplicationContext private val context: Context,
+    private val repository: AdvantageRepository) {
 
     suspend operator fun invoke(): List<Advantage> {
         val advantages = repository.getAllAdvantages()
 
         return if (advantages.isEmpty()) {
-            repository.insertAdvantages(AdvantageProvider.advantage)
+            repository.insertAdvantages(AdvantageProvider.createAdvantages(context))
             advantages
         } else {
             repository.getAllAdvantages()

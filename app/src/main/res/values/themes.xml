@@ -11,4 +11,20 @@
 
     <style name="Theme.Heroland" parent="Base.Theme.Heroland" />
 
+    <style name="AppTheme.AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/dialog_bg</item>
+        <!-- Used for the buttons -->
+        <item name="colorAccent">@color/yellow</item>
+        <!-- Used for the title and text -->
+        <item name="android:textAppearanceSmall">@style/TextAppearanceSmall</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <!-- Used for the background -->
+        <item name="android:background">@color/primary</item>
+    </style>
+
+    <style name="TextAppearanceSmall" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/macondo</item>
+    </style>
+
 </resources>
