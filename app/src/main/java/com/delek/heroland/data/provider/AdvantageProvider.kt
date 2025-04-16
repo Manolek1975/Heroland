@@ -1,4 +1,4 @@
-package com.delek.heroland.domain.provider
+package com.delek.heroland.data.provider
 
 import android.content.Context
 import com.delek.heroland.R
@@ -7,7 +7,7 @@ import com.delek.heroland.data.database.entities.AdvantageEntity
 class AdvantageProvider {
 
     companion object {
-        fun createAdvantages(context: Context): List<AdvantageEntity> {
+        fun loadAdvantages(context: Context): List<AdvantageEntity> {
             val advantages: MutableList<AdvantageEntity> = mutableListOf()
             val name = context.resources.getStringArray(R.array.advantages_name)
             val description = context.resources.getStringArray(R.array.advantages_description)

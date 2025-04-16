@@ -83,7 +83,6 @@
             android:id="@+id/tv_adv1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lineSpacingExtra="-4dp"
             android:textStyle="bold"
             tools:text="1. HEALTH: Get one extra Rest phase every day"
             android:textSize="18sp" />
@@ -92,7 +91,6 @@
             android:id="@+id/tv_adv2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lineSpacingExtra="-4dp"
             android:textStyle="bold"
             tools:text="2. HONOR: Subtract 1 from all Meeting table die rolls"
             android:textSize="18sp" />

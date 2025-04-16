@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="name_dwellings">
+        <item>Inn</item>
+        <item>House</item>
+        <item>Guard</item>
+        <item>Chapel</item>
+        <item>Large Campfire</item>
+        <item>Small Campfire</item>
+    </string-array>
+
+    <string-array name="image_dwellings">
+        <item>d_inn</item>
+        <item>d_house</item>
+        <item>d_guard</item>
+        <item>d_chapel</item>
+        <item>d_campfire_l</item>
+        <item>d_campfire_s</item>
+    </string-array>
+
+    <string-array name="tile_dwelling">
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </string-array>
+
+    <string-array name="clearing_dwelling">
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </string-array>
+</resources>

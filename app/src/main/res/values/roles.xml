@@ -38,44 +38,6 @@
         <item>EROSIA: Love and Earth</item>
     </string-array>
 
-    <string-array name="roles_image">
-        <item>img_amazon</item>
-        <item>img_berserker</item>
-        <item>img_black_knight</item>
-        <item>img_captain</item>
-        <item>img_druid</item>
-        <item>img_dwarf</item>
-        <item>img_elf</item>
-        <item>img_magician</item>
-        <item>img_pilgrim</item>
-        <item>img_sorcerer</item>
-        <item>img_swordsman</item>
-        <item>img_white_knight</item>
-        <item>img_witch</item>
-        <item>img_witch_king</item>
-        <item>img_wizard</item>
-        <item>img_woods_girl</item>
-    </string-array>
-
-    <string-array name="roles_detail">
-        <item>detail_amazon</item>
-        <item>detail_berserker</item>
-        <item>detail_black_knight</item>
-        <item>detail_captain</item>
-        <item>detail_druid</item>
-        <item>detail_dwarf</item>
-        <item>detail_elf</item>
-        <item>detail_magician</item>
-        <item>detail_pilgrim</item>
-        <item>detail_sorcerer</item>
-        <item>detail_swordsman</item>
-        <item>detail_white_knight</item>
-        <item>detail_witch</item>
-        <item>detail_witch_king</item>
-        <item>detail_wizard</item>
-        <item>detail_woods_girl</item>
-    </string-array>
-
     <string-array name="roles_icon">
         <item>icon_amazon</item>
         <item>icon_berserker</item>
@@ -95,7 +57,7 @@
         <item>icon_woods_girl</item>
     </string-array>
 
-    <string-array name="roles_thumbs">
+    <string-array name="roles_thumb">
         <item>thumb_amazon</item>
         <item>thumb_berserker</item>
         <item>thumb_black_knight</item>
@@ -112,6 +74,25 @@
         <item>thumb_witch_king</item>
         <item>thumb_wizard</item>
         <item>thumb_woods_girl</item>
+    </string-array>
+
+    <string-array name="roles_image">
+        <item>img_amazon</item>
+        <item>img_berserker</item>
+        <item>img_black_knight</item>
+        <item>img_captain</item>
+        <item>img_druid</item>
+        <item>img_dwarf</item>
+        <item>img_elf</item>
+        <item>img_magician</item>
+        <item>img_pilgrim</item>
+        <item>img_sorcerer</item>
+        <item>img_swordsman</item>
+        <item>img_white_knight</item>
+        <item>img_witch</item>
+        <item>img_witch_king</item>
+        <item>img_wizard</item>
+        <item>img_woods_girl</item>
     </string-array>
 
     <string-array name="roles_weight">
@@ -152,49 +133,7 @@
         <item>1</item>
     </string-array>
 
-    <string-array name="roles_advantages">
-        <item>1</item>
-        <item>3</item>
-        <item>1</item>
-        <item>1</item>
 
-        <item>7</item>
-        <item>9</item>
-        <item>11</item>
-        <item>13</item>
-
-        <item>15</item>
-        <item>17</item>
-        <item>19</item>
-        <item>21</item>
-
-        <item>14</item>
-        <item>24</item>
-        <item>17</item>
-        <item>26</item>
-
-
-
-        <item>2</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-
-        <item>8</item>
-        <item>10</item>
-        <item>12</item>
-        <item>14</item>
-
-        <item>16</item>
-        <item>18</item>
-        <item>20</item>
-        <item>22</item>
-
-        <item>23</item>
-        <item>18</item>
-        <item>25</item>
-        <item>12</item>
-    </string-array>
 
     <string-array name="roles_difficulty">
         <item>NORMAL</item>
@@ -214,5 +153,73 @@
         <item>HARD</item>
         <item>EASY</item>
     </string-array>
+    <string-array name="role_id_advantages">
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>2</item>
+        <item>3</item>
+        <item>3</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
+        <item>5</item>
+        <item>6</item>
+        <item>6</item>
+        <item>7</item>
+        <item>7</item>
+        <item>8</item>
+        <item>8</item>
+        <item>9</item>
+        <item>9</item>
+        <item>10</item>
+        <item>10</item>
+        <item>11</item>
+        <item>11</item>
+        <item>12</item>
+        <item>12</item>
+        <item>13</item>
+        <item>13</item>
+        <item>14</item>
+        <item>14</item>
+        <item>15</item>
+        <item>15</item>
+        <item>16</item>
+        <item>16</item>
+    </string-array>
 
+    <string-array name="adv_id_advantages">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>1</item>
+        <item>5</item>
+        <item>1</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>14</item>
+        <item>23</item>
+        <item>24</item>
+        <item>18</item>
+        <item>17</item>
+        <item>25</item>
+        <item>26</item>
+        <item>12</item>
+    </string-array>
 </resources>
