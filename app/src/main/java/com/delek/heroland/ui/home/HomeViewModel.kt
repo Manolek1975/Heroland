@@ -9,7 +9,9 @@ import com.delek.heroland.domain.model.Advantage
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Role
 import com.delek.heroland.domain.GetAdvantagesUseCase
+import com.delek.heroland.domain.GetChitsUseCase
 import com.delek.heroland.domain.GetRoleAdvantagesUseCase
+import com.delek.heroland.domain.model.Chit
 import com.delek.heroland.domain.model.RoleAdvantages
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -21,13 +23,14 @@ class HomeViewModel @Inject constructor(
     private val getDwellingsUseCase: GetDwellingsUseCase,
     private val getAdvantagesUseCase: GetAdvantagesUseCase,
     private val getRoleAdvantagesUseCase: GetRoleAdvantagesUseCase,
-
-    ) : ViewModel() {
+    private val getChitsUseCase: GetChitsUseCase
+) : ViewModel() {
 
     private val roles = MutableLiveData<Role>()
     private val dwellings = MutableLiveData<Dwelling>()
     private val advantages = MutableLiveData<Advantage>()
     private val roleAdvantages = MutableLiveData<RoleAdvantages>()
+    private val chits = MutableLiveData<Chit>()
 
     fun onCreate() {
         viewModelScope.launch {
@@ -47,6 +50,11 @@ class HomeViewModel @Inject constructor(
             if (roleAdvantage.isNotEmpty()) {
                 roleAdvantages.postValue(roleAdvantage[0])
             }
+            val chit = getChitsUseCase()
+            if (chit.isNotEmpty()) {
+                chits.postValue(chit[0])
+            }
+
         }
     }
 

@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import com.delek.heroland.R
 import com.delek.heroland.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +25,7 @@ class DetailFragment : Fragment() {
     private val binding get() = _binding
     private val args: DetailFragmentArgs by navArgs()
     private val viewModel: DetailViewModel by viewModels()
+    private lateinit var chitAdapter: ChitAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +41,7 @@ class DetailFragment : Fragment() {
     private fun initUI() {
         initHeader()
         initAdvantages()
+        initChits()
     }
 
     private fun initHeader() {
@@ -65,21 +68,34 @@ class DetailFragment : Fragment() {
                         val name = it.name
                         val description = it.description
                         binding.tvAdv1.text = getString(R.string.advantage_1, name)
-                        binding.tvAdv1.setOnClickListener{showDescription(name, description)}
+                        binding.tvAdv1.setOnClickListener{dialogDescription(name, description)}
                     }
                     if (x == 2) {
                         val name = it.name
                         val description = it.description
                         binding.tvAdv2.text = getString(R.string.advantage_2, name)
-                        binding.tvAdv2.setOnClickListener {showDescription(name, description)}
+                        binding.tvAdv2.setOnClickListener {dialogDescription(name, description)}
                     }
                 }
             }
         }
-
     }
 
-    private fun showDescription(name: String, description: String) {
+    private fun initChits() {
+        chitAdapter = ChitAdapter()
+        binding.rvChits.layoutManager = GridLayoutManager(context, 3)
+        binding.rvChits.adapter = chitAdapter
+        viewModel.getAllChits()
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.chitEntity.observe(viewLifecycleOwner) {
+                    chitAdapter.updateList(it)
+                }
+            }
+        }
+    }
+
+    private fun dialogDescription(name: String, description: String) {
         val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.AppTheme_AlertDialogStyle)
         dialogBuilder.setIcon(android.R.drawable.stat_notify_chat)
         dialogBuilder.setTitle(name)

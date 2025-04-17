@@ -4,9 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.delek.heroland.data.repository.AdvantageRepository
+import com.delek.heroland.data.repository.ChitRepository
 import com.delek.heroland.data.repository.RoleAdvantagesRepository
 import com.delek.heroland.data.repository.RoleRepository
 import com.delek.heroland.domain.model.Advantage
+import com.delek.heroland.domain.model.Chit
 import com.delek.heroland.domain.model.Role
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,11 +18,13 @@ import javax.inject.Inject
 class DetailViewModel @Inject constructor(
     private val repository: RoleRepository,
     private val repoAdv: AdvantageRepository,
-    private val repoAdvRole: RoleAdvantagesRepository
+    private val repoAdvRole: RoleAdvantagesRepository,
+    private val repoChits: ChitRepository
 ): ViewModel() {
 
     val roleEntity = MutableLiveData<Role>()
     val advantages = MutableLiveData<Advantage>()
+    val chitEntity = MutableLiveData<List<Chit>>()
 
     fun onCreate(id: Int) {
         viewModelScope.launch {
@@ -34,6 +38,12 @@ class DetailViewModel @Inject constructor(
             for (i in rolAdv) {
                 advantages.value = repoAdv.getAdvantageById(i.advantageId)
             }
+        }
+    }
+
+    fun getAllChits() {
+        viewModelScope.launch {
+            chitEntity.value = repoChits.getAllChits()
         }
 
     }
