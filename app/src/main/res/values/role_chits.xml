@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="role_id_rolechits">
+        <!-- AMAZON -->
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+    </string-array>
+        <!-- BERSERKER -->
+<!--        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        &lt;!&ndash; BLACK KNIGHT &ndash;&gt;
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        &lt;!&ndash; CAPTAIN &ndash;&gt;
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        &lt;!&ndash; DRUID &ndash;&gt;
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        &lt;!&ndash; DWARF &ndash;&gt;
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        &lt;!&ndash; ELF &ndash;&gt;
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        &lt;!&ndash; MAGICIAN &ndash;&gt;
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        &lt;!&ndash; PILGRIM &ndash;&gt;
+        <item>9</item>
+        <item>9</item>
+        <item>9</item>
+        <item>9</item>
+        <item>9</item>
+        <item>9</item>
+        <item>9</item>
+        <item>9</item>
+        <item>9</item>
+        <item>9</item>
+        <item>9</item>
+        <item>9</item>
+        &lt;!&ndash; SORCERER &ndash;&gt;
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+        &lt;!&ndash; SWORDSMAN &ndash;&gt;
+        <item>11</item>
+        <item>11</item>
+        <item>11</item>
+        <item>11</item>
+        <item>11</item>
+        <item>11</item>
+        <item>11</item>
+        <item>11</item>
+        <item>11</item>
+        <item>11</item>
+        <item>11</item>
+        <item>11</item>
+        &lt;!&ndash; WHITE KNIGHT &ndash;&gt;
+        <item>12</item>
+        <item>12</item>
+        <item>12</item>
+        <item>12</item>
+        <item>12</item>
+        <item>12</item>
+        <item>12</item>
+        <item>12</item>
+        <item>12</item>
+        <item>12</item>
+        <item>12</item>
+        <item>12</item>
+        &lt;!&ndash; WITCH &ndash;&gt;
+        <item>13</item>
+        <item>13</item>
+        <item>13</item>
+        <item>13</item>
+        <item>13</item>
+        <item>13</item>
+        <item>13</item>
+        <item>13</item>
+        <item>13</item>
+        <item>13</item>
+        <item>13</item>
+        <item>13</item>
+        &lt;!&ndash; WITCH KING &ndash;&gt;
+        <item>14</item>
+        <item>14</item>
+        <item>14</item>
+        <item>14</item>
+        <item>14</item>
+        <item>14</item>
+        <item>14</item>
+        <item>14</item>
+        <item>14</item>
+        <item>14</item>
+        <item>14</item>
+        <item>14</item>
+        &lt;!&ndash; WIZARD &ndash;&gt;
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        &lt;!&ndash; WOODS GIRL &ndash;&gt;
+        <item>16</item>
+        <item>16</item>
+        <item>16</item>
+        <item>16</item>
+        <item>16</item>
+        <item>16</item>
+        <item>16</item>
+        <item>16</item>
+        <item>16</item>
+        <item>16</item>
+        <item>16</item>
+        <item>16</item>-->
+
+
+    <string-array name="chits_id_rolechits">
+        <!-- AMAZON -->
+        <item>27</item>
+        <item>29</item>
+        <item>17</item>
+        <item>27</item>
+        <item>11</item>
+        <item>13</item>
+        <item>29</item>
+        <item>15</item>
+        <item>10</item>
+        <item>13</item>
+        <item>15</item>
+        <item>29</item>
+    </string-array>
+        <!-- BERSERKER -->
+<!--        <item>4</item>
+        <item>1</item>
+        <item>1</item>
+        <item>4</item>
+        <item>5</item>
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>1</item>
+        <item>1</item>
+        &lt;!&ndash; BLACK KNIGHT &ndash;&gt;
+        <item>4</item>
+        <item>3</item>
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>2</item>
+        <item>3</item>
+        <item>1</item>
+        &lt;!&ndash; CAPTAIN &ndash;&gt;
+        <item>5</item>
+        <item>1</item>
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        &lt;!&ndash; DRUID &ndash;&gt;
+        <item>5</item>
+        <item>1</item>
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        &lt;!&ndash; DWARF &ndash;&gt;
+        <item>5</item>
+        <item>1</item>
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        &lt;!&ndash; ELF &ndash;&gt;
+        <item>5</item>
+        <item>1</item>
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        &lt;!&ndash; MAGICIAN &ndash;&gt;
+        <item>5</item>
+        <item>1</item>
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        &lt;!&ndash; PILGRIM &ndash;&gt;
+        <item>5</item>
+        <item>1</item>
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        &lt;!&ndash; SORCERER &ndash;&gt;
+        <item>5</item>
+        <item>1</item>
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        &lt;!&ndash; SWORDSMAN &ndash;&gt;
+        <item>5</item>
+        <item>1</item>
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        &lt;!&ndash; WHITE KNIGHT &ndash;&gt;
+        <item>5</item>
+        <item>1</item>
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        &lt;!&ndash; WITCH &ndash;&gt;
+        <item>5</item>
+        <item>1</item>
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        &lt;!&ndash; WITCH KING &ndash;&gt;
+        <item>5</item>
+        <item>1</item>
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        &lt;!&ndash; WIZARD &ndash;&gt;
+        <item>5</item>
+        <item>1</item>
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        &lt;!&ndash; WOODS GIRL &ndash;&gt;
+        <item>5</item>
+        <item>1</item>
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>-->
+
+
+
+</resources>

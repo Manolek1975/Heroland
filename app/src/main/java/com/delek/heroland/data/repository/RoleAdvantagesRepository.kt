@@ -22,14 +22,4 @@ class RoleAdvantagesRepository @Inject constructor(private val roleAdvantagesDao
         return response.map { it.toDomain() }
     }
 
-
-
-/*    suspend fun getAdvantageById(id: Int): Advantage {
-        val response: AdvantageEntity = advantageDao.getAdvantageById(id)
-        return response.toDomain()
-    }*/
-
-/*    suspend fun clearRoles() {
-        advantageDao.deleteAllAdvantages()
-    }*/
 }

@@ -19,13 +19,11 @@ import com.delek.heroland.domain.model.RoleAdvantages
     ]
 )
 data class RoleAdvantagesEntity(
-    //@ColumnInfo("id") val id: Int,
     @ColumnInfo("role_id", index = true) val roleId: Int,
     @ColumnInfo("advantage_id", index = true) val advantageId: Int
 )
 
 fun RoleAdvantages.toDatabase() = RoleAdvantagesEntity(
-    //id,
     roleId,
     advantageId
 )

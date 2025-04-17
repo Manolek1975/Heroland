@@ -17,7 +17,6 @@ class ChitProvider {
             for (i in name.indices) {
                 val chit = ChitEntity(i + 1, name[i], type[i], speed[i].toInt(), effort[i])
                 chits.add(chit)
-
             }
             return chits
         }

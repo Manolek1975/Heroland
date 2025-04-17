@@ -41,4 +41,8 @@ object RoomModule {
     @Provides
     fun provideChitDao(db: HerolandDatabase) = db.getChitDao()
 
+    @Singleton
+    @Provides
+    fun provideRoleChitDao(db: HerolandDatabase) = db.getRoleChitDao()
+
 }
