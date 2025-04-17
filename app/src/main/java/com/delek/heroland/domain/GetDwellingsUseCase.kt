@@ -13,7 +13,6 @@ class GetDwellingsUseCase @Inject constructor(
 
     suspend operator fun invoke():List<Dwelling>{
         val dwellings = repository.getAllDwellings()
-
         return if(dwellings.isEmpty()){
             repository.insertDwellings(DwellingProvider.loadDwellings(context))
             dwellings

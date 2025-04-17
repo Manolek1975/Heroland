@@ -13,7 +13,6 @@ class GetAdvantagesUseCase @Inject constructor(
 
     suspend operator fun invoke(): List<Advantage> {
         val advantages = repository.getAllAdvantages()
-
         return if (advantages.isEmpty()) {
             repository.insertAdvantages(AdvantageProvider.loadAdvantages(context))
             advantages

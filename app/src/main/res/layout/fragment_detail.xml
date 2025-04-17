@@ -98,11 +98,23 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tv_development"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/development"
+        android:layout_marginTop="8dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/ly_adv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_chits"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/ly_adv"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_development"/>
 
 
 

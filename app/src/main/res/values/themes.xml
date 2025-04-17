@@ -12,7 +12,7 @@
     <style name="Theme.Heroland" parent="Base.Theme.Heroland" />
 
     <style name="AppTheme.AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:windowBackground">@drawable/dialog_bg</item>
+        <item name="android:windowBackground">@drawable/layout_dialog</item>
         <!-- Used for the buttons -->
         <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
         <item name="android:colorAccent">@color/yellow</item>
@@ -41,6 +41,11 @@
         <item name="android:fontFamily">sans-serif-condensed</item>
         <item name="android:textSize">12sp</item>
         <item name="android:textStyle">bold</item>
+
+    </style>
+
+    <style name="Base.Theme.Chit.Layout" parent="Base.Theme.Heroland">
+        <item name="android:background">@drawable/layout_square</item>
     </style>
 
 </resources>

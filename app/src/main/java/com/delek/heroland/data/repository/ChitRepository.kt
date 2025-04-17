@@ -17,6 +17,11 @@ class ChitRepository @Inject constructor(private val chitDao: ChitDao) {
         return response.map { it.toDomain() }
     }
 
+    suspend fun getChitById(id: Int): Chit {
+        val response: ChitEntity = chitDao.getChitById(id)
+        return response.toDomain()
+    }
+
     suspend fun clearChits() {
         chitDao.deleteAllChits()
     }

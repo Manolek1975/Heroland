@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.delek.heroland.data.repository.AdvantageRepository
-import com.delek.heroland.data.repository.ChitRepository
 import com.delek.heroland.data.repository.RoleAdvantagesRepository
+import com.delek.heroland.data.repository.RoleChitRepository
 import com.delek.heroland.data.repository.RoleRepository
 import com.delek.heroland.domain.model.Advantage
 import com.delek.heroland.domain.model.Chit
@@ -19,12 +19,13 @@ class DetailViewModel @Inject constructor(
     private val repository: RoleRepository,
     private val repoAdv: AdvantageRepository,
     private val repoAdvRole: RoleAdvantagesRepository,
-    private val repoChits: ChitRepository
-): ViewModel() {
+    private val repoChitRole: RoleChitRepository
+) : ViewModel() {
 
     val roleEntity = MutableLiveData<Role>()
-    val advantages = MutableLiveData<Advantage>()
     val chitEntity = MutableLiveData<List<Chit>>()
+    val advantages = MutableLiveData<Advantage>()
+    val chits = MutableLiveData<Chit>()
 
     fun onCreate(id: Int) {
         viewModelScope.launch {
@@ -41,11 +42,11 @@ class DetailViewModel @Inject constructor(
         }
     }
 
-    fun getAllChits() {
+    fun getChitsByRole(id: Int) {
         viewModelScope.launch {
-            chitEntity.value = repoChits.getAllChits()
+            val rolChit = repoChitRole.getChitsByRole(id)
+            chitEntity.value = rolChit
         }
-
     }
 
 }

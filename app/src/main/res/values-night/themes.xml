@@ -12,7 +12,7 @@
     <style name="Theme.Heroland" parent="Base.Theme.Heroland" />
 
     <style name="AppTheme.AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:windowBackground">@drawable/dialog_bg</item>
+        <item name="android:windowBackground">@drawable/layout_dialog</item>
         <!-- Used for the buttons -->
         <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
         <item name="android:colorAccent">@color/yellow</item>

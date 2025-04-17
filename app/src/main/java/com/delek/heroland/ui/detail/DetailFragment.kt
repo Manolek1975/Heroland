@@ -34,6 +34,7 @@ class DetailFragment : Fragment() {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
         viewModel.onCreate(args.id)
         viewModel.getAdvantages(args.id)
+        viewModel.getChitsByRole(args.id)
         initUI()
         return binding.root
     }
@@ -85,7 +86,7 @@ class DetailFragment : Fragment() {
         chitAdapter = ChitAdapter()
         binding.rvChits.layoutManager = GridLayoutManager(context, 3)
         binding.rvChits.adapter = chitAdapter
-        viewModel.getAllChits()
+
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.chitEntity.observe(viewLifecycleOwner) {

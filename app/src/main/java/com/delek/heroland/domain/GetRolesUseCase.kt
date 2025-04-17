@@ -13,7 +13,6 @@ class GetRolesUseCase @Inject constructor(
 
     suspend operator fun invoke():List<Role>{
         val roles = repository.getAllRoles()
-
         return if(roles.isEmpty()){
             repository.insertRoles(RoleProvider.loadRoles(context))
             roles
