@@ -20,12 +20,12 @@
         <!-- Used for the title and text -->
         <item name="android:textAppearanceSmall">@style/TextAppearanceSmall</item>
         <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textSize">20sp</item>
         <!-- Used for the background -->
         <item name="android:background">@color/primary</item>
     </style>
 
     <style name="TextAppearanceSmall" parent="TextAppearance.AppCompat.Body1">
-        <item name="android:textSize">24sp</item>
         <item name="android:fontFamily">@font/macondo</item>
     </style>
 

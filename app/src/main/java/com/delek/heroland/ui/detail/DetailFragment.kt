@@ -117,7 +117,7 @@ class DetailFragment : Fragment() {
 
     private fun dialogDescription(name: String, description: String) {
         val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.AppTheme_AlertDialogStyle)
-        dialogBuilder.setIcon(android.R.drawable.stat_notify_chat)
+        //dialogBuilder.setIcon(android.R.drawable.ic_menu_info_details)
         dialogBuilder.setTitle(name)
         dialogBuilder.setMessage(description)
         dialogBuilder.setPositiveButton("OK"){_, _: Int ->}.show()

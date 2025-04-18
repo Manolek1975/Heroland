@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import com.delek.heroland.domain.model.RoleChit
 
 @Entity(
     tableName = "role_chits",
@@ -25,9 +24,4 @@ class RoleChitEntity(
     @ColumnInfo("chit_id") val chitId: Int
 )
 
-fun RoleChit.toDatabase() = RoleChitEntity(
-    id,
-    roleId,
-    chitId
-)
 

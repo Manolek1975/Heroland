@@ -3,7 +3,6 @@ package com.delek.heroland.data.database.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import com.delek.heroland.domain.model.RoleAdvantages
 
 @Entity(
     tableName = "role_advantages", primaryKeys = ["role_id", "advantage_id"],
@@ -23,7 +22,3 @@ data class RoleAdvantagesEntity(
     @ColumnInfo("advantage_id", index = true) val advantageId: Int
 )
 
-fun RoleAdvantages.toDatabase() = RoleAdvantagesEntity(
-    roleId,
-    advantageId
-)
