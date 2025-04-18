@@ -81,6 +81,11 @@
 
         <item>MAGIC</item>
         <item>MAGIC</item>
+        <item>MAGIC</item>
+        <item>MOVE</item>
+
+        <item>MAGIC</item>
+        <item>MOVE</item>
 
     </string-array>
 
@@ -164,6 +169,11 @@
 
         <item>VIII</item>
         <item>VIII</item>
+        <item>VIII</item>
+        <item>L</item>
+
+        <item>V</item>
+        <item>H</item>
 
     </string-array>
 
@@ -247,6 +257,11 @@
 
         <item>3</item>
         <item>2</item>
+        <item>2</item>
+        <item>2</item>
+
+        <item>4</item>
+        <item>5</item>
     </string-array>
 
     <string-array name="chit_effort">
@@ -329,6 +344,10 @@
 
         <item>*</item>
         <item>*</item>
+        <item>**</item>
+        <item>*</item>
+        <item>**</item>
+        <item />
 
     </string-array>
 </resources>

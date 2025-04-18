@@ -2,12 +2,12 @@
 <resources>
 
     <string-array name="name_dwellings">
-        <item>Inn</item>
-        <item>House</item>
-        <item>Guard</item>
-        <item>Chapel</item>
-        <item>Large Campfire</item>
-        <item>Small Campfire</item>
+        <item>INN</item>
+        <item>HOUSE</item>
+        <item>GUARD</item>
+        <item>CHAPEL</item>
+        <item>LARGE CAMPFIRE</item>
+        <item>SMALL CAMPFIRE</item>
     </string-array>
 
     <string-array name="image_dwellings">
@@ -35,5 +35,59 @@
         <item>0</item>
         <item>0</item>
         <item>0</item>
+    </string-array>
+
+    <string-array name="role_id_role_dwellings">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>16</item>
+        <item>16</item>
+    </string-array>
+
+    <string-array name="dwelling_id_role_dwellings">
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>1</item>
+        <item>1</item>
+        <item>3</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>4</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>4</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>1</item>
+        <item>2</item>
     </string-array>
 </resources>

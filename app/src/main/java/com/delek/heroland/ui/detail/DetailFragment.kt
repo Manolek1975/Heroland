@@ -35,6 +35,7 @@ class DetailFragment : Fragment() {
         viewModel.onCreate(args.id)
         viewModel.getAdvantages(args.id)
         viewModel.getChitsByRole(args.id)
+        viewModel.getDwellingsByRole(args.id)
         initUI()
         return binding.root
     }
@@ -43,6 +44,7 @@ class DetailFragment : Fragment() {
         initHeader()
         initAdvantages()
         initChits()
+        initDwellings()
     }
 
     private fun initHeader() {
@@ -91,6 +93,23 @@ class DetailFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.chitEntity.observe(viewLifecycleOwner) {
                     chitAdapter.updateList(it)
+                }
+            }
+        }
+    }
+
+    private fun initDwellings() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.dwellingEntity.observe(viewLifecycleOwner) {
+                    val list: MutableList<String> = mutableListOf()
+                    for (i in it) { list.add(i.name) }
+                    val start = list.joinToString(
+                        prefix = "Start at ",
+                        postfix = " with 10 GOLD",
+                        separator = ", ",
+                    )
+                    binding.tvStart.text = start
                 }
             }
         }
