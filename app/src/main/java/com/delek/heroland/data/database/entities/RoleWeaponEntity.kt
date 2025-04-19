@@ -20,6 +20,6 @@ import androidx.room.PrimaryKey
 )
 class RoleWeaponEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
-    @ColumnInfo("role_id") val roleId: Int,
-    @ColumnInfo("weapon_id") val weaponId: Int
+    @ColumnInfo("role_id", index = true) val roleId: Int,
+    @ColumnInfo("weapon_id", index = true) val weaponId: Int
 )

@@ -22,6 +22,10 @@ class RoleRepository @Inject constructor(private val roleDao: RoleDao) {
         return response.toDomain()
     }
 
+    suspend fun countStartSpells(id: Int): Int {
+        return roleDao.countStartSpells(id)
+    }
+
     suspend fun clearRoles() {
         roleDao.deleteAllRoles()
     }

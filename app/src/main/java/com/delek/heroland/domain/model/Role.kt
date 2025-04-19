@@ -11,9 +11,9 @@ data class Role(
     val thumb: String,
     val image: String,
     val weight: String,
-    val advantages: Int,
-    val development: Int,
-    val dwellings: Int,
+    //val advantages: Int,
+    //val development: Int,
+    //val dwellings: Int,
     val spells: Int,
     val relations: Int
 )
@@ -26,9 +26,9 @@ fun RoleEntity.toDomain() = Role(
     thumb,
     image,
     weight,
-    advantages,
-    development,
-    dwellings,
+    //advantages,
+    //development,
+    //dwellings,
     spells,
     relations
 )

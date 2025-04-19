@@ -133,6 +133,63 @@
         <item>1</item>
     </string-array>
 
+    <string-array name="role_id_start_spells">
+        <item>5</item>
+        <item>5</item>
+        <item>7</item>
+        <item>7</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>9</item>
+        <item>9</item>
+        <item>10</item>
+        <item>10</item>
+        <item>12</item>
+        <item>13</item>
+        <item>13</item>
+        <item>13</item>
+        <item>14</item>
+        <item>14</item>
+        <item>14</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>16</item>
+    </string-array>
+
+    <string-array name="type_start_spells">
+        <item>II</item>
+        <item>VIII</item>
+        <item>II</item>
+        <item>VII</item>
+        <item>II</item>
+        <item>III</item>
+        <item>IV</item>
+        <item>V</item>
+        <item>VI</item>
+        <item>VII</item>
+        <item>VIII</item>
+        <item>I</item>
+        <item>VII</item>
+        <item>IV</item>
+        <item>VI</item>
+        <item>I</item>
+        <item>II</item>
+        <item>V</item>
+        <item>VIII</item>
+        <item>IV</item>
+        <item>V</item>
+        <item>VI</item>
+        <item>II</item>
+        <item>III</item>
+        <item>IV</item>
+        <item>VII</item>
+    </string-array>
 
 
     <string-array name="roles_difficulty">
@@ -153,6 +210,7 @@
         <item>HARD</item>
         <item>EASY</item>
     </string-array>
+
     <string-array name="role_id_advantages">
         <item>1</item>
         <item>1</item>

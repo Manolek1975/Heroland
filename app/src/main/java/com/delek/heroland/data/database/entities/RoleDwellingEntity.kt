@@ -20,7 +20,7 @@ import androidx.room.PrimaryKey
 )
 class RoleDwellingEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
-    @ColumnInfo("role_id") val roleId: Int,
-    @ColumnInfo("dwelling_id") val dwellingId: Int
+    @ColumnInfo("role_id", index = true) val roleId: Int,
+    @ColumnInfo("dwelling_id", index = true) val dwellingId: Int
 )
 

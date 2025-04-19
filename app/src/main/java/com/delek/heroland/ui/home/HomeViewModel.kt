@@ -16,6 +16,7 @@ import com.delek.heroland.domain.GetRoleArmorUseCase
 import com.delek.heroland.domain.GetRoleChitsUseCase
 import com.delek.heroland.domain.GetRoleDwellingsUseCase
 import com.delek.heroland.domain.GetRoleWeaponsUseCase
+import com.delek.heroland.domain.GetStartSpellUseCase
 import com.delek.heroland.domain.GetWeaponsUseCase
 import com.delek.heroland.domain.model.Armor
 import com.delek.heroland.domain.model.Chit
@@ -24,6 +25,7 @@ import com.delek.heroland.domain.model.RoleArmor
 import com.delek.heroland.domain.model.RoleChit
 import com.delek.heroland.domain.model.RoleDwelling
 import com.delek.heroland.domain.model.RoleWeapon
+import com.delek.heroland.domain.model.StartSpell
 import com.delek.heroland.domain.model.Weapon
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -41,7 +43,8 @@ class HomeViewModel @Inject constructor(
     private val getWeaponsUseCase: GetWeaponsUseCase,
     private val getRoleWeaponsUseCase: GetRoleWeaponsUseCase,
     private val getArmorUseCase: GetArmorUseCase,
-    private val getRoleArmorUseCase: GetRoleArmorUseCase
+    private val getRoleArmorUseCase: GetRoleArmorUseCase,
+    private val getStartSpellUseCase: GetStartSpellUseCase
 ) : ViewModel() {
 
     private val roleList = MutableLiveData<Role>()
@@ -55,6 +58,7 @@ class HomeViewModel @Inject constructor(
     private val roleDwellingList = MutableLiveData<RoleDwelling>()
     private val roleWeaponList = MutableLiveData<RoleWeapon>()
     private val roleArmorList = MutableLiveData<RoleArmor>()
+    private val startSpellList = MutableLiveData<StartSpell>()
 
 
     fun onCreate() {
@@ -102,6 +106,10 @@ class HomeViewModel @Inject constructor(
             val roleArmor = getRoleArmorUseCase()
             if (roleArmor.isNotEmpty()) {
                 roleArmorList.postValue(roleArmor[0])
+            }
+            val startSpell = getStartSpellUseCase()
+            if (startSpell.isNotEmpty()) {
+                startSpellList.postValue(startSpell[0])
             }
 
 

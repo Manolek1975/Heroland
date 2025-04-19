@@ -21,4 +21,7 @@ interface RoleDao {
     @Query("SELECT * FROM roles WHERE id = :id")
     suspend fun getRoleById(id: Int): RoleEntity
 
+    @Query("SELECT spells FROM roles WHERE id = :id")
+    suspend fun countStartSpells(id: Int): Int
+
 }

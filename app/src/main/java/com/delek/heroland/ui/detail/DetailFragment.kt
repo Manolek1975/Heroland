@@ -38,6 +38,7 @@ class DetailFragment : Fragment() {
         viewModel.getDwellingsByRole(args.id)
         viewModel.getWeapons(args.id)
         viewModel.getAmor(args.id)
+        viewModel.getSpells(args.id)
         initUI()
         return binding.root
     }
@@ -49,6 +50,7 @@ class DetailFragment : Fragment() {
         initDwellings()
         initWeapon()
         initArmor()
+        initSpells()
     }
 
     private fun initHeader() {
@@ -142,6 +144,26 @@ class DetailFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun initSpells() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                val count = viewModel.countStartSpells(args.id)
+                viewModel.startSpell.observe(viewLifecycleOwner){
+                    var spell = ""
+                    val list: MutableList<String> = mutableListOf()
+                    for (i in it) { list.add(i.spellType) }
+                    if (list.isNotEmpty())
+                        spell = list.joinToString(prefix = "$count Spell (type ",
+                            postfix = ")",
+                            separator = ", ")
+                    binding.tvSpells.text = spell
+                }
+            }
+
+        }
+
     }
 
     private fun dialogDescription(name: String, description: String) {

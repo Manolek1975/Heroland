@@ -10,11 +10,13 @@ import com.delek.heroland.data.repository.RoleChitRepository
 import com.delek.heroland.data.repository.RoleDwellingRepository
 import com.delek.heroland.data.repository.RoleRepository
 import com.delek.heroland.data.repository.RoleWeaponRepository
+import com.delek.heroland.data.repository.StartSpellRepository
 import com.delek.heroland.domain.model.Advantage
 import com.delek.heroland.domain.model.Armor
 import com.delek.heroland.domain.model.Chit
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Role
+import com.delek.heroland.domain.model.StartSpell
 import com.delek.heroland.domain.model.Weapon
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -28,16 +30,17 @@ class DetailViewModel @Inject constructor(
     private val repoChitRole: RoleChitRepository,
     private val repoDwellingRole: RoleDwellingRepository,
     private val repoWeaponRole: RoleWeaponRepository,
-    private val repoArmorRole: RoleArmorRepository
+    private val repoArmorRole: RoleArmorRepository,
+    private val repoStartSpell: StartSpellRepository
 ) : ViewModel() {
 
     val role = MutableLiveData<Role>()
     val chit = MutableLiveData<List<Chit>>()
     val dwelling = MutableLiveData<List<Dwelling>>()
     val advantages = MutableLiveData<Advantage>()
-    //val chits = MutableLiveData<Chit>()
     val weapon = MutableLiveData<List<Weapon>>()
     val armor = MutableLiveData<List<Armor>>()
+    val startSpell = MutableLiveData<List<StartSpell>>()
 
     fun getRoles(id: Int) {
         viewModelScope.launch {
@@ -80,6 +83,20 @@ class DetailViewModel @Inject constructor(
             val rolArmor = repoArmorRole.getArmorByRole(id)
             armor.value = rolArmor
         }
-
     }
+
+    suspend fun countStartSpells(id: Int): Int {
+        val count = repoRole.countStartSpells(id)
+        return count
+    }
+
+    fun getSpells(id: Int) {
+        viewModelScope.launch {
+
+            val spell = repoStartSpell.getStartSpellsByRole(id)
+
+            startSpell.value = spell
+        }
+    }
+
 }
