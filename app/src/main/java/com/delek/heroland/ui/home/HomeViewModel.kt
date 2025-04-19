@@ -15,7 +15,7 @@ import com.delek.heroland.domain.GetRoleChitsUseCase
 import com.delek.heroland.domain.GetRoleDwellingsUseCase
 import com.delek.heroland.domain.GetWeaponsUseCase
 import com.delek.heroland.domain.model.Chit
-import com.delek.heroland.domain.model.RoleAdvantages
+import com.delek.heroland.domain.model.RoleAdvantage
 import com.delek.heroland.domain.model.RoleChit
 import com.delek.heroland.domain.model.RoleDwelling
 import com.delek.heroland.domain.model.Weapon
@@ -40,7 +40,7 @@ class HomeViewModel @Inject constructor(
     private val advantages = MutableLiveData<Advantage>()
     private val chits = MutableLiveData<Chit>()
     private val weapons = MutableLiveData<Weapon>()
-    private val roleAdvantages = MutableLiveData<RoleAdvantages>()
+    private val roleAdvantages = MutableLiveData<RoleAdvantage>()
     private val roleChits = MutableLiveData<RoleChit>()
     private val roleDwellings = MutableLiveData<RoleDwelling>()
 

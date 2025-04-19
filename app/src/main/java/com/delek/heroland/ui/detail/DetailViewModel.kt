@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.delek.heroland.data.repository.AdvantageRepository
-import com.delek.heroland.data.repository.RoleAdvantagesRepository
+import com.delek.heroland.data.repository.RoleAdvantageRepository
 import com.delek.heroland.data.repository.RoleChitRepository
 import com.delek.heroland.data.repository.RoleDwellingRepository
 import com.delek.heroland.data.repository.RoleRepository
@@ -20,7 +20,7 @@ import javax.inject.Inject
 class DetailViewModel @Inject constructor(
     private val repository: RoleRepository,
     private val repoAdv: AdvantageRepository,
-    private val repoAdvRole: RoleAdvantagesRepository,
+    private val repoAdvRole: RoleAdvantageRepository,
     private val repoChitRole: RoleChitRepository,
     private val repoDwellingRole: RoleDwellingRepository
 ) : ViewModel() {

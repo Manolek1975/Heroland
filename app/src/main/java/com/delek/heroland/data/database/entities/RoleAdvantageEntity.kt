@@ -17,7 +17,7 @@ import androidx.room.ForeignKey
         )
     ]
 )
-data class RoleAdvantagesEntity(
+data class RoleAdvantageEntity(
     @ColumnInfo("role_id", index = true) val roleId: Int,
     @ColumnInfo("advantage_id", index = true) val advantageId: Int
 )
