@@ -13,11 +13,13 @@ import com.delek.heroland.domain.GetChitsUseCase
 import com.delek.heroland.domain.GetRoleAdvantagesUseCase
 import com.delek.heroland.domain.GetRoleChitsUseCase
 import com.delek.heroland.domain.GetRoleDwellingsUseCase
+import com.delek.heroland.domain.GetRoleWeaponsUseCase
 import com.delek.heroland.domain.GetWeaponsUseCase
 import com.delek.heroland.domain.model.Chit
 import com.delek.heroland.domain.model.RoleAdvantage
 import com.delek.heroland.domain.model.RoleChit
 import com.delek.heroland.domain.model.RoleDwelling
+import com.delek.heroland.domain.model.RoleWeapon
 import com.delek.heroland.domain.model.Weapon
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -32,7 +34,8 @@ class HomeViewModel @Inject constructor(
     private val getChitsUseCase: GetChitsUseCase,
     private val getRoleChitsUseCase: GetRoleChitsUseCase,
     private val getRoleDwellingsUseCase: GetRoleDwellingsUseCase,
-    private val getWeaponsUseCase: GetWeaponsUseCase
+    private val getWeaponsUseCase: GetWeaponsUseCase,
+    private val getRoleWeaponsUseCase: GetRoleWeaponsUseCase
 ) : ViewModel() {
 
     private val roles = MutableLiveData<Role>()
@@ -43,6 +46,8 @@ class HomeViewModel @Inject constructor(
     private val roleAdvantages = MutableLiveData<RoleAdvantage>()
     private val roleChits = MutableLiveData<RoleChit>()
     private val roleDwellings = MutableLiveData<RoleDwelling>()
+    private val roleWeapons = MutableLiveData<RoleWeapon>()
+
 
     fun onCreate() {
         viewModelScope.launch {
@@ -78,7 +83,10 @@ class HomeViewModel @Inject constructor(
             if (weapon.isNotEmpty()) {
                 weapons.postValue(weapon[0])
             }
-
+            val roleWeapon = getRoleWeaponsUseCase()
+            if (roleWeapon.isNotEmpty()) {
+                roleWeapons.postValue(roleWeapon[0])
+            }
 
         }
     }

@@ -32,10 +32,11 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
-        viewModel.onCreate(args.id)
+        viewModel.getRoles(args.id)
         viewModel.getAdvantages(args.id)
         viewModel.getChitsByRole(args.id)
         viewModel.getDwellingsByRole(args.id)
+        viewModel.getWeapons(args.id)
         initUI()
         return binding.root
     }
@@ -45,12 +46,13 @@ class DetailFragment : Fragment() {
         initAdvantages()
         initChits()
         initDwellings()
+        initWeapon()
     }
 
     private fun initHeader() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.roleEntity.observe(viewLifecycleOwner) {
+                viewModel.role.observe(viewLifecycleOwner) {
                     binding.tvName.text = it.name
                     binding.tvSymbol.text = it.symbol
                     binding.tvWeight.text = getString(R.string.weight_vulnerability, it.weight)
@@ -91,7 +93,7 @@ class DetailFragment : Fragment() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.chitEntity.observe(viewLifecycleOwner) {
+                viewModel.chit.observe(viewLifecycleOwner) {
                     chitAdapter.updateList(it)
                 }
             }
@@ -101,7 +103,7 @@ class DetailFragment : Fragment() {
     private fun initDwellings() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.dwellingEntity.observe(viewLifecycleOwner) {
+                viewModel.dwelling.observe(viewLifecycleOwner) {
                     val list: MutableList<String> = mutableListOf()
                     for (i in it) { list.add(i.name) }
                     val start = list.joinToString(
@@ -110,6 +112,16 @@ class DetailFragment : Fragment() {
                         separator = ", ",
                     )
                     binding.tvStart.text = start
+                }
+            }
+        }
+    }
+
+    private fun initWeapon() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.weapon.observe(viewLifecycleOwner) {
+                    binding.tvWeapon.text = it[0].name
                 }
             }
         }

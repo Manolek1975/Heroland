@@ -8,32 +8,36 @@ import com.delek.heroland.data.repository.RoleAdvantageRepository
 import com.delek.heroland.data.repository.RoleChitRepository
 import com.delek.heroland.data.repository.RoleDwellingRepository
 import com.delek.heroland.data.repository.RoleRepository
+import com.delek.heroland.data.repository.RoleWeaponRepository
 import com.delek.heroland.domain.model.Advantage
 import com.delek.heroland.domain.model.Chit
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Role
+import com.delek.heroland.domain.model.Weapon
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val repository: RoleRepository,
+    private val repoRole: RoleRepository,
     private val repoAdv: AdvantageRepository,
     private val repoAdvRole: RoleAdvantageRepository,
     private val repoChitRole: RoleChitRepository,
-    private val repoDwellingRole: RoleDwellingRepository
+    private val repoDwellingRole: RoleDwellingRepository,
+    private val repoWeaponRole: RoleWeaponRepository
 ) : ViewModel() {
 
-    val roleEntity = MutableLiveData<Role>()
-    val chitEntity = MutableLiveData<List<Chit>>()
-    val dwellingEntity = MutableLiveData<List<Dwelling>>()
+    val role = MutableLiveData<Role>()
+    val chit = MutableLiveData<List<Chit>>()
+    val dwelling = MutableLiveData<List<Dwelling>>()
     val advantages = MutableLiveData<Advantage>()
-    val chits = MutableLiveData<Chit>()
+    //val chits = MutableLiveData<Chit>()
+    val weapon = MutableLiveData<List<Weapon>>()
 
-    fun onCreate(id: Int) {
+    fun getRoles(id: Int) {
         viewModelScope.launch {
-            roleEntity.value = repository.getRoleById(id)
+            role.value = repoRole.getRoleById(id)
         }
     }
 
@@ -49,14 +53,21 @@ class DetailViewModel @Inject constructor(
     fun getChitsByRole(id: Int) {
         viewModelScope.launch {
             val rolChit = repoChitRole.getChitsByRole(id)
-            chitEntity.value = rolChit
+            chit.value = rolChit
         }
     }
 
     fun getDwellingsByRole(id: Int) {
         viewModelScope.launch {
             val rolDwelling = repoDwellingRole.getDwellingsByRole(id)
-            dwellingEntity.value = rolDwelling
+            dwelling.value = rolDwelling
+        }
+    }
+
+    fun getWeapons(id: Int) {
+        viewModelScope.launch {
+            val rolWeapon = repoWeaponRole.getWeaponsByRole(id)
+            weapon.value = rolWeapon
         }
     }
 }

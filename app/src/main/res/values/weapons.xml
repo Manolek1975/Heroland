@@ -2,23 +2,24 @@
 <resources>
 
     <string-array name="weapon_names">
-        <item>MEDIUM BOW</item>
-        <item>LIGHT BOW</item>
-        <item>CROSSBOW</item>
-        <item>SPEAR</item>
-        <item>STAFF</item>
-        <item>GREAT SWORD</item>
-        <item>BANE SWORD</item>
-        <item>BROADSWORD</item>
-        <item>DEVIL SWORD</item>
-        <item>TRUESTEEL SWORD</item>
-        <item>MORNING STAR</item>
-        <item>GREAT AXE</item>
-        <item>THRUSTING SWORD</item>
-        <item>LIVING SWORD</item>
-        <item>SHORT SWORD</item>
-        <item>AXE</item>
-        <item>MACE</item>
+        <item>Medium Bow</item>
+        <item>Light Bow</item>
+        <item>Crossbow</item>
+        <item>Spear</item>
+        <item>Staff</item>
+        <item>Great Sword</item>
+        <item>Bane Sword</item>
+        <item>Broadsword</item>
+        <item>Devil Sword</item>
+        <item>Truesteel Sword</item>
+        <item>Morning Star</item>
+        <item>Great Axe</item>
+        <item>Thrusting Sword</item>
+        <item>Living Sword</item>
+        <item>Short Sword</item>
+        <item>Axe</item>
+        <item>Mace</item>
+        <item>Dagger</item>
     </string-array>
 
     <string-array name="weapon_images">
@@ -39,6 +40,7 @@
         <item>w_short_sword</item>
         <item>w_axe</item>
         <item>w_mace</item>
+        <item>w_dagger</item>
     </string-array>
 
     <string-array name="weapon_alert">
@@ -59,6 +61,7 @@
         <item>wa_short_sword</item>
         <item>wa_axe</item>
         <item>wa_mace</item>
+        <item>wa_dagger</item>
     </string-array>
 
     <string-array name="weapon_damage">
@@ -79,6 +82,7 @@
         <item>L</item>
         <item>M</item>
         <item>M</item>
+        <item />
     </string-array>
 
     <string-array name="weapon_plus">
@@ -99,6 +103,7 @@
         <item>*</item>
         <item>*</item>
         <item />
+        <item>*</item>
     </string-array>
 
     <string-array name="weapon_plus_alert">
@@ -119,12 +124,14 @@
         <item>*</item>
         <item>*</item>
         <item />
+        <item>*</item>
     </string-array>
 
     <string-array name="weapon_types">
         <item>missile</item>
         <item>missile</item>
         <item>missile</item>
+        <item>striking</item>
         <item>striking</item>
         <item>striking</item>
         <item>striking</item>
@@ -159,6 +166,7 @@
         <item>3</item>
         <item>2</item>
         <item>1</item>
+        <item>0</item>
     </string-array>
 
     <string-array name="weapon_speed">
@@ -178,6 +186,7 @@
         <item>3</item>
         <item>-1</item>
         <item>5</item>
+        <item>-1</item>
         <item>-1</item>
     </string-array>
 
@@ -199,6 +208,7 @@
         <item>-1</item>
         <item>-1</item>
         <item>3</item>
+        <item>-1</item>
     </string-array>
 
     <string-array name="weapon_prices">
@@ -219,7 +229,26 @@
         <item>4</item>
         <item>4</item>
         <item>6</item>
+        <item>0</item>
     </string-array>
 
+    <string-array name="weapon_id_role_weapons">
+        <item>15</item>
+        <item>12</item>
+        <item>17</item>
+        <item>15</item>
+        <item>18</item>
+        <item>12</item>
+        <item>2</item>
+        <item>18</item>
+        <item>5</item>
+        <item>18</item>
+        <item>13</item>
+        <item>6</item>
+        <item>18</item>
+        <item>18</item>
+        <item>5</item>
+        <item>2</item>
+    </string-array>
 
 </resources>
