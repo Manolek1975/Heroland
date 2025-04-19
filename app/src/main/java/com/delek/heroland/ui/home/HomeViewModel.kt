@@ -12,6 +12,7 @@ import com.delek.heroland.domain.GetAdvantagesUseCase
 import com.delek.heroland.domain.GetArmorUseCase
 import com.delek.heroland.domain.GetChitsUseCase
 import com.delek.heroland.domain.GetRoleAdvantagesUseCase
+import com.delek.heroland.domain.GetRoleArmorUseCase
 import com.delek.heroland.domain.GetRoleChitsUseCase
 import com.delek.heroland.domain.GetRoleDwellingsUseCase
 import com.delek.heroland.domain.GetRoleWeaponsUseCase
@@ -19,6 +20,7 @@ import com.delek.heroland.domain.GetWeaponsUseCase
 import com.delek.heroland.domain.model.Armor
 import com.delek.heroland.domain.model.Chit
 import com.delek.heroland.domain.model.RoleAdvantage
+import com.delek.heroland.domain.model.RoleArmor
 import com.delek.heroland.domain.model.RoleChit
 import com.delek.heroland.domain.model.RoleDwelling
 import com.delek.heroland.domain.model.RoleWeapon
@@ -38,62 +40,68 @@ class HomeViewModel @Inject constructor(
     private val getRoleDwellingsUseCase: GetRoleDwellingsUseCase,
     private val getWeaponsUseCase: GetWeaponsUseCase,
     private val getRoleWeaponsUseCase: GetRoleWeaponsUseCase,
-    private val getArmorUseCase: GetArmorUseCase
+    private val getArmorUseCase: GetArmorUseCase,
+    private val getRoleArmorUseCase: GetRoleArmorUseCase
 ) : ViewModel() {
 
-    private val roles = MutableLiveData<Role>()
-    private val dwellings = MutableLiveData<Dwelling>()
-    private val advantages = MutableLiveData<Advantage>()
-    private val chits = MutableLiveData<Chit>()
-    private val weapons = MutableLiveData<Weapon>()
-    private val armor = MutableLiveData<Armor>()
-    private val roleAdvantages = MutableLiveData<RoleAdvantage>()
-    private val roleChits = MutableLiveData<RoleChit>()
-    private val roleDwellings = MutableLiveData<RoleDwelling>()
-    private val roleWeapons = MutableLiveData<RoleWeapon>()
+    private val roleList = MutableLiveData<Role>()
+    private val dwellingList = MutableLiveData<Dwelling>()
+    private val advantageList = MutableLiveData<Advantage>()
+    private val chitList = MutableLiveData<Chit>()
+    private val weaponList = MutableLiveData<Weapon>()
+    private val armorList = MutableLiveData<Armor>()
+    private val roleAdvantageList = MutableLiveData<RoleAdvantage>()
+    private val roleChitList = MutableLiveData<RoleChit>()
+    private val roleDwellingList = MutableLiveData<RoleDwelling>()
+    private val roleWeaponList = MutableLiveData<RoleWeapon>()
+    private val roleArmorList = MutableLiveData<RoleArmor>()
 
 
     fun onCreate() {
         viewModelScope.launch {
             val role = getRolesUseCase()
             if (role.isNotEmpty()) {
-                roles.postValue(role[0])
+                roleList.postValue(role[0])
             }
             val dwelling = getDwellingsUseCase()
             if (dwelling.isNotEmpty()) {
-                dwellings.postValue(dwelling[0])
+                dwellingList.postValue(dwelling[0])
             }
             val advantage = getAdvantagesUseCase()
             if (advantage.isNotEmpty()) {
-                advantages.postValue(advantage[0])
+                advantageList.postValue(advantage[0])
             }
             val roleAdvantage = getRoleAdvantagesUseCase()
             if (roleAdvantage.isNotEmpty()) {
-                roleAdvantages.postValue(roleAdvantage[0])
+                roleAdvantageList.postValue(roleAdvantage[0])
             }
             val chit = getChitsUseCase()
             if (chit.isNotEmpty()) {
-                chits.postValue(chit[0])
+                chitList.postValue(chit[0])
             }
             val roleChit = getRoleChitsUseCase()
             if (roleChit.isNotEmpty()) {
-                roleChits.postValue(roleChit[0])
+                roleChitList.postValue(roleChit[0])
             }
             val roleDwelling = getRoleDwellingsUseCase()
             if (roleDwelling.isNotEmpty()) {
-                roleDwellings.postValue(roleDwelling[0])
+                roleDwellingList.postValue(roleDwelling[0])
             }
             val weapon = getWeaponsUseCase()
             if (weapon.isNotEmpty()) {
-                weapons.postValue(weapon[0])
+                weaponList.postValue(weapon[0])
             }
             val roleWeapon = getRoleWeaponsUseCase()
             if (roleWeapon.isNotEmpty()) {
-                roleWeapons.postValue(roleWeapon[0])
+                roleWeaponList.postValue(roleWeapon[0])
             }
             val armor = getArmorUseCase()
             if (armor.isNotEmpty()) {
-                this@HomeViewModel.armor.postValue(armor[0])
+                armorList.postValue(armor[0])
+            }
+            val roleArmor = getRoleArmorUseCase()
+            if (roleArmor.isNotEmpty()) {
+                roleArmorList.postValue(roleArmor[0])
             }
 
 

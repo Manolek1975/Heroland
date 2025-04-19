@@ -7,6 +7,7 @@ import com.delek.heroland.data.database.dao.ArmorDao
 import com.delek.heroland.data.database.dao.ChitDao
 import com.delek.heroland.data.database.dao.DwellingDao
 import com.delek.heroland.data.database.dao.RoleAdvantageDao
+import com.delek.heroland.data.database.dao.RoleArmorDao
 import com.delek.heroland.data.database.dao.RoleChitDao
 import com.delek.heroland.data.database.dao.RoleDao
 import com.delek.heroland.data.database.dao.RoleDwellingDao
@@ -17,6 +18,7 @@ import com.delek.heroland.data.database.entities.ArmorEntity
 import com.delek.heroland.data.database.entities.ChitEntity
 import com.delek.heroland.data.database.entities.DwellingEntity
 import com.delek.heroland.data.database.entities.RoleAdvantageEntity
+import com.delek.heroland.data.database.entities.RoleArmorEntity
 import com.delek.heroland.data.database.entities.RoleChitEntity
 import com.delek.heroland.data.database.entities.RoleDwellingEntity
 import com.delek.heroland.data.database.entities.RoleEntity
@@ -34,7 +36,8 @@ import com.delek.heroland.data.database.entities.WeaponEntity
         RoleAdvantageEntity::class,
         RoleChitEntity::class,
         RoleDwellingEntity::class,
-        RoleWeaponEntity::class],
+        RoleWeaponEntity::class,
+        RoleArmorEntity::class],
     version = 1,
     exportSchema = true
 )
@@ -49,4 +52,5 @@ abstract class HerolandDatabase : RoomDatabase() {
     abstract fun getWeaponDao(): WeaponDao
     abstract fun getRoleWeaponDao(): RoleWeaponDao
     abstract fun getArmorDao(): ArmorDao
+    abstract fun getRoleArmorDao(): RoleArmorDao
 }

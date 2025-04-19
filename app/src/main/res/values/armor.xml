@@ -2,14 +2,14 @@
 <resources>
 
     <string-array name="armor_names">
-        <item>ARMOR</item>
-        <item>BREASTPLATE</item>
-        <item>HELMET</item>
-        <item>SHIELD</item>
-        <item>TREMENDOUS ARMOR</item>
-        <item>SILVER BREASTPLATE</item>
-        <item>GOLD HELMET</item>
-        <item>JADE SHIELD</item>
+        <item>Suit of armor</item>
+        <item>Breastplate</item>
+        <item>Helmet</item>
+        <item>Shield</item>
+        <item>Tremendous Armor</item>
+        <item>Silver Breastplate</item>
+        <item>Gold Helmet</item>
+        <item>Jade Shield</item>
     </string-array>
 
     <string-array name="armor_images">
@@ -54,5 +54,33 @@
         <item>21</item>
         <item>27</item>
         <item>16</item>
+    </string-array>
+
+    <string-array name="role_id_amor">
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>3</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>6</item>
+        <item>12</item>
+    </string-array>
+
+    <string-array name="armor_id_armor">
+        <item>3</item>
+        <item>2</item>
+        <item>4</item>
+        <item>3</item>
+        <item>1</item>
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>4</item>
+        <item>3</item>
+        <item>1</item>
     </string-array>
 </resources>

@@ -37,6 +37,7 @@ class DetailFragment : Fragment() {
         viewModel.getChitsByRole(args.id)
         viewModel.getDwellingsByRole(args.id)
         viewModel.getWeapons(args.id)
+        viewModel.getAmor(args.id)
         initUI()
         return binding.root
     }
@@ -47,6 +48,7 @@ class DetailFragment : Fragment() {
         initChits()
         initDwellings()
         initWeapon()
+        initArmor()
     }
 
     private fun initHeader() {
@@ -122,6 +124,21 @@ class DetailFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.weapon.observe(viewLifecycleOwner) {
                     binding.tvWeapon.text = it[0].name
+                }
+            }
+        }
+    }
+
+    private fun initArmor() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.armor.observe(viewLifecycleOwner) {
+                    var armor = ""
+                    val list: MutableList<String> = mutableListOf()
+                    for (i in it) { list.add(i.name) }
+                    if (list.isNotEmpty())
+                        armor = list.joinToString(prefix = ", ", separator = ", ")
+                    binding.tvArmor.text = armor
                 }
             }
         }

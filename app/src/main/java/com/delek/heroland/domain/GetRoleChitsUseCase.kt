@@ -9,8 +9,7 @@ import javax.inject.Inject
 
 class GetRoleChitsUseCase @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val repository: RoleChitRepository
-) {
+    private val repository: RoleChitRepository) {
 
     suspend operator fun invoke(): List<RoleChit> {
         val roleChits = repository.getAllRoleChits()

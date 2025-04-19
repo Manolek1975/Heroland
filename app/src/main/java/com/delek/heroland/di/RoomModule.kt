@@ -61,4 +61,9 @@ object RoomModule {
     @Provides
     fun provideArmorDao(db: HerolandDatabase) = db.getArmorDao()
 
+    @Singleton
+    @Provides
+    fun provideRoleArmorDao(db: HerolandDatabase) = db.getRoleArmorDao()
+
+
 }
