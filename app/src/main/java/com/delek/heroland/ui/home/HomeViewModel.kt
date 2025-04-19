@@ -9,12 +9,14 @@ import com.delek.heroland.domain.model.Advantage
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Role
 import com.delek.heroland.domain.GetAdvantagesUseCase
+import com.delek.heroland.domain.GetArmorUseCase
 import com.delek.heroland.domain.GetChitsUseCase
 import com.delek.heroland.domain.GetRoleAdvantagesUseCase
 import com.delek.heroland.domain.GetRoleChitsUseCase
 import com.delek.heroland.domain.GetRoleDwellingsUseCase
 import com.delek.heroland.domain.GetRoleWeaponsUseCase
 import com.delek.heroland.domain.GetWeaponsUseCase
+import com.delek.heroland.domain.model.Armor
 import com.delek.heroland.domain.model.Chit
 import com.delek.heroland.domain.model.RoleAdvantage
 import com.delek.heroland.domain.model.RoleChit
@@ -35,7 +37,8 @@ class HomeViewModel @Inject constructor(
     private val getRoleChitsUseCase: GetRoleChitsUseCase,
     private val getRoleDwellingsUseCase: GetRoleDwellingsUseCase,
     private val getWeaponsUseCase: GetWeaponsUseCase,
-    private val getRoleWeaponsUseCase: GetRoleWeaponsUseCase
+    private val getRoleWeaponsUseCase: GetRoleWeaponsUseCase,
+    private val getArmorUseCase: GetArmorUseCase
 ) : ViewModel() {
 
     private val roles = MutableLiveData<Role>()
@@ -43,6 +46,7 @@ class HomeViewModel @Inject constructor(
     private val advantages = MutableLiveData<Advantage>()
     private val chits = MutableLiveData<Chit>()
     private val weapons = MutableLiveData<Weapon>()
+    private val armor = MutableLiveData<Armor>()
     private val roleAdvantages = MutableLiveData<RoleAdvantage>()
     private val roleChits = MutableLiveData<RoleChit>()
     private val roleDwellings = MutableLiveData<RoleDwelling>()
@@ -87,6 +91,11 @@ class HomeViewModel @Inject constructor(
             if (roleWeapon.isNotEmpty()) {
                 roleWeapons.postValue(roleWeapon[0])
             }
+            val armor = getArmorUseCase()
+            if (armor.isNotEmpty()) {
+                this@HomeViewModel.armor.postValue(armor[0])
+            }
+
 
         }
     }

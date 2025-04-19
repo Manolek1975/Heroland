@@ -3,6 +3,7 @@ package com.delek.heroland.data.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.delek.heroland.data.database.dao.AdvantageDao
+import com.delek.heroland.data.database.dao.ArmorDao
 import com.delek.heroland.data.database.dao.ChitDao
 import com.delek.heroland.data.database.dao.DwellingDao
 import com.delek.heroland.data.database.dao.RoleAdvantageDao
@@ -12,6 +13,7 @@ import com.delek.heroland.data.database.dao.RoleDwellingDao
 import com.delek.heroland.data.database.dao.RoleWeaponDao
 import com.delek.heroland.data.database.dao.WeaponDao
 import com.delek.heroland.data.database.entities.AdvantageEntity
+import com.delek.heroland.data.database.entities.ArmorEntity
 import com.delek.heroland.data.database.entities.ChitEntity
 import com.delek.heroland.data.database.entities.DwellingEntity
 import com.delek.heroland.data.database.entities.RoleAdvantageEntity
@@ -28,6 +30,7 @@ import com.delek.heroland.data.database.entities.WeaponEntity
         ChitEntity::class,
         DwellingEntity::class,
         WeaponEntity::class,
+        ArmorEntity::class,
         RoleAdvantageEntity::class,
         RoleChitEntity::class,
         RoleDwellingEntity::class,
@@ -45,4 +48,5 @@ abstract class HerolandDatabase : RoomDatabase() {
     abstract fun getRoleDwellingDao(): RoleDwellingDao
     abstract fun getWeaponDao(): WeaponDao
     abstract fun getRoleWeaponDao(): RoleWeaponDao
+    abstract fun getArmorDao(): ArmorDao
 }
