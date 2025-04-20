@@ -151,11 +151,12 @@ class DetailFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 val count = viewModel.countStartSpells(args.id)
                 viewModel.startSpell.observe(viewLifecycleOwner){
+                    val numSpells = countToString(count)
                     var spell = ""
                     val list: MutableList<String> = mutableListOf()
                     for (i in it) { list.add(i.spellType) }
                     if (list.isNotEmpty())
-                        spell = list.joinToString(prefix = "$count Spell (type ",
+                        spell = list.joinToString(prefix = "$numSpells (type ",
                             postfix = ")",
                             separator = ", ")
                     binding.tvSpells.text = spell
@@ -164,6 +165,17 @@ class DetailFragment : Fragment() {
 
         }
 
+    }
+
+    private fun countToString(count: Int): String {
+        var numSpells = ""
+        when (count) {
+            1 -> numSpells ="One spell"
+            2 -> numSpells ="Two spells"
+            3 -> numSpells ="Three spells"
+            4 -> numSpells ="Four spells"
+        }
+        return numSpells
     }
 
     private fun dialogDescription(name: String, description: String) {

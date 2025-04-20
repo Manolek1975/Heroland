@@ -69,4 +69,9 @@ object RoomModule {
     @Provides
     fun provideStartSpellDao(db: HerolandDatabase) = db.getStartSpellDao()
 
+    @Singleton
+    @Provides
+    fun provideNativesDao(db: HerolandDatabase) = db.getNativesDao()
+
+
 }

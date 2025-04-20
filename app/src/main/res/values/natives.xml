@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="name_natives">
+        <item>Bashkars</item>
+        <item>Company</item>
+        <item>Guard</item>
+        <item>Lancers</item>
+        <item>Order</item>
+        <item>Patrol</item>
+        <item>Rogues</item>
+        <item>Soldiers</item>
+        <item>Woodfolk</item>
+    </string-array>
+
+</resources>
