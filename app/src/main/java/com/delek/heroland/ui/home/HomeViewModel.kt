@@ -16,6 +16,7 @@ import com.delek.heroland.domain.GetRoleAdvantagesUseCase
 import com.delek.heroland.domain.GetRoleArmorUseCase
 import com.delek.heroland.domain.GetRoleChitsUseCase
 import com.delek.heroland.domain.GetRoleDwellingsUseCase
+import com.delek.heroland.domain.GetRoleNativesUseCase
 import com.delek.heroland.domain.GetRoleWeaponsUseCase
 import com.delek.heroland.domain.GetStartSpellUseCase
 import com.delek.heroland.domain.GetWeaponsUseCase
@@ -26,6 +27,7 @@ import com.delek.heroland.domain.model.RoleAdvantage
 import com.delek.heroland.domain.model.RoleArmor
 import com.delek.heroland.domain.model.RoleChit
 import com.delek.heroland.domain.model.RoleDwelling
+import com.delek.heroland.domain.model.RoleNatives
 import com.delek.heroland.domain.model.RoleWeapon
 import com.delek.heroland.domain.model.StartSpell
 import com.delek.heroland.domain.model.Weapon
@@ -47,7 +49,8 @@ class HomeViewModel @Inject constructor(
     private val getArmorUseCase: GetArmorUseCase,
     private val getRoleArmorUseCase: GetRoleArmorUseCase,
     private val getStartSpellUseCase: GetStartSpellUseCase,
-    private val getNativesUseCase: GetNativesUseCase
+    private val getNativesUseCase: GetNativesUseCase,
+    private val getRoleNativesUseCase: GetRoleNativesUseCase
 ) : ViewModel() {
 
     private val roleList = MutableLiveData<Role>()
@@ -63,6 +66,7 @@ class HomeViewModel @Inject constructor(
     private val roleArmorList = MutableLiveData<RoleArmor>()
     private val startSpellList = MutableLiveData<StartSpell>()
     private val nativesList = MutableLiveData<Natives>()
+    private val roleNativesList = MutableLiveData<RoleNatives>()
 
 
     fun onCreate() {
@@ -119,6 +123,11 @@ class HomeViewModel @Inject constructor(
             if (natives.isNotEmpty()) {
                 nativesList.postValue(natives[0])
             }
+            val roleNatives = getRoleNativesUseCase()
+            if (roleNatives.isNotEmpty()) {
+                roleNativesList.postValue(roleNatives[0])
+            }
+
 
 
 

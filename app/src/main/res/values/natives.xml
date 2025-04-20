@@ -2,15 +2,331 @@
 <resources>
 
     <string-array name="name_natives">
-        <item>Bashkars</item>
-        <item>Company</item>
-        <item>Guard</item>
-        <item>Lancers</item>
-        <item>Order</item>
-        <item>Patrol</item>
-        <item>Rogues</item>
-        <item>Soldiers</item>
-        <item>Woodfolk</item>
+        <item>BASHKARS</item>
+        <item>COMPANY</item>
+        <item>GUARD</item>
+        <item>LANCERS</item>
+        <item>ORDER</item>
+        <item>PATROL</item>
+        <item>ROGUES</item>
+        <item>SOLDIERS</item>
+        <item>WOODFOLK</item>
+        <item>Crone</item>
+        <item>Scholar</item>
+        <item>Shaman</item>
+        <item>Warlock</item>
+    </string-array>
+
+    <string-array name="role_id_role_natives">
+        <!-- AMAZON -->
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <!-- BERSERKER -->
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <!-- BLACK KNIGHT -->
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <!-- CAPTAIN -->
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <!-- DRUID -->
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <!-- DWARF -->
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <!-- ELF -->
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        <!-- MAGICIAN -->
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <!-- PILGRIM -->
+        <item>9</item>
+        <item>9</item>
+        <item>9</item>
+        <item>9</item>
+        <!-- SORCERER -->
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+        <item>10</item>
+        <!-- SWORDSMAN -->
+        <item>11</item>
+        <item>11</item>
+        <item>11</item>
+        <item>11</item>
+        <!-- WHITE KNIGHT -->
+        <item>12</item>
+        <item>12</item>
+        <item>12</item>
+        <item>12</item>
+        <item>12</item>
+        <!-- WITCH -->
+        <item>13</item>
+        <item>13</item>
+        <item>13</item>
+        <item>13</item>
+        <item>13</item>
+        <item>13</item>
+        <!-- WITCH KING -->
+        <item>14</item>
+        <item>14</item>
+        <item>14</item>
+        <item>14</item>
+        <item>14</item>
+        <!-- WIZARD -->
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <!-- WOODS GIRL -->
+        <item>16</item>
+        <item>16</item>
+        <item>16</item>
+        <item>16</item>
+        <item>16</item>
+    </string-array>
+
+    <string-array name="native_id_role_natives">
+        <!-- AMAZON -->
+        <item>4</item>
+        <item>6</item>
+        <item>2</item>
+        <item>1</item>
+        <item>12</item>
+        <!-- BERSERKER -->
+        <item>7</item>
+        <item>4</item>
+        <item>12</item>
+        <item>6</item>
+        <item>3</item>
+        <!-- BLACK KNIGHT -->
+        <item>2</item>
+        <item>8</item>
+        <item>12</item>
+        <item>4</item>
+        <item>3</item>
+        <!-- CAPTAIN -->
+        <item>6</item>
+        <item>8</item>
+        <item>3</item>
+        <item>11</item>
+        <item>9</item>
+        <item>1</item>
+        <!-- DRUID -->
+        <item>1</item>
+        <item>4</item>
+        <item>5</item>
+        <item>12</item>
+        <item>9</item>
+        <!-- DWARF -->
+        <item>2</item>
+        <item>3</item>
+        <item>11</item>
+        <item>9</item>
+        <item>1</item>
+        <!-- ELF -->
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
+        <!-- MAGICIAN -->
+        <item>2</item>
+        <item>7</item>
+        <item>6</item>
+        <item>8</item>
+        <item>10</item>
+        <!-- PILGRIM -->
+        <item>5</item>
+        <item>1</item>
+        <item>2</item>
+        <item>10</item>
+        <!-- SORCERER -->
+        <item>4</item>
+        <item>2</item>
+        <item>1</item>
+        <item>5</item>
+        <item>7</item>
+        <item>13</item>
+        <item>3</item>
+        <!-- SWORDSMAN -->
+        <item>7</item>
+        <item>2</item>
+        <item>13</item>
+        <item>6</item>
+        <!-- WHITE KNIGHT -->
+        <item>5</item>
+        <item>4</item>
+        <item>1</item>
+        <item>10</item>
+        <item>2</item>
+        <!-- WITCH -->
+        <item>2</item>
+        <item>1</item>
+        <item>5</item>
+        <item>8</item>
+        <item>8</item>
+        <item>12</item>
+        <!-- WITCH KING -->
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>11</item>
+        <item>5</item>
+        <!-- WIZARD -->
+        <item>9</item>
+        <item>6</item>
+        <item>8</item>
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+        <item>13</item>
+        <item>4</item>
+        <!-- WOODS GIRL -->
+        <item>9</item>
+        <item>4</item>
+        <item>8</item>
+        <item>13</item>
+        <item>1</item>
+    </string-array>
+
+    <string-array name="relation_id_role_natives">
+        <!-- AMAZON -->
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>4</item>
+        <item>4</item>
+        <!-- BERSERKER -->
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>4</item>
+        <item>4</item>
+        <!-- BLACK KNIGHT -->
+        <item>1</item>
+        <item>2</item>
+        <item>2</item>
+        <item>4</item>
+        <item>5</item>
+        <!-- CAPTAIN -->
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>4</item>
+        <item>5</item>
+        <!-- DRUID -->
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
+        <!-- DWARF -->
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>4</item>
+        <item>4</item>
+        <!-- ELF -->
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
+        <!-- MAGICIAN -->
+        <item>2</item>
+        <item>2</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <!-- PILGRIM -->
+        <item>1</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <!-- SORCERER -->
+        <item>1</item>
+        <item>2</item>
+        <item>2</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
+        <!-- SWORDSMAN -->
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
+        <!-- WHITE KNIGHT -->
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <!-- WITCH -->
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <!-- WITCH KING -->
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
+        <!-- WIZARD -->
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
+        <!-- WOOD GIRL -->
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
     </string-array>
 
 </resources>

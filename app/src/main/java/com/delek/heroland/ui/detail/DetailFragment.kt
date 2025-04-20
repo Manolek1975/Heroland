@@ -32,13 +32,6 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
-        viewModel.getRoles(args.id)
-        viewModel.getAdvantages(args.id)
-        viewModel.getChitsByRole(args.id)
-        viewModel.getDwellingsByRole(args.id)
-        viewModel.getWeapons(args.id)
-        viewModel.getAmor(args.id)
-        viewModel.getSpells(args.id)
         initUI()
         return binding.root
     }
@@ -51,9 +44,11 @@ class DetailFragment : Fragment() {
         initWeapon()
         initArmor()
         initSpells()
+        initNatives()
     }
 
     private fun initHeader() {
+        viewModel.getRoles(args.id)
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.role.observe(viewLifecycleOwner) {
@@ -69,6 +64,7 @@ class DetailFragment : Fragment() {
 
     private fun initAdvantages() {
         var x = 0
+        viewModel.getAdvantages(args.id)
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.advantages.observe(viewLifecycleOwner) {
@@ -95,6 +91,7 @@ class DetailFragment : Fragment() {
         binding.rvChits.layoutManager = GridLayoutManager(context, 3)
         binding.rvChits.adapter = chitAdapter
 
+        viewModel.getChitsByRole(args.id)
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.chit.observe(viewLifecycleOwner) {
@@ -105,6 +102,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun initDwellings() {
+        viewModel.getDwellingsByRole(args.id)
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.dwelling.observe(viewLifecycleOwner) {
@@ -122,6 +120,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun initWeapon() {
+        viewModel.getWeapons(args.id)
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.weapon.observe(viewLifecycleOwner) {
@@ -132,6 +131,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun initArmor() {
+        viewModel.getAmor(args.id)
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.armor.observe(viewLifecycleOwner) {
@@ -147,6 +147,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun initSpells() {
+        viewModel.getSpells(args.id)
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 val count = viewModel.countStartSpells(args.id)
@@ -162,9 +163,63 @@ class DetailFragment : Fragment() {
                     binding.tvSpells.text = spell
                 }
             }
-
         }
+    }
 
+    private fun initNatives() {
+        viewModel.getAllyNatives(args.id)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.allyNatives.observe(viewLifecycleOwner) {
+                    val ally: MutableList<String> = mutableListOf()
+                    for (i in it) {
+                        ally.add(i.name)
+                    }
+                    if (ally.isEmpty()) binding.tvAlly.visibility = View.GONE
+                    binding.tvAlly.text = ally.joinToString(prefix = "ALLY: ", separator = ", ")
+                }
+            }
+        }
+        viewModel.getFriendlyNatives(args.id)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.friendlyNatives.observe(viewLifecycleOwner) {
+                    println(it)
+                    val friend: MutableList<String> = mutableListOf()
+                    for (i in it) {
+                        friend.add(i.name)
+                    }
+                    if (friend.isEmpty()) binding.tvFriendly.visibility = View.GONE
+                    binding.tvFriendly.text =
+                        friend.joinToString(prefix = "FRIENDLY: ", separator = ", ")
+                }
+            }
+        }
+        viewModel.getUnfriendlyNatives(args.id)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.unfriendlyNatives.observe(viewLifecycleOwner) {
+                    val unfriend: MutableList<String> = mutableListOf()
+                    for (i in it) {
+                        unfriend.add(i.name)
+                    }
+                    if (unfriend.isEmpty()) binding.tvUnfriendly.visibility = View.GONE
+                    binding.tvUnfriendly.text =
+                        unfriend.joinToString(prefix = "UNFRIENDLY: ", separator = ", ")
+                }
+            }
+        }
+        viewModel.getEnemyNatives(args.id)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.enemyNatives.observe(viewLifecycleOwner) {
+                    val enemy: MutableList<String> = mutableListOf()
+                    for (i in it) { enemy.add(i.name) }
+                    if (enemy.isEmpty()) binding.tvEnemy.visibility = View.GONE
+                    binding.tvEnemy.text = enemy.joinToString(prefix = "ENEMY: ", separator = ", ")
+                }
+            }
+        }
     }
 
     private fun countToString(count: Int): String {

@@ -8,6 +8,7 @@ import com.delek.heroland.data.repository.RoleAdvantageRepository
 import com.delek.heroland.data.repository.RoleArmorRepository
 import com.delek.heroland.data.repository.RoleChitRepository
 import com.delek.heroland.data.repository.RoleDwellingRepository
+import com.delek.heroland.data.repository.RoleNativesRepository
 import com.delek.heroland.data.repository.RoleRepository
 import com.delek.heroland.data.repository.RoleWeaponRepository
 import com.delek.heroland.data.repository.StartSpellRepository
@@ -15,6 +16,7 @@ import com.delek.heroland.domain.model.Advantage
 import com.delek.heroland.domain.model.Armor
 import com.delek.heroland.domain.model.Chit
 import com.delek.heroland.domain.model.Dwelling
+import com.delek.heroland.domain.model.Natives
 import com.delek.heroland.domain.model.Role
 import com.delek.heroland.domain.model.StartSpell
 import com.delek.heroland.domain.model.Weapon
@@ -31,7 +33,8 @@ class DetailViewModel @Inject constructor(
     private val repoDwellingRole: RoleDwellingRepository,
     private val repoWeaponRole: RoleWeaponRepository,
     private val repoArmorRole: RoleArmorRepository,
-    private val repoStartSpell: StartSpellRepository
+    private val repoStartSpell: StartSpellRepository,
+    private val repoNativesRole: RoleNativesRepository
 ) : ViewModel() {
 
     val role = MutableLiveData<Role>()
@@ -41,6 +44,10 @@ class DetailViewModel @Inject constructor(
     val weapon = MutableLiveData<List<Weapon>>()
     val armor = MutableLiveData<List<Armor>>()
     val startSpell = MutableLiveData<List<StartSpell>>()
+    val allyNatives = MutableLiveData<List<Natives>>()
+    val friendlyNatives = MutableLiveData<List<Natives>>()
+    val unfriendlyNatives = MutableLiveData<List<Natives>>()
+    val enemyNatives = MutableLiveData<List<Natives>>()
 
     fun getRoles(id: Int) {
         viewModelScope.launch {
@@ -92,11 +99,52 @@ class DetailViewModel @Inject constructor(
 
     fun getSpells(id: Int) {
         viewModelScope.launch {
-
             val spell = repoStartSpell.getStartSpellsByRole(id)
-
             startSpell.value = spell
         }
     }
 
+/*    fun getNatives(id: Int, rel: Int) {
+        viewModelScope.launch {
+            val rolNatives = repoNativesRole.getNativesByRoleRelation(id, rel)
+            println(rolNatives)
+            natives.value = rolNatives
+        }
+    }*/
+
+    fun getAllyNatives(id: Int) {
+        viewModelScope.launch {
+            val rolNatives = repoNativesRole.getAllyNatives(id)
+            print("ALLY: ")
+            println(rolNatives)
+            allyNatives.value = rolNatives
+        }
+    }
+
+    fun getFriendlyNatives(id: Int) {
+        viewModelScope.launch {
+            val rolNatives = repoNativesRole.getFriendlyNatives(id)
+            print("FRIENDLY: ")
+            println(rolNatives)
+            friendlyNatives.value = rolNatives
+        }
+    }
+
+    fun getUnfriendlyNatives(id: Int) {
+        viewModelScope.launch {
+            val rolNatives = repoNativesRole.getUnfriendNatives(id)
+            print("UNFRIENDLY: ")
+            println(rolNatives)
+            unfriendlyNatives.value = rolNatives
+        }
+    }
+
+    fun getEnemyNatives(id: Int) {
+        viewModelScope.launch {
+            val rolNatives = repoNativesRole.getEnemyNatives(id)
+            print("ENEMY: ")
+            println(rolNatives)
+            enemyNatives.value = rolNatives
+        }
+    }
 }
