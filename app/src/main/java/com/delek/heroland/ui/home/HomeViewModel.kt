@@ -18,6 +18,7 @@ import com.delek.heroland.domain.GetRoleChitsUseCase
 import com.delek.heroland.domain.GetRoleDwellingsUseCase
 import com.delek.heroland.domain.GetRoleNativesUseCase
 import com.delek.heroland.domain.GetRoleWeaponsUseCase
+import com.delek.heroland.domain.GetSpellUseCase
 import com.delek.heroland.domain.GetStartSpellUseCase
 import com.delek.heroland.domain.GetWeaponsUseCase
 import com.delek.heroland.domain.model.Armor
@@ -29,6 +30,7 @@ import com.delek.heroland.domain.model.RoleChit
 import com.delek.heroland.domain.model.RoleDwelling
 import com.delek.heroland.domain.model.RoleNatives
 import com.delek.heroland.domain.model.RoleWeapon
+import com.delek.heroland.domain.model.Spell
 import com.delek.heroland.domain.model.StartSpell
 import com.delek.heroland.domain.model.Weapon
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -50,9 +52,11 @@ class HomeViewModel @Inject constructor(
     private val getRoleArmorUseCase: GetRoleArmorUseCase,
     private val getStartSpellUseCase: GetStartSpellUseCase,
     private val getNativesUseCase: GetNativesUseCase,
-    private val getRoleNativesUseCase: GetRoleNativesUseCase
+    private val getRoleNativesUseCase: GetRoleNativesUseCase,
+    private val getSpellUseCase: GetSpellUseCase
 ) : ViewModel() {
 
+    //TODO Create class to load all use cases or insert all in single use, no idea atm!
     private val roleList = MutableLiveData<Role>()
     private val dwellingList = MutableLiveData<Dwelling>()
     private val advantageList = MutableLiveData<Advantage>()
@@ -67,6 +71,7 @@ class HomeViewModel @Inject constructor(
     private val startSpellList = MutableLiveData<StartSpell>()
     private val nativesList = MutableLiveData<Natives>()
     private val roleNativesList = MutableLiveData<RoleNatives>()
+    private val spellList = MutableLiveData<Spell>()
 
 
     fun onCreate() {
@@ -127,9 +132,10 @@ class HomeViewModel @Inject constructor(
             if (roleNatives.isNotEmpty()) {
                 roleNativesList.postValue(roleNatives[0])
             }
-
-
-
+            val spell = getSpellUseCase()
+            if (spell.isNotEmpty()) {
+                spellList.postValue(spell[0])
+            }
 
         }
     }

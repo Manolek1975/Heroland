@@ -115,8 +115,6 @@ class DetailViewModel @Inject constructor(
     fun getAllyNatives(id: Int) {
         viewModelScope.launch {
             val rolNatives = repoNativesRole.getAllyNatives(id)
-            print("ALLY: ")
-            println(rolNatives)
             allyNatives.value = rolNatives
         }
     }
@@ -124,8 +122,6 @@ class DetailViewModel @Inject constructor(
     fun getFriendlyNatives(id: Int) {
         viewModelScope.launch {
             val rolNatives = repoNativesRole.getFriendlyNatives(id)
-            print("FRIENDLY: ")
-            println(rolNatives)
             friendlyNatives.value = rolNatives
         }
     }
@@ -133,8 +129,6 @@ class DetailViewModel @Inject constructor(
     fun getUnfriendlyNatives(id: Int) {
         viewModelScope.launch {
             val rolNatives = repoNativesRole.getUnfriendNatives(id)
-            print("UNFRIENDLY: ")
-            println(rolNatives)
             unfriendlyNatives.value = rolNatives
         }
     }
@@ -142,8 +136,6 @@ class DetailViewModel @Inject constructor(
     fun getEnemyNatives(id: Int) {
         viewModelScope.launch {
             val rolNatives = repoNativesRole.getEnemyNatives(id)
-            print("ENEMY: ")
-            println(rolNatives)
             enemyNatives.value = rolNatives
         }
     }
