@@ -8,11 +8,11 @@
     tools:context=".ui.options.OptionsFragment">
 
     <TextView
-        android:id="@+id/headRoleSelect"
+        android:id="@+id/headOptions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="@string/header_character_options"
+        tools:text="Character Options"
         android:textAlignment="center"
         android:textSize="36sp"
         android:textStyle="bold"
