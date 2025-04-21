@@ -160,11 +160,11 @@
         <item>9</item>
         <item>1</item>
         <!-- ELF -->
+        <item>9</item>
         <item>1</item>
-        <item>2</item>
-        <item>4</item>
-        <item>4</item>
         <item>5</item>
+        <item>11</item>
+        <item>4</item>
         <!-- MAGICIAN -->
         <item>2</item>
         <item>7</item>
@@ -181,7 +181,7 @@
         <item>2</item>
         <item>1</item>
         <item>5</item>
-        <item>7</item>
+        <item>8</item>
         <item>13</item>
         <item>3</item>
         <!-- SWORDSMAN -->
@@ -199,7 +199,7 @@
         <item>2</item>
         <item>1</item>
         <item>5</item>
-        <item>8</item>
+        <item>4</item>
         <item>8</item>
         <item>12</item>
         <!-- WITCH KING -->
@@ -229,9 +229,9 @@
         <!-- AMAZON -->
         <item>2</item>
         <item>2</item>
+        <item>4</item>
+        <item>4</item>
         <item>2</item>
-        <item>4</item>
-        <item>4</item>
         <!-- BERSERKER -->
         <item>2</item>
         <item>2</item>
@@ -286,19 +286,19 @@
         <item>2</item>
         <item>4</item>
         <item>4</item>
+        <item>4</item>
         <item>5</item>
         <!-- SWORDSMAN -->
-        <item>1</item>
         <item>2</item>
-        <item>4</item>
-        <item>4</item>
+        <item>2</item>
+        <item>2</item>
         <item>5</item>
         <!-- WHITE KNIGHT -->
         <item>1</item>
         <item>2</item>
         <item>4</item>
         <item>4</item>
-        <item>4</item>
+        <item>5</item>
         <!-- WITCH -->
         <item>1</item>
         <item>2</item>

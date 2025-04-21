@@ -22,4 +22,11 @@
     <string name="advantage_1">1.&#160; %1$s:</string>
     <string name="advantage_2">2. %1$s:</string>
     <string name="development">Development:</string>
+    <string name="cancel">Cancel</string>
+    <string name="check">Check</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="header_character_options">Character Options</string>
+    <string name="menu_options">Options</string>
+
 </resources>

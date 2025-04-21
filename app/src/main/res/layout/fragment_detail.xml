@@ -84,131 +84,165 @@
             android:id="@+id/tv_adv1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="18sp"
             android:textStyle="bold"
-            tools:text="1. HEALTH: Get one extra Rest phase every day"
-            android:textSize="18sp" />
+            tools:text="1. HEALTH: Get one extra Rest phase every day" />
 
         <TextView
             android:id="@+id/tv_adv2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="18sp"
             android:textStyle="bold"
-            tools:text="2. HONOR: Subtract 1 from all Meeting table die rolls"
-            android:textSize="18sp" />
-
+            tools:text="2. HONOR: Subtract 1 from all Meeting table die rolls" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/tv_development"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/development"
         android:layout_marginTop="8dp"
+        android:text="@string/development"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/ly_adv"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/ly_adv" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_chits"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_development"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_development" />
 
     <TextView
         android:id="@+id/tv_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Start at INN with 10 GOLD"
         android:layout_marginTop="24dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/rv_chits"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/rv_chits"
+        tools:text="Start at INN with 10 GOLD" />
 
     <LinearLayout
         android:id="@+id/ly_equipment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/tv_start"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/tv_start">
 
         <TextView
             android:id="@+id/tv_weapon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Great Sword"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="Great Sword" />
 
         <TextView
             android:id="@+id/tv_armor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Suit of armor"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="Suit of armor" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/tv_spells"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
         tools:text="Spells Type"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/ly_equipment"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/ly_equipment"/>
 
-    <TextView
-        android:id="@+id/tv_ally"
+    <LinearLayout
+        android:id="@+id/ly_natives"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="ALLY: ORDER"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/tv_spells"
+        android:orientation="vertical"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_spells">
 
-    <TextView
-        android:id="@+id/tv_friendly"
-        android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_ally"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_spells"
+            tools:text="ALLY: ORDER" />
+
+        <TextView
+            android:id="@+id/tv_friendly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_ally"
+            tools:text="FRIENDLY: LANCERS" />
+
+        <TextView
+            android:id="@+id/tv_unfriendly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_friendly"
+            tools:text="UNFRIENDLY: BASHKARS, Crone" />
+
+        <TextView
+            android:id="@+id/tv_enemy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_unfriendly"
+            tools:text="ENEMY: COMPANY" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_cancel"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="FRIENDLY: LANCERS"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/tv_ally"
+        android:background="@drawable/button_cancel"
+        android:contentDescription="@string/cancel"
+        android:padding="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/iv_check"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/ly_natives" />
 
-    <TextView
-        android:id="@+id/tv_unfriendly"
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_check"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="UNFRIENDLY: BASHKARS, Crone"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/tv_friendly"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <TextView
-        android:id="@+id/tv_enemy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="ENEMY: COMPANY"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/tv_unfriendly"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
+        android:background="@drawable/button_check"
+        android:contentDescription="@string/check"
+        android:padding="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_cancel"
+        app:layout_constraintTop_toBottomOf="@id/ly_natives" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

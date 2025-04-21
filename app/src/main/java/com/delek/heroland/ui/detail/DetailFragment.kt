@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.delek.heroland.R
@@ -37,6 +38,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun initUI() {
+        initListeners()
         initHeader()
         initAdvantages()
         initChits()
@@ -45,6 +47,19 @@ class DetailFragment : Fragment() {
         initArmor()
         initSpells()
         initNatives()
+    }
+
+    private fun initListeners() {
+        binding.ivCancel.setOnClickListener {
+            findNavController().navigate(
+                DetailFragmentDirections.actionNavDetailToNavRoleSelect()
+            )
+        }
+        binding.ivCheck.setOnClickListener {
+            findNavController().navigate(
+                DetailFragmentDirections.actionNavDetailToOptionsFragment()
+            )
+        }
     }
 
     private fun initHeader() {
@@ -60,6 +75,7 @@ class DetailFragment : Fragment() {
                 }
             }
         }
+
     }
 
     private fun initAdvantages() {
@@ -152,15 +168,20 @@ class DetailFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 val count = viewModel.countStartSpells(args.id)
                 viewModel.startSpell.observe(viewLifecycleOwner){
+                    var spells = ""
                     val numSpells = countToString(count)
-                    var spell = ""
                     val list: MutableList<String> = mutableListOf()
                     for (i in it) { list.add(i.spellType) }
-                    if (list.isNotEmpty())
-                        spell = list.joinToString(prefix = "$numSpells (type ",
+                    if (list.isNotEmpty()) {
+                        spells = list.joinToString(
+                            prefix = "$numSpells (type ",
                             postfix = ")",
-                            separator = ", ")
-                    binding.tvSpells.text = spell
+                            separator = ", "
+                        )
+                    } else {
+                        binding.tvSpells.visibility = View.GONE
+                    }
+                    binding.tvSpells.text = spells
                 }
             }
         }
