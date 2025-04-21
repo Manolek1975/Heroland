@@ -205,7 +205,6 @@ class DetailFragment : Fragment() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.friendlyNatives.observe(viewLifecycleOwner) {
-                    println(it)
                     val friend: MutableList<String> = mutableListOf()
                     for (i in it) {
                         friend.add(i.name)
