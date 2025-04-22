@@ -5,26 +5,30 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.delek.heroland.R
-import com.delek.heroland.domain.model.SpellType
+import com.delek.heroland.domain.model.Spell
 
 
-class SpellAdapter(private var typesList: List<SpellType> = emptyList()) : RecyclerView.Adapter<SpellViewHolder>() {
+class SpellAdapter(
+    private var spellList: List<Spell> = emptyList())
+    //private val onItemSelected: (StartSpell) -> Unit)
+: RecyclerView.Adapter<SpellViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpellViewHolder {
         return SpellViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_type, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_spell, parent, false)
         )
     }
 
-    override fun getItemCount(): Int = typesList.size
+    override fun getItemCount(): Int = spellList.size
 
     override fun onBindViewHolder(holder: SpellViewHolder, position: Int) {
-        holder.render(typesList[position])
+        holder.render(spellList[position])
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateList(list: List<SpellType>){
-        typesList = list
+    fun updateSpells(spell: List<Spell>){
+        spellList = spell
         notifyDataSetChanged()
     }
+
 }

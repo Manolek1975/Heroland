@@ -30,7 +30,6 @@ class RoleSelectViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             rotationYBy(360f)
             withEndAction { goRole() }
             start()
-
         }
     }
 

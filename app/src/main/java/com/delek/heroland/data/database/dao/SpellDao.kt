@@ -18,4 +18,6 @@ interface SpellDao {
     @Query("SELECT * FROM spells WHERE id = :id")
     suspend fun getSpellById(id: Int): SpellEntity
 
+    @Query("SELECT * FROM spells WHERE type = :type")
+    suspend fun getSpellsByType(type: Int): List<SpellEntity>
 }

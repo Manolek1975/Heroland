@@ -16,4 +16,10 @@ class SpellRepository @Inject constructor(private val spellDao: SpellDao) {
         val response: List<SpellEntity> = spellDao.getAllSpells()
         return response.map { it.toDomain() }
     }
+
+    suspend fun getSpellsByType(type: Int): List<Spell> {
+        val response: List<SpellEntity> = spellDao.getSpellsByType(type)
+        return response.map { it.toDomain() }
+    }
+
 }

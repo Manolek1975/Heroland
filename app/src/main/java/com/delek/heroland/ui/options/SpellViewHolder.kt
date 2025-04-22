@@ -2,14 +2,15 @@ package com.delek.heroland.ui.options
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.delek.heroland.databinding.ItemTypeBinding
-import com.delek.heroland.domain.model.SpellType
+import com.delek.heroland.databinding.ItemSpellBinding
+import com.delek.heroland.domain.model.Spell
 
-class SpellViewHolder(view: View) : RecyclerView.ViewHolder(view){
+class SpellViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    private val binding = ItemTypeBinding.bind(view)
+    private val binding = ItemSpellBinding.bind(view)
 
-    fun render(type: SpellType) {
-        binding.tvType.text = type.type
+    fun render(spell: Spell) {
+        binding.name.text = spell.name
+
     }
 }

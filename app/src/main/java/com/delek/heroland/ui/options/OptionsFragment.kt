@@ -13,6 +13,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.delek.heroland.R
 import com.delek.heroland.databinding.FragmentOptionsBinding
@@ -27,7 +28,8 @@ class OptionsFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: OptionsViewModel by viewModels()
     private val args: OptionsFragmentArgs by navArgs()
-    private lateinit var adapter: SpellAdapter
+    private lateinit var typeAdapter: TypeAdapter
+    private lateinit var spellAdapter: SpellAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,16 +83,44 @@ class OptionsFragment : Fragment() {
     }
 
     private fun initSpells() {
-        adapter = SpellAdapter()
-        binding.rvTypes.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvTypes.adapter = adapter
+        viewModel.getRole(args.id)
+        viewModel.getStartSpellTypes(args.id)
+        //viewModel.getSpellsByType(2)
+        var typeId = 0
+        typeAdapter = TypeAdapter(onItemSelected = {
+            println(it.id)
+            typeId = it.id
+            viewModel.getSpellsByType(typeId)
+        })
 
-        viewModel.getSpellTypes()
+        binding.rvTypes.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvTypes.adapter = typeAdapter
+
+        spellAdapter = SpellAdapter()
+        binding.rvSpells.layoutManager = GridLayoutManager(context, 4)
+        binding.rvSpells.adapter = spellAdapter
+
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.role.observe(viewLifecycleOwner) {
+                    if (it.spells != 0)
+                    binding.headSpells.text = getString(R.string.head_spells, it.spells.toString())
+                }
+            }
+        }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getRole(args.id)
                 viewModel.spellType.observe(viewLifecycleOwner) {
-                    binding.headSpells.text = getString(R.string.head_spells)
-                    adapter.updateList(it)
+                    typeAdapter.updateTypes(it)
+                }
+            }
+        }
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getRole(args.id)
+                viewModel.spell.observe(viewLifecycleOwner) {
+                    spellAdapter.updateSpells(it)
                 }
             }
         }
