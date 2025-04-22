@@ -15,9 +15,6 @@ data class RoleEntity(
     @ColumnInfo("thumb") val thumb: String,
     @ColumnInfo("image") val image: String,
     @ColumnInfo("weight") val weight: String,
-    //@ColumnInfo("advantages") val advantages: Int,
-    //@ColumnInfo("development") val development: Int,
-    //@ColumnInfo("dwellings") val dwellings: Int,
     @ColumnInfo("spells") val spells: Int,
     @ColumnInfo("relations") val relations: Int,
 )

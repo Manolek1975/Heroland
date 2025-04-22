@@ -3,24 +3,24 @@ package com.delek.heroland.ui.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.delek.heroland.domain.GetDwellingsUseCase
-import com.delek.heroland.domain.GetRolesUseCase
+import com.delek.heroland.domain.usecase.GetDwellingsUseCase
+import com.delek.heroland.domain.usecase.GetRolesUseCase
 import com.delek.heroland.domain.model.Advantage
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Role
-import com.delek.heroland.domain.GetAdvantagesUseCase
-import com.delek.heroland.domain.GetArmorUseCase
-import com.delek.heroland.domain.GetChitsUseCase
-import com.delek.heroland.domain.GetNativesUseCase
-import com.delek.heroland.domain.GetRoleAdvantagesUseCase
-import com.delek.heroland.domain.GetRoleArmorUseCase
-import com.delek.heroland.domain.GetRoleChitsUseCase
-import com.delek.heroland.domain.GetRoleDwellingsUseCase
-import com.delek.heroland.domain.GetRoleNativesUseCase
-import com.delek.heroland.domain.GetRoleWeaponsUseCase
-import com.delek.heroland.domain.GetSpellUseCase
-import com.delek.heroland.domain.GetStartSpellUseCase
-import com.delek.heroland.domain.GetWeaponsUseCase
+import com.delek.heroland.domain.usecase.GetAdvantagesUseCase
+import com.delek.heroland.domain.usecase.GetArmorUseCase
+import com.delek.heroland.domain.usecase.GetChitsUseCase
+import com.delek.heroland.domain.usecase.GetNativesUseCase
+import com.delek.heroland.domain.usecase.GetRoleAdvantagesUseCase
+import com.delek.heroland.domain.usecase.GetRoleArmorUseCase
+import com.delek.heroland.domain.usecase.GetRoleChitsUseCase
+import com.delek.heroland.domain.usecase.GetRoleDwellingsUseCase
+import com.delek.heroland.domain.usecase.GetRoleNativesUseCase
+import com.delek.heroland.domain.usecase.GetRoleWeaponsUseCase
+import com.delek.heroland.domain.usecase.GetSpellUseCase
+import com.delek.heroland.domain.usecase.GetStartSpellUseCase
+import com.delek.heroland.domain.usecase.GetWeaponsUseCase
 import com.delek.heroland.domain.model.Armor
 import com.delek.heroland.domain.model.Chit
 import com.delek.heroland.domain.model.Natives
@@ -31,8 +31,10 @@ import com.delek.heroland.domain.model.RoleDwelling
 import com.delek.heroland.domain.model.RoleNatives
 import com.delek.heroland.domain.model.RoleWeapon
 import com.delek.heroland.domain.model.Spell
+import com.delek.heroland.domain.model.SpellType
 import com.delek.heroland.domain.model.StartSpell
 import com.delek.heroland.domain.model.Weapon
+import com.delek.heroland.domain.usecase.GetSpellTypeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -53,7 +55,8 @@ class HomeViewModel @Inject constructor(
     private val getStartSpellUseCase: GetStartSpellUseCase,
     private val getNativesUseCase: GetNativesUseCase,
     private val getRoleNativesUseCase: GetRoleNativesUseCase,
-    private val getSpellUseCase: GetSpellUseCase
+    private val getSpellUseCase: GetSpellUseCase,
+    private val getSpellTypeUseCase: GetSpellTypeUseCase
 ) : ViewModel() {
 
     //TODO Create class to load all use cases or insert all in single use, no idea atm!
@@ -72,6 +75,7 @@ class HomeViewModel @Inject constructor(
     private val nativesList = MutableLiveData<Natives>()
     private val roleNativesList = MutableLiveData<RoleNatives>()
     private val spellList = MutableLiveData<Spell>()
+    private val spellTypeList = MutableLiveData<SpellType>()
 
 
     fun onCreate() {
@@ -136,6 +140,11 @@ class HomeViewModel @Inject constructor(
             if (spell.isNotEmpty()) {
                 spellList.postValue(spell[0])
             }
+            val spellType = getSpellTypeUseCase()
+            if (spellType.isNotEmpty()) {
+                spellTypeList.postValue(spellType[0])
+            }
+
 
         }
     }

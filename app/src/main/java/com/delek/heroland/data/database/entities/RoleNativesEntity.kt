@@ -18,7 +18,7 @@ import androidx.room.PrimaryKey
 )
 data class RoleNativesEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
-    @ColumnInfo("role_id") val roleId: Int,
-    @ColumnInfo("native_id") val nativeId: Int,
+    @ColumnInfo("role_id", index = true) val roleId: Int,
+    @ColumnInfo("native_id", index = true) val nativeId: Int,
     @ColumnInfo("relation") val relation: Int
 )

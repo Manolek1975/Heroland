@@ -1,4 +1,4 @@
-package com.delek.heroland.domain
+package com.delek.heroland.domain.usecase
 
 import android.content.Context
 import com.delek.heroland.data.provider.ArmorProvider
