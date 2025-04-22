@@ -5,8 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.delek.heroland.data.repository.RoleDwellingRepository
 import com.delek.heroland.data.repository.RoleRepository
+import com.delek.heroland.data.repository.SpellTypeRepository
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Role
+import com.delek.heroland.domain.model.SpellType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,11 +16,13 @@ import javax.inject.Inject
 @HiltViewModel
 class OptionsViewModel @Inject constructor(
     private val repoRole: RoleRepository,
-    private val repoRoleDwelling: RoleDwellingRepository
+    private val repoRoleDwelling: RoleDwellingRepository,
+    private val repoTypes: SpellTypeRepository
 ) : ViewModel() {
 
     val role = MutableLiveData<Role>()
     val dwelling = MutableLiveData<List<Dwelling>>()
+    val spellType = MutableLiveData<List<SpellType>>()
 
     fun getRole(id: Int) {
         viewModelScope.launch {
@@ -30,7 +34,14 @@ class OptionsViewModel @Inject constructor(
         viewModelScope.launch {
             dwelling.value = repoRoleDwelling.getDwellingsByRole(id)
         }
-
     }
+
+    fun  getSpellTypes() {
+        viewModelScope.launch {
+            spellType.value = repoTypes.getAllSpellTypes()
+        }
+    }
+
+
 
 }

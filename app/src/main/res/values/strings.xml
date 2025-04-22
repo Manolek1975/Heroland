@@ -28,6 +28,7 @@
     <string name="menu_options">Options</string>
     <string name="options_head">%1$s Options</string>
     <string name="head_start_dwelling">Start Dwelling</string>
-    <string name="radiogroup_items">"%1$s    "</string>
+    <string name="radio_group_items">"%1$s    "</string>
+    <string name="head_spells">Spells (%1$s)</string>
 
 </resources>

@@ -13,6 +13,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.delek.heroland.R
 import com.delek.heroland.databinding.FragmentOptionsBinding
 import com.delek.heroland.domain.model.Dwelling
@@ -26,6 +27,7 @@ class OptionsFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: OptionsViewModel by viewModels()
     private val args: OptionsFragmentArgs by navArgs()
+    private lateinit var adapter: SpellAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +41,7 @@ class OptionsFragment : Fragment() {
     private fun initUI() {
         initHeader()
         initDwellings()
+        initSpells()
 
     }
 
@@ -68,12 +71,28 @@ class OptionsFragment : Fragment() {
         for (d in dwelling) {
             binding.rgDwelling.addView(RadioButton(context).apply {
                 id = d.id
-                text = context.getString(R.string.radiogroup_items, d.name)
+                text = context.getString(R.string.radio_group_items, d.name)
                 textSize = 20F
                 isChecked = true
                 setTextColor(getColor(context, R.color.primary))
                 buttonTintList = ColorStateList.valueOf(getColor(context, R.color.primary))
             })
+        }
+    }
+
+    private fun initSpells() {
+        adapter = SpellAdapter()
+        binding.rvTypes.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvTypes.adapter = adapter
+
+        viewModel.getSpellTypes()
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.spellType.observe(viewLifecycleOwner) {
+                    binding.headSpells.text = getString(R.string.head_spells)
+                    adapter.updateList(it)
+                }
+            }
         }
     }
 

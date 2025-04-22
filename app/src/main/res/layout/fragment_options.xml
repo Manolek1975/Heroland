@@ -43,4 +43,27 @@
         app:layout_constraintTop_toBottomOf="@+id/head_dwelling">
     </RadioGroup>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/head_spells"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_goneMarginTop="8dp"
+        tools:text="Spells 0/4"
+        android:textColor="@color/primary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rg_dwelling" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_types"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/head_spells" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

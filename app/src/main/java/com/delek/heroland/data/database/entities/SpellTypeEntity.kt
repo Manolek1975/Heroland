@@ -15,7 +15,7 @@ import androidx.room.PrimaryKey
 )
 class SpellTypeEntity (
     @PrimaryKey(autoGenerate = true)val id: Int,
-    @ColumnInfo("role_id", index = true) val roleId: Int,
+    @ColumnInfo("role_id") val roleId: Int,
     @ColumnInfo("spell_id", index = true) val spellId: Int,
     @ColumnInfo("type") val type: String
 )

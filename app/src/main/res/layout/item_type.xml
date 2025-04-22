@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:layout_margin="4dp" >
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_type"
+        style="@style/Base.Theme.Type.Layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:text="VIII" />
+
+</androidx.cardview.widget.CardView>
