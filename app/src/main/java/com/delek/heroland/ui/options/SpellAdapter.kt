@@ -9,8 +9,8 @@ import com.delek.heroland.domain.model.Spell
 
 
 class SpellAdapter(
-    private var spellList: List<Spell> = emptyList())
-    //private val onItemSelected: (StartSpell) -> Unit)
+    private var spellList: List<Spell> = emptyList(),
+    private val onItemSelected: (Spell) -> Unit)
 : RecyclerView.Adapter<SpellViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpellViewHolder {
@@ -22,7 +22,7 @@ class SpellAdapter(
     override fun getItemCount(): Int = spellList.size
 
     override fun onBindViewHolder(holder: SpellViewHolder, position: Int) {
-        holder.render(spellList[position])
+        holder.render(spellList[position], onItemSelected)
     }
 
     @SuppressLint("NotifyDataSetChanged")

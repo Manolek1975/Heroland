@@ -10,14 +10,21 @@ class SpellViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val binding = ItemSpellBinding.bind(view)
 
-    fun render(spell: Spell) {
+    fun render(spell: Spell, onItemSelected: (Spell) -> Unit) {
         val context = binding.name.context
         binding.duration.text = spell.duration
         binding.target.text = spell.target
         binding.name.text = spell.name
         binding.description.text = spell.shortDescription
-
         binding.typeColor.text = context.getString(R.string.type_color, spell.typeName, spell.color)
 
+        binding.itemSpell.setOnClickListener {
+            selectedSpell(goSpell = { onItemSelected(spell) } )
+        }
+
+    }
+
+    private fun selectedSpell(goSpell:()->Unit) {
+        goSpell()
     }
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import android.widget.TextView
 import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.delek.heroland.R
 import com.delek.heroland.databinding.FragmentOptionsBinding
 import com.delek.heroland.domain.model.Dwelling
+import com.delek.heroland.domain.model.Spell
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -30,6 +32,7 @@ class OptionsFragment : Fragment() {
     private val args: OptionsFragmentArgs by navArgs()
     private lateinit var typeAdapter: TypeAdapter
     private lateinit var spellAdapter: SpellAdapter
+    private var numSpells: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -83,7 +86,9 @@ class OptionsFragment : Fragment() {
     }
 
     private fun initSpells() {
+        var numSpells: Int
         var typeId: Int
+        val spellList = mutableListOf<Spell>()
         viewModel.getRole(args.id)
         viewModel.getStartSpellTypes(args.id)
 
@@ -95,21 +100,26 @@ class OptionsFragment : Fragment() {
         binding.rvTypes.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.rvTypes.adapter = typeAdapter
 
-        spellAdapter = SpellAdapter()
+        spellAdapter = SpellAdapter( onItemSelected = {
+            addSelectedSpells(it, spellList)
+        })
         binding.rvSpells.layoutManager = GridLayoutManager(context, 4)
         binding.rvSpells.adapter = spellAdapter
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.role.observe(viewLifecycleOwner) {
-                    if (it.spells != 0)
-                    binding.headSpells.text = getString(R.string.head_spells, it.spells.toString())
+                    numSpells = it.spells
+                    if (it.spells != 0){
+                        binding.headSpells.text = getString(R.string.head_spells, it.spells.toString())
+                        binding.selectedSpells.text = getString(R.string.selected_spells, 0, numSpells)
+                    }
+
                 }
             }
         }
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.getRole(args.id)
                 viewModel.spellType.observe(viewLifecycleOwner) {
                     typeAdapter.updateTypes(it)
                 }
@@ -117,10 +127,34 @@ class OptionsFragment : Fragment() {
         }
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.getRole(args.id)
                 viewModel.spell.observe(viewLifecycleOwner) {
                     spellAdapter.updateSpells(it)
                 }
+            }
+        }
+    }
+
+    private fun addSelectedSpells(it: Spell, spellList: MutableList<Spell>){
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.role.observe(viewLifecycleOwner) {
+                    numSpells = it.spells
+                }
+            }
+        }
+        var maxSpells = spellList.count()
+        if (maxSpells < numSpells){
+            spellList.add(it)
+            maxSpells = spellList.count()
+            binding.selectedSpells.text = getString(R.string.selected_spells, maxSpells, numSpells)
+            val view = TextView(context)
+            view.text = spellList.last().name
+            view.textSize = 20F
+            binding.lySpellLayout.addView(view)
+            binding.lySpellLayout.setOnClickListener {
+                binding.lySpellLayout.removeAllViews()
+                spellList.clear()
+                binding.selectedSpells.text = getString(R.string.selected_spells, 0, numSpells)
             }
         }
     }
