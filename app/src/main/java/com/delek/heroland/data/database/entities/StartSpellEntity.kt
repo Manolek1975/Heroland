@@ -15,5 +15,6 @@ import androidx.room.PrimaryKey
 data class StartSpellEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
     @ColumnInfo("role_id", index = true) val roleId: Int,
+    @ColumnInfo("type_id") val typeId: Int,
     @ColumnInfo("spell_type") val spellType: String
 )

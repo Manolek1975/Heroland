@@ -83,16 +83,15 @@ class OptionsFragment : Fragment() {
     }
 
     private fun initSpells() {
+        var typeId: Int
         viewModel.getRole(args.id)
         viewModel.getStartSpellTypes(args.id)
-        //viewModel.getSpellsByType(2)
-        var typeId = 0
-        typeAdapter = TypeAdapter(onItemSelected = {
-            println(it.id)
-            typeId = it.id
-            viewModel.getSpellsByType(typeId)
-        })
 
+        typeAdapter = TypeAdapter(onItemSelected = {
+            typeId = it.typeId
+            viewModel.getSpellsByType(typeId)
+            typeAdapter.updateTypes(viewModel.spellType.value!!)
+        })
         binding.rvTypes.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.rvTypes.adapter = typeAdapter
 

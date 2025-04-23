@@ -14,7 +14,7 @@
         android:layout_height="120dp"
         android:orientation="vertical"
         android:padding="4dp"
-        android:background="@drawable/layout_square" >
+        android:background="@drawable/layout_spell" >
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/duration"

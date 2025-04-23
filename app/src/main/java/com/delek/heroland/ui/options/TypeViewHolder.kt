@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.delek.heroland.R
 import com.delek.heroland.databinding.ItemTypeBinding
 import com.delek.heroland.domain.model.StartSpell
+import com.delek.heroland.ui.options.TypeAdapter.Companion.selected
 
 class TypeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -14,16 +15,27 @@ class TypeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val context = binding.itemType.context!!
 
     fun render(type: StartSpell, onItemSelected: (StartSpell) -> Unit) {
+
+        if (selected != -1) {
+            if (selected == adapterPosition) {
+                binding.tvType.background = ContextCompat.getDrawable(context, R.drawable.layout_selected)
+                binding.tvType.setTextColor(Color.WHITE)
+            } else {
+                binding.tvType.background = ContextCompat.getDrawable(context, R.drawable.layout_unselected)
+                binding.tvType.setTextColor(ContextCompat.getColor(context, R.color.primary))
+            }
+        }
+
         binding.tvType.text = type.spellType
 
         binding.itemType.setOnClickListener {
-            selectedType(goType = { onItemSelected(type) })
+            selectedType(goType = { onItemSelected(type) } )
         }
     }
 
-    private fun selectedType(goType:()->Unit ) {
-        binding.tvType.background = ContextCompat.getDrawable(context, R.drawable.layout_selected)
-        binding.tvType.setTextColor(Color.WHITE)
+    private fun selectedType(goType:()->Unit) {
+        selected = adapterPosition
         goType()
     }
+
 }

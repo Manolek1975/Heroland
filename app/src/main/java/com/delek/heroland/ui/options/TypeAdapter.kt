@@ -13,6 +13,14 @@ class TypeAdapter(
     private val onItemSelected: (StartSpell) -> Unit)
 : RecyclerView.Adapter<TypeViewHolder>() {
 
+    companion object { var selected = -1 }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateTypes(type: List<StartSpell>){
+        typesList = type
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TypeViewHolder {
         return TypeViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_type, parent, false)
@@ -25,10 +33,5 @@ class TypeAdapter(
 
     override fun getItemCount(): Int = typesList.size
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun updateTypes(type: List<StartSpell>){
-        typesList = type
-        notifyDataSetChanged()
-    }
 
 }

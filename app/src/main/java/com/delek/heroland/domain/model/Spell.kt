@@ -9,8 +9,9 @@ data class Spell(
     val color: String,
     val target: String,
     val duration: String,
+    val typeName: String,
     val description: String,
     val shortDescription: String
 )
 
-fun SpellEntity.toDomain() = Spell(id, name, type, color, target, duration, description, shortDescription)
+fun SpellEntity.toDomain() = Spell(id, name, type, color, target, duration, description, typeName, shortDescription)

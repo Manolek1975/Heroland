@@ -14,11 +14,12 @@ class SpellProvider {
             val color = context.resources.getStringArray(R.array.spell_color)
             val target = context.resources.getStringArray(R.array.spell_target)
             val duration = context.resources.getStringArray(R.array.spell_duration)
+            val typeName = context.resources.getStringArray(R.array.spell_type_name)
             val description = context.resources.getStringArray(R.array.spell_description)
             val shortDescription = context.resources.getStringArray(R.array.spell_short_description)
             for (i in name.indices) {
                 val value = SpellEntity(i+1, name[i], type[i], color[i], target[i],
-                    duration[i], description[i], shortDescription[i])
+                    duration[i], description[i], typeName[i], shortDescription[i])
                 spells.add(value)
             }
             return spells

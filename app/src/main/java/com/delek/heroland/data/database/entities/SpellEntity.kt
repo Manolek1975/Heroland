@@ -12,6 +12,7 @@ data class SpellEntity(
     @ColumnInfo("color") val color: String,
     @ColumnInfo("target") val target: String,
     @ColumnInfo("duration") val duration: String,
+    @ColumnInfo("type_name") val typeName: String,
     @ColumnInfo("description") val description: String,
     @ColumnInfo("short_description") val shortDescription: String
 )

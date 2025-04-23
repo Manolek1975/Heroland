@@ -30,5 +30,6 @@
     <string name="head_start_dwelling">Start Dwelling</string>
     <string name="radio_group_items">"%1$s    "</string>
     <string name="head_spells">Spells (%1$s)</string>
+    <string name="type_color">(%1$s/%2$s)</string>
 
 </resources>
