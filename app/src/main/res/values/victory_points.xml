@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="vp_names">
+        <item>Great Treasures</item>
+        <item>Spells</item>
+        <item>Fame</item>
+        <item>Notoriety</item>
+        <item>Gold</item>
+    </string-array>
+
+
+</resources>

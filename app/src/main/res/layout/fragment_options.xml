@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_papiro"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
     tools:context=".ui.options.OptionsFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -29,7 +31,6 @@
         android:textColor="@color/primary"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/head_options" />
 
@@ -38,38 +39,64 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/head_dwelling" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/head_spells"
+        android:id="@+id/victory_points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:textColor="@color/primary"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rg_dwelling"
         app:layout_goneMarginTop="8dp"
-        tools:text="Spells 0/4" />
+        android:text="@string/victory_points" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_victory_points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/victory_points"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/selected_spells"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/primary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rv_victory_points"
+        app:layout_goneMarginTop="8dp"
+        tools:text="@string/selected_spells" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ly_spell_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/selected_spells" />
 
     <LinearLayout
         android:id="@+id/ly_types"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/head_spells">
+        app:layout_constraintTop_toBottomOf="@id/ly_spell_layout">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_types"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
@@ -79,30 +106,20 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ly_types"/>
+        app:layout_constraintTop_toBottomOf="@id/ly_types" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/selected_spells"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="24dp"
-        android:textColor="@color/primary"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rv_spells"
-        app:layout_goneMarginTop="8dp"
-        android:text="@string/selected_spells" />
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/ly_spell_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/selected_spells"
-        app:layout_constraintStart_toStartOf="parent" >
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginBottom="48dp"
+        android:backgroundTint="@color/green"
+        app:tint="@android:color/white"
+        android:contentDescription="@string/todo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_media_play" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

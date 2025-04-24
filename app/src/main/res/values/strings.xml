@@ -29,8 +29,10 @@
     <string name="options_head">%1$s Options</string>
     <string name="head_start_dwelling">Start Dwelling</string>
     <string name="radio_group_items">"%1$s    "</string>
-    <string name="head_spells">Spells (%1$s)</string>
+    <string name="head_spells">Spells Types</string>
     <string name="type_color">(%1$s/%2$s)</string>
     <string name="selected_spells">Spells (%1$d/%2$d)</string>
+    <string name="toast_already_spell">%1$s already selected</string>
+    <string name="victory_points">Victory Points (0/5)</string>
 
 </resources>

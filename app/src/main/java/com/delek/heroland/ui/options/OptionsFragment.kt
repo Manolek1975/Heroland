@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -32,6 +33,7 @@ class OptionsFragment : Fragment() {
     private val args: OptionsFragmentArgs by navArgs()
     private lateinit var typeAdapter: TypeAdapter
     private lateinit var spellAdapter: SpellAdapter
+    private lateinit var vpAdapter: VictoryPointsAdapter
     private var numSpells: Int = 0
 
     override fun onCreateView(
@@ -47,6 +49,7 @@ class OptionsFragment : Fragment() {
         initHeader()
         initDwellings()
         initSpells()
+        initVictoryPoints()
 
     }
 
@@ -86,7 +89,6 @@ class OptionsFragment : Fragment() {
     }
 
     private fun initSpells() {
-        var numSpells: Int
         var typeId: Int
         val spellList = mutableListOf<Spell>()
         viewModel.getRole(args.id)
@@ -111,10 +113,8 @@ class OptionsFragment : Fragment() {
                 viewModel.role.observe(viewLifecycleOwner) {
                     numSpells = it.spells
                     if (it.spells != 0){
-                        binding.headSpells.text = getString(R.string.head_spells, it.spells.toString())
                         binding.selectedSpells.text = getString(R.string.selected_spells, 0, numSpells)
                     }
-
                 }
             }
         }
@@ -132,21 +132,38 @@ class OptionsFragment : Fragment() {
                 }
             }
         }
+
     }
 
-    private fun addSelectedSpells(it: Spell, spellList: MutableList<Spell>){
+    private fun initVictoryPoints(){
+        viewModel.getVictoryPoints()
+        vpAdapter = VictoryPointsAdapter()
+        binding.rvVictoryPoints.layoutManager = LinearLayoutManager(context)
+        binding.rvVictoryPoints.adapter = vpAdapter
+
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.role.observe(viewLifecycleOwner) {
-                    numSpells = it.spells
+                viewModel.vp.observe(viewLifecycleOwner) {
+                    vpAdapter.updateVictoryPoints(it)
                 }
             }
         }
+
+    }
+
+    private fun addSelectedSpells(it: Spell, spellList: MutableList<Spell>){
+
         var maxSpells = spellList.count()
-        if (maxSpells < numSpells){
+
+        if (maxSpells < numSpells && !spellList.contains(it)){
             spellList.add(it)
-            maxSpells = spellList.count()
+            maxSpells = spellList.count() // Count again to refresh text
             binding.selectedSpells.text = getString(R.string.selected_spells, maxSpells, numSpells)
+            if (maxSpells == numSpells){
+                binding.rvTypes.visibility = View.GONE
+                binding.rvSpells.visibility = View.GONE
+            }
+            //Add Views to selected spells layout
             val view = TextView(context)
             view.text = spellList.last().name
             view.textSize = 20F
@@ -154,8 +171,12 @@ class OptionsFragment : Fragment() {
             binding.lySpellLayout.setOnClickListener {
                 binding.lySpellLayout.removeAllViews()
                 spellList.clear()
+                binding.rvTypes.visibility = View.VISIBLE
+                binding.rvSpells.visibility = View.VISIBLE
                 binding.selectedSpells.text = getString(R.string.selected_spells, 0, numSpells)
             }
+        } else {
+            Toast.makeText(context, getString(R.string.toast_already_spell, it.name), Toast.LENGTH_SHORT).show()
         }
     }
 

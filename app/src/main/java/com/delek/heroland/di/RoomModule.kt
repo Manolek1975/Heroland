@@ -85,4 +85,10 @@ object RoomModule {
     @Provides
     fun provideSpellTypeDao(db: HerolandDatabase) = db.getSpellTypeDao()
 
+    @Singleton
+    @Provides
+    fun provideVictoryPointsDao(db: HerolandDatabase) = db.getVictoryPointsDao()
+
+
+
 }

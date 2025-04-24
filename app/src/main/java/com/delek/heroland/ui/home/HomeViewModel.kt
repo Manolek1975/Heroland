@@ -33,8 +33,10 @@ import com.delek.heroland.domain.model.RoleWeapon
 import com.delek.heroland.domain.model.Spell
 import com.delek.heroland.domain.model.SpellType
 import com.delek.heroland.domain.model.StartSpell
+import com.delek.heroland.domain.model.VictoryPoints
 import com.delek.heroland.domain.model.Weapon
 import com.delek.heroland.domain.usecase.GetSpellTypeUseCase
+import com.delek.heroland.domain.usecase.GetVictoryPointsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -56,7 +58,8 @@ class HomeViewModel @Inject constructor(
     private val getNativesUseCase: GetNativesUseCase,
     private val getRoleNativesUseCase: GetRoleNativesUseCase,
     private val getSpellUseCase: GetSpellUseCase,
-    private val getSpellTypeUseCase: GetSpellTypeUseCase
+    private val getSpellTypeUseCase: GetSpellTypeUseCase,
+    private val getVictoryPointsUseCase: GetVictoryPointsUseCase
 ) : ViewModel() {
 
     //TODO Create class to load all use cases or insert all in single use, no idea atm!
@@ -76,6 +79,7 @@ class HomeViewModel @Inject constructor(
     private val roleNativesList = MutableLiveData<RoleNatives>()
     private val spellList = MutableLiveData<Spell>()
     private val spellTypeList = MutableLiveData<SpellType>()
+    private val vpList = MutableLiveData<List<VictoryPoints>>()
 
 
     fun onCreate() {
@@ -144,6 +148,11 @@ class HomeViewModel @Inject constructor(
             if (spellType.isNotEmpty()) {
                 spellTypeList.postValue(spellType[0])
             }
+            val vp = getVictoryPointsUseCase()
+            if (vp.isNotEmpty()) {
+                vpList.postValue(vp)
+            }
+
 
 
         }
