@@ -33,6 +33,6 @@
     <string name="type_color">(%1$s/%2$s)</string>
     <string name="selected_spells">Spells (%1$d/%2$d)</string>
     <string name="toast_already_spell">%1$s already selected</string>
-    <string name="victory_points">Victory Points (0/5)</string>
+    <string name="victory_points">Victory Points (%1$d/5)</string>
 
 </resources>

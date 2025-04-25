@@ -19,12 +19,8 @@ class SpellViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         binding.typeColor.text = context.getString(R.string.type_color, spell.typeName, spell.color)
 
         binding.itemSpell.setOnClickListener {
-            selectedSpell(goSpell = { onItemSelected(spell) } )
+            onItemSelected(spell)
         }
 
-    }
-
-    private fun selectedSpell(goSpell:()->Unit) {
-        goSpell()
     }
 }

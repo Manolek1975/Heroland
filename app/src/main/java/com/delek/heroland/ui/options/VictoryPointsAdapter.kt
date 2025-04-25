@@ -8,11 +8,17 @@ import com.delek.heroland.R
 import com.delek.heroland.domain.model.VictoryPoints
 
 class VictoryPointsAdapter(
-    private var vpList: List<VictoryPoints> = emptyList())
-    : RecyclerView.Adapter<VictoryPointsViewHolder>() {
+    private var vpList: List<VictoryPoints> = emptyList(),
+    private val onItemSelected: (Int) -> Unit
+) : RecyclerView.Adapter<VictoryPointsViewHolder>() {
+
+    companion object {
+        var vpValues = mutableListOf(0,0,0,0,0)
+        var total = 0
+    }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateVictoryPoints(vp: List<VictoryPoints>){
+    fun updateVictoryPoints(vp: List<VictoryPoints>) {
         vpList = vp
         notifyDataSetChanged()
     }
@@ -26,6 +32,6 @@ class VictoryPointsAdapter(
     override fun getItemCount(): Int = vpList.size
 
     override fun onBindViewHolder(holder: VictoryPointsViewHolder, position: Int) {
-        holder.render(vpList[position])
+        holder.render(vpList[position], onItemSelected)
     }
 }

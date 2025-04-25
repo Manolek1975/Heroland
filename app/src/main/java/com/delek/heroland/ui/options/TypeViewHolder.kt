@@ -29,13 +29,9 @@ class TypeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         binding.tvType.text = type.spellType
 
         binding.itemType.setOnClickListener {
-            selectedType(goType = { onItemSelected(type) } )
+            selected = adapterPosition
+            onItemSelected(type)
         }
-    }
-
-    private fun selectedType(goType:()->Unit) {
-        selected = adapterPosition
-        goType()
     }
 
 }

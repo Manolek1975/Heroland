@@ -137,7 +137,11 @@ class OptionsFragment : Fragment() {
 
     private fun initVictoryPoints(){
         viewModel.getVictoryPoints()
-        vpAdapter = VictoryPointsAdapter()
+        binding.headVictoryPoints.text = getString(R.string.victory_points, 0)
+        vpAdapter = VictoryPointsAdapter(onItemSelected = {
+            binding.headVictoryPoints.text = getString(R.string.victory_points, it)
+            println(it)
+        })
         binding.rvVictoryPoints.layoutManager = LinearLayoutManager(context)
         binding.rvVictoryPoints.adapter = vpAdapter
 

@@ -10,7 +10,7 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/ly_item_spell"
-        android:layout_width="80dp"
+        android:layout_width="78dp"
         android:layout_height="120dp"
         android:orientation="vertical"
         android:padding="4dp"
