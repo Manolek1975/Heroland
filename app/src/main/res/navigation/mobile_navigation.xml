@@ -37,7 +37,7 @@
             android:id="@+id/action_nav_detail_to_nav_role_select"
             app:destination="@id/nav_role_select" />
         <action
-            android:id="@+id/action_nav_detail_to_optionsFragment"
+            android:id="@+id/action_nav_detail_to_nav_options"
             app:destination="@id/nav_options" />
     </fragment>
 
@@ -49,6 +49,9 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_nav_options_to_nav_player"
+            app:destination="@id/nav_player" />
     </fragment>
 
     <fragment
@@ -62,6 +65,16 @@
         android:name="com.delek.heroland.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/nav_player"
+        android:name="com.delek.heroland.ui.player.PlayerFragment"
+        android:label="fragment_player"
+        tools:layout="@layout/fragment_player" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 
 
 </navigation>

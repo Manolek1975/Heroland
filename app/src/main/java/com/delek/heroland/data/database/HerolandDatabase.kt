@@ -7,6 +7,7 @@ import com.delek.heroland.data.database.dao.ArmorDao
 import com.delek.heroland.data.database.dao.ChitDao
 import com.delek.heroland.data.database.dao.DwellingDao
 import com.delek.heroland.data.database.dao.NativesDao
+import com.delek.heroland.data.database.dao.PlayerDao
 import com.delek.heroland.data.database.dao.RoleAdvantageDao
 import com.delek.heroland.data.database.dao.RoleArmorDao
 import com.delek.heroland.data.database.dao.RoleChitDao
@@ -24,6 +25,7 @@ import com.delek.heroland.data.database.entities.ArmorEntity
 import com.delek.heroland.data.database.entities.ChitEntity
 import com.delek.heroland.data.database.entities.DwellingEntity
 import com.delek.heroland.data.database.entities.NativesEntity
+import com.delek.heroland.data.database.entities.PlayerEntity
 import com.delek.heroland.data.database.entities.RoleAdvantageEntity
 import com.delek.heroland.data.database.entities.RoleArmorEntity
 import com.delek.heroland.data.database.entities.RoleChitEntity
@@ -55,7 +57,8 @@ import com.delek.heroland.data.database.entities.WeaponEntity
         RoleNativesEntity::class,
         SpellEntity::class,
         SpellTypeEntity::class,
-        VictoryPointsEntity::class],
+        VictoryPointsEntity::class,
+        PlayerEntity::class],
     version = 1,
     exportSchema = true
 )
@@ -77,4 +80,5 @@ abstract class HerolandDatabase : RoomDatabase() {
     abstract fun getSpellDao(): SpellDao
     abstract fun getSpellTypeDao(): SpellTypeDao
     abstract fun getVictoryPointsDao(): VictoryPointsDao
+    abstract fun getPlayerDao(): PlayerDao
 }

@@ -30,9 +30,9 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_value"
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:gravity="center"
         android:textColor="@color/primary"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -45,7 +45,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/transparent"
-        android:layout_marginStart="12dp"
         android:contentDescription="@string/todo"
         android:tint="@color/primary"
         app:layout_constraintStart_toEndOf="@id/tv_value"

@@ -89,6 +89,9 @@ object RoomModule {
     @Provides
     fun provideVictoryPointsDao(db: HerolandDatabase) = db.getVictoryPointsDao()
 
+    @Singleton
+    @Provides
+    fun providePlayerDao(db: HerolandDatabase) = db.getPlayerDao()
 
 
 }

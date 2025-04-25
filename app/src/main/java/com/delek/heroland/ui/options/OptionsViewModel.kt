@@ -3,12 +3,15 @@ package com.delek.heroland.ui.options
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.delek.heroland.data.database.entities.PlayerEntity
+import com.delek.heroland.data.repository.PlayerRepository
 import com.delek.heroland.data.repository.RoleDwellingRepository
 import com.delek.heroland.data.repository.RoleRepository
 import com.delek.heroland.data.repository.SpellRepository
 import com.delek.heroland.data.repository.StartSpellRepository
 import com.delek.heroland.data.repository.VictoryPointsRepository
 import com.delek.heroland.domain.model.Dwelling
+import com.delek.heroland.domain.model.Player
 import com.delek.heroland.domain.model.Role
 import com.delek.heroland.domain.model.Spell
 import com.delek.heroland.domain.model.StartSpell
@@ -23,7 +26,8 @@ class OptionsViewModel @Inject constructor(
     private val repoRoleDwelling: RoleDwellingRepository,
     private val repoStarSpell: StartSpellRepository,
     private val repoSpell: SpellRepository,
-    private val repoVictoryPoints: VictoryPointsRepository
+    private val repoVictoryPoints: VictoryPointsRepository,
+    private val repoPlayer: PlayerRepository
 ) : ViewModel() {
 
     val role = MutableLiveData<Role>()
@@ -31,6 +35,7 @@ class OptionsViewModel @Inject constructor(
     val spellType = MutableLiveData<List<StartSpell>>()
     val spell = MutableLiveData<List<Spell>>()
     val vp = MutableLiveData<List<VictoryPoints>>()
+    val player = MutableLiveData<List<Player>>()
 
     fun getRole(id: Int) {
         viewModelScope.launch {
@@ -59,6 +64,18 @@ class OptionsViewModel @Inject constructor(
     fun getVictoryPoints() {
         viewModelScope.launch {
             vp.value = repoVictoryPoints.getVictoryPoints()
+        }
+    }
+
+    fun insertPlayer(player: PlayerEntity) {
+        viewModelScope.launch {
+            repoPlayer.insertPlayer(player)
+        }
+    }
+
+    fun getAllPlayers() {
+        viewModelScope.launch {
+            player.value = repoPlayer.getAllPlayers()
         }
     }
 

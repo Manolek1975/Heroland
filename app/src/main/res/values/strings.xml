@@ -34,5 +34,11 @@
     <string name="selected_spells">Spells (%1$d/%2$d)</string>
     <string name="toast_already_spell">%1$s already selected</string>
     <string name="victory_points">Victory Points (%1$d/5)</string>
+    <string name="toast_start">You must select 5 victory points</string>
+    <string name="toast_start_spells">You must select %1$d spells</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_player">Players</string>
+    <string name="player_head">Player Name</string>
 
 </resources>

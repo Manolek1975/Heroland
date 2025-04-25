@@ -14,15 +14,18 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.delek.heroland.R
+import com.delek.heroland.data.database.entities.PlayerEntity
 import com.delek.heroland.databinding.FragmentOptionsBinding
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Spell
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.selects.select
 
 @AndroidEntryPoint
 class OptionsFragment : Fragment() {
@@ -34,7 +37,10 @@ class OptionsFragment : Fragment() {
     private lateinit var typeAdapter: TypeAdapter
     private lateinit var spellAdapter: SpellAdapter
     private lateinit var vpAdapter: VictoryPointsAdapter
+    private var dwellingSelected: Int = 1
+    private var victoryPoints: Int = 0
     private var numSpells: Int = 0
+    private var countSpells = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,7 +56,7 @@ class OptionsFragment : Fragment() {
         initDwellings()
         initSpells()
         initVictoryPoints()
-
+        initStart()
     }
 
     private fun initHeader() {
@@ -86,6 +92,12 @@ class OptionsFragment : Fragment() {
                 buttonTintList = ColorStateList.valueOf(getColor(context, R.color.primary))
             })
         }
+        binding.rgDwelling.check(dwelling[0].id)
+        binding.rgDwelling.setOnCheckedChangeListener { _, checkedId ->
+            dwellingSelected = checkedId
+            println("Dwelling: $dwellingSelected")
+        }
+
     }
 
     private fun initSpells() {
@@ -139,8 +151,8 @@ class OptionsFragment : Fragment() {
         viewModel.getVictoryPoints()
         binding.headVictoryPoints.text = getString(R.string.victory_points, 0)
         vpAdapter = VictoryPointsAdapter(onItemSelected = {
+            victoryPoints = it
             binding.headVictoryPoints.text = getString(R.string.victory_points, it)
-            println(it)
         })
         binding.rvVictoryPoints.layoutManager = LinearLayoutManager(context)
         binding.rvVictoryPoints.adapter = vpAdapter
@@ -157,13 +169,13 @@ class OptionsFragment : Fragment() {
 
     private fun addSelectedSpells(it: Spell, spellList: MutableList<Spell>){
 
-        var maxSpells = spellList.count()
+        countSpells = spellList.count()
 
-        if (maxSpells < numSpells && !spellList.contains(it)){
+        if (countSpells < numSpells && !spellList.contains(it)){
             spellList.add(it)
-            maxSpells = spellList.count() // Count again to refresh text
-            binding.selectedSpells.text = getString(R.string.selected_spells, maxSpells, numSpells)
-            if (maxSpells == numSpells){
+            countSpells = spellList.count() // Count again to refresh text
+            binding.selectedSpells.text = getString(R.string.selected_spells, countSpells, numSpells)
+            if (countSpells == numSpells){
                 binding.rvTypes.visibility = View.GONE
                 binding.rvSpells.visibility = View.GONE
             }
@@ -181,6 +193,39 @@ class OptionsFragment : Fragment() {
             }
         } else {
             Toast.makeText(context, getString(R.string.toast_already_spell, it.name), Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun initStart() {
+        viewModel.getAllPlayers()
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.player.observe(viewLifecycleOwner) { _ ->
+                    binding.fabStart.setOnClickListener {
+                        checkStartConditions()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun checkStartConditions(){
+        if (victoryPoints != 5) { // Must choice 5 victory points
+            Toast.makeText(context, getString(R.string.toast_start), Toast.LENGTH_LONG
+            ).show()
+        } else if (countSpells != numSpells && numSpells != 0) { //Must choice spells
+            Toast.makeText(context, getString(R.string.toast_start_spells, numSpells), Toast.LENGTH_LONG
+            ).show()
+        } else { //Insert player to database and navigate
+            viewModel.insertPlayer(
+                PlayerEntity(
+                    0, "Player1", args.id, dwellingSelected,
+                    0, 0, 0, 0, 0
+                )
+            )
+            findNavController().navigate(
+                OptionsFragmentDirections.actionNavOptionsToNavPlayer(args.id)
+            )
         }
     }
 
