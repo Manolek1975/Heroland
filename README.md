@@ -7,4 +7,5 @@ The map has been simplified to 20 random areas to be discovered and explored, wh
 
 ## Images
 
-![readme.png](intro.webp)
+![readme.png](intro.webp) ![readme.png](select.webp) ![readme.png](detail.webp) ![readme.png](options.webp)
+
