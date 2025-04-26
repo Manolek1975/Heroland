@@ -13,12 +13,12 @@ class GetVictoryPointsUseCase @Inject constructor(
 ) {
 
     suspend operator fun invoke(): List<VictoryPoints> {
-        val vp = repository.getVictoryPoints()
+        val vp = repository.getAllVictoryPoints()
         return if (vp.isEmpty()) {
             repository.insertVictoryPoints(VictoryPointsProvider.loadVictoryPoints(context))
             vp
         } else {
-            repository.getVictoryPoints()
+            repository.getAllVictoryPoints()
         }
     }
 }

@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Player Name" />
+        android:text="@string/player_head" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/player_recycler_view"

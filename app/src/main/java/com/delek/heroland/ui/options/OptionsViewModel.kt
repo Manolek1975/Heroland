@@ -4,18 +4,21 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.delek.heroland.data.database.entities.PlayerEntity
+import com.delek.heroland.data.database.entities.VpRoleEntity
 import com.delek.heroland.data.repository.PlayerRepository
 import com.delek.heroland.data.repository.RoleDwellingRepository
 import com.delek.heroland.data.repository.RoleRepository
 import com.delek.heroland.data.repository.SpellRepository
 import com.delek.heroland.data.repository.StartSpellRepository
 import com.delek.heroland.data.repository.VictoryPointsRepository
+import com.delek.heroland.data.repository.VpRoleRepository
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Player
 import com.delek.heroland.domain.model.Role
 import com.delek.heroland.domain.model.Spell
 import com.delek.heroland.domain.model.StartSpell
 import com.delek.heroland.domain.model.VictoryPoints
+import com.delek.heroland.domain.model.VpRole
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,7 +30,8 @@ class OptionsViewModel @Inject constructor(
     private val repoStarSpell: StartSpellRepository,
     private val repoSpell: SpellRepository,
     private val repoVictoryPoints: VictoryPointsRepository,
-    private val repoPlayer: PlayerRepository
+    private val repoPlayer: PlayerRepository,
+    private val repoVpRole: VpRoleRepository
 ) : ViewModel() {
 
     val role = MutableLiveData<Role>()
@@ -36,6 +40,7 @@ class OptionsViewModel @Inject constructor(
     val spell = MutableLiveData<List<Spell>>()
     val vp = MutableLiveData<List<VictoryPoints>>()
     val player = MutableLiveData<List<Player>>()
+    val vpRole = MutableLiveData<List<VpRole>>()
 
     fun getRole(id: Int) {
         viewModelScope.launch {
@@ -61,9 +66,27 @@ class OptionsViewModel @Inject constructor(
         }
     }
 
-    fun getVictoryPoints() {
+    fun insertVictoryPoints(vpList: VpRoleEntity) {
         viewModelScope.launch {
-            vp.value = repoVictoryPoints.getVictoryPoints()
+            repoVpRole.insertVpRole(vpList)
+        }
+    }
+
+/*    fun updateVictoryPoints(vpList: VpRoleEntity) {
+        viewModelScope.launch {
+            repoVpRole.updateVpRole(vpList)
+        }
+    }*/
+
+    fun updateVictoryPoints(value: Int, id: Int) {
+        viewModelScope.launch {
+            repoVictoryPoints.updateVictoryPoints(value, id)
+        }
+    }
+
+    fun getAllVictoryPoints() {
+        viewModelScope.launch {
+            vp.value = repoVictoryPoints.getAllVictoryPoints()
         }
     }
 

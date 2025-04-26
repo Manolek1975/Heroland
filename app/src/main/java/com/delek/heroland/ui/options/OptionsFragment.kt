@@ -23,9 +23,11 @@ import com.delek.heroland.data.database.entities.PlayerEntity
 import com.delek.heroland.databinding.FragmentOptionsBinding
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Spell
+import com.delek.heroland.ui.options.VictoryPointsAdapter.Companion.pos
+import com.delek.heroland.ui.options.VictoryPointsAdapter.Companion.total
+import com.delek.heroland.ui.options.VictoryPointsAdapter.Companion.vpValues
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.selects.select
 
 @AndroidEntryPoint
 class OptionsFragment : Fragment() {
@@ -148,11 +150,19 @@ class OptionsFragment : Fragment() {
     }
 
     private fun initVictoryPoints(){
-        viewModel.getVictoryPoints()
-        binding.headVictoryPoints.text = getString(R.string.victory_points, 0)
+        viewModel.getAllVictoryPoints()
+        println("Init VP $args.vp")
+
+        binding.headVictoryPoints.text = getString(R.string.victory_points, args.vp)
         vpAdapter = VictoryPointsAdapter(onItemSelected = {
-            victoryPoints = it
-            binding.headVictoryPoints.text = getString(R.string.victory_points, it)
+            viewModel.updateVictoryPoints(vpValues[pos], pos+1)
+
+            println("VP v=$vpValues pos=$pos total=$total")
+
+            victoryPoints = total
+
+            binding.headVictoryPoints.text = getString(R.string.victory_points, victoryPoints)
+
         })
         binding.rvVictoryPoints.layoutManager = LinearLayoutManager(context)
         binding.rvVictoryPoints.adapter = vpAdapter
@@ -168,9 +178,7 @@ class OptionsFragment : Fragment() {
     }
 
     private fun addSelectedSpells(it: Spell, spellList: MutableList<Spell>){
-
         countSpells = spellList.count()
-
         if (countSpells < numSpells && !spellList.contains(it)){
             spellList.add(it)
             countSpells = spellList.count() // Count again to refresh text
@@ -197,12 +205,20 @@ class OptionsFragment : Fragment() {
     }
 
     private fun initStart() {
+
         viewModel.getAllPlayers()
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.player.observe(viewLifecycleOwner) { _ ->
-                    binding.fabStart.setOnClickListener {
+                    binding.ivCheck.setOnClickListener {
                         checkStartConditions()
+                    }
+                    binding.ivCancel.setOnClickListener {
+                        val vp = victoryPoints
+                        println("ARGS VP $vp")
+                        findNavController().navigate(
+                            OptionsFragmentDirections.actionNavOptionsToNavDetail(args.id, vp)
+                        )
                     }
                 }
             }

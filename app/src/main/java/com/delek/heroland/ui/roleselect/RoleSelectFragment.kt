@@ -35,7 +35,7 @@ class RoleSelectFragment : Fragment() {
     private fun initUI() {
         roleAdapter = RoleSelectAdapter(onItemSelected = {
             findNavController().navigate(
-                RoleSelectFragmentDirections.actionNavRoleSelectToNavDetail(it.id)
+                RoleSelectFragmentDirections.actionNavRoleSelectToNavDetail(it.id, 0)
             )
         })
         binding.rvRole.layoutManager = GridLayoutManager(context, 2)

@@ -12,6 +12,9 @@ interface VictoryPointsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertVictoryPoints(victoryPoints: List<VictoryPointsEntity>)
 
+    @Query("UPDATE victory_points SET value = :value WHERE id = :id")
+    suspend fun updateVictoryPoints(value: Int, id: Int)
+
     @Query("SELECT * FROM victory_points")
     suspend fun getAllVictoryPoints(): List<VictoryPointsEntity>
 

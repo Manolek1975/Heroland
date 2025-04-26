@@ -38,7 +38,7 @@
     <string name="toast_start_spells">You must select %1$d spells</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="menu_player">Players</string>
-    <string name="player_head">Player Name</string>
+    <string name="menu_player">Characters</string>
+    <string name="player_head">Characters</string>
 
 </resources>

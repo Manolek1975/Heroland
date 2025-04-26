@@ -11,7 +11,7 @@ class VictoryPointsProvider {
             val vpEntity = mutableListOf<VictoryPointsEntity>()
             val names = context.resources.getStringArray(R.array.vp_names)
             for (i in names.indices){
-                val entity =VictoryPointsEntity(i+1,1,names[i],0,0,0,0,0)
+                val entity =VictoryPointsEntity(i+1,names[i],0)
                 vpEntity.add(entity)
             }
             return vpEntity

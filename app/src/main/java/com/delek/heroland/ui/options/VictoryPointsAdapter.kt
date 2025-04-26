@@ -15,6 +15,7 @@ class VictoryPointsAdapter(
     companion object {
         var vpValues = mutableListOf(0,0,0,0,0)
         var total = 0
+        var pos = 0
     }
 
     @SuppressLint("NotifyDataSetChanged")

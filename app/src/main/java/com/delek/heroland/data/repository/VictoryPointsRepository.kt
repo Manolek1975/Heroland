@@ -12,7 +12,11 @@ class VictoryPointsRepository @Inject constructor(private val victoryPointsDao: 
         return victoryPointsDao.insertVictoryPoints(victoryPoints)
     }
 
-    suspend fun getVictoryPoints(): List<VictoryPoints> {
+    suspend fun updateVictoryPoints(value: Int, id: Int) {
+        return victoryPointsDao.updateVictoryPoints(value, id)
+    }
+
+    suspend fun getAllVictoryPoints(): List<VictoryPoints> {
         val response: List<VictoryPointsEntity> = victoryPointsDao.getAllVictoryPoints()
         return response.map { it.toDomain() }
     }
