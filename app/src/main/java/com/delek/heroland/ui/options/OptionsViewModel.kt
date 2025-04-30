@@ -6,10 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.delek.heroland.data.database.entities.PlayerEntity
 import com.delek.heroland.data.database.entities.VpRoleEntity
 import com.delek.heroland.data.repository.PlayerRepository
-import com.delek.heroland.data.repository.RoleDwellingRepository
 import com.delek.heroland.data.repository.RoleRepository
 import com.delek.heroland.data.repository.SpellRepository
-import com.delek.heroland.data.repository.StartSpellRepository
 import com.delek.heroland.data.repository.VictoryPointsRepository
 import com.delek.heroland.data.repository.VpRoleRepository
 import com.delek.heroland.domain.model.Dwelling
@@ -26,8 +24,6 @@ import javax.inject.Inject
 @HiltViewModel
 class OptionsViewModel @Inject constructor(
     private val repoRole: RoleRepository,
-    private val repoRoleDwelling: RoleDwellingRepository,
-    private val repoStarSpell: StartSpellRepository,
     private val repoSpell: SpellRepository,
     private val repoVictoryPoints: VictoryPointsRepository,
     private val repoPlayer: PlayerRepository,
@@ -50,13 +46,13 @@ class OptionsViewModel @Inject constructor(
 
     fun getDwellingsByRole(id: Int) {
         viewModelScope.launch {
-            dwelling.value = repoRoleDwelling.getDwellingsByRole(id)
+            dwelling.value = repoRole.getDwellingsByRole(id)
         }
     }
 
     fun  getStartSpellTypes(id: Int) {
         viewModelScope.launch {
-            spellType.value = repoStarSpell.getStartSpellsByRole(id)
+            spellType.value = repoRole.getStartSpellsByRole(id)
         }
     }
 
@@ -71,12 +67,6 @@ class OptionsViewModel @Inject constructor(
             repoVpRole.insertVpRole(vpList)
         }
     }
-
-/*    fun updateVictoryPoints(vpList: VpRoleEntity) {
-        viewModelScope.launch {
-            repoVpRole.updateVpRole(vpList)
-        }
-    }*/
 
     fun updateVictoryPoints(value: Int, id: Int) {
         viewModelScope.launch {
@@ -101,7 +91,5 @@ class OptionsViewModel @Inject constructor(
             player.value = repoPlayer.getAllPlayers()
         }
     }
-
-
 
 }

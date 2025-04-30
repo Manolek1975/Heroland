@@ -17,9 +17,4 @@ class StartSpellRepository @Inject constructor(private val startSpellDao: StartS
         return response.map { it.toDomain() }
     }
 
-    suspend fun getStartSpellsByRole(roleId: Int): List<StartSpell> {
-        val response: List<StartSpellEntity> = startSpellDao.getStartSpellsByRole(roleId)
-        return response.map { it.toDomain() }
-    }
-
 }

@@ -16,8 +16,4 @@ class DwellingRepository @Inject constructor(private val dwellingDao: DwellingDa
         val response: List<DwellingEntity> = dwellingDao.getAllDwellings()
         return response.map { it.toDomain() }
     }
-
-    suspend fun clearDwellings() {
-        dwellingDao.deleteAllDwellings()
-    }
 }

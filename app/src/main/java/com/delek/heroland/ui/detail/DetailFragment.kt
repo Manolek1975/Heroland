@@ -57,7 +57,7 @@ class DetailFragment : Fragment() {
         }
         binding.ivCheck.setOnClickListener {
             findNavController().navigate(
-                DetailFragmentDirections.actionNavDetailToNavOptions(args.id, args.vp)
+                DetailFragmentDirections.actionNavDetailToNavOptions(args.id)
             )
         }
     }

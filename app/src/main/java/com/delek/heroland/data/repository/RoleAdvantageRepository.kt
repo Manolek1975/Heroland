@@ -17,9 +17,4 @@ class RoleAdvantageRepository @Inject constructor(private val roleAdvantageDao: 
         return response.map { it.toDomain() }
     }
 
-    suspend fun getAdvantagesByRole(id: Int): List<RoleAdvantage> {
-        val response: List<RoleAdvantageEntity> = roleAdvantageDao.getAdvantagesByRole(id)
-        return response.map { it.toDomain() }
-    }
-
 }

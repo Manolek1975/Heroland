@@ -15,7 +15,4 @@ interface SpellTypeDao {
     @Query("SELECT * FROM spell_types")
     suspend fun getAllSpellTypes(): List<SpellTypeEntity>
 
-
-
-
 }

@@ -16,8 +16,4 @@ interface RoleAdvantageDao {
     @Query("SELECT * FROM role_advantages")
     suspend fun getAllRoleAdvantages(): List<RoleAdvantageEntity>
 
-    @Query("SELECT * FROM advantages INNER JOIN role_advantages " +
-            "ON advantages.id = role_advantages.advantage_id " +
-            "WHERE role_advantages.role_id = :id")
-    suspend fun getAdvantagesByRole(id: Int): List<RoleAdvantageEntity>
 }

@@ -15,7 +15,4 @@ interface StartSpellDao {
     @Query("SELECT * FROM start_spells")
     suspend fun getAllStartSpells(): List<StartSpellEntity>
 
-    @Query("SELECT * FROM start_spells WHERE role_id = :roleId")
-    suspend fun getStartSpellsByRole(roleId: Int): List<StartSpellEntity>
-
 }

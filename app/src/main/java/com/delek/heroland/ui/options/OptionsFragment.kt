@@ -23,9 +23,7 @@ import com.delek.heroland.data.database.entities.PlayerEntity
 import com.delek.heroland.databinding.FragmentOptionsBinding
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Spell
-import com.delek.heroland.ui.options.VictoryPointsAdapter.Companion.pos
 import com.delek.heroland.ui.options.VictoryPointsAdapter.Companion.total
-import com.delek.heroland.ui.options.VictoryPointsAdapter.Companion.vpValues
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -97,9 +95,7 @@ class OptionsFragment : Fragment() {
         binding.rgDwelling.check(dwelling[0].id)
         binding.rgDwelling.setOnCheckedChangeListener { _, checkedId ->
             dwellingSelected = checkedId
-            println("Dwelling: $dwellingSelected")
         }
-
     }
 
     private fun initSpells() {
@@ -146,23 +142,14 @@ class OptionsFragment : Fragment() {
                 }
             }
         }
-
     }
 
     private fun initVictoryPoints(){
         viewModel.getAllVictoryPoints()
-        println("Init VP $args.vp")
-
-        binding.headVictoryPoints.text = getString(R.string.victory_points, args.vp)
+        binding.headVictoryPoints.text = getString(R.string.victory_points, victoryPoints)
         vpAdapter = VictoryPointsAdapter(onItemSelected = {
-            viewModel.updateVictoryPoints(vpValues[pos], pos+1)
-
-            println("VP v=$vpValues pos=$pos total=$total")
-
             victoryPoints = total
-
             binding.headVictoryPoints.text = getString(R.string.victory_points, victoryPoints)
-
         })
         binding.rvVictoryPoints.layoutManager = LinearLayoutManager(context)
         binding.rvVictoryPoints.adapter = vpAdapter
@@ -174,7 +161,6 @@ class OptionsFragment : Fragment() {
                 }
             }
         }
-
     }
 
     private fun addSelectedSpells(it: Spell, spellList: MutableList<Spell>){
@@ -205,7 +191,6 @@ class OptionsFragment : Fragment() {
     }
 
     private fun initStart() {
-
         viewModel.getAllPlayers()
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -214,10 +199,8 @@ class OptionsFragment : Fragment() {
                         checkStartConditions()
                     }
                     binding.ivCancel.setOnClickListener {
-                        val vp = victoryPoints
-                        println("ARGS VP $vp")
                         findNavController().navigate(
-                            OptionsFragmentDirections.actionNavOptionsToNavDetail(args.id, vp)
+                            OptionsFragmentDirections.actionNavOptionsToNavDetail(args.id)
                         )
                     }
                 }

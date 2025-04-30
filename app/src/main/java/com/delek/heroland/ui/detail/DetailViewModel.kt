@@ -4,14 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.delek.heroland.data.repository.AdvantageRepository
-import com.delek.heroland.data.repository.RoleAdvantageRepository
-import com.delek.heroland.data.repository.RoleArmorRepository
-import com.delek.heroland.data.repository.RoleChitRepository
-import com.delek.heroland.data.repository.RoleDwellingRepository
-import com.delek.heroland.data.repository.RoleNativesRepository
 import com.delek.heroland.data.repository.RoleRepository
-import com.delek.heroland.data.repository.RoleWeaponRepository
-import com.delek.heroland.data.repository.StartSpellRepository
 import com.delek.heroland.domain.model.Advantage
 import com.delek.heroland.domain.model.Armor
 import com.delek.heroland.domain.model.Chit
@@ -28,13 +21,6 @@ import javax.inject.Inject
 class DetailViewModel @Inject constructor(
     private val repoRole: RoleRepository,
     private val repoAdv: AdvantageRepository,
-    private val repoAdvRole: RoleAdvantageRepository,
-    private val repoChitRole: RoleChitRepository,
-    private val repoDwellingRole: RoleDwellingRepository,
-    private val repoWeaponRole: RoleWeaponRepository,
-    private val repoArmorRole: RoleArmorRepository,
-    private val repoStartSpell: StartSpellRepository,
-    private val repoNativesRole: RoleNativesRepository
 ) : ViewModel() {
 
     val role = MutableLiveData<Role>()
@@ -57,7 +43,7 @@ class DetailViewModel @Inject constructor(
 
     fun getAdvantages(id: Int) {
         viewModelScope.launch {
-            val rolAdv = repoAdvRole.getAdvantagesByRole(id)
+            val rolAdv = repoRole.getAdvantagesByRole(id)
             for (i in rolAdv) {
                 advantages.value = repoAdv.getAdvantageById(i.advantageId)
             }
@@ -66,28 +52,28 @@ class DetailViewModel @Inject constructor(
 
     fun getChitsByRole(id: Int) {
         viewModelScope.launch {
-            val rolChit = repoChitRole.getChitsByRole(id)
-            chit.value = rolChit
+            val roleChit = repoRole.getChitsByRole(id)
+            chit.value = roleChit
         }
     }
 
     fun getDwellingsByRole(id: Int) {
         viewModelScope.launch {
-            val rolDwelling = repoDwellingRole.getDwellingsByRole(id)
+            val rolDwelling = repoRole.getDwellingsByRole(id)
             dwelling.value = rolDwelling
         }
     }
 
     fun getWeapons(id: Int) {
         viewModelScope.launch {
-            val rolWeapon = repoWeaponRole.getWeaponsByRole(id)
+            val rolWeapon = repoRole.getWeaponsByRole(id)
             weapon.value = rolWeapon
         }
     }
 
     fun getAmor(id: Int) {
         viewModelScope.launch {
-            val rolArmor = repoArmorRole.getArmorByRole(id)
+            val rolArmor = repoRole.getArmorByRole(id)
             armor.value = rolArmor
         }
     }
@@ -99,43 +85,35 @@ class DetailViewModel @Inject constructor(
 
     fun getSpells(id: Int) {
         viewModelScope.launch {
-            val spell = repoStartSpell.getStartSpellsByRole(id)
+            val spell = repoRole.getStartSpellsByRole(id)
             startSpell.value = spell
         }
     }
 
-/*    fun getNatives(id: Int, rel: Int) {
-        viewModelScope.launch {
-            val rolNatives = repoNativesRole.getNativesByRoleRelation(id, rel)
-            println(rolNatives)
-            natives.value = rolNatives
-        }
-    }*/
-
     fun getAllyNatives(id: Int) {
         viewModelScope.launch {
-            val rolNatives = repoNativesRole.getAllyNatives(id)
+            val rolNatives = repoRole.getAllyNatives(id)
             allyNatives.value = rolNatives
         }
     }
 
     fun getFriendlyNatives(id: Int) {
         viewModelScope.launch {
-            val rolNatives = repoNativesRole.getFriendlyNatives(id)
+            val rolNatives = repoRole.getFriendlyNatives(id)
             friendlyNatives.value = rolNatives
         }
     }
 
     fun getUnfriendlyNatives(id: Int) {
         viewModelScope.launch {
-            val rolNatives = repoNativesRole.getUnfriendNatives(id)
+            val rolNatives = repoRole.getUnfriendNatives(id)
             unfriendlyNatives.value = rolNatives
         }
     }
 
     fun getEnemyNatives(id: Int) {
         viewModelScope.launch {
-            val rolNatives = repoNativesRole.getEnemyNatives(id)
+            val rolNatives = repoRole.getEnemyNatives(id)
             enemyNatives.value = rolNatives
         }
     }

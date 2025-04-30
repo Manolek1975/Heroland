@@ -18,22 +18,17 @@ class VictoryPointsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         binding.tvName.text = vp.name
         binding.tvValue.text = String.format(vp.value.toString())
 
-        println("List: $vpValues, Total: $total")
-
         binding.ibRight.setOnClickListener {
             if (total < 5) {
                 vpValues[adapterPosition]++
                 total = vpValues.sum()
-                println("List: $vpValues, Total: $total")
                 binding.tvValue.text = String.format(vpValues[adapterPosition].toString())
             }
             pos = adapterPosition
             getVpValues(
                 goTotal = { onItemSelected( total )},
                 goValue = { onItemSelected( vpValues[pos] ) },
-                goPosition = { onItemSelected( pos ) }
             )
-            //onItemSelected(total)
         }
 
         binding.ibLeft.setOnClickListener {
@@ -46,16 +41,13 @@ class VictoryPointsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             getVpValues(
                 goTotal = { onItemSelected( total )},
                 goValue = { onItemSelected( vpValues[pos] ) },
-                goPosition = { onItemSelected( pos ) }
             )
-            //onItemSelected(total)
         }
     }
 
-    private fun getVpValues(goTotal: ()->Unit, goValue:()->Unit, goPosition:()->Unit ) {
+    private fun getVpValues(goTotal: ()->Unit, goValue:()->Unit) {
         goTotal()
         goValue()
-        goPosition()
     }
 
 

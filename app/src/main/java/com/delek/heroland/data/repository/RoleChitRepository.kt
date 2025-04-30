@@ -2,8 +2,6 @@ package com.delek.heroland.data.repository
 
 import com.delek.heroland.data.database.dao.RoleChitDao
 import com.delek.heroland.data.database.entities.RoleChitEntity
-import com.delek.heroland.data.database.entities.ChitEntity
-import com.delek.heroland.domain.model.Chit
 import com.delek.heroland.domain.model.RoleChit
 import com.delek.heroland.domain.model.toDomain
 import javax.inject.Inject
@@ -16,11 +14,6 @@ class RoleChitRepository @Inject constructor(private val roleChitDao: RoleChitDa
 
     suspend fun getAllRoleChits(): List<RoleChit> {
         val response: List<RoleChitEntity> = roleChitDao.getAllRoleChits()
-        return response.map { it.toDomain() }
-    }
-
-    suspend fun getChitsByRole(id: Int): List<Chit> {
-        val response: List<ChitEntity> = roleChitDao.getChitsByRole(id)
         return response.map { it.toDomain() }
     }
 

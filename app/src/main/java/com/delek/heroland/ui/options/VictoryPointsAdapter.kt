@@ -20,6 +20,8 @@ class VictoryPointsAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateVictoryPoints(vp: List<VictoryPoints>) {
+        vpValues = mutableListOf(0,0,0,0,0)
+        total = 0
         vpList = vp
         notifyDataSetChanged()
     }
