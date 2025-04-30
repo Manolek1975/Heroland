@@ -90,5 +90,8 @@ class RoleRepository @Inject constructor(private val roleDao: RoleDao) {
         return response.map { it.toDomain() }
     }
 
-
+    suspend fun getRolesByPlayer(): List<Role> {
+        val response: List<RoleEntity> = roleDao.getRolesByPlayer()
+        return response.map { it.toDomain() }
+    }
 }

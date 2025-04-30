@@ -21,5 +21,6 @@ class PlayerRepository@Inject constructor(private val playerDao: PlayerDao) {
         val response: PlayerEntity = playerDao.getPlayerById(id)
         return response.toDomain()
     }
+
 }
 
