@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    android:padding="8dp">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
@@ -13,11 +14,11 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icon_amazon"
-        android:scaleX="0.5"
-        android:scaleY="0.5" />
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        android:tint="@color/primary"
+        tool:background="@drawable/icon_amazon" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_name"

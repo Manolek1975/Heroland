@@ -9,8 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.delek.heroland.databinding.FragmentPlayerBinding
+import com.delek.heroland.ui.roleselect.RoleSelectFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -43,6 +45,13 @@ class PlayerFragment : Fragment() {
                 }
             }
         }
+
+        binding.addPlayer.setOnClickListener {
+            findNavController().navigate(
+                RoleSelectFragmentDirections.actionNavRoleSelectToNavDetail(it.id)
+            )
+        }
+
     }
 
 }

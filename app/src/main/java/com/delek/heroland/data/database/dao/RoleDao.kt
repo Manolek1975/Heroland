@@ -87,4 +87,9 @@ interface RoleDao {
     @Query("SELECT * FROM roles INNER JOIN players " +
             "ON roles.id = players.role ")
     suspend fun getRolesByPlayer(): List<RoleEntity>
+
+    @Query("SELECT * FROM roles LEFT JOIN players " +
+            "ON roles.id = players.role " +
+            "WHERE players.role IS NULL")
+    suspend fun getRolesNotInPlayers(): List<RoleEntity>
 }

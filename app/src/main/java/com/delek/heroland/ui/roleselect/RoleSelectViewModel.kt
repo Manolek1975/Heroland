@@ -17,7 +17,7 @@ class RoleSelectViewModel @Inject constructor(private val repository: RoleReposi
 
     init {
         viewModelScope.launch {
-            roleEntity.value = repository.getAllRoles()
+            roleEntity.value = repository.getRolesNotInPlayers()
         }
     }
 
