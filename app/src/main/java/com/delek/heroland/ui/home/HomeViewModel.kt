@@ -3,6 +3,7 @@ package com.delek.heroland.ui.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.delek.heroland.data.repository.PlayerRepository
 import com.delek.heroland.domain.usecase.GetDwellingsUseCase
 import com.delek.heroland.domain.usecase.GetRolesUseCase
 import com.delek.heroland.domain.model.Advantage
@@ -24,6 +25,7 @@ import com.delek.heroland.domain.usecase.GetWeaponsUseCase
 import com.delek.heroland.domain.model.Armor
 import com.delek.heroland.domain.model.Chit
 import com.delek.heroland.domain.model.Natives
+import com.delek.heroland.domain.model.Player
 import com.delek.heroland.domain.model.RoleAdvantage
 import com.delek.heroland.domain.model.RoleArmor
 import com.delek.heroland.domain.model.RoleChit
@@ -59,7 +61,8 @@ class HomeViewModel @Inject constructor(
     private val getRoleNativesUseCase: GetRoleNativesUseCase,
     private val getSpellUseCase: GetSpellUseCase,
     private val getSpellTypeUseCase: GetSpellTypeUseCase,
-    private val getVictoryPointsUseCase: GetVictoryPointsUseCase
+    private val getVictoryPointsUseCase: GetVictoryPointsUseCase,
+    private val repoPlayer: PlayerRepository
 ) : ViewModel() {
 
     //TODO Create class to load all use cases or insert all in single use, no idea atm!
@@ -80,6 +83,7 @@ class HomeViewModel @Inject constructor(
     private val spellList = MutableLiveData<Spell>()
     private val spellTypeList = MutableLiveData<SpellType>()
     private val vpList = MutableLiveData<List<VictoryPoints>>()
+    val playerList = MutableLiveData<List<Player>>()
 
 
     fun onCreate() {
@@ -152,9 +156,12 @@ class HomeViewModel @Inject constructor(
             if (vp.isNotEmpty()) {
                 vpList.postValue(vp)
             }
+        }
+    }
 
-
-
+    fun getPlayers() {
+        viewModelScope.launch {
+            playerList.value = repoPlayer.getAllPlayers()
         }
     }
 

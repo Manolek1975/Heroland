@@ -10,15 +10,21 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PlayerViewModel @Inject constructor(private val repo: RoleRepository) : ViewModel() {
+class PlayerViewModel @Inject constructor(
+    private val repository: RoleRepository) : ViewModel() {
 
-    val player = MutableLiveData<List<Role>>()
+    val roles = MutableLiveData<List<Role>>()
 
     fun getRolesByPlayer() {
         viewModelScope.launch {
-            player.value = repo.getRolesByPlayer()
+            roles.value = repository.getRolesByPlayer()
         }
+    }
 
+    fun deletePlayer(id: Int) {
+        viewModelScope.launch {
+            repository.deletePlayer(id)
+        }
     }
 
 }

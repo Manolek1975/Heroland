@@ -91,5 +91,4 @@ class OptionsViewModel @Inject constructor(
             player.value = repoPlayer.getAllPlayers()
         }
     }
-
 }

@@ -99,4 +99,8 @@ class RoleRepository @Inject constructor(private val roleDao: RoleDao) {
         val response: List<RoleEntity> = roleDao.getRolesNotInPlayers()
         return response.map { it.toDomain() }
     }
+
+    suspend fun deletePlayer(id: Int) {
+        roleDao.deletePlayer(id)
+    }
 }

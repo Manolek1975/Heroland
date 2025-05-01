@@ -92,4 +92,7 @@ interface RoleDao {
             "ON roles.id = players.role " +
             "WHERE players.role IS NULL")
     suspend fun getRolesNotInPlayers(): List<RoleEntity>
+
+    @Query("DELETE FROM players WHERE role = :id")
+    suspend fun deletePlayer(id: Int)
 }

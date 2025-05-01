@@ -10,8 +10,8 @@ import com.delek.heroland.domain.model.Spell
 
 class SpellAdapter(
     private var spellList: List<Spell> = emptyList(),
-    private val onItemSelected: (Spell) -> Unit)
-: RecyclerView.Adapter<SpellViewHolder>() {
+    private val onItemSelected: (Spell) -> Unit):
+    RecyclerView.Adapter<SpellViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpellViewHolder {
         return SpellViewHolder(

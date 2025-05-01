@@ -223,7 +223,7 @@ class OptionsFragment : Fragment() {
                 )
             )
             findNavController().navigate(
-                OptionsFragmentDirections.actionNavOptionsToNavPlayer(args.id)
+                OptionsFragmentDirections.actionNavOptionsToNavPlayer()
             )
         }
     }

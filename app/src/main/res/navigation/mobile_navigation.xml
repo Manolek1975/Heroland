@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_nav_home_to_nav_role_select"
             app:destination="@id/nav_role_select" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_player"
+            app:destination="@id/nav_player" />
     </fragment>
 
     <fragment
@@ -74,9 +77,9 @@
         android:name="com.delek.heroland.ui.player.PlayerFragment"
         android:label="fragment_player"
         tools:layout="@layout/fragment_player" >
-        <argument
-            android:name="id"
-            app:argType="integer" />
+        <action
+            android:id="@+id/action_nav_player_to_nav_role_select"
+            app:destination="@id/nav_role_select" />
     </fragment>
 
 
