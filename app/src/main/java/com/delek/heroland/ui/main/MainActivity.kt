@@ -45,10 +45,13 @@ class MainActivity : AppCompatActivity() {
         )
         //Disable drawer layout in Home fragment
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.nav_home) {
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-            } else {
-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+            when(destination.id){
+                R.id.nav_home -> drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                R.id.nav_role_select -> drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                R.id.nav_detail -> drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                R.id.nav_options -> drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                R.id.nav_player -> drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                else -> drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
             }
         }
         navView.setupWithNavController(navController)
@@ -69,6 +72,10 @@ class MainActivity : AppCompatActivity() {
         val navigationView: NavigationView = this.findViewById(R.id.nav_view)
         val navMenu: Menu = navigationView.menu
         navMenu.findItem(R.id.nav_home).setVisible(false)
+        navMenu.findItem(R.id.nav_role_select).setVisible(false)
+        navMenu.findItem(R.id.nav_detail).setVisible(false)
+        navMenu.findItem(R.id.nav_options).setVisible(false)
+        navMenu.findItem(R.id.nav_player).setVisible(false)
     }
 
     private fun hideSystemBars() {

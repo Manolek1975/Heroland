@@ -39,5 +39,7 @@
     <string name="toast_start_spells">You must select %1$d spells</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="player_head">Players</string>
+    <string name="delete_player">"Are you sure you want to remove %1$s from the list?"</string>
+    <string name="menu_map">Map</string>
 
 </resources>

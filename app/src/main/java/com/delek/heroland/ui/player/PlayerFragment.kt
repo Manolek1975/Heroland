@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.delek.heroland.R
 import com.delek.heroland.databinding.FragmentPlayerBinding
 import com.delek.heroland.domain.model.Role
+import com.delek.heroland.ui.player.PlayerAdapter.Companion.rolePos
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -37,11 +38,29 @@ class PlayerFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun initUI() {
+        initListeners()
+        initPlayers()
+    }
+
+    private fun initListeners(){
+        binding.fabGo.setOnClickListener {
+            findNavController().navigate(
+                PlayerFragmentDirections.actionNavPlayerToMapFragment()
+            )
+        }
+
+        binding.fabAdd.setOnClickListener {
+            findNavController().navigate(
+                PlayerFragmentDirections.actionNavPlayerToNavRoleSelect()
+            )
+        }
+    }
+
+    private fun initPlayers(){
         checkPlayers()
         viewModel.getRolesByPlayer()
         playerAdapter = PlayerAdapter(onItemSelected = {
-            dialogDelete(it)
-            playerAdapter.notifyDataSetChanged()
+            dialogDelete(it, rolePos)
         })
         binding.rvPlayer.layoutManager = LinearLayoutManager(context)
         binding.rvPlayer.adapter = playerAdapter
@@ -53,22 +72,17 @@ class PlayerFragment : Fragment() {
                 }
             }
         }
-
-        binding.fabAdd.setOnClickListener {
-            findNavController().navigate(
-                PlayerFragmentDirections.actionNavPlayerToNavRoleSelect()
-            )
-        }
     }
 
-    private fun dialogDelete(it: Role) {
+    private fun dialogDelete(it: Role, pos: Int) {
         val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.AppTheme_AlertDialogStyle)
         dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert)
         dialogBuilder.setTitle(it.name)
-        dialogBuilder.setMessage("Are you sure you want to remove ${it.name} from the list?")
+        dialogBuilder.setMessage(getString(R.string.delete_player, it.name))
         dialogBuilder.setNegativeButton("Cancel"){_, _: Int ->}
         dialogBuilder.setPositiveButton("OK"){_, _: Int ->
             viewModel.deletePlayer(it.id)
+            playerAdapter.notifyItemRemoved(pos)
             viewModel.getRolesByPlayer()
             playerAdapter.updateList(viewModel.roles.value!!)
             checkPlayers()
