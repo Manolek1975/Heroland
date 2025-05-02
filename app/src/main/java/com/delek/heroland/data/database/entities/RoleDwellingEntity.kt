@@ -19,7 +19,8 @@ import androidx.room.PrimaryKey
     ]
 )
 class RoleDwellingEntity(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id") val id: Int,
     @ColumnInfo("role_id", index = true) val roleId: Int,
     @ColumnInfo("dwelling_id", index = true) val dwellingId: Int
 )

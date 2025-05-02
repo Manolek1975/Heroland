@@ -97,5 +97,9 @@ object RoomModule {
     @Provides
     fun provideVpRoleDao(db: HerolandDatabase) = db.getVpRoleDao()
 
+    @Singleton
+    @Provides
+    fun provideTileDao(db: HerolandDatabase) = db.getTileDao()
+
 
 }

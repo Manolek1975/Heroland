@@ -19,11 +19,9 @@ class MapFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMapBinding.inflate(inflater, container, false)
-        initUI()
-        return binding.root
+        val map = DrawMap(requireContext())
+        return map
+        //return binding.root
     }
 
-    private fun initUI() {
-        println("GO")
-    }
 }

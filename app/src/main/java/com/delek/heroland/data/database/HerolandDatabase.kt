@@ -18,6 +18,7 @@ import com.delek.heroland.data.database.dao.RoleWeaponDao
 import com.delek.heroland.data.database.dao.SpellDao
 import com.delek.heroland.data.database.dao.SpellTypeDao
 import com.delek.heroland.data.database.dao.StartSpellDao
+import com.delek.heroland.data.database.dao.TileDao
 import com.delek.heroland.data.database.dao.VictoryPointsDao
 import com.delek.heroland.data.database.dao.WeaponDao
 import com.delek.heroland.data.database.dao.VpRoleDao
@@ -37,6 +38,7 @@ import com.delek.heroland.data.database.entities.RoleWeaponEntity
 import com.delek.heroland.data.database.entities.SpellEntity
 import com.delek.heroland.data.database.entities.SpellTypeEntity
 import com.delek.heroland.data.database.entities.StartSpellEntity
+import com.delek.heroland.data.database.entities.TileEntity
 import com.delek.heroland.data.database.entities.VictoryPointsEntity
 import com.delek.heroland.data.database.entities.VpRoleEntity
 import com.delek.heroland.data.database.entities.WeaponEntity
@@ -61,7 +63,8 @@ import com.delek.heroland.data.database.entities.WeaponEntity
         SpellTypeEntity::class,
         VictoryPointsEntity::class,
         PlayerEntity::class,
-        VpRoleEntity::class],
+        VpRoleEntity::class,
+        TileEntity::class],
     version = 1,
     exportSchema = true
 )
@@ -85,4 +88,5 @@ abstract class HerolandDatabase : RoomDatabase() {
     abstract fun getVictoryPointsDao(): VictoryPointsDao
     abstract fun getPlayerDao(): PlayerDao
     abstract fun getVpRoleDao(): VpRoleDao
+    abstract fun getTileDao(): TileDao
 }

@@ -35,9 +35,11 @@ import com.delek.heroland.domain.model.RoleWeapon
 import com.delek.heroland.domain.model.Spell
 import com.delek.heroland.domain.model.SpellType
 import com.delek.heroland.domain.model.StartSpell
+import com.delek.heroland.domain.model.Tile
 import com.delek.heroland.domain.model.VictoryPoints
 import com.delek.heroland.domain.model.Weapon
 import com.delek.heroland.domain.usecase.GetSpellTypeUseCase
+import com.delek.heroland.domain.usecase.GetTilesUseCase
 import com.delek.heroland.domain.usecase.GetVictoryPointsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -62,6 +64,7 @@ class HomeViewModel @Inject constructor(
     private val getSpellUseCase: GetSpellUseCase,
     private val getSpellTypeUseCase: GetSpellTypeUseCase,
     private val getVictoryPointsUseCase: GetVictoryPointsUseCase,
+    private val getTilesUseCase: GetTilesUseCase,
     private val repoPlayer: PlayerRepository
 ) : ViewModel() {
 
@@ -83,6 +86,7 @@ class HomeViewModel @Inject constructor(
     private val spellList = MutableLiveData<Spell>()
     private val spellTypeList = MutableLiveData<SpellType>()
     private val vpList = MutableLiveData<List<VictoryPoints>>()
+    private val tileList = MutableLiveData<Tile>()
     val playerList = MutableLiveData<List<Player>>()
 
 
@@ -155,6 +159,10 @@ class HomeViewModel @Inject constructor(
             val vp = getVictoryPointsUseCase()
             if (vp.isNotEmpty()) {
                 vpList.postValue(vp)
+            }
+            val tile = getTilesUseCase()
+            if (tile.isNotEmpty()) {
+                tileList.postValue(tile[0])
             }
         }
     }
