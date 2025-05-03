@@ -11,7 +11,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PlayerViewModel @Inject constructor(
-    private val repository: RoleRepository) : ViewModel() {
+    private val repository: RoleRepository
+) : ViewModel() {
 
     val roles = MutableLiveData<List<Role>>()
 

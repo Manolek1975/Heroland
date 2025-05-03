@@ -15,4 +15,8 @@ interface TileDao {
     @Query("SELECT * FROM tiles")
     suspend fun getAllTiles(): List<TileEntity>
 
+    @Query("SELECT * FROM tiles")
+    fun getTiles(): List<TileEntity>
+
+
 }

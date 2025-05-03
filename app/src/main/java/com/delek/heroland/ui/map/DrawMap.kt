@@ -7,8 +7,18 @@ import android.graphics.Paint
 import android.graphics.Typeface
 import android.util.DisplayMetrics
 import android.view.View
+import androidx.room.Room
+import com.delek.heroland.data.database.HerolandDatabase
+import com.delek.heroland.data.repository.TileRepository
+import javax.inject.Inject
 
-class DrawMap(context: Context) : View(context) {
+
+class DrawMap @Inject constructor(context: Context) : View(context) {
+
+    private val db =  Room.databaseBuilder(context, HerolandDatabase::class.java, "heroland_db").allowMainThreadQueries().build()
+    private val dao = db.getTileDao()
+    private val repo = TileRepository(dao)
+    private val tile = repo.getTiles()
 
     private val p = Paint()
     private val dm: DisplayMetrics = resources.displayMetrics
@@ -18,10 +28,11 @@ class DrawMap(context: Context) : View(context) {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         //canvas.translate(cx, cy)
+        //println("DRAW: $tile")
         canvas.apply {
             save()
             setPaint()
-            canvas.drawText("Linden Woods", x, y, p)
+            canvas.drawText(tile[0].name, x, y, p)
             restore()
         }
         invalidate()
@@ -35,3 +46,6 @@ class DrawMap(context: Context) : View(context) {
         p.color = Color.YELLOW
     }
 }
+
+
+
