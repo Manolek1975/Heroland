@@ -83,7 +83,6 @@ interface RoleDao {
             "AND role_natives.relation = '5'")
     suspend fun getEnemyNatives(id: Int): List<NativesEntity>
 
-
     @Query("SELECT roles.* FROM roles INNER JOIN players " +
             "ON roles.id = players.role ")
     suspend fun getRolesByPlayer(): List<RoleEntity>
