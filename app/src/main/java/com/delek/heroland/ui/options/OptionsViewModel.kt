@@ -8,6 +8,7 @@ import com.delek.heroland.data.database.entities.VpRoleEntity
 import com.delek.heroland.data.repository.PlayerRepository
 import com.delek.heroland.data.repository.RoleRepository
 import com.delek.heroland.data.repository.SpellRepository
+import com.delek.heroland.data.repository.TileRepository
 import com.delek.heroland.data.repository.VictoryPointsRepository
 import com.delek.heroland.data.repository.VpRoleRepository
 import com.delek.heroland.domain.model.Dwelling
@@ -15,6 +16,7 @@ import com.delek.heroland.domain.model.Player
 import com.delek.heroland.domain.model.Role
 import com.delek.heroland.domain.model.Spell
 import com.delek.heroland.domain.model.StartSpell
+import com.delek.heroland.domain.model.Tile
 import com.delek.heroland.domain.model.VictoryPoints
 import com.delek.heroland.domain.model.VpRole
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,7 +29,8 @@ class OptionsViewModel @Inject constructor(
     private val repoSpell: SpellRepository,
     private val repoVictoryPoints: VictoryPointsRepository,
     private val repoPlayer: PlayerRepository,
-    private val repoVpRole: VpRoleRepository
+    private val repoVpRole: VpRoleRepository,
+    private val repoTile: TileRepository
 ) : ViewModel() {
 
     val role = MutableLiveData<Role>()
@@ -37,6 +40,7 @@ class OptionsViewModel @Inject constructor(
     val vp = MutableLiveData<List<VictoryPoints>>()
     val player = MutableLiveData<List<Player>>()
     val vpRole = MutableLiveData<List<VpRole>>()
+    val tile = MutableLiveData<List<Tile>>()
 
     fun getRole(id: Int) {
         viewModelScope.launch {
@@ -89,6 +93,12 @@ class OptionsViewModel @Inject constructor(
     fun getAllPlayers() {
         viewModelScope.launch {
             player.value = repoPlayer.getAllPlayers()
+        }
+    }
+
+    fun updateTileCoords(x: Int, y: Int, id: Int) {
+        viewModelScope.launch {
+            repoTile.updateTileCoords(x, y, id)
         }
     }
 }

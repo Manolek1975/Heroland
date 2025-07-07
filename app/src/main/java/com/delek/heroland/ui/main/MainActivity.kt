@@ -1,5 +1,6 @@
 package com.delek.heroland.ui.main
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.Menu
 import androidx.activity.enableEdgeToEdge
@@ -20,6 +21,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        private lateinit var player: MediaPlayer
+        fun stopPlayer() {
+            player.stop()
+        }
+    }
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
@@ -30,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         hideSystemBars()
         hideItem()
         initUI()
+        initMedia()
     }
 
     private fun initUI() {
@@ -55,6 +64,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
         navView.setupWithNavController(navController)
+    }
+
+    private fun initMedia() {
+        player = MediaPlayer.create(applicationContext, R.raw.trio_eflat)
+        player.isLooping = true // Set looping
+        player.setVolume(100f, 100f)
+        player.start()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -21,4 +21,8 @@ class TileRepository @Inject constructor(private val tileDao: TileDao) {
         val response: List<TileEntity> = tileDao.getTiles()
         return response.map { it.toDomain() }
     }
+
+    suspend fun updateTileCoords(x: Int, y: Int, id: Int) {
+        tileDao.updateTileCoords(x, y, id)
+    }
 }

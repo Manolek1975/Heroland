@@ -9,6 +9,7 @@ import android.graphics.Paint
 import android.graphics.Typeface
 import android.util.DisplayMetrics
 import android.view.View
+import androidx.core.content.res.ResourcesCompat
 import androidx.room.Room
 import com.delek.heroland.R
 import com.delek.heroland.data.database.HerolandDatabase
@@ -36,7 +37,17 @@ class DrawMap @Inject constructor(context: Context) : View(context) {
         canvas.apply {
             save()
             setPaint()
-            drawBitmap(getBitmap(tile[15]), x, y, p)
+            for (cor in tile) {
+                val x1 = cor.x.toFloat()
+                val y1 = cor.y.toFloat()
+                p.style = Paint.Style.FILL
+                canvas.drawCircle(x1, y1, 30F, p)
+                p.color = ResourcesCompat.getColor(resources, R.color.yellow, null)
+                p.textSize = 64f
+                canvas.drawText(cor.id.toString(), x1-50, y1-40, p)
+                //canvas.drawText(cor.name, x1-50, y1-40, p)
+            }
+            //drawBitmap(getBitmap(tile[15]), x, y, p)
             restore()
         }
         invalidate()

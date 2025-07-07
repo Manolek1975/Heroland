@@ -3,7 +3,6 @@ package com.delek.heroland.data.provider
 import android.content.Context
 import com.delek.heroland.R
 import com.delek.heroland.data.database.entities.TileEntity
-import com.delek.heroland.domain.model.Tile
 
 class TileProvider {
 
@@ -16,11 +15,9 @@ class TileProvider {
             val enchant = context.resources.getStringArray(R.array.tile_enchant)
             val type = context.resources.getStringArray(R.array.tile_types)
             for (i in name.indices) {
-                tiles.add(TileEntity(0, name[i], short[i], image[i], enchant[i], type[i]))
+                tiles.add(TileEntity(0, name[i], short[i], image[i], enchant[i], type[i],0,0))
             }
             return tiles
         }
-
-
     }
 }

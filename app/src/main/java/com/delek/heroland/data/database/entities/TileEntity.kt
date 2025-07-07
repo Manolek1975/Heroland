@@ -10,6 +10,7 @@ data class TileEntity(
     val short: String,
     val image: String,
     val enchant: String,
-    val type: String
-) {
-}
+    val type: String,
+    val x: Int,
+    val y: Int
+)

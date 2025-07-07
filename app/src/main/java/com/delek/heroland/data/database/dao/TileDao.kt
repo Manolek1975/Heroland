@@ -18,5 +18,8 @@ interface TileDao {
     @Query("SELECT * FROM tiles")
     fun getTiles(): List<TileEntity>
 
+    @Query("UPDATE tiles SET x = :x, y = :y WHERE id = :id")
+    suspend fun updateTileCoords(x: Int, y: Int, id: Int)
+
 
 }

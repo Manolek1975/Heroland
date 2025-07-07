@@ -5,21 +5,23 @@ coreKtx = "1.16.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-appcompat = "1.7.0"
+appcompat = "1.7.1"
 material = "1.12.0"
 constraintlayout = "2.2.1"
-lifecycleLivedataKtx = "2.8.7"
-lifecycleViewmodelKtx = "2.8.7"
-navigationFragmentKtx = "2.8.9"
-navigationUiKtx = "2.8.9"
-navigationSafeArgsGradlePlugin = "2.8.9"
+lifecycleLivedataKtx = "2.9.1"
+lifecycleViewmodelKtx = "2.9.1"
+navigationFragmentKtx = "2.9.1"
+navigationUiKtx = "2.9.1"
+navigationSafeArgsGradlePlugin = "2.9.1"
 ksp = "2.1.20-1.0.32"
 hiltAndroid = "2.51.1"
-room = "2.7.1"
-roomCompiler = "2.7.1"
-roomRuntime = "2.7.1"
+room = "2.7.2"
+roomCompiler = "2.7.2"
+roomRuntime = "2.7.2"
 legacySupportV4 = "1.0.0"
-fragmentKtx = "1.8.6"
+fragmentKtx = "1.8.8"
+preference = "1.2.1"
+datastorePreferencesCore = "1.1.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -41,6 +43,8 @@ androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = 
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 androidx-legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacySupportV4" }
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferencesCore" }
+androidx-preference = { group = "androidx.preference", name = "preference", version.ref = "preference" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

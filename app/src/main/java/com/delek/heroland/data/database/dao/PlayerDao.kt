@@ -18,4 +18,6 @@ interface PlayerDao {
     @Query("SELECT * FROM players WHERE id = :id")
     suspend fun getPlayerById(id: Int): PlayerEntity
 
+    @Query("DELETE FROM players")
+    suspend fun deleteAllPlayers()
 }

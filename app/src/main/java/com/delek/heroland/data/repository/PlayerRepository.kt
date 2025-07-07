@@ -22,5 +22,8 @@ class PlayerRepository@Inject constructor(private val playerDao: PlayerDao) {
         return response.toDomain()
     }
 
+    suspend fun deleteAllPlayers() {
+        playerDao.deleteAllPlayers()
+    }
 }
 

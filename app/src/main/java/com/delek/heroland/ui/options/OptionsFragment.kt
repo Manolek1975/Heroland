@@ -1,6 +1,7 @@
 package com.delek.heroland.ui.options
 
 import android.content.res.ColorStateList
+import android.graphics.Point
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,7 @@ import com.delek.heroland.domain.model.Spell
 import com.delek.heroland.ui.options.VictoryPointsAdapter.Companion.total
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import kotlin.random.Random
 
 @AndroidEntryPoint
 class OptionsFragment : Fragment() {
@@ -216,6 +218,11 @@ class OptionsFragment : Fragment() {
             Toast.makeText(context, getString(R.string.toast_start_spells, numSpells), Toast.LENGTH_LONG
             ).show()
         } else { //Insert player to database and navigate
+            val coords = getCoords()
+            for (i in coords.indices) {
+                viewModel.updateTileCoords(coords[i].x, coords[i].y, i+1)
+            }
+
             viewModel.insertPlayer(
                 PlayerEntity(
                     0, "Player1", args.id, dwellingSelected,
@@ -223,9 +230,49 @@ class OptionsFragment : Fragment() {
                 )
             )
             findNavController().navigate(
-                OptionsFragmentDirections.actionNavOptionsToNavPlayer()
+                OptionsFragmentDirections.actionNavOptionsToNavMap()
             )
         }
+    }
+
+    // Insert random coordinates to Zones
+    private fun getCoords(): MutableList<Point> {
+        val random = Random
+        val size = 20
+        val dm = resources.displayMetrics
+        val width = dm.widthPixels
+        val height = dm.heightPixels
+        val diameter = 200
+        val radius = diameter * 0.5f
+        val d2 = (diameter * diameter).toFloat()
+        val coordinate : MutableList<Point> = ArrayList(size)
+
+        val posX: MutableList<Float> = ArrayList(size)
+        val posY: MutableList<Float> = ArrayList(size)
+        while (posX.size < size) {
+            // generate new coordinates
+            val x: Float = random.nextInt(width - diameter) + radius
+            val y: Float = random.nextInt(height - diameter) + radius
+            // verify it does not overlap/touch with previous circles
+            var j = 0
+            while (j < posX.size) {
+                val dx = posX[j] - x
+                val dy = posY[j] - y
+                val diffSquare = (dx * dx) + (dy * dy)
+                if (diffSquare <= d2) break
+                ++j
+            }
+            // generate another pair of coordinates, if it does touch previous
+            if (j != posX.size) {
+                //println("collided.")
+                continue
+            }
+            // not overlapping/touch, add as new circle
+            posX.add(x)
+            posY.add(y)
+            coordinate.add(Point(x.toInt(),y.toInt()))
+        }
+        return coordinate
     }
 
 }

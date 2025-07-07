@@ -41,5 +41,12 @@
     <string name="player_head">Players</string>
     <string name="delete_player">"Are you sure you want to remove %1$s from the list?"</string>
     <string name="menu_map">Map</string>
+    <!-- SETTINGS -->
+    <string name="vibrate">Vibrate</string>
+    <string name="desc_vibrate">Vibrate when new character joins</string>
+    <string name="desc_music">Turn on background music</string>
+    <string name="desc_sound">Volume of sound effects</string>
+    <string name="new_game">Restart - New Game</string>
+    <string name="go"><![CDATA[>]]></string>
 
 </resources>

@@ -58,6 +58,9 @@
         <action
             android:id="@+id/action_nav_options_to_nav_detail"
             app:destination="@id/nav_detail" />
+        <action
+            android:id="@+id/action_nav_options_to_nav_map"
+            app:destination="@id/nav_map" />
     </fragment>
 
     <fragment
