@@ -8,8 +8,9 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.util.DisplayMetrics
+import android.view.MotionEvent
 import android.view.View
-import androidx.core.content.res.ResourcesCompat
+import androidx.navigation.findNavController
 import androidx.room.Room
 import com.delek.heroland.R
 import com.delek.heroland.data.database.HerolandDatabase
@@ -21,15 +22,18 @@ import javax.inject.Inject
 
 class DrawMap @Inject constructor(context: Context) : View(context) {
     //Build ROOM database out of Main thread
-    private val db =  Room.databaseBuilder(context, HerolandDatabase::class.java, "heroland_db").allowMainThreadQueries().build()
+    private val db = Room.databaseBuilder(context, HerolandDatabase::class.java, "heroland_db")
+        .allowMainThreadQueries().build()
     private val dao = db.getTileDao()
     private val repo = TileRepository(dao)
-    private val tile = repo.getTiles()
+    private val tiles = repo.getTiles()
+
     //Init variables
     private val p = Paint()
     private val dm: DisplayMetrics = resources.displayMetrics
     private var x = (dm.widthPixels / 2f)
     private var y = (dm.heightPixels / 2f)
+    private var bitmap = BitmapFactory.decodeResource(resources, R.drawable.bg_map)
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -37,15 +41,13 @@ class DrawMap @Inject constructor(context: Context) : View(context) {
         canvas.apply {
             save()
             setPaint()
-            for (cor in tile) {
-                val x1 = cor.x.toFloat()
-                val y1 = cor.y.toFloat()
-                p.style = Paint.Style.FILL
-                canvas.drawCircle(x1, y1, 30F, p)
-                p.color = ResourcesCompat.getColor(resources, R.color.yellow, null)
-                p.textSize = 64f
-                canvas.drawText(cor.id.toString(), x1-50, y1-40, p)
-                //canvas.drawText(cor.name, x1-50, y1-40, p)
+            canvas.drawBitmap(bitmap, 0f, 0f, null)
+            for (cord in tiles) {
+                val x1 = cord.x.toFloat()
+                val y1 = cord.y.toFloat()
+                canvas.drawText(cord.name, x1, y1 - 20, p)
+                canvas.drawCircle(x1, y1, 15F, p)
+                //p.color = ResourcesCompat.getColor(resources, R.color.white, null)
             }
             //drawBitmap(getBitmap(tile[15]), x, y, p)
             restore()
@@ -53,15 +55,47 @@ class DrawMap @Inject constructor(context: Context) : View(context) {
         invalidate()
     }
 
-    private fun setPaint(){
-        p.isAntiAlias = true
-        p.textSize = 64f
-        p.textAlign = Paint.Align.CENTER
+    private fun setPaint() {
+        //val tf = Typeface.createFromAsset(context.assets, "font/macondo.ttf")
         p.setTypeface(Typeface.DEFAULT_BOLD)
+        p.isAntiAlias = true
+        p.textSize = 32f
+        p.textAlign = Paint.Align.CENTER
         p.color = Color.YELLOW
+
     }
 
-    private fun getBitmap(tile: Tile): Bitmap{
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        val data = context.getSharedPreferences("data", Context.MODE_PRIVATE)
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                val touchedTile = findTile(event.x, event.y)
+
+                touchedTile?.let {
+                    data.edit().putString("tile", touchedTile.name).apply()
+                    findNavController().navigate(
+                        MapFragmentDirections.actionNavMapToTileMapFragment(touchedTile.id)
+                    )
+                }
+                return true
+            }
+            else -> return super.onTouchEvent(event)
+        }
+    }
+
+    private fun findTile(x: Float, y: Float): Tile? {
+        // Logic to find the star that was touched based on coordinates
+        for (cord in tiles) {
+            // Check if (x, y) is within the bounds of the star's circle
+            if (cord.x - 40 <= x && x <= cord.x + 40 &&
+                cord.y - 40 <= y && y <= cord.y + 40) {
+                return cord
+            }
+        }
+        return null
+    }
+
+    private fun getBitmap(tile: Tile): Bitmap {
         val id = getResId(tile.image, R.drawable::class.java)
         val bitmap = BitmapFactory.decodeResource(resources, id)
         val scale = Bitmap.createScaledBitmap(bitmap, 120, 120, false)

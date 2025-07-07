@@ -218,7 +218,7 @@ class OptionsFragment : Fragment() {
             Toast.makeText(context, getString(R.string.toast_start_spells, numSpells), Toast.LENGTH_LONG
             ).show()
         } else { //Insert player to database and navigate
-            val coords = getCoords()
+            val coords = setTileCoords()
             for (i in coords.indices) {
                 viewModel.updateTileCoords(coords[i].x, coords[i].y, i+1)
             }
@@ -236,7 +236,7 @@ class OptionsFragment : Fragment() {
     }
 
     // Insert random coordinates to Zones
-    private fun getCoords(): MutableList<Point> {
+    private fun setTileCoords(): MutableList<Point> {
         val random = Random
         val size = 20
         val dm = resources.displayMetrics
