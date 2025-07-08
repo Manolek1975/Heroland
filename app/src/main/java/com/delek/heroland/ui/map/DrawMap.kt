@@ -1,5 +1,6 @@
 package com.delek.heroland.ui.map
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -29,6 +30,8 @@ class DrawMap @Inject constructor(context: Context) : View(context) {
     private val tiles = repo.getTiles()
 
     //Init variables
+    val data = context.getSharedPreferences("data", Context.MODE_PRIVATE)!!
+    private val box = mutableListOf<Bitmap>()
     private val p = Paint()
     private val dm: DisplayMetrics = resources.displayMetrics
     private var x = (dm.widthPixels / 2f)
@@ -49,7 +52,6 @@ class DrawMap @Inject constructor(context: Context) : View(context) {
                 canvas.drawCircle(x1, y1, 15F, p)
                 //p.color = ResourcesCompat.getColor(resources, R.color.white, null)
             }
-            //drawBitmap(getBitmap(tile[15]), x, y, p)
             restore()
         }
         invalidate()
@@ -65,12 +67,11 @@ class DrawMap @Inject constructor(context: Context) : View(context) {
 
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        val data = context.getSharedPreferences("data", Context.MODE_PRIVATE)
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 val touchedTile = findTile(event.x, event.y)
-
                 touchedTile?.let {
                     data.edit().putInt("tileId", touchedTile.id).apply()
                     println(touchedTile.id)
