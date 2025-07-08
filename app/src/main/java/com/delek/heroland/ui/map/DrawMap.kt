@@ -72,7 +72,8 @@ class DrawMap @Inject constructor(context: Context) : View(context) {
                 val touchedTile = findTile(event.x, event.y)
 
                 touchedTile?.let {
-                    data.edit().putString("tile", touchedTile.name).apply()
+                    data.edit().putInt("tileId", touchedTile.id).apply()
+                    println(touchedTile.id)
                     findNavController().navigate(
                         MapFragmentDirections.actionNavMapToTileMapFragment(touchedTile.id)
                     )
@@ -111,6 +112,8 @@ class DrawMap @Inject constructor(context: Context) : View(context) {
             return -1
         }
     }
+
+
 }
 
 

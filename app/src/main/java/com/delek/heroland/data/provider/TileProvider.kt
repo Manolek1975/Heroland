@@ -12,10 +12,23 @@ class TileProvider {
             val name = context.resources.getStringArray(R.array.tile_names)
             val short = context.resources.getStringArray(R.array.tile_short)
             val image = context.resources.getStringArray(R.array.tile_images)
-            val enchant = context.resources.getStringArray(R.array.tile_enchant)
+            val icon = context.resources.getStringArray(R.array.tile_icon)
             val type = context.resources.getStringArray(R.array.tile_types)
+            val x = context.resources.getStringArray(R.array.tile_x)
+            val y = context.resources.getStringArray(R.array.tile_y)
             for (i in name.indices) {
-                tiles.add(TileEntity(0, name[i], short[i], image[i], enchant[i], type[i],0,0))
+                tiles.add(
+                    TileEntity(
+                        0,
+                        name[i],
+                        short[i],
+                        image[i],
+                        icon[i],
+                        type[i],
+                        x[i].toInt(),
+                        y[i].toInt()
+                    )
+                )
             }
             return tiles
         }

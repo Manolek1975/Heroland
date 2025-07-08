@@ -1,7 +1,6 @@
 package com.delek.heroland.ui.options
 
 import android.content.res.ColorStateList
-import android.graphics.Point
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +26,6 @@ import com.delek.heroland.domain.model.Spell
 import com.delek.heroland.ui.options.VictoryPointsAdapter.Companion.total
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import kotlin.random.Random
 
 @AndroidEntryPoint
 class OptionsFragment : Fragment() {
@@ -218,11 +216,12 @@ class OptionsFragment : Fragment() {
             Toast.makeText(context, getString(R.string.toast_start_spells, numSpells), Toast.LENGTH_LONG
             ).show()
         } else { //Insert player to database and navigate
-            val coords = setTileCoords()
+/*            val coords = setTileCoords()
+            coords.removeAt(0)
             for (i in coords.indices) {
-                viewModel.updateTileCoords(coords[i].x, coords[i].y, i+1)
-            }
-
+                viewModel.updateTileCoords(coords[i].x, coords[i].y, i)
+                println("$i ${coords[i].x},${coords[i].y}")
+            }*/
             viewModel.insertPlayer(
                 PlayerEntity(
                     0, "Player1", args.id, dwellingSelected,
@@ -236,7 +235,7 @@ class OptionsFragment : Fragment() {
     }
 
     // Insert random coordinates to Zones
-    private fun setTileCoords(): MutableList<Point> {
+/*    private fun setTileCoords(): MutableList<Point> {
         val random = Random
         val size = 20
         val dm = resources.displayMetrics
@@ -272,7 +271,8 @@ class OptionsFragment : Fragment() {
             posY.add(y)
             coordinate.add(Point(x.toInt(),y.toInt()))
         }
+        coordinate.add(0, Point(0,0))
         return coordinate
-    }
+    }*/
 
 }
