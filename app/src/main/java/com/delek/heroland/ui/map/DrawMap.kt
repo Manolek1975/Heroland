@@ -31,7 +31,6 @@ class DrawMap @Inject constructor(context: Context) : View(context) {
 
     //Init variables
     val data = context.getSharedPreferences("data", Context.MODE_PRIVATE)!!
-    private val box = mutableListOf<Bitmap>()
     private val p = Paint()
     private val dm: DisplayMetrics = resources.displayMetrics
     private var x = (dm.widthPixels / 2f)
@@ -76,7 +75,7 @@ class DrawMap @Inject constructor(context: Context) : View(context) {
                     data.edit().putInt("tileId", touchedTile.id).apply()
                     println(touchedTile.id)
                     findNavController().navigate(
-                        MapFragmentDirections.actionNavMapToTileMapFragment(touchedTile.id)
+                        MapFragmentDirections.actionNavMapToNavTileMap(touchedTile.id)
                     )
                 }
                 return true

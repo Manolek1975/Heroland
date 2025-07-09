@@ -48,5 +48,6 @@
     <string name="desc_sound">Volume of sound effects</string>
     <string name="new_game">Restart - New Game</string>
     <string name="go"><![CDATA[>]]></string>
+    <string name="menu_tile_map">Tile</string>
 
 </resources>

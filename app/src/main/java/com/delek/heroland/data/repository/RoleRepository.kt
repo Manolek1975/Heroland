@@ -36,6 +36,11 @@ class RoleRepository @Inject constructor(private val roleDao: RoleDao) {
         return response.toDomain()
     }
 
+    fun getRole(id: Int): Role {
+        val response: RoleEntity = roleDao.getRole(id)
+        return response.toDomain()
+    }
+
     suspend fun getDwellingsByRole(id: Int): List<Dwelling> {
         val response: List<DwellingEntity> = roleDao.getDwellingsByRole(id)
         return response.map { it.toDomain() }

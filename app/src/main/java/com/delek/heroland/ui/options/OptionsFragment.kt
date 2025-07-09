@@ -1,5 +1,6 @@
 package com.delek.heroland.ui.options
 
+import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -222,6 +223,8 @@ class OptionsFragment : Fragment() {
                 viewModel.updateTileCoords(coords[i].x, coords[i].y, i)
                 println("$i ${coords[i].x},${coords[i].y}")
             }*/
+            val data = context?.getSharedPreferences("data", Context.MODE_PRIVATE)
+            data?.edit()?.putInt("roleId", args.id)?.apply()
             viewModel.insertPlayer(
                 PlayerEntity(
                     0, "Player1", args.id, dwellingSelected,

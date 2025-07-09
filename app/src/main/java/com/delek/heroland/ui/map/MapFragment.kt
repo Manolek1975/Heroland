@@ -21,4 +21,9 @@ class MapFragment : Fragment() {
         val map = DrawMap(requireContext())
         return map
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.delek.heroland.databinding.FragmentTileMapBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TileMapFragment : Fragment() {
 
     private var _binding: FragmentTileMapBinding? = null
@@ -19,4 +21,6 @@ class TileMapFragment : Fragment() {
         val tileMap = DrawTileMap(requireContext())
         return tileMap
     }
+
+
 }
