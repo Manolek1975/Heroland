@@ -52,25 +52,25 @@
 
     <string-array name="tile_images">
         <item>bg_awful_valley</item>
-        <item>t_bad_valley</item>
-        <item>t_curst_valley</item>
-        <item>t_dark_valley</item>
-        <item>t_evil_valley</item>
-        <item>t_linden_woods</item>
-        <item>t_maple_woods</item>
-        <item>t_nut_woods</item>
-        <item>t_oak_woods</item>
-        <item>t_pine_woods</item>
-        <item>t_deep_woods</item>
-        <item>t_cliff</item>
-        <item>t_crag</item>
-        <item>t_ledges</item>
-        <item>t_mountain</item>
-        <item>t_borderland</item>
-        <item>t_cavern</item>
-        <item>t_caves</item>
-        <item>t_highpass</item>
-        <item>t_ruins</item>
+        <item>bg_bad_valley</item>
+        <item>bg_curst_valley</item>
+        <item>bg_dark_valley</item>
+        <item>bg_evil_valley</item>
+        <item>bg_linden_woods</item>
+        <item>bg_maple_woods</item>
+        <item>bg_nut_woods</item>
+        <item>bg_oak_woods</item>
+        <item>bg_pine_woods</item>
+        <item>bg_deep_woods</item>
+        <item>bg_cliff</item>
+        <item>bg_crag</item>
+        <item>bg_ledges</item>
+        <item>bg_mountain</item>
+        <item>bg_borderland</item>
+        <item>bg_cavern</item>
+        <item>bg_caves</item>
+        <item>bg_highpass</item>
+        <item>bg_ruins</item>
     </string-array>
 
     <string-array name="tile_icon">
@@ -123,51 +123,51 @@
         <item>570</item>
         <item>250</item>
         <item>880</item>
-        <item>800</item>
+        <item>780</item>
         <item>860</item>
 
-        <item>820</item>
-        <item>700</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
+        <item>840</item>
+        <item>740</item>
+        <item>640</item>
+        <item>880</item>
+        <item>400</item>
 
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
+        <item>520</item>
+        <item>350</item>
+        <item>340</item>
+        <item>200</item>
+        <item>200</item>
 
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
+        <item>680</item>
+        <item>180</item>
+        <item>160</item>
+        <item>240</item>
+        <item>940</item>
     </string-array>
 
     <string-array name="tile_y">
         <item>710</item>
         <item>800</item>
         <item>550</item>
-        <item>1500</item>
-        <item>2080</item>
+        <item>1460</item>
+        <item>2060</item>
 
         <item>920</item>
         <item>1080</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
+        <item>1200</item>
+        <item>1620</item>
+        <item>350</item>
 
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
+        <item>1860</item>
+        <item>1060</item>
+        <item>1560</item>
+        <item>1440</item>
+        <item>250</item>
 
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
+        <item>300</item>
+        <item>1860</item>
+        <item>620</item>
+        <item>1280</item>
+        <item>1260</item>
     </string-array>
 </resources>
