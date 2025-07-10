@@ -217,7 +217,7 @@ class OptionsFragment : Fragment() {
             Toast.makeText(context, getString(R.string.toast_start_spells, numSpells), Toast.LENGTH_LONG
             ).show()
         } else { //Insert player to database and navigate
-/*            val coords = setTileCoords()
+            /*            val coords = setTileCoords()
             coords.removeAt(0)
             for (i in coords.indices) {
                 viewModel.updateTileCoords(coords[i].x, coords[i].y, i)
@@ -231,6 +231,19 @@ class OptionsFragment : Fragment() {
                     0, 0, 0, 0, 0
                 )
             )
+            val advice = mutableListOf("STINK", "SMOKE", "DANK", "RUINS", "BONES")
+            val type = listOf("VALLEY", "WOOD", "MOUNTAIN", "CAVE")
+            var tileId = 0
+            for (t in type) {
+                advice.shuffle()
+                for (a in advice) {
+                    ++tileId
+                    viewModel.updateAdviceChits(a, t, tileId)
+                }
+            }
+
+
+
             findNavController().navigate(
                 OptionsFragmentDirections.actionNavOptionsToNavMap()
             )

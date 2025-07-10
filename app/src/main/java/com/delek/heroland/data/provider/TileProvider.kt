@@ -12,7 +12,6 @@ class TileProvider {
             val name = context.resources.getStringArray(R.array.tile_names)
             val short = context.resources.getStringArray(R.array.tile_short)
             val image = context.resources.getStringArray(R.array.tile_images)
-            val icon = context.resources.getStringArray(R.array.tile_icon)
             val type = context.resources.getStringArray(R.array.tile_types)
             val x = context.resources.getStringArray(R.array.tile_x)
             val y = context.resources.getStringArray(R.array.tile_y)
@@ -23,8 +22,10 @@ class TileProvider {
                         name[i],
                         short[i],
                         image[i],
-                        icon[i],
                         type[i],
+                        "",
+                        "",
+                        false,
                         x[i].toInt(),
                         y[i].toInt()
                     )

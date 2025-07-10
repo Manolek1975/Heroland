@@ -18,8 +18,20 @@ interface TileDao {
     @Query("SELECT * FROM tiles")
     fun getTiles(): List<TileEntity>
 
+    @Query("SELECT * FROM tiles WHERE type = :type")
+    suspend fun getTilesByType(type: String): List<TileEntity>
+
     @Query("UPDATE tiles SET x = :x, y = :y WHERE id = :id")
     suspend fun updateTileCoords(x: Int, y: Int, id: Int)
+
+    @Query("UPDATE tiles SET advice = :advice WHERE type = :type AND id = :id")
+    suspend fun updateAdviceChits(advice: String, type: String, id: Int)
+
+    @Query("DELETE FROM tiles")
+    suspend fun deleteAllTiles()
+
+    @Query("DELETE FROM sqlite_sequence WHERE name = 'tiles'")
+    suspend fun deletePrimaryKeyIndex()
 
 
 }

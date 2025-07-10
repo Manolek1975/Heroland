@@ -54,7 +54,7 @@ class OptionsViewModel @Inject constructor(
         }
     }
 
-    fun  getStartSpellTypes(id: Int) {
+    fun getStartSpellTypes(id: Int) {
         viewModelScope.launch {
             spellType.value = repoRole.getStartSpellsByRole(id)
         }
@@ -99,6 +99,18 @@ class OptionsViewModel @Inject constructor(
     fun updateTileCoords(x: Int, y: Int, id: Int) {
         viewModelScope.launch {
             repoTile.updateTileCoords(x, y, id)
+        }
+    }
+
+    fun getTilesByType(type: String, function: () -> Unit) {
+        viewModelScope.launch {
+            tile.value = repoTile.getTilesByType(type)
+        }
+    }
+
+    fun updateAdviceChits(advice: String, type: String, id: Int) {
+        viewModelScope.launch {
+            repoTile.updateAdviceChits(advice, type, id)
         }
     }
 }

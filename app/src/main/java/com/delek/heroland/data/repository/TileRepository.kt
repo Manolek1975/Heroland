@@ -22,7 +22,25 @@ class TileRepository @Inject constructor(private val tileDao: TileDao) {
         return response.map { it.toDomain() }
     }
 
+    suspend fun getTilesByType(type: String): List<Tile> {
+        val response: List<TileEntity> = tileDao.getTilesByType(type)
+        return response.map { it.toDomain() }
+    }
+
     suspend fun updateTileCoords(x: Int, y: Int, id: Int) {
         tileDao.updateTileCoords(x, y, id)
     }
+
+    suspend fun updateAdviceChits(advice: String, type: String, id: Int) {
+        tileDao.updateAdviceChits(advice, type, id)
+    }
+
+    suspend fun deleteAllTiles() {
+        tileDao.deleteAllTiles()
+    }
+
+    suspend fun deletePrimaryKeyIndex() {
+        tileDao.deletePrimaryKeyIndex()
+    }
+
 }

@@ -140,6 +140,8 @@ class SettingsFragment : Fragment() {
         dialogBuilder.setNegativeButton("NO") { _, _ -> }
         dialogBuilder.setPositiveButton("DELETE") { _, _: Int ->
             viewModel.deletePlayers()
+            viewModel.deleteTiles()
+            viewModel.deletePrimaryKeyIndex()
             val i = Intent(activity, MainActivity::class.java)
             MainActivity.stopPlayer()
             startActivity(i) // To Main Activity
