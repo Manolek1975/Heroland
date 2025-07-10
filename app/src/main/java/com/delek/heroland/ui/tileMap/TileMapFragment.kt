@@ -12,15 +12,25 @@ import dagger.hilt.android.AndroidEntryPoint
 class TileMapFragment : Fragment() {
 
     private var _binding: FragmentTileMapBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentTileMapBinding.inflate(inflater, container, false)
-        val tileMap = DrawTileMap(requireContext())
-        return tileMap
+        return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val tileMap = DrawTileMap(requireContext())
+        binding.tile.addView(tileMap)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 }

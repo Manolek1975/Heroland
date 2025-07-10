@@ -120,14 +120,14 @@
     </string-array>
 
     <string-array name="tile_x">
-        <item>600</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
+        <item>570</item>
+        <item>250</item>
+        <item>880</item>
+        <item>800</item>
+        <item>860</item>
 
-        <item>0</item>
-        <item>0</item>
+        <item>820</item>
+        <item>700</item>
         <item>0</item>
         <item>0</item>
         <item>0</item>
@@ -146,14 +146,14 @@
     </string-array>
 
     <string-array name="tile_y">
-        <item>750</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
+        <item>710</item>
+        <item>800</item>
+        <item>550</item>
+        <item>1500</item>
+        <item>2080</item>
 
-        <item>0</item>
-        <item>0</item>
+        <item>920</item>
+        <item>1080</item>
         <item>0</item>
         <item>0</item>
         <item>0</item>

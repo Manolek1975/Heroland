@@ -98,7 +98,10 @@
         tools:layout="@layout/fragment_map" >
         <action
             android:id="@+id/action_nav_map_to_nav_tile_map"
-            app:destination="@id/nav_tile_map" />
+            app:destination="@id/nav_tile_map"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_map"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment

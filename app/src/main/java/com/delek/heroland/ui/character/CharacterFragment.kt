@@ -23,13 +23,12 @@ class CharacterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCharacterBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
         val textView: TextView = binding.textGallery
         characterViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {
