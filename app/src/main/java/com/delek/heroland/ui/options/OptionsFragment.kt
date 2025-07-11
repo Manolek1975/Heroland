@@ -216,21 +216,10 @@ class OptionsFragment : Fragment() {
         } else if (countSpells != numSpells && numSpells != 0) { //Must choice spells
             Toast.makeText(context, getString(R.string.toast_start_spells, numSpells), Toast.LENGTH_LONG
             ).show()
-        } else { //Insert player to database and navigate
-            /*            val coords = setTileCoords()
-            coords.removeAt(0)
-            for (i in coords.indices) {
-                viewModel.updateTileCoords(coords[i].x, coords[i].y, i)
-                println("$i ${coords[i].x},${coords[i].y}")
-            }*/
+        } else {
             val data = context?.getSharedPreferences("data", Context.MODE_PRIVATE)
             data?.edit()?.putInt("roleId", args.id)?.apply()
-            viewModel.insertPlayer(
-                PlayerEntity(
-                    0, "Player1", args.id, dwellingSelected,
-                    0, 0, 0, 0, 0
-                )
-            )
+            //Place Advice Chits
             val advice = mutableListOf("STINK", "SMOKE", "DANK", "RUINS", "BONES")
             val type = listOf("VALLEY", "WOOD", "MOUNTAIN", "CAVE")
             var tileId = 0
@@ -241,9 +230,17 @@ class OptionsFragment : Fragment() {
                     viewModel.updateAdviceChits(a, t, tileId)
                 }
             }
+            //Place Sound Chits
 
 
 
+            //Insert Player
+            viewModel.insertPlayer(
+                PlayerEntity(
+                    0, "Player1", args.id, dwellingSelected,
+                    0, 0, 0, 0, 0
+                )
+            )
             findNavController().navigate(
                 OptionsFragmentDirections.actionNavOptionsToNavMap()
             )
@@ -251,6 +248,20 @@ class OptionsFragment : Fragment() {
     }
 
     // Insert random coordinates to Zones
+    //Insert player to database and navigate
+    /*            val coords = setTileCoords()
+    coords.removeAt(0)
+    for (i in coords.indices) {
+        viewModel.updateTileCoords(coords[i].x, coords[i].y, i)
+        println("$i ${coords[i].x},${coords[i].y}")
+    }*/
+    //Insert player to database and navigate
+    /*            val coords = setTileCoords()
+    coords.removeAt(0)
+    for (i in coords.indices) {
+        viewModel.updateTileCoords(coords[i].x, coords[i].y, i)
+        println("$i ${coords[i].x},${coords[i].y}")
+    }*/
 /*    private fun setTileCoords(): MutableList<Point> {
         val random = Random
         val size = 20

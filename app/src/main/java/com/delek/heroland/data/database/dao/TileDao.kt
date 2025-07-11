@@ -18,6 +18,9 @@ interface TileDao {
     @Query("SELECT * FROM tiles")
     fun getTiles(): List<TileEntity>
 
+    @Query("SELECT * FROM tiles WHERE id = :id")
+    suspend fun getTileById(id: Int): TileEntity
+
     @Query("SELECT * FROM tiles WHERE type = :type")
     suspend fun getTilesByType(type: String): List<TileEntity>
 

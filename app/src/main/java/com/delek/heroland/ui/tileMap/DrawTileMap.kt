@@ -45,10 +45,8 @@ class DrawTileMap @Inject constructor(context: Context) : View(context) {
     private var bg = scaleBitmap(tile)
     private var roleIcon = scaleRoleIcon(role)
 
-
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-
         for (j in 0..h) {
             for (i in 0..4) {
                 val rect = RectF()
@@ -74,6 +72,9 @@ class DrawTileMap @Inject constructor(context: Context) : View(context) {
             canvas.drawBitmap(roleIcon, box[22].left, box[22].top, null)
             p.color = Color.YELLOW
             canvas.drawText(tile!!.name, x/2f, 100f, p)
+            //canvas.drawText(tile.advice, x/2f + 200, 100f, p)
+
+
             restore()
         }
         invalidate()

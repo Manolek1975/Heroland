@@ -61,4 +61,8 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="Base.Theme.Box.Layout" parent="Base.Theme.Heroland">
+        <item name="android:background">@drawable/layout_box</item>
+    </style>
+
 </resources>

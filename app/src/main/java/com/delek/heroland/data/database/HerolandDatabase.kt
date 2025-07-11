@@ -66,7 +66,7 @@ import com.delek.heroland.data.database.entities.WeaponEntity
         VpRoleEntity::class,
         TileEntity::class],
     version = 1,
-    exportSchema = true
+    exportSchema = false
 )
 abstract class HerolandDatabase : RoomDatabase() {
     abstract fun getRoleDao(): RoleDao
