@@ -1,6 +1,8 @@
 package com.delek.heroland.ui.tileMap
 
-import android.graphics.drawable.ScaleDrawable
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +17,7 @@ import com.delek.heroland.databinding.FragmentTileMapBinding
 import com.google.android.material.textview.MaterialTextView
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.reflect.Field
+
 
 @AndroidEntryPoint
 class TileMapFragment : Fragment() {
@@ -37,27 +40,26 @@ class TileMapFragment : Fragment() {
         viewmodel.getTileById(args.id)
         viewmodel.tile.observe(viewLifecycleOwner) { tile ->
             binding.tileName.text = tile.name
+            val type = tile.type.first()
+            binding.adviceChit.text = getString(R.string.advice_chit, tile.advice, type)
             val id = getResId(tile.image, R.drawable::class.java)
             val bg = ContextCompat.getDrawable(requireContext(), id)
             binding.root.background = bg
         }
-
+        //Set Boxes
         for (i in 1..45) {
             val b = ContextThemeWrapper(requireContext(), R.style.Base_Theme_Box_Layout)
             val button = MaterialTextView(b)
             binding.boxLayout.addView(button)
         }
-
-        binding.boxLayout.getChildAt(30).setOnClickListener {
+        //Set Player
+        binding.boxLayout.getChildAt(22).setOnClickListener {
             val id = getResId("img_amazon", R.drawable::class.java)
-            val bg = ContextCompat.getDrawable(requireContext(), id)
-            ScaleDrawable(bg, 0, 0.01f, 0.01f)
-            //val scale = Bitmap.createScaledBitmap(bg, 80, 80, false)
-            binding.boxLayout.getChildAt(30).background = bg
-            println("Click")
+            val bitmap = BitmapFactory.decodeResource(resources, id)
+            val scale = Bitmap.createScaledBitmap(bitmap, 210, 210, false)
+            val ob = BitmapDrawable(resources, scale)
+            binding.boxLayout.getChildAt(24).background = ob
         }
-
-
     }
 
     private fun getResId(resName: String?, c: Class<*>): Int {

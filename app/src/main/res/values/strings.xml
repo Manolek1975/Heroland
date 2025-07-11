@@ -15,6 +15,8 @@
     <string name="menu_detail">Detail</string>
     <string name="menu_player">Player</string>
     <string name="menu_character">Character</string>
+    <string name="menu_map">Map</string>
+    <string name="menu_tile_map">Tile</string>
     <string name="menu_settings">Settings</string>
     <!-- DETAIL -->
     <string name="header_select_character">Select character</string>
@@ -40,7 +42,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="player_head">Players</string>
     <string name="delete_player">"Are you sure you want to remove %1$s from the list?"</string>
-    <string name="menu_map">Map</string>
+
     <!-- SETTINGS -->
     <string name="vibrate">Vibrate</string>
     <string name="desc_vibrate">Vibrate when new character joins</string>
@@ -48,6 +50,7 @@
     <string name="desc_sound">Volume of sound effects</string>
     <string name="new_game">Restart - New Game</string>
     <string name="go"><![CDATA[>]]></string>
-    <string name="menu_tile_map">Tile</string>
+    <!--TILE MAP-->
+    <string name="advice_chit">%1$s \n %2$s</string>
 
 </resources>
