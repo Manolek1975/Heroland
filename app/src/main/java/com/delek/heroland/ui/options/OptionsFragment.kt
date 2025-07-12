@@ -1,6 +1,5 @@
 package com.delek.heroland.ui.options
 
-import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -217,22 +216,10 @@ class OptionsFragment : Fragment() {
             Toast.makeText(context, getString(R.string.toast_start_spells, numSpells), Toast.LENGTH_LONG
             ).show()
         } else {
-            val data = context?.getSharedPreferences("data", Context.MODE_PRIVATE)
-            data?.edit()?.putInt("roleId", args.id)?.apply()
-            //Place Advice Chits
-            val advice = mutableListOf("STINK", "SMOKE", "DANK", "RUINS", "BONES")
-            val type = listOf("VALLEY", "WOOD", "MOUNTAIN", "CAVE")
-            var tileId = 0
-            for (t in type) {
-                advice.shuffle()
-                for (a in advice) {
-                    ++tileId
-                    viewModel.updateAdviceChits(a, t, tileId)
-                }
-            }
+            placeAdviceChits()
+            placeSoundChits()
+
             //Place Sound Chits
-
-
 
             //Insert Player
             viewModel.insertPlayer(
@@ -247,59 +234,46 @@ class OptionsFragment : Fragment() {
         }
     }
 
-    // Insert random coordinates to Zones
-    //Insert player to database and navigate
-    /*            val coords = setTileCoords()
-    coords.removeAt(0)
-    for (i in coords.indices) {
-        viewModel.updateTileCoords(coords[i].x, coords[i].y, i)
-        println("$i ${coords[i].x},${coords[i].y}")
-    }*/
-    //Insert player to database and navigate
-    /*            val coords = setTileCoords()
-    coords.removeAt(0)
-    for (i in coords.indices) {
-        viewModel.updateTileCoords(coords[i].x, coords[i].y, i)
-        println("$i ${coords[i].x},${coords[i].y}")
-    }*/
-/*    private fun setTileCoords(): MutableList<Point> {
-        val random = Random
-        val size = 20
-        val dm = resources.displayMetrics
-        val width = dm.widthPixels
-        val height = dm.heightPixels
-        val diameter = 200
-        val radius = diameter * 0.5f
-        val d2 = (diameter * diameter).toFloat()
-        val coordinate : MutableList<Point> = ArrayList(size)
-
-        val posX: MutableList<Float> = ArrayList(size)
-        val posY: MutableList<Float> = ArrayList(size)
-        while (posX.size < size) {
-            // generate new coordinates
-            val x: Float = random.nextInt(width - diameter) + radius
-            val y: Float = random.nextInt(height - diameter) + radius
-            // verify it does not overlap/touch with previous circles
-            var j = 0
-            while (j < posX.size) {
-                val dx = posX[j] - x
-                val dy = posY[j] - y
-                val diffSquare = (dx * dx) + (dy * dy)
-                if (diffSquare <= d2) break
-                ++j
+    private fun placeAdviceChits() {
+        val tileType = requireContext().resources.getStringArray(R.array.tile_types)
+        val advice = requireContext().resources.getStringArray(R.array.advice_chits)
+        val type = tileType.distinct()
+        var tileId = 0
+        for (t in type) {
+            advice.shuffle()
+            for (a in advice) {
+                ++tileId
+                viewModel.updateAdviceChits(a, t, tileId)
             }
-            // generate another pair of coordinates, if it does touch previous
-            if (j != posX.size) {
-                //println("collided.")
-                continue
-            }
-            // not overlapping/touch, add as new circle
-            posX.add(x)
-            posY.add(y)
-            coordinate.add(Point(x.toInt(),y.toInt()))
         }
-        coordinate.add(0, Point(0,0))
-        return coordinate
-    }*/
+    }
+
+    private fun placeSoundChits() {
+        val sound = mutableListOf<String>()
+        val soundList = requireContext().resources.getStringArray(R.array.sound_chits)
+        soundList.shuffle()
+        val sliceM = soundList.slice(1..4)
+        sound.add("LOST CASTLE")
+        for (s in sliceM) sound.add(s)
+        sound.shuffle()
+        var tileId = 11
+        var type = "MOUNTAIN"
+        for (s in sound){
+            viewModel.updateSoundChits(s, type, tileId)
+            ++tileId
+        }
+        sound.clear()
+        val sliceC = soundList.slice(5..8)
+        sound.add("LOST CITY")
+        for (s in sliceC) sound.add(s)
+        sound.shuffle()
+        type = "CAVE"
+        for (s in sound){
+            viewModel.updateSoundChits(s, type, tileId)
+            ++tileId
+        }
+        val sliceLostCastle = soundList.slice(9..13)
+        val sliceLostCity = soundList.slice(14..18)
+    }
 
 }

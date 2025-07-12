@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="advice_chits">
+        <item>STINK</item>
+        <item>SMOKE</item>
+        <item>DANK</item>
+        <item>RUINS</item>
+        <item>BONES</item>
+    </string-array>
+
+    <string-array name="sound_chits">
+        <item>FLUTTER</item>
+        <item>FLUTTER</item>
+        <item>HOWL</item>
+        <item>HOWL</item>
+        <item>PATTER</item>
+        <item>PATTER</item>
+        <item>ROAR</item>
+        <item>ROAR</item>
+        <item>SLITHER</item>
+        <item>SLITHER</item>
+        <item>ALTAR</item>
+        <item>STATUE</item>
+        <item>LAIR</item>
+        <item>VAULT</item>
+        <item>SHRINE</item>
+        <item>CAIRNS</item>
+        <item>HOARD</item>
+        <item>POOL</item>
+    </string-array>
+</resources>

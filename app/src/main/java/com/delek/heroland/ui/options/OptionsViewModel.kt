@@ -113,4 +113,10 @@ class OptionsViewModel @Inject constructor(
             repoTile.updateAdviceChits(advice, type, id)
         }
     }
+
+    fun updateSoundChits(sound: String, type: String, id: Int) {
+        viewModelScope.launch {
+            repoTile.updateSoundChits(sound, type, id)
+        }
+    }
 }

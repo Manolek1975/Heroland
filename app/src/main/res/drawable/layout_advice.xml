@@ -5,8 +5,6 @@
         android:width="50dp"
         android:height="50dp" />
 
-    <solid
-        android:color="@color/yellow"
-        android:elevation="30dp" />
+
 
 </shape>

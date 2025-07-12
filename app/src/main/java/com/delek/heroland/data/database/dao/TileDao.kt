@@ -30,6 +30,9 @@ interface TileDao {
     @Query("UPDATE tiles SET advice = :advice WHERE type = :type AND id = :id")
     suspend fun updateAdviceChits(advice: String, type: String, id: Int)
 
+    @Query("UPDATE tiles SET sound = :sound WHERE type = :type AND id = :id")
+    suspend fun updateSoundChits(sound: String, type: String, id: Int)
+
     @Query("DELETE FROM tiles")
     suspend fun deleteAllTiles()
 

@@ -1,7 +1,9 @@
 package com.delek.heroland.ui.tileMap
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,11 +13,13 @@ import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.delek.heroland.R
 import com.delek.heroland.databinding.FragmentTileMapBinding
 import com.google.android.material.textview.MaterialTextView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.lang.reflect.Field
 
 
@@ -26,6 +30,7 @@ class TileMapFragment : Fragment() {
     private val binding get() = _binding!!
     private val args: TileMapFragmentArgs by navArgs()
     private val viewmodel: TileMapViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +47,17 @@ class TileMapFragment : Fragment() {
             binding.tileName.text = tile.name
             val type = tile.type.first()
             binding.adviceChit.text = getString(R.string.advice_chit, tile.advice, type)
+            if (tile.sound.isNotEmpty()) {
+                val rnd = (1..45).random()
+                binding.soundChit.visibility = View.VISIBLE
+                binding.soundChit.text = getString(R.string.sound_chit, tile.sound, rnd.toString())
+/*                val soundChit = ImageView(requireContext())
+                binding.tile.addView(soundChit)
+                soundChit.setBackgroundColor(Color.RED)
+                val bmap = soundChit.drawable.toBitmap()
+                val image = BitmapDrawable(resources, bmap)*/
+                binding.boxLayout.getChildAt(22).setBackgroundColor(Color.RED)
+            }
             val id = getResId(tile.image, R.drawable::class.java)
             val bg = ContextCompat.getDrawable(requireContext(), id)
             binding.root.background = bg
@@ -53,12 +69,17 @@ class TileMapFragment : Fragment() {
             binding.boxLayout.addView(button)
         }
         //Set Player
-        binding.boxLayout.getChildAt(22).setOnClickListener {
-            val id = getResId("img_amazon", R.drawable::class.java)
-            val bitmap = BitmapFactory.decodeResource(resources, id)
-            val scale = Bitmap.createScaledBitmap(bitmap, 210, 210, false)
-            val ob = BitmapDrawable(resources, scale)
-            binding.boxLayout.getChildAt(24).background = ob
+        val data = context?.getSharedPreferences("data", Context.MODE_PRIVATE)
+        val roleId = data?.getInt("roleId", 0)
+        viewmodel.getRoleById(roleId!!)
+        lifecycleScope.launch {
+            viewmodel.role.observe(viewLifecycleOwner) { role ->
+                val id = getResId(role.image, R.drawable::class.java)
+                val bitmap = BitmapFactory.decodeResource(resources, id)
+                val scale = Bitmap.createScaledBitmap(bitmap, 210, 210, false)
+                val image = BitmapDrawable(resources, scale)
+                binding.boxLayout.getChildAt(22).background = image
+            }
         }
     }
 

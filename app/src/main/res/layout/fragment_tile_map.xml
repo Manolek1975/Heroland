@@ -32,10 +32,21 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/advice_chit"
         style="@style/Base.Theme.Advice.Layout"
+        android:backgroundTint="@color/yellow"
         android:layout_margin="20dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/barrier1"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/sound_chit"
+        style="@style/Base.Theme.Advice.Layout"
+        android:backgroundTint="@color/red"
+        android:layout_margin="20dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/advice_chit"/>
 
     <GridLayout
         android:id="@+id/box_layout"
