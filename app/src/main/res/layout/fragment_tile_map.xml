@@ -8,22 +8,8 @@
     android:background="@color/black"
     tools:context=".ui.tileMap.TileMapFragment">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tile_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:textColor="@color/yellow"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:fontFamily="sans-serif"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="CRAG" />
-
     <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier1"
+        android:id="@+id/barrier"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         app:barrierDirection="right"
@@ -32,17 +18,17 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/advice_chit"
         style="@style/Base.Theme.Advice.Layout"
+        android:layout_margin="8dp"
         android:backgroundTint="@color/yellow"
-        android:layout_margin="20dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/barrier1"/>
+        app:layout_constraintStart_toEndOf="@id/barrier" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/sound_chit"
         style="@style/Base.Theme.Advice.Layout"
+        android:layout_margin="8dp"
         android:backgroundTint="@color/red"
-        android:layout_margin="20dp"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,11 +39,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_margin="10dp"
         android:columnCount="5"
         android:rowCount="9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tile_name" />
+        app:layout_constraintTop_toBottomOf="@id/advice_chit" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:textColor="@color/yellow"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/box_layout"
+        tools:text="CRAG" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

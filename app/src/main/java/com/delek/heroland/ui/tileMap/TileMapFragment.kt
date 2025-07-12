@@ -3,7 +3,6 @@ package com.delek.heroland.ui.tileMap
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -50,13 +49,12 @@ class TileMapFragment : Fragment() {
             if (tile.sound.isNotEmpty()) {
                 val rnd = (1..45).random()
                 binding.soundChit.visibility = View.VISIBLE
-                binding.soundChit.text = getString(R.string.sound_chit, tile.sound, rnd.toString())
-/*                val soundChit = ImageView(requireContext())
-                binding.tile.addView(soundChit)
-                soundChit.setBackgroundColor(Color.RED)
-                val bmap = soundChit.drawable.toBitmap()
-                val image = BitmapDrawable(resources, bmap)*/
-                binding.boxLayout.getChildAt(22).setBackgroundColor(Color.RED)
+                binding.soundChit.text = getString(R.string.sound_chit, tile.sound)
+/*                val soundChit = binding.soundChit.background.toBitmap()
+                //soundChit[200, 200] = Color.RED
+                val scale = Bitmap.createScaledBitmap(soundChit, 150, 150, false)
+                val image = BitmapDrawable(resources, scale)
+                binding.boxLayout.getChildAt(rnd).background = image*/
             }
             val id = getResId(tile.image, R.drawable::class.java)
             val bg = ContextCompat.getDrawable(requireContext(), id)
@@ -65,8 +63,8 @@ class TileMapFragment : Fragment() {
         //Set Boxes
         for (i in 1..45) {
             val b = ContextThemeWrapper(requireContext(), R.style.Base_Theme_Box_Layout)
-            val button = MaterialTextView(b)
-            binding.boxLayout.addView(button)
+            val box = MaterialTextView(b)
+            binding.boxLayout.addView(box)
         }
         //Set Player
         val data = context?.getSharedPreferences("data", Context.MODE_PRIVATE)

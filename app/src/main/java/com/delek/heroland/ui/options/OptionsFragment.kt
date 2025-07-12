@@ -1,5 +1,6 @@
 package com.delek.heroland.ui.options
 
+import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -218,10 +219,9 @@ class OptionsFragment : Fragment() {
         } else {
             placeAdviceChits()
             placeSoundChits()
-
-            //Place Sound Chits
-
             //Insert Player
+            val data = requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
+            data.edit().putInt("roleId", args.id).apply()
             viewModel.insertPlayer(
                 PlayerEntity(
                     0, "Player1", args.id, dwellingSelected,
@@ -253,7 +253,7 @@ class OptionsFragment : Fragment() {
         val soundList = requireContext().resources.getStringArray(R.array.sound_chits)
         soundList.shuffle()
         val sliceM = soundList.slice(1..4)
-        sound.add("LOST CASTLE")
+        sound.add("LOST\nCASTLE")
         for (s in sliceM) sound.add(s)
         sound.shuffle()
         var tileId = 11
@@ -264,7 +264,7 @@ class OptionsFragment : Fragment() {
         }
         sound.clear()
         val sliceC = soundList.slice(5..8)
-        sound.add("LOST CITY")
+        sound.add("LOST\nCITY")
         for (s in sliceC) sound.add(s)
         sound.shuffle()
         type = "CAVE"
@@ -272,8 +272,8 @@ class OptionsFragment : Fragment() {
             viewModel.updateSoundChits(s, type, tileId)
             ++tileId
         }
-        val sliceLostCastle = soundList.slice(9..13)
-        val sliceLostCity = soundList.slice(14..18)
+        val sliceLostCastle = soundList.slice(9..12)
+        val sliceLostCity = soundList.slice(13..17)
     }
 
 }

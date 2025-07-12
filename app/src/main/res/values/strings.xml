@@ -52,6 +52,6 @@
     <string name="go"><![CDATA[>]]></string>
     <!--TILE MAP-->
     <string name="advice_chit">%1$s \n %2$s</string>
-    <string name="sound_chit">%1$s \n %2$s</string>
+    <string name="sound_chit">%1$s</string>
 
 </resources>
