@@ -30,8 +30,6 @@ class TileMapFragment : Fragment() {
     private val binding get() = _binding!!
     private val args: TileMapFragmentArgs by navArgs()
     private val viewmodel: TileMapViewModel by viewModels()
-    private lateinit var boxAdapter: TileMapAdapter
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,10 +54,10 @@ class TileMapFragment : Fragment() {
                 val soundChit = binding.soundChit.background.toBitmap()
                 val scale = Bitmap.createScaledBitmap(soundChit, 120, 120, false)
                 val image = BitmapDrawable(resources, scale)
-                //image.setTint(ContextCompat.getColor(requireContext(), R.color.gold))
+                image.setTint(ContextCompat.getColor(requireContext(), R.color.gold))
                 binding.boxLayout.getChildAt(6).background = image
-                binding.boxLayout.getChildAt(6).translationX = 50F
-                binding.boxLayout.getChildAt(6).translationY = 50F
+                binding.boxLayout.getChildAt(6).translationX = 40F
+                binding.boxLayout.getChildAt(6).translationY = 40F
             }
             val id = getResId(tile.image, R.drawable::class.java)
             val bg = ContextCompat.getDrawable(requireContext(), id)
@@ -82,9 +80,11 @@ class TileMapFragment : Fragment() {
             viewmodel.role.observe(viewLifecycleOwner) { role ->
                 val id = getResId(role.image, R.drawable::class.java)
                 val bitmap = BitmapFactory.decodeResource(resources, id)
-                val scale = Bitmap.createScaledBitmap(bitmap, 210, 210, false)
+                val scale = Bitmap.createScaledBitmap(bitmap, 180, 180, false)
                 val image = BitmapDrawable(resources, scale)
                 binding.boxLayout.getChildAt(22).background = image
+                binding.boxLayout.getChildAt(22).translationX = 12F
+                binding.boxLayout.getChildAt(22).translationY = 12F
             }
         }
     }

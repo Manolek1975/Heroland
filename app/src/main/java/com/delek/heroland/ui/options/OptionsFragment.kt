@@ -217,8 +217,8 @@ class OptionsFragment : Fragment() {
             Toast.makeText(context, getString(R.string.toast_start_spells, numSpells), Toast.LENGTH_LONG
             ).show()
         } else {
-            placeAdviceChits()
-            placeSoundChits()
+            //placeAdviceChits()
+            //placeSoundChits()
             //Insert Player
             val data = requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
             data.edit().putInt("roleId", args.id).apply()
@@ -234,7 +234,7 @@ class OptionsFragment : Fragment() {
         }
     }
 
-    private fun placeAdviceChits() {
+/*    private fun placeAdviceChits() {
         val tileType = requireContext().resources.getStringArray(R.array.tile_types)
         val advice = requireContext().resources.getStringArray(R.array.advice_chits)
         val type = tileType.distinct()
@@ -246,9 +246,9 @@ class OptionsFragment : Fragment() {
                 viewModel.updateAdviceChits(a, t, tileId)
             }
         }
-    }
+    }*/
 
-    private fun placeSoundChits() {
+/*    private fun placeSoundChits() {
         val sound = mutableListOf<String>()
         val soundList = requireContext().resources.getStringArray(R.array.sound_chits)
         soundList.shuffle()
@@ -274,6 +274,6 @@ class OptionsFragment : Fragment() {
         }
         val sliceLostCastle = soundList.slice(9..12)
         val sliceLostCity = soundList.slice(13..17)
-    }
+    }*/
 
 }

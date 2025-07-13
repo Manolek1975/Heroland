@@ -3,6 +3,7 @@ package com.delek.heroland.data.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.delek.heroland.data.database.dao.AdvantageDao
+import com.delek.heroland.data.database.dao.AdviceChitDao
 import com.delek.heroland.data.database.dao.ArmorDao
 import com.delek.heroland.data.database.dao.ChitDao
 import com.delek.heroland.data.database.dao.DwellingDao
@@ -23,6 +24,7 @@ import com.delek.heroland.data.database.dao.VictoryPointsDao
 import com.delek.heroland.data.database.dao.WeaponDao
 import com.delek.heroland.data.database.dao.VpRoleDao
 import com.delek.heroland.data.database.entities.AdvantageEntity
+import com.delek.heroland.data.database.entities.AdviceChitEntity
 import com.delek.heroland.data.database.entities.ArmorEntity
 import com.delek.heroland.data.database.entities.ChitEntity
 import com.delek.heroland.data.database.entities.DwellingEntity
@@ -64,7 +66,8 @@ import com.delek.heroland.data.database.entities.WeaponEntity
         VictoryPointsEntity::class,
         PlayerEntity::class,
         VpRoleEntity::class,
-        TileEntity::class],
+        TileEntity::class,
+        AdviceChitEntity::class],
     version = 1,
     exportSchema = false
 )
@@ -89,4 +92,5 @@ abstract class HerolandDatabase : RoomDatabase() {
     abstract fun getPlayerDao(): PlayerDao
     abstract fun getVpRoleDao(): VpRoleDao
     abstract fun getTileDao(): TileDao
+    abstract fun getAdviceChitDao(): AdviceChitDao
 }

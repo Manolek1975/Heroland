@@ -56,11 +56,13 @@
         <item>bg_curst_valley</item>
         <item>bg_dark_valley</item>
         <item>bg_evil_valley</item>
+
         <item>bg_linden_woods</item>
         <item>bg_maple_woods</item>
         <item>bg_nut_woods</item>
         <item>bg_oak_woods</item>
         <item>bg_pine_woods</item>
+
         <item>bg_deep_woods</item>
         <item>bg_cliff</item>
         <item>bg_crag</item>
@@ -159,7 +161,7 @@
         <item>350</item>
 
         <item>1860</item>
-        <item>1060</item>
+        <item>1100</item>
         <item>1560</item>
         <item>1440</item>
         <item>250</item>
