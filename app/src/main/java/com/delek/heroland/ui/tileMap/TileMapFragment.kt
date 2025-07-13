@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -29,6 +30,7 @@ class TileMapFragment : Fragment() {
     private val binding get() = _binding!!
     private val args: TileMapFragmentArgs by navArgs()
     private val viewmodel: TileMapViewModel by viewModels()
+    private lateinit var boxAdapter: TileMapAdapter
 
 
     override fun onCreateView(
@@ -50,11 +52,14 @@ class TileMapFragment : Fragment() {
                 val rnd = (1..45).random()
                 binding.soundChit.visibility = View.VISIBLE
                 binding.soundChit.text = getString(R.string.sound_chit, tile.sound)
-/*                val soundChit = binding.soundChit.background.toBitmap()
-                //soundChit[200, 200] = Color.RED
-                val scale = Bitmap.createScaledBitmap(soundChit, 150, 150, false)
+
+                val soundChit = binding.soundChit.background.toBitmap()
+                val scale = Bitmap.createScaledBitmap(soundChit, 120, 120, false)
                 val image = BitmapDrawable(resources, scale)
-                binding.boxLayout.getChildAt(rnd).background = image*/
+                //image.setTint(ContextCompat.getColor(requireContext(), R.color.gold))
+                binding.boxLayout.getChildAt(6).background = image
+                binding.boxLayout.getChildAt(6).translationX = 50F
+                binding.boxLayout.getChildAt(6).translationY = 50F
             }
             val id = getResId(tile.image, R.drawable::class.java)
             val bg = ContextCompat.getDrawable(requireContext(), id)
@@ -66,6 +71,9 @@ class TileMapFragment : Fragment() {
             val box = MaterialTextView(b)
             binding.boxLayout.addView(box)
         }
+/*        val boxAdapter = TileMapAdapter(onItemSelected = { })
+        binding.boxLayout.layoutManager = GridLayoutManager(context, 2)
+        binding.boxLayout.adapter = boxAdapter*/
         //Set Player
         val data = context?.getSharedPreferences("data", Context.MODE_PRIVATE)
         val roleId = data?.getInt("roleId", 0)

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
     android:id="@+id/itemRole"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:paddingHorizontal="8dp"
+        android:layout_margin="8dp"
         tool:background="@drawable/img_amazon"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,6 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tool:text="Amazon"
+        android:layout_gravity="center"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/primary"
