@@ -6,8 +6,19 @@
         <item>HOUSE</item>
         <item>GUARD</item>
         <item>CHAPEL</item>
-        <item>LARGE CAMPFIRE</item>
-        <item>SMALL CAMPFIRE</item>
+        <item>GHOST</item>
+        <item>LARGE\nCAMPFIRE</item>
+        <item>SMALL\nCAMPFIRE</item>
+        <item>ALTAR</item>
+        <item>STATUE</item>
+        <item>LAIR</item>
+        <item>VAULT</item>
+        <item>SHRINE</item>
+        <item>CAIRNS</item>
+        <item>HOARD</item>
+        <item>POOL</item>
+        <item>LOST\nCASTLE</item>
+        <item>LOST\nCITY</item>
     </string-array>
 
     <string-array name="image_dwellings">
@@ -15,8 +26,22 @@
         <item>d_house</item>
         <item>d_guard</item>
         <item>d_chapel</item>
+        <item>d_ghost</item>
+
         <item>d_campfire_l</item>
         <item>d_campfire_s</item>
+        <item>d_altar</item>
+        <item>d_statue</item>
+        <item>d_lair</item>
+
+        <item>d_vault</item>
+        <item>d_shrine</item>
+        <item>d_cairns</item>
+        <item>d_hoard</item>
+        <item>d_pool</item>
+
+        <item>d_lost_castle</item>
+        <item>d_lost_city</item>
     </string-array>
 
     <string-array name="tile_dwelling">
@@ -24,6 +49,20 @@
         <item>0</item>
         <item>0</item>
         <item>0</item>
+        <item>0</item>
+
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+
         <item>0</item>
         <item>0</item>
     </string-array>
@@ -33,6 +72,20 @@
         <item>0</item>
         <item>0</item>
         <item>0</item>
+        <item>0</item>
+
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+
         <item>0</item>
         <item>0</item>
     </string-array>

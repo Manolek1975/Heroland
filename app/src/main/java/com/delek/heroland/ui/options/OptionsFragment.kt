@@ -217,24 +217,27 @@ class OptionsFragment : Fragment() {
             Toast.makeText(context, getString(R.string.toast_start_spells, numSpells), Toast.LENGTH_LONG
             ).show()
         } else {
-            placeAdviceChits()
-            placeSoundChits()
-            //Insert Player
-            val data = requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
-            data.edit().putInt("roleId", args.id).apply()
-            viewModel.insertPlayer(
-                PlayerEntity(
-                    0, "Player1", args.id, dwellingSelected,
-                    0, 0, 0, 0, 0
-                )
-            )
+            setAdviceChits()
+            setSoundChits()
+            setPlayer()
             findNavController().navigate(
                 OptionsFragmentDirections.actionNavOptionsToNavMap()
             )
         }
     }
 
-    private fun placeAdviceChits() {
+    private fun setPlayer() {
+        val data = requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
+        data.edit().putInt("roleId", args.id).apply()
+        viewModel.insertPlayer(
+            PlayerEntity(
+                0, "Player1", args.id, dwellingSelected,
+                0, 0, 0, 0, 0
+            )
+        )
+    }
+
+    private fun setAdviceChits() {
         val tileType = requireContext().resources.getStringArray(R.array.tile_types)
         val adviceChits = requireContext().resources.getStringArray(R.array.name_advice_chits)
         val type = tileType.distinct()
@@ -245,12 +248,27 @@ class OptionsFragment : Fragment() {
             for (a in advice) {
                 ++tileId
                 viewModel.updateAdviceChits(a, t, tileId)
+                if (t == "VALLEY") {
+                    when (a) {
+                        "STINK" -> viewModel.updateDwelling(1, tileId)
+                        "SMOKE" -> viewModel.updateDwelling(2, tileId)
+                        "RUINS" -> viewModel.updateDwelling(3, tileId)
+                        "DANK"  -> viewModel.updateDwelling(4, tileId)
+                        "BONES" -> viewModel.updateDwelling(5, tileId)
+                    }
+                }
+                if (t == "WOOD") {
+                    when (a) {
+                        "STINK" -> viewModel.updateDwelling(6, tileId)
+                        "SMOKE" -> viewModel.updateDwelling(7, tileId)
+                    }
+                }
             }
         }
         println("ADVICE: $advice")
     }
 
-    private fun placeSoundChits() {
+    private fun setSoundChits() {
         val soundList = requireContext().resources.getStringArray(R.array.name_advice_chits)
         val m = soundList[23]
         val c = soundList[24]

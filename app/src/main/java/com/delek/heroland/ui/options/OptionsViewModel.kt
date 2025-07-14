@@ -106,12 +106,6 @@ class OptionsViewModel @Inject constructor(
         }
     }
 
-    fun getTilesByType(type: String, function: () -> Unit) {
-        viewModelScope.launch {
-            tile.value = repoTile.getTilesByType(type)
-        }
-    }
-
     fun getAdviceChitsByType(type: String) {
         viewModelScope.launch {
             advice.value = repoAdv.getAdviceChitsByType(type)
@@ -127,6 +121,12 @@ class OptionsViewModel @Inject constructor(
     fun updateSoundChits(sound: String, type: String, id: Int) {
         viewModelScope.launch {
             repoTile.updateSoundChits(sound, type, id)
+        }
+    }
+
+    fun updateDwelling(dwelling: Int, id: Int) {
+        viewModelScope.launch {
+            repoTile.updateDwelling(dwelling, id)
         }
     }
 }

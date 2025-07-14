@@ -15,6 +15,9 @@ interface DwellingDao {
     @Query("SELECT * FROM dwellings")
     suspend fun getAllDwellings(): List<DwellingEntity>
 
+    @Query("SELECT * FROM dwellings WHERE id = :id")
+    suspend fun getDwellingById(id: Int): DwellingEntity
+
     @Query("DELETE FROM dwellings")
     suspend fun deleteAllDwellings()
 }

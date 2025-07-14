@@ -16,4 +16,10 @@ class DwellingRepository @Inject constructor(private val dwellingDao: DwellingDa
         val response: List<DwellingEntity> = dwellingDao.getAllDwellings()
         return response.map { it.toDomain() }
     }
+
+    suspend fun getDwellingById(id: Int): Dwelling {
+        val response: DwellingEntity = dwellingDao.getDwellingById(id)
+        return response.toDomain()
+    }
+
 }

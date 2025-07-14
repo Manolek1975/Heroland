@@ -25,6 +25,7 @@ class TileProvider {
                         type[i],
                         "",
                         "",
+                        0,
                         false,
                         x[i].toInt(),
                         y[i].toInt()

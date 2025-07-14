@@ -10,9 +10,10 @@ data class Tile(
     val type: String,
     val advice: String,
     val sound: String,
+    val dwelling: Int,
     val enchant: Boolean,
     val x: Int,
     val y: Int
 )
 
-fun TileEntity.toDomain() = Tile(id, name, short, image, type, advice, sound, enchant, x, y)
+fun TileEntity.toDomain() = Tile(id, name, short, image, type, advice, sound, dwelling, enchant, x, y)

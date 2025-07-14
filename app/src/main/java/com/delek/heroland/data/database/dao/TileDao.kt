@@ -33,6 +33,9 @@ interface TileDao {
     @Query("UPDATE tiles SET sound = :sound WHERE type = :type AND id = :id")
     suspend fun updateSoundChits(sound: String, type: String, id: Int)
 
+    @Query("UPDATE tiles SET dwelling = :dwelling WHERE id = :id")
+    suspend fun updateDwelling(dwelling: Int, id: Int)
+
     @Query("DELETE FROM tiles")
     suspend fun deleteAllTiles()
 

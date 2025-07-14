@@ -3,8 +3,10 @@ package com.delek.heroland.ui.tileMap
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.delek.heroland.data.repository.DwellingRepository
 import com.delek.heroland.data.repository.RoleRepository
 import com.delek.heroland.data.repository.TileRepository
+import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Role
 import com.delek.heroland.domain.model.Tile
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,12 +16,14 @@ import javax.inject.Inject
 @HiltViewModel
 class TileMapViewModel @Inject constructor(
     private val roleRepository: RoleRepository,
-    private val tileRepository: TileRepository
+    private val tileRepository: TileRepository,
+    private val dwellingRepository: DwellingRepository
 
 ): ViewModel() {
 
     val role = MutableLiveData<Role>()
     val tile = MutableLiveData<Tile>()
+    val dwelling = MutableLiveData<Dwelling>()
 
     fun getRoleById(id: Int) {
         viewModelScope.launch {
@@ -31,6 +35,13 @@ class TileMapViewModel @Inject constructor(
         viewModelScope.launch {
             tile.value = tileRepository.getTileById(id)
         }
+    }
+
+    fun getDwellingById(id: Int) {
+        viewModelScope.launch {
+            dwelling.value = dwellingRepository.getDwellingById(id)
+        }
+
     }
 
 
