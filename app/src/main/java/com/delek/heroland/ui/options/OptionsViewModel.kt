@@ -5,12 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.delek.heroland.data.database.entities.PlayerEntity
 import com.delek.heroland.data.database.entities.VpRoleEntity
+import com.delek.heroland.data.repository.AdviceChitRepository
 import com.delek.heroland.data.repository.PlayerRepository
 import com.delek.heroland.data.repository.RoleRepository
 import com.delek.heroland.data.repository.SpellRepository
 import com.delek.heroland.data.repository.TileRepository
 import com.delek.heroland.data.repository.VictoryPointsRepository
 import com.delek.heroland.data.repository.VpRoleRepository
+import com.delek.heroland.domain.model.AdviceChit
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Player
 import com.delek.heroland.domain.model.Role
@@ -30,7 +32,8 @@ class OptionsViewModel @Inject constructor(
     private val repoVictoryPoints: VictoryPointsRepository,
     private val repoPlayer: PlayerRepository,
     private val repoVpRole: VpRoleRepository,
-    private val repoTile: TileRepository
+    private val repoTile: TileRepository,
+    private val repoAdv: AdviceChitRepository
 ) : ViewModel() {
 
     val role = MutableLiveData<Role>()
@@ -41,6 +44,7 @@ class OptionsViewModel @Inject constructor(
     val player = MutableLiveData<List<Player>>()
     val vpRole = MutableLiveData<List<VpRole>>()
     val tile = MutableLiveData<List<Tile>>()
+    val advice = MutableLiveData<List<AdviceChit>>()
 
     fun getRole(id: Int) {
         viewModelScope.launch {
@@ -105,6 +109,12 @@ class OptionsViewModel @Inject constructor(
     fun getTilesByType(type: String, function: () -> Unit) {
         viewModelScope.launch {
             tile.value = repoTile.getTilesByType(type)
+        }
+    }
+
+    fun getAdviceChitsByType(type: String) {
+        viewModelScope.launch {
+            advice.value = repoAdv.getAdviceChitsByType(type)
         }
     }
 

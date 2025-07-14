@@ -17,4 +17,9 @@ class AdviceChitRepository @Inject constructor(private val adviceChitDao: Advice
         return response.map { it.toDomain() }
     }
 
+    suspend fun getAdviceChitsByType(type: String): List<AdviceChit> {
+        val response: List<AdviceChitEntity> = adviceChitDao.getAdviceChitByType(type)
+        return response.map { it.toDomain() }
+    }
+
 }

@@ -217,8 +217,8 @@ class OptionsFragment : Fragment() {
             Toast.makeText(context, getString(R.string.toast_start_spells, numSpells), Toast.LENGTH_LONG
             ).show()
         } else {
-            //placeAdviceChits()
-            //placeSoundChits()
+            placeAdviceChits()
+            placeSoundChits()
             //Insert Player
             val data = requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
             data.edit().putInt("roleId", args.id).apply()
@@ -234,11 +234,12 @@ class OptionsFragment : Fragment() {
         }
     }
 
-/*    private fun placeAdviceChits() {
+    private fun placeAdviceChits() {
         val tileType = requireContext().resources.getStringArray(R.array.tile_types)
-        val advice = requireContext().resources.getStringArray(R.array.advice_chits)
+        val adviceChits = requireContext().resources.getStringArray(R.array.name_advice_chits)
         val type = tileType.distinct()
         var tileId = 0
+        val advice = adviceChits.slice(0..4) as MutableList<String>
         for (t in type) {
             advice.shuffle()
             for (a in advice) {
@@ -246,15 +247,17 @@ class OptionsFragment : Fragment() {
                 viewModel.updateAdviceChits(a, t, tileId)
             }
         }
-    }*/
+        println("ADVICE: $advice")
+    }
 
-/*    private fun placeSoundChits() {
-        val sound = mutableListOf<String>()
-        val soundList = requireContext().resources.getStringArray(R.array.sound_chits)
-        soundList.shuffle()
-        val sliceM = soundList.slice(1..4)
-        sound.add("LOST\nCASTLE")
-        for (s in sliceM) sound.add(s)
+    private fun placeSoundChits() {
+        val soundList = requireContext().resources.getStringArray(R.array.name_advice_chits)
+        val m = soundList[23]
+        val c = soundList[24]
+        val list = soundList.slice(5..22) as MutableList<String>
+        list.shuffle()
+        var sound = list.slice(0..3) as MutableList<String>
+        sound.add(m)
         sound.shuffle()
         var tileId = 11
         var type = "MOUNTAIN"
@@ -262,18 +265,19 @@ class OptionsFragment : Fragment() {
             viewModel.updateSoundChits(s, type, tileId)
             ++tileId
         }
+        println("CASTLE: $sound")
         sound.clear()
-        val sliceC = soundList.slice(5..8)
-        sound.add("LOST\nCITY")
-        for (s in sliceC) sound.add(s)
+        sound = list.slice(5..8) as MutableList<String>
+        sound.add(c)
         sound.shuffle()
         type = "CAVE"
         for (s in sound){
             viewModel.updateSoundChits(s, type, tileId)
             ++tileId
         }
-        val sliceLostCastle = soundList.slice(9..12)
-        val sliceLostCity = soundList.slice(13..17)
-    }*/
+        println("CAVE: $sound")
+        val sliceLostCastle = soundList.slice(9..13)
+        val sliceLostCity = soundList.slice(14..18)
+    }
 
 }
