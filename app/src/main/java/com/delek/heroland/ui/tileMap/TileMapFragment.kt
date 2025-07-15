@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.delek.heroland.R
 import com.delek.heroland.databinding.FragmentTileMapBinding
@@ -51,9 +52,8 @@ class TileMapFragment : Fragment() {
         }
         val dm: DisplayMetrics = resources.displayMetrics
         val x = dm.widthPixels
-        val w = (x / 5) - 18 //margin 8*2 + width stroke 1*2
-
-        println(w)
+        val w = (x / 5) - 20 //margin 8*2 + width stroke 2*2
+        val t = 2F
         //Set Tile
         viewmodel.getTileById(args.id)
         viewmodel.tile.observe(viewLifecycleOwner) { tile ->
@@ -76,7 +76,14 @@ class TileMapFragment : Fragment() {
                     val scale = Bitmap.createScaledBitmap(layout, w, w, false)
                     val image = BitmapDrawable(resources, scale)
                     binding.boxLayout.getChildAt(6).background = image
+                    binding.boxLayout.getChildAt(6).translationX = t+2
+                    binding.boxLayout.getChildAt(6).translationY = t
                 }
+            }
+            binding.boxLayout.getChildAt(6).setOnClickListener {
+                findNavController().navigate(
+                    TileMapFragmentDirections.actionNavTileMapToMapDwelling(tile.dwelling)
+                )
             }
         }
         //Set Player
@@ -93,6 +100,11 @@ class TileMapFragment : Fragment() {
 /*              binding.boxLayout.getChildAt(22).translationX = 12F
                 binding.boxLayout.getChildAt(22).translationY = 12F*/
             }
+        }
+        binding.boxLayout.getChildAt(22).setOnClickListener {
+            findNavController().navigate(
+                TileMapFragmentDirections.actionNavTileMapToNavCharacter(roleId)
+            )
         }
     }
 

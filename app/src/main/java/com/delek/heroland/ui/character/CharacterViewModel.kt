@@ -1,16 +1,24 @@
 package com.delek.heroland.ui.character
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.delek.heroland.data.repository.RoleRepository
+import com.delek.heroland.domain.model.Role
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CharacterViewModel @Inject constructor() : ViewModel() {
+class CharacterViewModel @Inject constructor(
+    private val roleRepository: RoleRepository
+) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is gallery Fragment"
+    val role = MutableLiveData<Role>()
+
+    fun geRoleById(id: Int) {
+        viewModelScope.launch {
+            role.value = roleRepository.getRoleById(id)
+        }
     }
-    val text: LiveData<String> = _text
 }

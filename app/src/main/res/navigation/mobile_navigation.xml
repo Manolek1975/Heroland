@@ -83,7 +83,11 @@
         android:id="@+id/nav_character"
         android:name="com.delek.heroland.ui.character.CharacterFragment"
         android:label="@string/menu_character"
-        tools:layout="@layout/fragment_character" />
+        tools:layout="@layout/fragment_character" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_map"
@@ -106,6 +110,22 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_nav_tile_map_to_map_dwelling"
+            app:destination="@id/nav_dwelling" />
+        <action
+            android:id="@+id/action_nav_tile_map_to_nav_character"
+            app:destination="@id/nav_character" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_dwelling"
+        android:name="com.delek.heroland.ui.dwelling.DwellingFragment"
+        android:label="fragment_dwelling"
+        tools:layout="@layout/fragment_dwelling" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
     </fragment>
 
     <fragment
@@ -113,5 +133,6 @@
         android:name="com.delek.heroland.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
+
 
 </navigation>

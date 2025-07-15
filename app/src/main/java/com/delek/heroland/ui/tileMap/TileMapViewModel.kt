@@ -18,7 +18,6 @@ class TileMapViewModel @Inject constructor(
     private val roleRepository: RoleRepository,
     private val tileRepository: TileRepository,
     private val dwellingRepository: DwellingRepository
-
 ): ViewModel() {
 
     val role = MutableLiveData<Role>()
