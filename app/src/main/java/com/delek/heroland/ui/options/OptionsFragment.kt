@@ -217,9 +217,9 @@ class OptionsFragment : Fragment() {
             Toast.makeText(context, getString(R.string.toast_start_spells, numSpells), Toast.LENGTH_LONG
             ).show()
         } else {
+            setPlayer()
             setAdviceChits()
             setSoundChits()
-            setPlayer()
             findNavController().navigate(
                 OptionsFragmentDirections.actionNavOptionsToNavMap()
             )
@@ -261,6 +261,9 @@ class OptionsFragment : Fragment() {
                     when (a) {
                         "STINK" -> viewModel.updateDwelling(6, tileId)
                         "SMOKE" -> viewModel.updateDwelling(7, tileId)
+/*                        "RUINS" -> viewModel.updateDwelling(8, tileId)
+                        "DANK"  -> viewModel.updateDwelling(9, tileId)
+                        "BONES" -> viewModel.updateDwelling(10, tileId)*/
                     }
                 }
             }
