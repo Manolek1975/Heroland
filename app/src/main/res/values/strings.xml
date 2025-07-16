@@ -18,6 +18,7 @@
     <string name="menu_map">Map</string>
     <string name="menu_tile_map">Tile</string>
     <string name="menu_settings">Settings</string>
+    <string name="back">BACK</string>
     <!-- DETAIL -->
     <string name="header_select_character">Select character</string>
     <string name="advantages">Special Advantages</string>

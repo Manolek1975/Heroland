@@ -11,11 +11,11 @@
         android:id="@+id/arrow_back"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_margin="20dp"
+        android:layout_margin="30dp"
         android:background="@drawable/arrow_back"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="ContentDescription"/>
+        android:contentDescription="@string/back" />
 
     <TextView
         android:id="@+id/role_name"

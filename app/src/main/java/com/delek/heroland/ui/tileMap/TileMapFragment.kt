@@ -106,6 +106,13 @@ class TileMapFragment : Fragment() {
                 TileMapFragmentDirections.actionNavTileMapToNavCharacter(roleId)
             )
         }
+        binding.arrowBack.setOnClickListener {
+            findNavController().navigate(
+                TileMapFragmentDirections.actionNavTileMapToNavMap()
+            )
+
+
+        }
     }
 
     private fun fillDataAndGetBitmap(image: Bitmap, title: String): Bitmap {
