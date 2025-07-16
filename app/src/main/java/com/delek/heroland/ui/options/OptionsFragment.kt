@@ -261,9 +261,6 @@ class OptionsFragment : Fragment() {
                     when (a) {
                         "STINK" -> viewModel.updateDwelling(6, tileId)
                         "SMOKE" -> viewModel.updateDwelling(7, tileId)
-/*                        "RUINS" -> viewModel.updateDwelling(8, tileId)
-                        "DANK"  -> viewModel.updateDwelling(9, tileId)
-                        "BONES" -> viewModel.updateDwelling(10, tileId)*/
                     }
                 }
             }
@@ -284,6 +281,17 @@ class OptionsFragment : Fragment() {
         var type = "MOUNTAIN"
         for (s in sound){
             viewModel.updateSoundChits(s, type, tileId)
+            when(s){
+                "ALTAR" -> viewModel.updateDwelling(8, tileId)
+                "STATUE" -> viewModel.updateDwelling(9, tileId)
+                "LAIR" -> viewModel.updateDwelling(10, tileId)
+                "VAULT" -> viewModel.updateDwelling(11, tileId)
+                "SHRINE" -> viewModel.updateDwelling(12, tileId)
+                "CAIRNS" -> viewModel.updateDwelling(13, tileId)
+                "HOARD" -> viewModel.updateDwelling(14, tileId)
+                "POOL" -> viewModel.updateDwelling(15, tileId)
+                "LOST\nCASTLE" -> viewModel.updateDwelling(16, tileId)
+            }
             ++tileId
         }
         println("CASTLE: $sound")
@@ -294,6 +302,17 @@ class OptionsFragment : Fragment() {
         type = "CAVE"
         for (s in sound){
             viewModel.updateSoundChits(s, type, tileId)
+            when(s){
+                "ALTAR" -> viewModel.updateDwelling(8, tileId)
+                "STATUE" -> viewModel.updateDwelling(9, tileId)
+                "LAIR" -> viewModel.updateDwelling(10, tileId)
+                "VAULT" -> viewModel.updateDwelling(11, tileId)
+                "SHRINE" -> viewModel.updateDwelling(12, tileId)
+                "CAIRNS" -> viewModel.updateDwelling(13, tileId)
+                "HOARD" -> viewModel.updateDwelling(14, tileId)
+                "POOL" -> viewModel.updateDwelling(15, tileId)
+                "LOST\nCITY" -> viewModel.updateDwelling(17, tileId)
+            }
             ++tileId
         }
         println("CAVE: $sound")
