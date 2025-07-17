@@ -27,12 +27,8 @@ class TileRepository @Inject constructor(private val tileDao: TileDao) {
         return response.map { it.toDomain() }
     }
 
-    suspend fun updateTileCoords(x: Int, y: Int, id: Int) {
-        tileDao.updateTileCoords(x, y, id)
-    }
-
-    suspend fun updateAdviceChits(advice: String, type: String, id: Int) {
-        tileDao.updateAdviceChits(advice, type, id)
+    suspend fun updateTileAdvice(advice: Int, id: Int) {
+        tileDao.updateTileAdvice(advice, id)
     }
 
     suspend fun updateSoundChits(sound: String, type: String, id: Int) {

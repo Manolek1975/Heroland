@@ -9,5 +9,7 @@ data class AdviceChitEntity(
     val name: String,
     val type: String,
     val num: Int,
-    val image: String
+    val image: String,
+    val dwelling: Int,
+    val monster: Int
 )

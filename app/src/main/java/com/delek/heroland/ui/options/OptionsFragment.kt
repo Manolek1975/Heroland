@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.delek.heroland.R
 import com.delek.heroland.data.database.entities.PlayerEntity
 import com.delek.heroland.databinding.FragmentOptionsBinding
+import com.delek.heroland.domain.model.AdviceChit
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Spell
 import com.delek.heroland.ui.options.VictoryPointsAdapter.Companion.total
@@ -33,7 +34,7 @@ class OptionsFragment : Fragment() {
 
     private var _binding: FragmentOptionsBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: OptionsViewModel by viewModels()
+    private val viewmodel: OptionsViewModel by viewModels()
     private val args: OptionsFragmentArgs by navArgs()
     private lateinit var typeAdapter: TypeAdapter
     private lateinit var spellAdapter: SpellAdapter
@@ -61,10 +62,10 @@ class OptionsFragment : Fragment() {
     }
 
     private fun initHeader() {
-        viewModel.getRole(args.id)
+        viewmodel.getRole(args.id)
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.role.observe(viewLifecycleOwner) {
+                viewmodel.role.observe(viewLifecycleOwner) {
                     binding.headOptions.text = getString(R.string.options_head, it.name)
                 }
             }
@@ -72,17 +73,17 @@ class OptionsFragment : Fragment() {
     }
 
     private fun initDwellings() {
-        viewModel.getDwellingsByRole(args.id)
+        viewmodel.getDwellingsByRole(args.id)
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.dwelling.observe(viewLifecycleOwner) {
+                viewmodel.dwelling.observe(viewLifecycleOwner) {
                     setDwellingRadioGroup(it)
                 }
             }
         }
     }
 
-    private fun setDwellingRadioGroup(dwelling: List<Dwelling>){
+    private fun setDwellingRadioGroup(dwelling: List<Dwelling>) {
         for (d in dwelling) {
             binding.rgDwelling.addView(RadioButton(context).apply {
                 id = d.id
@@ -102,18 +103,19 @@ class OptionsFragment : Fragment() {
     private fun initSpells() {
         var typeId: Int
         val spellList = mutableListOf<Spell>()
-        viewModel.getRole(args.id)
-        viewModel.getStartSpellTypes(args.id)
+        viewmodel.getRole(args.id)
+        viewmodel.getStartSpellTypes(args.id)
 
         typeAdapter = TypeAdapter(onItemSelected = {
             typeId = it.typeId
-            viewModel.getSpellsByType(typeId)
-            typeAdapter.updateTypes(viewModel.spellType.value!!)
+            viewmodel.getSpellsByType(typeId)
+            typeAdapter.updateTypes(viewmodel.spellType.value!!)
         })
-        binding.rvTypes.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvTypes.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.rvTypes.adapter = typeAdapter
 
-        spellAdapter = SpellAdapter( onItemSelected = {
+        spellAdapter = SpellAdapter(onItemSelected = {
             addSelectedSpells(it, spellList)
         })
         binding.rvSpells.layoutManager = GridLayoutManager(context, 4)
@@ -121,32 +123,33 @@ class OptionsFragment : Fragment() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.role.observe(viewLifecycleOwner) {
+                viewmodel.role.observe(viewLifecycleOwner) {
                     numSpells = it.spells
-                    if (it.spells != 0){
-                        binding.selectedSpells.text = getString(R.string.selected_spells, 0, numSpells)
+                    if (it.spells != 0) {
+                        binding.selectedSpells.text =
+                            getString(R.string.selected_spells, 0, numSpells)
                     }
                 }
             }
         }
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.spellType.observe(viewLifecycleOwner) {
+                viewmodel.spellType.observe(viewLifecycleOwner) {
                     typeAdapter.updateTypes(it)
                 }
             }
         }
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.spell.observe(viewLifecycleOwner) {
+                viewmodel.spell.observe(viewLifecycleOwner) {
                     spellAdapter.updateSpells(it)
                 }
             }
         }
     }
 
-    private fun initVictoryPoints(){
-        viewModel.getAllVictoryPoints()
+    private fun initVictoryPoints() {
+        viewmodel.getAllVictoryPoints()
         binding.headVictoryPoints.text = getString(R.string.victory_points, victoryPoints)
         vpAdapter = VictoryPointsAdapter(onItemSelected = {
             victoryPoints = total
@@ -157,20 +160,21 @@ class OptionsFragment : Fragment() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.vp.observe(viewLifecycleOwner) {
+                viewmodel.vp.observe(viewLifecycleOwner) {
                     vpAdapter.updateVictoryPoints(it)
                 }
             }
         }
     }
 
-    private fun addSelectedSpells(it: Spell, spellList: MutableList<Spell>){
+    private fun addSelectedSpells(it: Spell, spellList: MutableList<Spell>) {
         countSpells = spellList.count()
-        if (countSpells < numSpells && !spellList.contains(it)){
+        if (countSpells < numSpells && !spellList.contains(it)) {
             spellList.add(it)
             countSpells = spellList.count() // Count again to refresh text
-            binding.selectedSpells.text = getString(R.string.selected_spells, countSpells, numSpells)
-            if (countSpells == numSpells){
+            binding.selectedSpells.text =
+                getString(R.string.selected_spells, countSpells, numSpells)
+            if (countSpells == numSpells) {
                 binding.rvTypes.visibility = View.GONE
                 binding.rvSpells.visibility = View.GONE
             }
@@ -187,15 +191,19 @@ class OptionsFragment : Fragment() {
                 binding.selectedSpells.text = getString(R.string.selected_spells, 0, numSpells)
             }
         } else {
-            Toast.makeText(context, getString(R.string.toast_already_spell, it.name), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                context,
+                getString(R.string.toast_already_spell, it.name),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
     private fun initStart() {
-        viewModel.getAllPlayers()
+        viewmodel.getAllPlayers()
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.player.observe(viewLifecycleOwner) { _ ->
+                viewmodel.player.observe(viewLifecycleOwner) { _ ->
                     binding.ivCheck.setOnClickListener {
                         checkStartConditions()
                     }
@@ -209,12 +217,14 @@ class OptionsFragment : Fragment() {
         }
     }
 
-    private fun checkStartConditions(){
+    private fun checkStartConditions() {
         if (victoryPoints != 5) { // Must choice 5 victory points
-            Toast.makeText(context, getString(R.string.toast_start), Toast.LENGTH_LONG
+            Toast.makeText(
+                context, getString(R.string.toast_start), Toast.LENGTH_LONG
             ).show()
         } else if (countSpells != numSpells && numSpells != 0) { //Must choice spells
-            Toast.makeText(context, getString(R.string.toast_start_spells, numSpells), Toast.LENGTH_LONG
+            Toast.makeText(
+                context, getString(R.string.toast_start_spells, numSpells), Toast.LENGTH_LONG
             ).show()
         } else {
             setPlayer()
@@ -229,7 +239,7 @@ class OptionsFragment : Fragment() {
     private fun setPlayer() {
         val data = requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
         data.edit().putInt("roleId", args.id).apply()
-        viewModel.insertPlayer(
+        viewmodel.insertPlayer(
             PlayerEntity(
                 0, "Player1", args.id, dwellingSelected,
                 0, 0, 0, 0, 0
@@ -238,86 +248,106 @@ class OptionsFragment : Fragment() {
     }
 
     private fun setAdviceChits() {
-        val tileType = requireContext().resources.getStringArray(R.array.tile_types)
-        val adviceChits = requireContext().resources.getStringArray(R.array.name_advice_chits)
-        val type = tileType.distinct()
         var tileId = 0
-        val advice = adviceChits.slice(0..4) as MutableList<String>
-        for (t in type) {
-            advice.shuffle()
-            for (a in advice) {
-                ++tileId
-                viewModel.updateAdviceChits(a, t, tileId)
-                if (t == "VALLEY") {
-                    when (a) {
-                        "STINK" -> viewModel.updateDwelling(1, tileId)
-                        "SMOKE" -> viewModel.updateDwelling(2, tileId)
-                        "RUINS" -> viewModel.updateDwelling(3, tileId)
-                        "DANK"  -> viewModel.updateDwelling(4, tileId)
-                        "BONES" -> viewModel.updateDwelling(5, tileId)
-                    }
-                }
-                if (t == "WOOD") {
-                    when (a) {
-                        "STINK" -> viewModel.updateDwelling(6, tileId)
-                        "SMOKE" -> viewModel.updateDwelling(7, tileId)
+        var advice: MutableList<AdviceChit>
+        for (i in 1..4) {
+            viewmodel.getAdviceChitsByType("A")
+            lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    viewmodel.advice.observe(viewLifecycleOwner) { it ->
+                        advice = it.toMutableList()
+                        advice.shuffle()
+                        advice.forEach {
+                            ++tileId
+                            viewmodel.updateTileAdvice(it.id, tileId)
+                        }
                     }
                 }
             }
         }
-        println("ADVICE: $advice")
     }
+        
 
-    private fun setSoundChits() {
-        val soundList = requireContext().resources.getStringArray(R.array.name_advice_chits)
-        val m = soundList[23]
-        val c = soundList[24]
-        val list = soundList.slice(5..22) as MutableList<String>
-        list.shuffle()
-        var sound = list.slice(0..3) as MutableList<String>
-        sound.add(m)
-        sound.shuffle()
-        var tileId = 11
-        var type = "MOUNTAIN"
-        for (s in sound){
-            viewModel.updateSoundChits(s, type, tileId)
-            when(s){
-                "ALTAR" -> viewModel.updateDwelling(8, tileId)
-                "STATUE" -> viewModel.updateDwelling(9, tileId)
-                "LAIR" -> viewModel.updateDwelling(10, tileId)
-                "VAULT" -> viewModel.updateDwelling(11, tileId)
-                "SHRINE" -> viewModel.updateDwelling(12, tileId)
-                "CAIRNS" -> viewModel.updateDwelling(13, tileId)
-                "HOARD" -> viewModel.updateDwelling(14, tileId)
-                "POOL" -> viewModel.updateDwelling(15, tileId)
-                "LOST\nCASTLE" -> viewModel.updateDwelling(16, tileId)
-            }
-            ++tileId
+
+    /*        val tileType = requireContext().resources.getStringArray(R.array.tile_types)
+            val adviceChits = requireContext().resources.getStringArray(R.array.name_advice_chits)
+            val type = tileType.distinct()
+            var tileId = 0
+            val advice = adviceChits.slice(0..4) as MutableList<String>
+            for (t in type) {
+                advice.shuffle()
+                for (a in advice) {
+                    ++tileId
+                    viewmodel.updateAdviceChits(a, t, tileId)
+                    if (t == "VALLEY") {
+                        when (a) {
+                            "STINK" -> viewmodel.updateDwelling(1, tileId)
+                            "SMOKE" -> viewmodel.updateDwelling(2, tileId)
+                            "RUINS" -> viewmodel.updateDwelling(3, tileId)
+                            "DANK"  -> viewmodel.updateDwelling(4, tileId)
+                            "BONES" -> viewmodel.updateDwelling(5, tileId)
+                        }
+                    }
+                    if (t == "WOOD") {
+                        when (a) {
+                            "STINK" -> viewmodel.updateDwelling(6, tileId)
+                            "SMOKE" -> viewmodel.updateDwelling(7, tileId)
+                        }
+                    }
+                }
+            }*/
+
+
+private fun setSoundChits() {
+    val soundList = requireContext().resources.getStringArray(R.array.name_advice_chits)
+    val m = soundList[23]
+    val c = soundList[24]
+    val list = soundList.slice(5..22) as MutableList<String>
+    list.shuffle()
+    var sound = list.slice(0..3) as MutableList<String>
+    sound.add(m)
+    sound.shuffle()
+    var tileId = 11
+    var type = "MOUNTAIN"
+    for (s in sound) {
+        viewmodel.updateSoundChits(s, type, tileId)
+        when (s) {
+            "ALTAR" -> viewmodel.updateDwelling(8, tileId)
+            "STATUE" -> viewmodel.updateDwelling(9, tileId)
+            "LAIR" -> viewmodel.updateDwelling(10, tileId)
+            "VAULT" -> viewmodel.updateDwelling(11, tileId)
+            "SHRINE" -> viewmodel.updateDwelling(12, tileId)
+            "CAIRNS" -> viewmodel.updateDwelling(13, tileId)
+            "HOARD" -> viewmodel.updateDwelling(14, tileId)
+            "POOL" -> viewmodel.updateDwelling(15, tileId)
+            "LOST\nCASTLE" -> viewmodel.updateDwelling(16, tileId)
         }
-        println("CASTLE: $sound")
-        sound.clear()
-        sound = list.slice(5..8) as MutableList<String>
-        sound.add(c)
-        sound.shuffle()
-        type = "CAVE"
-        for (s in sound){
-            viewModel.updateSoundChits(s, type, tileId)
-            when(s){
-                "ALTAR" -> viewModel.updateDwelling(8, tileId)
-                "STATUE" -> viewModel.updateDwelling(9, tileId)
-                "LAIR" -> viewModel.updateDwelling(10, tileId)
-                "VAULT" -> viewModel.updateDwelling(11, tileId)
-                "SHRINE" -> viewModel.updateDwelling(12, tileId)
-                "CAIRNS" -> viewModel.updateDwelling(13, tileId)
-                "HOARD" -> viewModel.updateDwelling(14, tileId)
-                "POOL" -> viewModel.updateDwelling(15, tileId)
-                "LOST\nCITY" -> viewModel.updateDwelling(17, tileId)
-            }
-            ++tileId
-        }
-        println("CAVE: $sound")
-        val sliceLostCastle = soundList.slice(9..13)
-        val sliceLostCity = soundList.slice(14..18)
+        ++tileId
     }
+    println("CASTLE: $sound")
+    sound.clear()
+    sound = list.slice(5..8) as MutableList<String>
+    sound.add(c)
+    sound.shuffle()
+    type = "CAVE"
+    for (s in sound) {
+        viewmodel.updateSoundChits(s, type, tileId)
+        when (s) {
+            "ALTAR" -> viewmodel.updateDwelling(8, tileId)
+            "STATUE" -> viewmodel.updateDwelling(9, tileId)
+            "LAIR" -> viewmodel.updateDwelling(10, tileId)
+            "VAULT" -> viewmodel.updateDwelling(11, tileId)
+            "SHRINE" -> viewmodel.updateDwelling(12, tileId)
+            "CAIRNS" -> viewmodel.updateDwelling(13, tileId)
+            "HOARD" -> viewmodel.updateDwelling(14, tileId)
+            "POOL" -> viewmodel.updateDwelling(15, tileId)
+            "LOST\nCITY" -> viewmodel.updateDwelling(17, tileId)
+        }
+        ++tileId
+    }
+    println("CAVE: $sound")
+    //val sliceLostCastle = soundList.slice(9..13)
+    //val sliceLostCity = soundList.slice(14..18)
+}
 
 }

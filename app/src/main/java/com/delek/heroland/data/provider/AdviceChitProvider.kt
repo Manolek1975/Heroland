@@ -14,7 +14,7 @@ class AdviceChitProvider {
             val num = context.resources.getStringArray(R.array.num_advice_chits)
             val image = context.resources.getStringArray(R.array.image_advice_chits)
             for (i in name.indices) {
-                val advice = AdviceChitEntity(i + 1, name[i], type[i], num[i].toInt(), image[i])
+                val advice = AdviceChitEntity(i + 1, name[i], type[i], num[i].toInt(), image[i], 0, 0)
                 advices.add(advice)
             }
             return advices

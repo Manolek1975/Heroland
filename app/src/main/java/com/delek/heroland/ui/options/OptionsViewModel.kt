@@ -100,21 +100,15 @@ class OptionsViewModel @Inject constructor(
         }
     }
 
-    fun updateTileCoords(x: Int, y: Int, id: Int) {
-        viewModelScope.launch {
-            repoTile.updateTileCoords(x, y, id)
-        }
-    }
-
     fun getAdviceChitsByType(type: String) {
         viewModelScope.launch {
             advice.value = repoAdv.getAdviceChitsByType(type)
         }
     }
 
-    fun updateAdviceChits(advice: String, type: String, id: Int) {
+    fun updateTileAdvice(advice: Int, id: Int) {
         viewModelScope.launch {
-            repoTile.updateAdviceChits(advice, type, id)
+            repoTile.updateTileAdvice(advice, id)
         }
     }
 
