@@ -100,9 +100,9 @@ class OptionsViewModel @Inject constructor(
         }
     }
 
-    fun getAdviceChitsByType(type: String) {
+    fun getAdviceChitsByType() {
         viewModelScope.launch {
-            advice.value = repoAdv.getAdviceChitsByType(type)
+            advice.value = repoAdv.getAdviceChitsByType()
         }
     }
 
@@ -112,15 +112,10 @@ class OptionsViewModel @Inject constructor(
         }
     }
 
-    fun updateSoundChits(sound: String, type: String, id: Int) {
+    fun updateTileSound(sound: Int, id: Int) {
         viewModelScope.launch {
-            repoTile.updateSoundChits(sound, type, id)
+            repoTile.updateTileSound(sound, id)
         }
     }
 
-    fun updateDwelling(dwelling: Int, id: Int) {
-        viewModelScope.launch {
-            repoTile.updateDwelling(dwelling, id)
-        }
-    }
 }

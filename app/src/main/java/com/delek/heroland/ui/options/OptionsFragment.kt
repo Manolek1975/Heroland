@@ -250,8 +250,8 @@ class OptionsFragment : Fragment() {
     private fun setAdviceChits() {
         var tileId = 0
         var advice: MutableList<AdviceChit>
-        for (i in 1..4) {
-            viewmodel.getAdviceChitsByType("A")
+        for (i in 1..4) { // 4 groups of 5 tiles
+            viewmodel.getAdviceChitsByType()
             lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
                     viewmodel.advice.observe(viewLifecycleOwner) { it ->
@@ -266,88 +266,82 @@ class OptionsFragment : Fragment() {
             }
         }
     }
-        
 
+    private fun setSoundChits() {
+        var tileID = 11
+        val list = mutableListOf(6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23)
+        //val list = soundList
+        list.shuffle()
+        var sound = list.slice(0..3) as MutableList<Int>
+        sound.add(24)
+        sound.shuffle()
+        for(s in sound){
+            viewmodel.updateTileSound(s, tileID)
+            ++tileID
+        }
+        println("CASTLE: $sound")
+        sound.clear()
+        sound = list.slice(4..7) as MutableList<Int>
+        sound.add(25)
+        sound.shuffle()
+        for(s in sound){
+            viewmodel.updateTileSound(s, tileID)
+            ++tileID
+        }
+        println("CAVE: $sound")
+        //val sliceLostCastle = soundList.slice(9..13)
+        //val sliceLostCity = soundList.slice(14..18)
+    }
 
     /*        val tileType = requireContext().resources.getStringArray(R.array.tile_types)
-            val adviceChits = requireContext().resources.getStringArray(R.array.name_advice_chits)
-            val type = tileType.distinct()
-            var tileId = 0
-            val advice = adviceChits.slice(0..4) as MutableList<String>
-            for (t in type) {
-                advice.shuffle()
-                for (a in advice) {
-                    ++tileId
-                    viewmodel.updateAdviceChits(a, t, tileId)
-                    if (t == "VALLEY") {
-                        when (a) {
-                            "STINK" -> viewmodel.updateDwelling(1, tileId)
-                            "SMOKE" -> viewmodel.updateDwelling(2, tileId)
-                            "RUINS" -> viewmodel.updateDwelling(3, tileId)
-                            "DANK"  -> viewmodel.updateDwelling(4, tileId)
-                            "BONES" -> viewmodel.updateDwelling(5, tileId)
-                        }
-                    }
-                    if (t == "WOOD") {
-                        when (a) {
-                            "STINK" -> viewmodel.updateDwelling(6, tileId)
-                            "SMOKE" -> viewmodel.updateDwelling(7, tileId)
-                        }
+        val adviceChits = requireContext().resources.getStringArray(R.array.name_advice_chits)
+        val type = tileType.distinct()
+        var tileId = 0
+        val advice = adviceChits.slice(0..4) as MutableList<String>
+        for (t in type) {
+            advice.shuffle()
+            for (a in advice) {
+                ++tileId
+                viewmodel.updateAdviceChits(a, t, tileId)
+                if (t == "VALLEY") {
+                    when (a) {
+                        "STINK" -> viewmodel.updateDwelling(1, tileId)
+                        "SMOKE" -> viewmodel.updateDwelling(2, tileId)
+                        "RUINS" -> viewmodel.updateDwelling(3, tileId)
+                        "DANK"  -> viewmodel.updateDwelling(4, tileId)
+                        "BONES" -> viewmodel.updateDwelling(5, tileId)
                     }
                 }
+                if (t == "WOOD") {
+                    when (a) {
+                        "STINK" -> viewmodel.updateDwelling(6, tileId)
+                        "SMOKE" -> viewmodel.updateDwelling(7, tileId)
+                    }
+                }
+            }
+        }*/
+
+    /*        viewmodel.getSoundChitsByType()
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewmodel.advice.observe(viewLifecycleOwner) { it ->
+                    sound = it.toMutableList()
+                    sound.removeAt(24)
+                    sound.removeAt(25)
+                    sound.shuffle()
+                    //sound.slice(1..4)
+                    for (s in sound) {
+                        ++tileId
+                        for (i in 1..4) {
+                            viewmodel.updateTileSound(s.id, tileId)
+                        }
+                        viewmodel.updateTileSound(24, tileId)
+                        for (i in 5..8) {
+                            viewmodel.updateTileSound(s.id, tileId)
+                        }
+                        viewmodel.updateTileSound(25, tileId)
+                    }
+                }
+
             }*/
-
-
-private fun setSoundChits() {
-    val soundList = requireContext().resources.getStringArray(R.array.name_advice_chits)
-    val m = soundList[23]
-    val c = soundList[24]
-    val list = soundList.slice(5..22) as MutableList<String>
-    list.shuffle()
-    var sound = list.slice(0..3) as MutableList<String>
-    sound.add(m)
-    sound.shuffle()
-    var tileId = 11
-    var type = "MOUNTAIN"
-    for (s in sound) {
-        viewmodel.updateSoundChits(s, type, tileId)
-        when (s) {
-            "ALTAR" -> viewmodel.updateDwelling(8, tileId)
-            "STATUE" -> viewmodel.updateDwelling(9, tileId)
-            "LAIR" -> viewmodel.updateDwelling(10, tileId)
-            "VAULT" -> viewmodel.updateDwelling(11, tileId)
-            "SHRINE" -> viewmodel.updateDwelling(12, tileId)
-            "CAIRNS" -> viewmodel.updateDwelling(13, tileId)
-            "HOARD" -> viewmodel.updateDwelling(14, tileId)
-            "POOL" -> viewmodel.updateDwelling(15, tileId)
-            "LOST\nCASTLE" -> viewmodel.updateDwelling(16, tileId)
-        }
-        ++tileId
-    }
-    println("CASTLE: $sound")
-    sound.clear()
-    sound = list.slice(5..8) as MutableList<String>
-    sound.add(c)
-    sound.shuffle()
-    type = "CAVE"
-    for (s in sound) {
-        viewmodel.updateSoundChits(s, type, tileId)
-        when (s) {
-            "ALTAR" -> viewmodel.updateDwelling(8, tileId)
-            "STATUE" -> viewmodel.updateDwelling(9, tileId)
-            "LAIR" -> viewmodel.updateDwelling(10, tileId)
-            "VAULT" -> viewmodel.updateDwelling(11, tileId)
-            "SHRINE" -> viewmodel.updateDwelling(12, tileId)
-            "CAIRNS" -> viewmodel.updateDwelling(13, tileId)
-            "HOARD" -> viewmodel.updateDwelling(14, tileId)
-            "POOL" -> viewmodel.updateDwelling(15, tileId)
-            "LOST\nCITY" -> viewmodel.updateDwelling(17, tileId)
-        }
-        ++tileId
-    }
-    println("CAVE: $sound")
-    //val sliceLostCastle = soundList.slice(9..13)
-    //val sliceLostCity = soundList.slice(14..18)
-}
-
 }

@@ -31,12 +31,8 @@ class TileRepository @Inject constructor(private val tileDao: TileDao) {
         tileDao.updateTileAdvice(advice, id)
     }
 
-    suspend fun updateSoundChits(sound: String, type: String, id: Int) {
-        tileDao.updateSoundChits(sound, type, id)
-    }
-
-    suspend fun updateDwelling(dwelling: Int, id: Int) {
-        tileDao.updateDwelling(dwelling, id)
+    suspend fun updateTileSound(sound: Int, id: Int) {
+        tileDao.updateTileSound(sound, id)
     }
 
     suspend fun deleteAllTiles() {

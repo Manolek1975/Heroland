@@ -27,6 +27,9 @@ interface TileDao {
     @Query("UPDATE tiles SET advice = :advice WHERE id = :id")
     suspend fun updateTileAdvice(advice: Int, id: Int)
 
+    @Query("UPDATE tiles SET sound = :sound WHERE id = :id")
+    suspend fun updateTileSound(sound: Int, id: Int)
+
     @Query("UPDATE tiles SET x = :x, y = :y WHERE id = :id")
     suspend fun updateTileCoords(x: Int, y: Int, id: Int)
 
