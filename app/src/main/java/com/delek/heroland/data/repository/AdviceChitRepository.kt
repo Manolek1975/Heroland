@@ -22,4 +22,9 @@ class AdviceChitRepository @Inject constructor(private val adviceChitDao: Advice
         return response.map { it.toDomain() }
     }
 
+    suspend fun getAdviceChitById(id: Int): AdviceChit {
+        val response: AdviceChitEntity = adviceChitDao.getAdviceChitById(id)
+        return response.toDomain()
+    }
+
 }

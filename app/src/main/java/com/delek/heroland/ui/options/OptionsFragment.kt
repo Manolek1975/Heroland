@@ -270,7 +270,6 @@ class OptionsFragment : Fragment() {
     private fun setSoundChits() {
         var tileID = 11
         val list = mutableListOf(6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23)
-        //val list = soundList
         list.shuffle()
         var sound = list.slice(0..3) as MutableList<Int>
         sound.add(24)

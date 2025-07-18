@@ -3,9 +3,11 @@ package com.delek.heroland.ui.tileMap
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.delek.heroland.data.repository.AdviceChitRepository
 import com.delek.heroland.data.repository.DwellingRepository
 import com.delek.heroland.data.repository.RoleRepository
 import com.delek.heroland.data.repository.TileRepository
+import com.delek.heroland.domain.model.AdviceChit
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Role
 import com.delek.heroland.domain.model.Tile
@@ -17,12 +19,14 @@ import javax.inject.Inject
 class TileMapViewModel @Inject constructor(
     private val roleRepository: RoleRepository,
     private val tileRepository: TileRepository,
-    private val dwellingRepository: DwellingRepository
+    private val dwellingRepository: DwellingRepository,
+    private val adviceRepository: AdviceChitRepository
 ): ViewModel() {
 
     val role = MutableLiveData<Role>()
     val tile = MutableLiveData<Tile>()
     val dwelling = MutableLiveData<Dwelling>()
+    val advice = MutableLiveData<AdviceChit>()
 
     fun getRoleById(id: Int) {
         viewModelScope.launch {
@@ -33,6 +37,12 @@ class TileMapViewModel @Inject constructor(
     fun getTileById(id: Int) {
         viewModelScope.launch {
             tile.value = tileRepository.getTileById(id)
+        }
+    }
+
+    fun getAdviceChitById(id: Int) {
+        viewModelScope.launch {
+            advice.value = adviceRepository.getAdviceChitById(id)
         }
     }
 

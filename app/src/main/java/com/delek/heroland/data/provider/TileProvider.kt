@@ -23,7 +23,7 @@ class TileProvider {
                         short[i],
                         image[i],
                         type[i],
-                        "",
+                        0,
                         "",
                         0,
                         false,

@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.delek.heroland.R
@@ -22,7 +20,6 @@ import com.delek.heroland.databinding.FragmentTileMapBinding
 import com.delek.heroland.databinding.LayoutDataBinding
 import com.google.android.material.textview.MaterialTextView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import java.lang.reflect.Field
 
 
@@ -44,74 +41,64 @@ class TileMapFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //Set Boxes
-        for (i in 1..45) {
-            val style = ContextThemeWrapper(requireContext(), R.style.Base_Theme_Box_Layout)
-            val box = MaterialTextView(style)
-            binding.boxLayout.addView(box)
-        }
-        val dm: DisplayMetrics = resources.displayMetrics
+        initUI()
+        initBoxes()
+/*        val dm: DisplayMetrics = resources.displayMetrics
         val x = dm.widthPixels
         val w = (x / 5) - 20 //margin 8*2 + width stroke 2*2
-        val t = 2F
-        //Set Tile
+        val t = 2F*/
+        binding.arrowBack.setOnClickListener {
+            findNavController().navigate(
+                TileMapFragmentDirections.actionNavTileMapToNavMap()
+            )
+        }
+    }
+
+    private fun initUI() {
         viewmodel.getTileById(args.id)
         viewmodel.tile.observe(viewLifecycleOwner) { tile ->
             binding.tileName.text = tile.name
-            val type = tile.type.first()
-            binding.adviceChit.text = getString(R.string.advice_chit, tile.advice, type)
             val id = getResId(tile.image, R.drawable::class.java)
             val bg = ContextCompat.getDrawable(requireContext(), id)
             binding.root.background = bg
-            if (tile.sound.isNotEmpty()) {
-                binding.soundChit.visibility = View.VISIBLE
-                binding.soundChit.text = getString(R.string.sound_chit, tile.sound)
-            }
-            if (tile.dwelling != 0) {
-            viewmodel.getDwellingById(tile.dwelling)
-            viewmodel.dwelling.observe(viewLifecycleOwner) { dwelling ->
-                    val idDwelling = getResId(dwelling.image, R.drawable::class.java)
-                    val bitmap = BitmapFactory.decodeResource(resources, idDwelling)
-                    val layout = fillDataAndGetBitmap(bitmap, dwelling.name)
-                    val scale = Bitmap.createScaledBitmap(layout, w, w, false)
-                    val image = BitmapDrawable(resources, scale)
-                    binding.boxLayout.getChildAt(6).background = image
-                    binding.boxLayout.getChildAt(6).translationX = t+2
-                    binding.boxLayout.getChildAt(6).translationY = t
-                }
-            }
-            binding.boxLayout.getChildAt(6).setOnClickListener {
-                findNavController().navigate(
-                    TileMapFragmentDirections.actionNavTileMapToMapDwelling(tile.dwelling)
-                )
-            }
+            placePlayer()
+            placeAdviceChit(tile.advice, tile.type.first())
+            println("ADVICE: ${tile.advice}")
         }
-        //Set Player
+    }
+
+    private fun placeAdviceChit(id: Int, type: Char) {
+        viewmodel.getAdviceChitById(id)
+        viewmodel.advice.observe(viewLifecycleOwner) { advice ->
+            binding.adviceChit.text = getString(R.string.advice_chit, advice.name, type)
+        }
+    }
+
+    private fun placePlayer() {
         val data = context?.getSharedPreferences("data", Context.MODE_PRIVATE)
         val roleId = data?.getInt("roleId", 0)
         viewmodel.getRoleById(roleId!!)
-        lifecycleScope.launch {
-            viewmodel.role.observe(viewLifecycleOwner) { role ->
-                val id = getResId(role.image, R.drawable::class.java)
-                val bitmap = BitmapFactory.decodeResource(resources, id)
-                val scale = Bitmap.createScaledBitmap(bitmap, w, w, false)
-                val image = BitmapDrawable(resources, scale)
-                binding.boxLayout.getChildAt(22).background = image
-/*              binding.boxLayout.getChildAt(22).translationX = 12F
-                binding.boxLayout.getChildAt(22).translationY = 12F*/
-            }
+        viewmodel.role.observe(viewLifecycleOwner) { role ->
+            val id = getResId(role.image, R.drawable::class.java)
+            val bitmap = BitmapFactory.decodeResource(resources, id)
+            val scale = Bitmap.createScaledBitmap(bitmap, 200, 200, false)
+            val image = BitmapDrawable(resources, scale)
+            binding.boxLayout.getChildAt(22).background = image
+            //binding.boxLayout.getChildAt(22).translationX = 12F
+            //binding.boxLayout.getChildAt(22).translationY = 12F
         }
         binding.boxLayout.getChildAt(22).setOnClickListener {
             findNavController().navigate(
                 TileMapFragmentDirections.actionNavTileMapToNavCharacter(roleId)
             )
         }
-        binding.arrowBack.setOnClickListener {
-            findNavController().navigate(
-                TileMapFragmentDirections.actionNavTileMapToNavMap()
-            )
+    }
 
-
+    private fun initBoxes() {
+        for (i in 1..45) {
+            val style = ContextThemeWrapper(requireContext(), R.style.Base_Theme_Box_Layout)
+            val box = MaterialTextView(style)
+            binding.boxLayout.addView(box)
         }
     }
 
