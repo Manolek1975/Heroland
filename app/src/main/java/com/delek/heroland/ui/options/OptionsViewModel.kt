@@ -100,9 +100,9 @@ class OptionsViewModel @Inject constructor(
         }
     }
 
-    fun getAdviceChitsByType() {
+    fun getAdviceChitsByType(type: String) {
         viewModelScope.launch {
-            advice.value = repoAdv.getAdviceChitsByType()
+            advice.value = repoAdv.getAdviceChitsByType(type)
         }
     }
 

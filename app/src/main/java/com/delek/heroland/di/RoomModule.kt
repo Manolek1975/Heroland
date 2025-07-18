@@ -105,5 +105,9 @@ object RoomModule {
     @Provides
     fun provideAdviceChitDao(db: HerolandDatabase) = db.getAdviceChitDao()
 
+    @Singleton
+    @Provides
+    fun provideSoundChitDao(db: HerolandDatabase) = db.getSoundChitDao()
+
 
 }

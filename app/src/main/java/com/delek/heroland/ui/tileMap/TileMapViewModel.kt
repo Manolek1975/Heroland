@@ -6,10 +6,12 @@ import androidx.lifecycle.viewModelScope
 import com.delek.heroland.data.repository.AdviceChitRepository
 import com.delek.heroland.data.repository.DwellingRepository
 import com.delek.heroland.data.repository.RoleRepository
+import com.delek.heroland.data.repository.SoundChitRepository
 import com.delek.heroland.data.repository.TileRepository
 import com.delek.heroland.domain.model.AdviceChit
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Role
+import com.delek.heroland.domain.model.SoundChit
 import com.delek.heroland.domain.model.Tile
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -20,13 +22,15 @@ class TileMapViewModel @Inject constructor(
     private val roleRepository: RoleRepository,
     private val tileRepository: TileRepository,
     private val dwellingRepository: DwellingRepository,
-    private val adviceRepository: AdviceChitRepository
+    private val adviceRepository: AdviceChitRepository,
+    private val soundRepository: SoundChitRepository
 ): ViewModel() {
 
     val role = MutableLiveData<Role>()
     val tile = MutableLiveData<Tile>()
     val dwelling = MutableLiveData<Dwelling>()
     val advice = MutableLiveData<AdviceChit>()
+    val sound = MutableLiveData<SoundChit>()
 
     fun getRoleById(id: Int) {
         viewModelScope.launch {
@@ -43,6 +47,12 @@ class TileMapViewModel @Inject constructor(
     fun getAdviceChitById(id: Int) {
         viewModelScope.launch {
             advice.value = adviceRepository.getAdviceChitById(id)
+        }
+    }
+
+    fun getSoundChitById(id: Int) {
+        viewModelScope.launch {
+            sound.value = soundRepository.getSoundChitById(id)
         }
     }
 

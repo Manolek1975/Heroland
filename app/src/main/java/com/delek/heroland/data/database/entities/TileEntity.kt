@@ -11,7 +11,7 @@ data class TileEntity(
     val image: String,
     val type: String,
     val advice: Int,
-    val sound: String,
+    val sound: Int,
     val dwelling: Int,
     val enchant: Boolean,
     val x: Int,

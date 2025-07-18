@@ -63,7 +63,17 @@ class TileMapFragment : Fragment() {
             binding.root.background = bg
             placePlayer()
             placeAdviceChit(tile.advice, tile.type.first())
-            println("ADVICE: ${tile.advice}")
+            if (tile.sound > 0) {
+                placeSoundChit(tile.sound)
+            }
+        }
+    }
+
+    private fun placeSoundChit(id: Int) {
+        viewmodel.getSoundChitById(id)
+        viewmodel.sound.observe(viewLifecycleOwner) { sound ->
+            binding.soundChit.visibility = View.VISIBLE
+            binding.soundChit.text = getString(R.string.advice_chit, sound.name, sound.num.toString())
         }
     }
 

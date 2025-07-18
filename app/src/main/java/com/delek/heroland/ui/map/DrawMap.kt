@@ -54,6 +54,7 @@ class DrawMap @Inject constructor(context: Context) : View(context) {
             restore()
         }
         invalidate()
+        db.close()
     }
 
     private fun setPaint() {

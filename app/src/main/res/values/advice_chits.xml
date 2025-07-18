@@ -7,109 +7,96 @@
         <item>DANK</item>
         <item>RUINS</item>
         <item>BONES</item>
-        <item>FLUTTER</item>
-        <item>FLUTTER</item>
-        <item>HOWL</item>
-        <item>HOWL</item>
-        <item>PATTER</item>
-        <item>PATTER</item>
-        <item>ROAR</item>
-        <item>ROAR</item>
-        <item>SLITHER</item>
-        <item>SLITHER</item>
-        <item>ALTAR</item>
-        <item>STATUE</item>
-        <item>LAIR</item>
-        <item>VAULT</item>
-        <item>SHRINE</item>
-        <item>CAIRNS</item>
-        <item>HOARD</item>
-        <item>POOL</item>
-        <item>LOST\nCASTLE</item>
-        <item>LOST\nCITY</item>
+        <item>STINK</item>
+        <item>SMOKE</item>
+        <item>DANK</item>
+        <item>RUINS</item>
+        <item>BONES</item>
+        <item>STINK</item>
+        <item>SMOKE</item>
+        <item>DANK</item>
+        <item>RUINS</item>
+        <item>BONES</item>
+        <item>STINK</item>
+        <item>SMOKE</item>
+        <item>DANK</item>
+        <item>RUINS</item>
+        <item>BONES</item>
     </string-array>
 
     <string-array name="type_advice_chits">
-        <item>A</item>
-        <item>A</item>
-        <item>A</item>
-        <item>A</item>
-        <item>A</item>
-        <item>S</item>
-        <item>S</item>
-        <item>S</item>
-        <item>S</item>
-        <item>S</item>
-        <item>S</item>
-        <item>S</item>
-        <item>S</item>
-        <item>S</item>
-        <item>S</item>
-        <item>T</item>
-        <item>T</item>
-        <item>T</item>
-        <item>T</item>
-        <item>T</item>
-        <item>T</item>
-        <item>T</item>
-        <item>T</item>
-        <item>L</item>
-        <item>L</item>
+        <item>V</item>
+        <item>V</item>
+        <item>V</item>
+        <item>V</item>
+        <item>V</item>
+        <item>W</item>
+        <item>W</item>
+        <item>W</item>
+        <item>W</item>
+        <item>W</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>C</item>
+        <item>C</item>
+        <item>C</item>
+        <item>C</item>
+        <item>C</item>
     </string-array>
 
-    <string-array name="num_advice_chits">
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>4</item>
-        <item>5</item>
-        <item>2</item>
-        <item>5</item>
-        <item>4</item>
-        <item>6</item>
-        <item>3</item>
-        <item>6</item>
+    <string-array name="dwelling_advice_chits">
         <item>1</item>
         <item>2</item>
         <item>3</item>
-        <item>3</item>
         <item>4</item>
+        <item>0</item>
+
         <item>5</item>
         <item>6</item>
-        <item>6</item>
-        <item>1</item>
-        <item>3</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
     </string-array>
 
-    <string-array name="image_advice_chits">
-        <item>t_stink</item>
-        <item>t_smoke</item>
-        <item>t_dank</item>
-        <item>t_ruins</item>
-        <item>t_bones</item>
-        <item>t_flutter</item>
-        <item>t_flutter</item>
-        <item>t_howl</item>
-        <item>t_howl</item>
-        <item>t_patter</item>
-        <item>t_patter</item>
-        <item>t_roar</item>
-        <item>t_roar</item>
-        <item>t_slither</item>
-        <item>t_slither</item>
-        <item>t_altar</item>
-        <item>t_statue</item>
-        <item>t_lair</item>
-        <item>t_vault</item>
-        <item>t_shrine</item>
-        <item>t_cairn</item>
-        <item>t_hoard</item>
-        <item>t_pool</item>
-        <item>t_lost_castle</item>
-        <item>t_lost_city</item>
+    <string-array name="monster_advice_chits">
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
     </string-array>
+
 </resources>

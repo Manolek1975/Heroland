@@ -11,10 +11,10 @@ class AdviceChitProvider {
             val advices: MutableList<AdviceChitEntity> = mutableListOf()
             val name = context.resources.getStringArray(R.array.name_advice_chits)
             val type = context.resources.getStringArray(R.array.type_advice_chits)
-            val num = context.resources.getStringArray(R.array.num_advice_chits)
-            val image = context.resources.getStringArray(R.array.image_advice_chits)
+            val dwelling = context.resources.getStringArray(R.array.dwelling_advice_chits)
+            val monster = context.resources.getStringArray(R.array.monster_advice_chits)
             for (i in name.indices) {
-                val advice = AdviceChitEntity(i + 1, name[i], type[i], num[i].toInt(), image[i], 0, 0)
+                val advice = AdviceChitEntity(i + 1, name[i], type[i], dwelling[i].toInt(), monster[i].toInt())
                 advices.add(advice)
             }
             return advices

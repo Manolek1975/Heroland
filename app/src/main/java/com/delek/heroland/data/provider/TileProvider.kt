@@ -24,7 +24,7 @@ class TileProvider {
                         image[i],
                         type[i],
                         0,
-                        "",
+                        0,
                         0,
                         false,
                         x[i].toInt(),

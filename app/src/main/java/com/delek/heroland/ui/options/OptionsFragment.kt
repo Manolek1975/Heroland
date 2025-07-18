@@ -251,7 +251,7 @@ class OptionsFragment : Fragment() {
         var tileId = 0
         var advice: MutableList<AdviceChit>
         for (i in 1..4) { // 4 groups of 5 tiles
-            viewmodel.getAdviceChitsByType()
+            viewmodel.getAdviceChitsByType("V")
             lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
                     viewmodel.advice.observe(viewLifecycleOwner) { it ->
@@ -269,10 +269,10 @@ class OptionsFragment : Fragment() {
 
     private fun setSoundChits() {
         var tileID = 11
-        val list = mutableListOf(6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23)
+        val list = mutableListOf(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18)
         list.shuffle()
         var sound = list.slice(0..3) as MutableList<Int>
-        sound.add(24)
+        sound.add(19)
         sound.shuffle()
         for(s in sound){
             viewmodel.updateTileSound(s, tileID)
@@ -281,7 +281,7 @@ class OptionsFragment : Fragment() {
         println("CASTLE: $sound")
         sound.clear()
         sound = list.slice(4..7) as MutableList<Int>
-        sound.add(25)
+        sound.add(20)
         sound.shuffle()
         for(s in sound){
             viewmodel.updateTileSound(s, tileID)
