@@ -2,6 +2,7 @@ package com.delek.heroland.ui.settings
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.media.AudioManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -46,19 +47,19 @@ class SettingsFragment : Fragment() {
     private val binding get() = _binding!!
     private var initial: Boolean = true
     private lateinit var context: Context
+    private lateinit var data: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        //val settingsViewModel = ViewModelProvider(this)[SettingsViewModel::class.java]
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        data = requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
         context = requireContext()
         getValues()
         initUI()
 
-        return root
+        return binding.root
     }
 
     private fun initUI() {
@@ -139,7 +140,7 @@ class SettingsFragment : Fragment() {
         dialogBuilder.setMessage("Creating new game, ALL data for the current game will be deleted. Do you want to continue?")
         dialogBuilder.setNegativeButton("NO") { _, _ -> }
         dialogBuilder.setPositiveButton("DELETE") { _, _: Int ->
-            viewModel.deletePlayers()
+            data.edit().putInt("role_id", 0).apply()
             viewModel.deleteTiles()
             viewModel.deletePrimaryKeyIndex()
             val i = Intent(activity, MainActivity::class.java)

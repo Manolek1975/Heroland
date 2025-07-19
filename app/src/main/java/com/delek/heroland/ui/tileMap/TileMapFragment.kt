@@ -1,6 +1,7 @@
 package com.delek.heroland.ui.tileMap
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
@@ -30,8 +31,9 @@ class TileMapFragment : Fragment() {
 
     private var _binding: FragmentTileMapBinding? = null
     private val binding get() = _binding!!
-    private val args: TileMapFragmentArgs by navArgs()
     private val viewmodel: TileMapViewModel by viewModels()
+    private val args: TileMapFragmentArgs by navArgs()
+    private lateinit var data: SharedPreferences
     private var w: Int = 0
 
     override fun onCreateView(
@@ -39,6 +41,7 @@ class TileMapFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentTileMapBinding.inflate(inflater, container, false)
+        data = requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
         initUI()
         return binding.root
     }
@@ -61,12 +64,10 @@ class TileMapFragment : Fragment() {
             val id = getResId(tile.image, R.drawable::class.java)
             val bg = ContextCompat.getDrawable(requireContext(), id)
             binding.root.background = bg
-
             placeAdviceChit(tile.advice, tile.type.first())
             if (tile.sound > 0) {
                 placeSoundChit(tile.sound)
             }
-            placePlayer()
         }
     }
 
@@ -79,9 +80,13 @@ class TileMapFragment : Fragment() {
     }
 
     private fun placeAdviceChit(id: Int, type: Char) {
+        val dwelling = data.getInt("start_dwelling", 0)
         viewmodel.getAdviceChitById(id)
         viewmodel.advice.observe(viewLifecycleOwner) { advice ->
             binding.adviceChit.text = getString(R.string.advice_chit, advice.name, type)
+            if(advice.dwelling == dwelling){
+                placePlayer()
+            }
         }
     }
 
@@ -99,9 +104,8 @@ class TileMapFragment : Fragment() {
     }
 
     private fun placePlayer() {
-        val data = context?.getSharedPreferences("data", Context.MODE_PRIVATE)
-        val roleId = data?.getInt("roleId", 0)
-        viewmodel.getRoleById(roleId!!)
+        val roleId = data.getInt("role_id", 0)
+        viewmodel.getRoleById(roleId)
         viewmodel.role.observe(viewLifecycleOwner) { role ->
             val id = getResId(role.image, R.drawable::class.java)
             val bitmap = BitmapFactory.decodeResource(resources, id)

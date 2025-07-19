@@ -1,5 +1,7 @@
 package com.delek.heroland.ui.home
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +23,7 @@ class HomeFragment : Fragment() {
     private val homeViewModel: HomeViewModel by viewModels()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private lateinit var data: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +31,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        data = requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
         initUI()
         return binding.root
     }
@@ -40,8 +44,8 @@ class HomeFragment : Fragment() {
         binding.root.setOnClickListener {
             homeViewModel.getPlayers()
             lifecycleScope.launch {
-                homeViewModel.playerList.observe(viewLifecycleOwner) { players ->
-                    if (players.isEmpty()) {
+                homeViewModel.playerList.observe(viewLifecycleOwner) {
+                    if (data.getInt("roleId", 0) == 0) {
                         findNavController().navigate(
                             HomeFragmentDirections.actionNavHomeToNavRoleSelect()
                         )

@@ -1,6 +1,7 @@
 package com.delek.heroland.ui.options
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,7 +21,6 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.delek.heroland.R
-import com.delek.heroland.data.database.entities.PlayerEntity
 import com.delek.heroland.databinding.FragmentOptionsBinding
 import com.delek.heroland.domain.model.AdviceChit
 import com.delek.heroland.domain.model.Dwelling
@@ -36,6 +36,7 @@ class OptionsFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewmodel: OptionsViewModel by viewModels()
     private val args: OptionsFragmentArgs by navArgs()
+    private lateinit var data: SharedPreferences
     private lateinit var typeAdapter: TypeAdapter
     private lateinit var spellAdapter: SpellAdapter
     private lateinit var vpAdapter: VictoryPointsAdapter
@@ -49,6 +50,7 @@ class OptionsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentOptionsBinding.inflate(inflater, container, false)
+        data = requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
         initUI()
         return binding.root
     }
@@ -105,7 +107,6 @@ class OptionsFragment : Fragment() {
         val spellList = mutableListOf<Spell>()
         viewmodel.getRole(args.id)
         viewmodel.getStartSpellTypes(args.id)
-
         typeAdapter = TypeAdapter(onItemSelected = {
             typeId = it.typeId
             viewmodel.getSpellsByType(typeId)
@@ -237,14 +238,8 @@ class OptionsFragment : Fragment() {
     }
 
     private fun setPlayer() {
-        val data = requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
-        data.edit().putInt("roleId", args.id).apply()
-        viewmodel.insertPlayer(
-            PlayerEntity(
-                0, "Player1", args.id, dwellingSelected,
-                0, 0, 0, 0, 0
-            )
-        )
+        data.edit().putInt("role_id", args.id).apply()
+        data.edit().putInt("start_dwelling", dwellingSelected).apply()
     }
 
     private fun setAdviceChits() {
@@ -292,55 +287,4 @@ class OptionsFragment : Fragment() {
         //val sliceLostCity = soundList.slice(14..18)
     }
 
-    /*        val tileType = requireContext().resources.getStringArray(R.array.tile_types)
-        val adviceChits = requireContext().resources.getStringArray(R.array.name_advice_chits)
-        val type = tileType.distinct()
-        var tileId = 0
-        val advice = adviceChits.slice(0..4) as MutableList<String>
-        for (t in type) {
-            advice.shuffle()
-            for (a in advice) {
-                ++tileId
-                viewmodel.updateAdviceChits(a, t, tileId)
-                if (t == "VALLEY") {
-                    when (a) {
-                        "STINK" -> viewmodel.updateDwelling(1, tileId)
-                        "SMOKE" -> viewmodel.updateDwelling(2, tileId)
-                        "RUINS" -> viewmodel.updateDwelling(3, tileId)
-                        "DANK"  -> viewmodel.updateDwelling(4, tileId)
-                        "BONES" -> viewmodel.updateDwelling(5, tileId)
-                    }
-                }
-                if (t == "WOOD") {
-                    when (a) {
-                        "STINK" -> viewmodel.updateDwelling(6, tileId)
-                        "SMOKE" -> viewmodel.updateDwelling(7, tileId)
-                    }
-                }
-            }
-        }*/
-
-    /*        viewmodel.getSoundChitsByType()
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewmodel.advice.observe(viewLifecycleOwner) { it ->
-                    sound = it.toMutableList()
-                    sound.removeAt(24)
-                    sound.removeAt(25)
-                    sound.shuffle()
-                    //sound.slice(1..4)
-                    for (s in sound) {
-                        ++tileId
-                        for (i in 1..4) {
-                            viewmodel.updateTileSound(s.id, tileId)
-                        }
-                        viewmodel.updateTileSound(24, tileId)
-                        for (i in 5..8) {
-                            viewmodel.updateTileSound(s.id, tileId)
-                        }
-                        viewmodel.updateTileSound(25, tileId)
-                    }
-                }
-
-            }*/
 }
