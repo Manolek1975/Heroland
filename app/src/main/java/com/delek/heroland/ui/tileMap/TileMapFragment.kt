@@ -83,10 +83,26 @@ class TileMapFragment : Fragment() {
         val dwelling = data.getInt("start_dwelling", 0)
         viewmodel.getAdviceChitById(id)
         viewmodel.advice.observe(viewLifecycleOwner) { advice ->
+            println(advice)
             binding.adviceChit.text = getString(R.string.advice_chit, advice.name, type)
             if(advice.dwelling == dwelling){
                 placePlayer()
             }
+            if(advice.dwelling > 0) {
+                placeDwelling(advice.dwelling)
+            }
+        }
+    }
+
+    private fun placeDwelling(advice: Int) {
+        viewmodel.getDwellingById(advice)
+        viewmodel.dwelling.observe(viewLifecycleOwner) { dwelling ->
+            val dwellingId = getResId(dwelling.image, R.drawable::class.java)
+            val bitmap = BitmapFactory.decodeResource(resources, dwellingId)
+            val layout = fillDataAndGetBitmap(bitmap, dwelling.name)
+            val scale = Bitmap.createScaledBitmap(layout, w, w, false)
+            val image = BitmapDrawable(resources, scale)
+            binding.boxLayout.getChildAt(6).background = image
         }
     }
 

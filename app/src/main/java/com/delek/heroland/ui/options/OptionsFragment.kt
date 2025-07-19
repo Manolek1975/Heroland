@@ -244,6 +244,7 @@ class OptionsFragment : Fragment() {
 
     private fun setAdviceChits() {
         var tileId = 0
+        var group = 0
         var advice: MutableList<AdviceChit>
         for (i in 1..4) { // 4 groups of 5 tiles
             viewmodel.getAdviceChitsByType("V")
@@ -254,8 +255,9 @@ class OptionsFragment : Fragment() {
                         advice.shuffle()
                         advice.forEach {
                             ++tileId
-                            viewmodel.updateTileAdvice(it.id, tileId)
+                            viewmodel.updateTileAdvice(it.id + group, tileId)
                         }
+                        group = i * 5
                     }
                 }
             }

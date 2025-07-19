@@ -10,12 +10,10 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.delek.heroland.R
 import com.delek.heroland.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -42,19 +40,14 @@ class HomeFragment : Fragment() {
         binding.textHome.blink()
         homeViewModel.onCreate()
         binding.root.setOnClickListener {
-            homeViewModel.getPlayers()
-            lifecycleScope.launch {
-                homeViewModel.playerList.observe(viewLifecycleOwner) {
-                    if (data.getInt("roleId", 0) == 0) {
-                        findNavController().navigate(
-                            HomeFragmentDirections.actionNavHomeToNavRoleSelect()
-                        )
-                    } else {
-                        findNavController().navigate(
-                            HomeFragmentDirections.actionNavHomeToNavMap()
-                        )
-                    }
-                }
+            if (data.getInt("role_id", 0) == 0) {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionNavHomeToNavRoleSelect()
+                )
+            } else {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionNavHomeToNavMap()
+                )
             }
         }
     }
