@@ -15,4 +15,11 @@ interface GroupDao {
     @Query("SELECT * FROM groups")
     suspend fun getGroup(): List<GroupEntity>
 
+    @Query("SELECT * FROM groups WHERE id = :id")
+    suspend fun getGroupById(id: Int): GroupEntity
+
+    @Query("SELECT * FROM groups WHERE start = :start")
+    suspend fun getGroupByStart(start: Int): GroupEntity
+
+
 }

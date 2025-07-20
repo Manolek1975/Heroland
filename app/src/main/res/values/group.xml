@@ -17,6 +17,22 @@
         <item>Warlock</item>
     </string-array>
 
+    <string-array name="start_group">
+        <item>0</item>
+        <item>0</item>
+        <item>3</item>
+        <item>0</item>
+        <item>4</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </string-array>
+
     <string-array name="role_id_role_natives">
         <!-- AMAZON -->
         <item>1</item>

@@ -138,7 +138,9 @@ class TileMapFragment : Fragment() {
             val layout = fillDataAndGetBitmap(bitmap, dwelling.name)
             val scale = Bitmap.createScaledBitmap(layout, w, w, false)
             val image = BitmapDrawable(resources, scale)
-            binding.boxLayout.getChildAt(num*6).background = image
+            var cell = num * 6 //Place num in grid
+            if (num > 3) cell += 2 //Adjust to no place in borders
+            binding.boxLayout.getChildAt(cell).background = image
         }
     }
 
@@ -157,15 +159,14 @@ class TileMapFragment : Fragment() {
                 TileMapFragmentDirections.actionNavTileMapToNavCharacter(roleId)
             )
         }
+
     }
 
     private fun fillDataAndGetBitmap(image: Bitmap, title: String): Bitmap {
         val layoutInflater: LayoutInflater = LayoutInflater.from(requireContext())
         val layoutDataBinding = LayoutDataBinding.inflate(layoutInflater, null, false)
-        // Fill in your image data into layout
         layoutDataBinding.ivBackground.setImageBitmap(image)
         layoutDataBinding.tvCenterText.text = title
-        // Get Bitmap of your layout
         val outputBitmap = getBitmapFromView(layoutDataBinding.root)
         return outputBitmap
     }
@@ -197,6 +198,7 @@ class TileMapFragment : Fragment() {
         }
     }
 
+    //Function GlobalScope to get data from observer
     private fun side() {
         val cell = binding.boxLayout.getChildAt(0)
         val vto = cell.viewTreeObserver
@@ -205,7 +207,7 @@ class TileMapFragment : Fragment() {
                 cell.viewTreeObserver
                 w = cell.measuredWidth
                 cell.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                println(w)
+                //println(w)
             }
         })
     }
@@ -216,8 +218,3 @@ class TileMapFragment : Fragment() {
     }
 
 }
-
-/*        val dm: DisplayMetrics = resources.displayMetrics
-        val x = dm.widthPixels
-        val w = (x / 5) - 20 //margin 8*2 + width stroke 2*2
-        val t = 2F*/

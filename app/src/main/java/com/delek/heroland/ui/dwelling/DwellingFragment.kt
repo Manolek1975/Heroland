@@ -27,7 +27,15 @@ class DwellingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDwellingBinding.inflate(inflater, container, false)
+        initUI()
         return binding.root
+    }
+
+    private fun initUI() {
+        viewmodel.getGroupByStart(args.id)
+        viewmodel.group.observe(viewLifecycleOwner) { group ->
+            binding.groupName.text = group.name
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

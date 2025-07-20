@@ -16,4 +16,16 @@ class GroupRepository @Inject constructor(private val groupDao: GroupDao) {
         val response: List<GroupEntity> = groupDao.getGroup()
         return response.map { it.toDomain() }
     }
+
+    suspend fun getGroupById(id: Int): Group {
+        val response: GroupEntity = groupDao.getGroupById(id)
+        return response.toDomain()
+    }
+
+    suspend fun getGroupByStart(start: Int): Group {
+        val response: GroupEntity = groupDao.getGroupByStart(start)
+        return response.toDomain()
+    }
+
+
 }
