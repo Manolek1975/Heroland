@@ -9,7 +9,7 @@ import com.delek.heroland.domain.model.Advantage
 import com.delek.heroland.domain.model.Armor
 import com.delek.heroland.domain.model.Chit
 import com.delek.heroland.domain.model.Dwelling
-import com.delek.heroland.domain.model.Natives
+import com.delek.heroland.domain.model.NativeGroup
 import com.delek.heroland.domain.model.Role
 import com.delek.heroland.domain.model.StartSpell
 import com.delek.heroland.domain.model.Weapon
@@ -30,10 +30,10 @@ class DetailViewModel @Inject constructor(
     val weapon = MutableLiveData<List<Weapon>>()
     val armor = MutableLiveData<List<Armor>>()
     val startSpell = MutableLiveData<List<StartSpell>>()
-    val allyNatives = MutableLiveData<List<Natives>>()
-    val friendlyNatives = MutableLiveData<List<Natives>>()
-    val unfriendlyNatives = MutableLiveData<List<Natives>>()
-    val enemyNatives = MutableLiveData<List<Natives>>()
+    val allyNatives = MutableLiveData<List<NativeGroup>>()
+    val friendlyNatives = MutableLiveData<List<NativeGroup>>()
+    val unfriendlyNatives = MutableLiveData<List<NativeGroup>>()
+    val enemyNatives = MutableLiveData<List<NativeGroup>>()
 
     fun getRoles(id: Int) {
         viewModelScope.launch {

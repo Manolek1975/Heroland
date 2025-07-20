@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey
         childColumns = arrayOf("role_id"), onDelete = ForeignKey.CASCADE
     ),
     ForeignKey(
-        entity = NativesEntity::class, parentColumns = arrayOf("id"),
+        entity = NativeGroupEntity::class, parentColumns = arrayOf("id"),
         childColumns = arrayOf("native_id"), onDelete = ForeignKey.CASCADE
     )
 ]
