@@ -4,7 +4,7 @@ import com.delek.heroland.data.database.dao.RoleDao
 import com.delek.heroland.data.database.entities.ArmorEntity
 import com.delek.heroland.data.database.entities.ChitEntity
 import com.delek.heroland.data.database.entities.DwellingEntity
-import com.delek.heroland.data.database.entities.NativeGroupEntity
+import com.delek.heroland.data.database.entities.GroupEntity
 import com.delek.heroland.data.database.entities.RoleAdvantageEntity
 import com.delek.heroland.data.database.entities.RoleEntity
 import com.delek.heroland.data.database.entities.StartSpellEntity
@@ -12,7 +12,7 @@ import com.delek.heroland.data.database.entities.WeaponEntity
 import com.delek.heroland.domain.model.Armor
 import com.delek.heroland.domain.model.Chit
 import com.delek.heroland.domain.model.Dwelling
-import com.delek.heroland.domain.model.NativeGroup
+import com.delek.heroland.domain.model.Group
 import com.delek.heroland.domain.model.Role
 import com.delek.heroland.domain.model.RoleAdvantage
 import com.delek.heroland.domain.model.StartSpell
@@ -75,23 +75,23 @@ class RoleRepository @Inject constructor(private val roleDao: RoleDao) {
         return response.map { it.toDomain() }
     }
 
-    suspend fun getAllyNatives(id: Int): List<NativeGroup> {
-        val response: List<NativeGroupEntity> = roleDao.getAllyNatives(id)
+    suspend fun getAllyNatives(id: Int): List<Group> {
+        val response: List<GroupEntity> = roleDao.getAllyNatives(id)
         return response.map { it.toDomain() }
     }
 
-    suspend fun getFriendlyNatives(id: Int): List<NativeGroup> {
-        val response: List<NativeGroupEntity> = roleDao.getFriendlyNatives(id)
+    suspend fun getFriendlyNatives(id: Int): List<Group> {
+        val response: List<GroupEntity> = roleDao.getFriendlyNatives(id)
         return response.map { it.toDomain() }
     }
 
-    suspend fun getUnfriendNatives(id: Int): List<NativeGroup> {
-        val response: List<NativeGroupEntity> = roleDao.getUnfriendlyNatives(id)
+    suspend fun getUnfriendNatives(id: Int): List<Group> {
+        val response: List<GroupEntity> = roleDao.getUnfriendlyNatives(id)
         return response.map { it.toDomain() }
     }
 
-    suspend fun getEnemyNatives(id: Int): List<NativeGroup> {
-        val response: List<NativeGroupEntity> = roleDao.getEnemyNatives(id)
+    suspend fun getEnemyNatives(id: Int): List<Group> {
+        val response: List<GroupEntity> = roleDao.getEnemyNatives(id)
         return response.map { it.toDomain() }
     }
 

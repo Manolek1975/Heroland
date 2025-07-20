@@ -8,7 +8,7 @@ import com.delek.heroland.data.database.dao.ArmorDao
 import com.delek.heroland.data.database.dao.ChitDao
 import com.delek.heroland.data.database.dao.DwellingDao
 import com.delek.heroland.data.database.dao.NativeDao
-import com.delek.heroland.data.database.dao.NativeGroupDao
+import com.delek.heroland.data.database.dao.GroupDao
 import com.delek.heroland.data.database.dao.PlayerDao
 import com.delek.heroland.data.database.dao.RoleAdvantageDao
 import com.delek.heroland.data.database.dao.RoleArmorDao
@@ -31,7 +31,7 @@ import com.delek.heroland.data.database.entities.ArmorEntity
 import com.delek.heroland.data.database.entities.ChitEntity
 import com.delek.heroland.data.database.entities.DwellingEntity
 import com.delek.heroland.data.database.entities.NativeEntity
-import com.delek.heroland.data.database.entities.NativeGroupEntity
+import com.delek.heroland.data.database.entities.GroupEntity
 import com.delek.heroland.data.database.entities.PlayerEntity
 import com.delek.heroland.data.database.entities.RoleAdvantageEntity
 import com.delek.heroland.data.database.entities.RoleArmorEntity
@@ -64,7 +64,7 @@ import com.delek.heroland.data.database.entities.WeaponEntity
         RoleArmorEntity::class,
         StartSpellEntity::class,
         NativeEntity::class,
-        NativeGroupEntity::class,
+        GroupEntity::class,
         RoleNativesEntity::class,
         SpellEntity::class,
         SpellTypeEntity::class,
@@ -90,8 +90,8 @@ abstract class HerolandDatabase : RoomDatabase() {
     abstract fun getArmorDao(): ArmorDao
     abstract fun getRoleArmorDao(): RoleArmorDao
     abstract fun getStartSpellDao(): StartSpellDao
+    abstract fun getGroupDao(): GroupDao
     abstract fun getNativeDao(): NativeDao
-    abstract fun getNativeGroupDao(): NativeGroupDao
     abstract fun getRoleNativesDao(): RoleNativesDao
     abstract fun getSpellDao(): SpellDao
     abstract fun getSpellTypeDao(): SpellTypeDao

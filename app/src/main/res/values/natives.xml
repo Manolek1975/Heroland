@@ -2,17 +2,147 @@
 <resources>
 
     <string-array name="name_natives">
-        <item>KNIGHT</item>
-        <item>GUARD</item>
-        <item>AXEMAN</item>
-        <item>PIKEMAN</item>
-        <item>SOLDIER</item>
-        <item>CROSSBOWMAN</item>
-        <item>LANCER</item>
+        <item>BHQ</item>
+        <item>B1</item>
+        <item>B2</item>
+        <item>B3</item>
+        <item>B4</item>
+        <item>B5</item>
+        <item>CHQ</item>
+        <item>C1</item>
+        <item>C2</item>
+        <item>C3</item>
+        <item>C4</item>
+        <item>C5</item>
+        <item>C6</item>
+        <item>GHQ</item>
+        <item>G1</item>
+        <item>G2</item>
+        <item>LHQ</item>
+        <item>L1</item>
+        <item>L2</item>
+        <item>L3</item>
+        <item>OHQ</item>
+        <item>O1</item>
+        <item>O2</item>
+        <item>O3</item>
+        <item>PHQ</item>
+        <item>P1</item>
+        <item>P2</item>
+        <item>RHQ</item>
+        <item>R1</item>
+        <item>R2</item>
+        <item>R3</item>
+        <item>R4</item>
+        <item>R5</item>
+        <item>R6</item>
+        <item>R7</item>
+        <item>SHQ</item>
+        <item>S1</item>
+        <item>S2</item>
+        <item>S3</item>
+        <item>WHQ</item>
+        <item>W1</item>
+        <item>W2</item>
+    </string-array>
+
+    <string-array name="type_natives">
         <item>RAIDER</item>
-        <item>ARCHER</item>
-        <item>SWORDSMAN</item>
+        <item>RAIDER</item>
+        <item>RAIDER</item>
+        <item>RAIDER</item>
+        <item>RAIDER</item>
+        <item>RAIDER</item>
+
+        <item>SOLDIER</item>
+        <item>PIKEMAN</item>
+        <item>PIKEMAN</item>
+        <item>PIKEMAN</item>
+        <item>GUARD</item>
+        <item>CROSSBOWMAN</item>
+        <item>SOLDIER</item>
+
+        <item>GUARD</item>
+        <item>GUARD</item>
+        <item>GUARD</item>
+
+        <item>LANCER</item>
+        <item>LANCER</item>
+        <item>LANCER</item>
+        <item>LANCER</item>
+
+        <item>KNIGHT</item>
+        <item>KNIGHT</item>
+        <item>KNIGHT</item>
+        <item>KNIGHT</item>
+
+        <item>SOLDIER</item>
+        <item>SOLDIER</item>
+        <item>SOLDIER</item>
+        <item>SOLDIER</item>
+
         <item>ASSASSIN</item>
+        <item>AXEMAN</item>
+        <item>AXEMAN</item>
+        <item>SOLDIER</item>
+        <item>ARCHER</item>
+        <item>ASSASSIN</item>
+        <item>SWORDSMAN</item>
+        <item>SWORDSMAN</item>
+
+        <item>GUARD</item>
+        <item>PIKEMAN</item>
+        <item>PIKEMAN</item>
+        <item>CROSSBOWMAN</item>
+
+        <item>ARCHER</item>
+        <item>ARCHER</item>
+        <item>ARCHER</item>
+    </string-array>
+
+    <string-array name="group_natives">
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        <item>7</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>9</item>
+        <item>9</item>
+        <item>9</item>
     </string-array>
 
 

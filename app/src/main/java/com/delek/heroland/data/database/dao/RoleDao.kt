@@ -7,7 +7,7 @@ import androidx.room.Query
 import com.delek.heroland.data.database.entities.ArmorEntity
 import com.delek.heroland.data.database.entities.ChitEntity
 import com.delek.heroland.data.database.entities.DwellingEntity
-import com.delek.heroland.data.database.entities.NativeGroupEntity
+import com.delek.heroland.data.database.entities.GroupEntity
 import com.delek.heroland.data.database.entities.RoleAdvantageEntity
 import com.delek.heroland.data.database.entities.RoleEntity
 import com.delek.heroland.data.database.entities.StartSpellEntity
@@ -62,29 +62,29 @@ interface RoleDao {
             "WHERE role_armor.role_id = :id")
     suspend fun getArmorByRole(id: Int): List<ArmorEntity>
 
-    @Query("SELECT native_group.* FROM native_group INNER JOIN role_natives " +
-            "ON native_group.id = role_natives.native_id " +
+    @Query("SELECT groups.* FROM groups INNER JOIN role_natives " +
+            "ON groups.id = role_natives.native_id " +
             "WHERE role_natives.role_id = :id " +
             "AND role_natives.relation = '1'")
-    suspend fun getAllyNatives(id: Int): List<NativeGroupEntity>
+    suspend fun getAllyNatives(id: Int): List<GroupEntity>
 
-    @Query("SELECT native_group.* FROM native_group INNER JOIN role_natives " +
-            "ON native_group.id = role_natives.native_id " +
+    @Query("SELECT groups.* FROM groups INNER JOIN role_natives " +
+            "ON groups.id = role_natives.native_id " +
             "WHERE role_natives.role_id = :id " +
             "AND role_natives.relation = '2'")
-    suspend fun getFriendlyNatives(id: Int): List<NativeGroupEntity>
+    suspend fun getFriendlyNatives(id: Int): List<GroupEntity>
 
-    @Query("SELECT native_group.* FROM native_group INNER JOIN role_natives " +
-            "ON native_group.id = role_natives.native_id " +
+    @Query("SELECT groups.* FROM groups INNER JOIN role_natives " +
+            "ON groups.id = role_natives.native_id " +
             "WHERE role_natives.role_id = :id " +
             "AND role_natives.relation = '4'")
-    suspend fun getUnfriendlyNatives(id: Int): List<NativeGroupEntity>
+    suspend fun getUnfriendlyNatives(id: Int): List<GroupEntity>
 
-    @Query("SELECT native_group.* FROM native_group INNER JOIN role_natives " +
-            "ON native_group.id = role_natives.native_id " +
+    @Query("SELECT groups.* FROM groups INNER JOIN role_natives " +
+            "ON groups.id = role_natives.native_id " +
             "WHERE role_natives.role_id = :id " +
             "AND role_natives.relation = '5'")
-    suspend fun getEnemyNatives(id: Int): List<NativeGroupEntity>
+    suspend fun getEnemyNatives(id: Int): List<GroupEntity>
 
     @Query("SELECT roles.* FROM roles INNER JOIN players " +
             "ON roles.id = players.role ")

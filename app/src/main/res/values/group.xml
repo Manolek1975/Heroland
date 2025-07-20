@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="name_native_group">
+    <string-array name="name_group">
         <item>BASHKARS</item>
         <item>COMPANY</item>
         <item>GUARD</item>

@@ -4,8 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "native_group")
-data class NativeGroupEntity(
+@Entity(tableName = "groups")
+data class GroupEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo("id") val id: Int,
     @ColumnInfo("name") val name: String,
