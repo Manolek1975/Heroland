@@ -6,14 +6,14 @@ import com.delek.heroland.domain.model.NativeGroup
 import com.delek.heroland.domain.model.toDomain
 import javax.inject.Inject
 
-class NativesGroupRepository @Inject constructor(private val nativeGroupDao: NativeGroupDao) {
+class NativeGroupRepository @Inject constructor(private val nativeGroupDao: NativeGroupDao) {
 
     suspend fun insertNatives(natives: List<NativeGroupEntity>) {
-        nativeGroupDao.insertNatives(natives)
+        nativeGroupDao.insertNativeGroup(natives)
     }
 
     suspend fun getNatives(): List<NativeGroup> {
-        val response: List<NativeGroupEntity> = nativeGroupDao.getNatives()
+        val response: List<NativeGroupEntity> = nativeGroupDao.getNativeGroup()
         return response.map { it.toDomain() }
     }
 }

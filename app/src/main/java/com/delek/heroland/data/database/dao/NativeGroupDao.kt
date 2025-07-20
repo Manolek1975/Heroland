@@ -10,9 +10,9 @@ import com.delek.heroland.data.database.entities.NativeGroupEntity
 interface NativeGroupDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertNatives(natives: List<NativeGroupEntity>)
+    suspend fun insertNativeGroup(natives: List<NativeGroupEntity>)
 
     @Query("SELECT * FROM native_group")
-    suspend fun getNatives(): List<NativeGroupEntity>
+    suspend fun getNativeGroup(): List<NativeGroupEntity>
 
 }

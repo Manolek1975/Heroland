@@ -9,6 +9,7 @@ import com.delek.heroland.domain.model.AdviceChit
 import com.delek.heroland.domain.model.Armor
 import com.delek.heroland.domain.model.Chit
 import com.delek.heroland.domain.model.Dwelling
+import com.delek.heroland.domain.model.Native
 import com.delek.heroland.domain.model.NativeGroup
 import com.delek.heroland.domain.model.Player
 import com.delek.heroland.domain.model.Role
@@ -31,6 +32,7 @@ import com.delek.heroland.domain.usecase.GetArmorUseCase
 import com.delek.heroland.domain.usecase.GetChitsUseCase
 import com.delek.heroland.domain.usecase.GetDwellingsUseCase
 import com.delek.heroland.domain.usecase.GetNativeGroupUseCase
+import com.delek.heroland.domain.usecase.GetNativeUseCase
 import com.delek.heroland.domain.usecase.GetRoleAdvantagesUseCase
 import com.delek.heroland.domain.usecase.GetRoleArmorUseCase
 import com.delek.heroland.domain.usecase.GetRoleChitsUseCase
@@ -63,6 +65,7 @@ class HomeViewModel @Inject constructor(
     private val getArmorUseCase: GetArmorUseCase,
     private val getRoleArmorUseCase: GetRoleArmorUseCase,
     private val getStartSpellUseCase: GetStartSpellUseCase,
+    private val getNativeUseCase: GetNativeUseCase,
     private val getNativeGroupUseCase: GetNativeGroupUseCase,
     private val getRoleNativesUseCase: GetRoleNativesUseCase,
     private val getSpellUseCase: GetSpellUseCase,
@@ -87,7 +90,8 @@ class HomeViewModel @Inject constructor(
     private val roleWeaponList = MutableLiveData<RoleWeapon>()
     private val roleArmorList = MutableLiveData<RoleArmor>()
     private val startSpellList = MutableLiveData<StartSpell>()
-    private val nativesList = MutableLiveData<NativeGroup>()
+    private val nativeList = MutableLiveData<Native>()
+    private val nativesGroupList = MutableLiveData<NativeGroup>()
     private val roleNativesList = MutableLiveData<RoleNatives>()
     private val spellList = MutableLiveData<Spell>()
     private val spellTypeList = MutableLiveData<SpellType>()
@@ -148,9 +152,13 @@ class HomeViewModel @Inject constructor(
             if (startSpell.isNotEmpty()) {
                 startSpellList.postValue(startSpell[0])
             }
+            val native = getNativeUseCase()
+            if (native.isNotEmpty()) {
+                nativeList.postValue(native[0])
+            }
             val natives = getNativeGroupUseCase()
             if (natives.isNotEmpty()) {
-                nativesList.postValue(natives[0])
+                nativesGroupList.postValue(natives[0])
             }
             val roleNatives = getRoleNativesUseCase()
             if (roleNatives.isNotEmpty()) {

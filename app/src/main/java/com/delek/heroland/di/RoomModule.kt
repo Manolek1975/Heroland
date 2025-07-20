@@ -71,6 +71,10 @@ object RoomModule {
 
     @Singleton
     @Provides
+    fun provideNativeDao(db: HerolandDatabase) = db.getNativeDao()
+
+    @Singleton
+    @Provides
     fun provideNativeGroupDao(db: HerolandDatabase) = db.getNativeGroupDao()
 
     @Singleton
