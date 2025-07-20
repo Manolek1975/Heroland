@@ -12,8 +12,9 @@ class SoundChitProvider {
             val name = context.resources.getStringArray(R.array.name_sound_chits)
             val type = context.resources.getStringArray(R.array.type_sound_chits)
             val num = context.resources.getStringArray(R.array.num_sound_chits)
+            val treasure = context.resources.getStringArray(R.array.treasure_sound_chits)
             for (i in name.indices) {
-                val s = SoundChitEntity(i + 1, name[i], type[i], num[i].toInt(), 0, 0)
+                val s = SoundChitEntity(i + 1, name[i], type[i], num[i].toInt(), treasure[i].toInt(), 0)
                 sound.add(s)
             }
             return sound

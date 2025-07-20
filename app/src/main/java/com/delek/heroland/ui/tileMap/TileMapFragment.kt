@@ -83,7 +83,6 @@ class TileMapFragment : Fragment() {
         val dwelling = data.getInt("start_dwelling", 0)
         viewmodel.getAdviceChitById(id)
         viewmodel.advice.observe(viewLifecycleOwner) { advice ->
-            println(advice)
             binding.adviceChit.text = getString(R.string.advice_chit, advice.name, type)
             if(advice.dwelling == dwelling){
                 placePlayer()
@@ -102,8 +101,14 @@ class TileMapFragment : Fragment() {
             val layout = fillDataAndGetBitmap(bitmap, dwelling.name)
             val scale = Bitmap.createScaledBitmap(layout, w, w, false)
             val image = BitmapDrawable(resources, scale)
-            binding.boxLayout.getChildAt(6).background = image
+            binding.boxLayout.getChildAt(32).background = image
+            binding.boxLayout.getChildAt(32).setOnClickListener {
+                findNavController().navigate(
+                    TileMapFragmentDirections.actionNavTileMapToMapDwelling(dwelling.id)
+                )
+            }
         }
+
     }
 
     private fun placeSoundChit(id: Int) {
@@ -112,10 +117,28 @@ class TileMapFragment : Fragment() {
             binding.soundChit.visibility = View.VISIBLE
             binding.soundChit.text =
                 getString(R.string.advice_chit, sound.name, sound.num.toString())
-            if (sound.type == "T") {
+            if (sound.type == "T" || sound.type == "L") {
                 binding.soundChit.backgroundTintList =
                     ResourcesCompat.getColorStateList(resources, R.color.gold, null)
+                placeTreasureLocations(sound.treasure, sound.num)
             }
+            binding.boxLayout.getChildAt(6).setOnClickListener {
+                findNavController().navigate(
+                    TileMapFragmentDirections.actionNavTileMapToMapDwelling(sound.treasure)
+                )
+            }
+        }
+    }
+
+    private fun placeTreasureLocations(treasure: Int, num: Int) {
+        viewmodel.getDwellingById(treasure)
+        viewmodel.dwelling.observe(viewLifecycleOwner) { dwelling ->
+            val dwellingId = getResId(dwelling.image, R.drawable::class.java)
+            val bitmap = BitmapFactory.decodeResource(resources, dwellingId)
+            val layout = fillDataAndGetBitmap(bitmap, dwelling.name)
+            val scale = Bitmap.createScaledBitmap(layout, w, w, false)
+            val image = BitmapDrawable(resources, scale)
+            binding.boxLayout.getChildAt(num*6).background = image
         }
     }
 
