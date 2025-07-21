@@ -15,4 +15,8 @@ interface NativeDao {
 
     @Query("SELECT * FROM natives")
     suspend fun getNatives(): List<NativeEntity>
+
+    @Query("SELECT * FROM natives WHERE id = :id")
+    suspend fun getNativeById(id: Int): List<NativeEntity>
+
 }

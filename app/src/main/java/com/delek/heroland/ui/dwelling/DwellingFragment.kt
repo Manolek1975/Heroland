@@ -6,9 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import com.delek.heroland.databinding.FragmentDwellingBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DwellingFragment : Fragment() {
@@ -17,10 +22,11 @@ class DwellingFragment : Fragment() {
         fun newInstance() = DwellingFragment()
     }
 
-    private val viewmodel: DwellingViewModel by viewModels()
+    private val viewModel: DwellingViewModel by viewModels()
     private var _binding: FragmentDwellingBinding? = null
     private val binding get() = _binding!!
     private val args: DwellingFragmentArgs by navArgs()
+    private lateinit var adapter: NativeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,18 +38,36 @@ class DwellingFragment : Fragment() {
     }
 
     private fun initUI() {
-        viewmodel.getGroupByStart(args.id)
-        viewmodel.group.observe(viewLifecycleOwner) { group ->
-            binding.groupName.text = group.name
+        viewModel.getDwellingById(args.id)
+        viewModel.dwelling.observe(viewLifecycleOwner) { dwelling ->
+            binding.dwellingName.text = dwelling.name
         }
+        viewModel.getGroupByStart(args.id)
+        viewModel.group.observe(viewLifecycleOwner) { group ->
+            binding.groupName.text = group.name
+            adapter = NativeAdapter()
+            binding.rvNative.layoutManager = GridLayoutManager(context, 4)
+            binding.rvNative.adapter = adapter
+            viewModel.getNatives()
+            lifecycleScope.launch {
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    viewModel.natives.observe(viewLifecycleOwner) {
+                        println(it)
+                        adapter.updateList(it)
+                    }
+                }
+            }
+        }
+
+
+
+/*        val bmp = ContextCompat.getDrawable(requireContext(), R.drawable.n_bashkars_t)
+        binding.imageView1.setBackgroundColor(Color.GRAY)
+        binding.imageView2.background = bmp*/
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewmodel.getDwellingById(args.id)
-        viewmodel.dwelling.observe(viewLifecycleOwner) { dwelling ->
-            binding.dwellingName.text = dwelling.name
-        }
         binding.arrowBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }

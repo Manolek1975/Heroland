@@ -13,7 +13,7 @@ class NativeProvider {
             val type = context.resources.getStringArray(R.array.type_natives)
             val group = context.resources.getStringArray(R.array.group_natives)
             for (i in name.indices) {
-                val value = NativeEntity(i + 1, name[i], type[0], group[0].toInt(),
+                val value = NativeEntity(i + 1, name[i], type[i], group[i].toInt(),
                         0, 0, 0, false, 0, 0)
                 natives.add(value)
             }

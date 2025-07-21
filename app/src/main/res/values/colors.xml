@@ -16,4 +16,13 @@
     <color name="blue">#1D4D8C</color>
     <color name="grey">#575656</color>
     <color name="green">#367C14</color>
+    <color name="company">#DEEFF7</color>
+    <color name="woodfolk">#BAE7A4</color>
+    <color name="patrol">#E5BA88</color>
+    <color name="lancers">#BAE7A4</color>
+    <color name="bashkars">#EFC18E</color>
+    <color name="order">#EFCC6E</color>
+    <color name="rogues">#EFC18E</color>
+    <color name="soldiers">#E5BA88</color>
+    <color name="guard">#EFCC6E</color>
 </resources>

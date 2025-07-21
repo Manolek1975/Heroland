@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.delek.heroland.data.repository.DwellingRepository
 import com.delek.heroland.data.repository.GroupRepository
+import com.delek.heroland.data.repository.NativeRepository
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Group
 import com.delek.heroland.domain.model.Native
@@ -15,7 +16,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DwellingViewModel @Inject constructor(
     private val dwellingRepo: DwellingRepository,
-    private val groupRepo: GroupRepository
+    private val groupRepo: GroupRepository,
+    private val nativeRepo: NativeRepository
 ) : ViewModel() {
 
     val dwelling = MutableLiveData<Dwelling>()
@@ -31,6 +33,18 @@ class DwellingViewModel @Inject constructor(
     fun getGroupByStart(start: Int) {
         viewModelScope.launch {
             group.value = groupRepo.getGroupByStart(start)
+        }
+    }
+
+    fun getNatives() {
+        viewModelScope.launch {
+            natives.value = nativeRepo.getNatives()
+        }
+    }
+
+    fun getNativeById(id: Int) {
+        viewModelScope.launch {
+            natives.value = nativeRepo.getNativeById(id)
         }
     }
 }
