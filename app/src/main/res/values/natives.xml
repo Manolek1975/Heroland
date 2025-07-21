@@ -8,6 +8,7 @@
         <item>B3</item>
         <item>B4</item>
         <item>B5</item>
+
         <item>CHQ</item>
         <item>C1</item>
         <item>C2</item>
@@ -15,20 +16,26 @@
         <item>C4</item>
         <item>C5</item>
         <item>C6</item>
+
         <item>GHQ</item>
         <item>G1</item>
         <item>G2</item>
+
         <item>LHQ</item>
         <item>L1</item>
         <item>L2</item>
         <item>L3</item>
+
         <item>OHQ</item>
         <item>O1</item>
         <item>O2</item>
         <item>O3</item>
+
         <item>PHQ</item>
         <item>P1</item>
         <item>P2</item>
+        <item>P3</item>
+
         <item>RHQ</item>
         <item>R1</item>
         <item>R2</item>
@@ -37,10 +44,12 @@
         <item>R5</item>
         <item>R6</item>
         <item>R7</item>
+
         <item>SHQ</item>
         <item>S1</item>
         <item>S2</item>
         <item>S3</item>
+
         <item>WHQ</item>
         <item>W1</item>
         <item>W2</item>
@@ -55,12 +64,12 @@
         <item>RAIDER</item>
 
         <item>SOLDIER</item>
+        <item>SOLDIER</item>
         <item>PIKEMAN</item>
         <item>PIKEMAN</item>
         <item>PIKEMAN</item>
         <item>GUARD</item>
         <item>CROSSBOWMAN</item>
-        <item>SOLDIER</item>
 
         <item>GUARD</item>
         <item>GUARD</item>
@@ -107,6 +116,7 @@
         <item>1</item>
         <item>1</item>
         <item>1</item>
+
         <item>2</item>
         <item>2</item>
         <item>2</item>
@@ -114,20 +124,26 @@
         <item>2</item>
         <item>2</item>
         <item>2</item>
+
         <item>3</item>
         <item>3</item>
         <item>3</item>
+
         <item>4</item>
         <item>4</item>
         <item>4</item>
         <item>4</item>
+
         <item>5</item>
         <item>5</item>
         <item>5</item>
         <item>5</item>
+
         <item>6</item>
         <item>6</item>
         <item>6</item>
+        <item>6</item>
+
         <item>7</item>
         <item>7</item>
         <item>7</item>
@@ -136,14 +152,72 @@
         <item>7</item>
         <item>7</item>
         <item>7</item>
+
         <item>8</item>
         <item>8</item>
         <item>8</item>
         <item>8</item>
+
         <item>9</item>
         <item>9</item>
         <item>9</item>
     </string-array>
+
+    <string-array name="image_natives">
+        <item>n_raider</item>
+        <item>n_raider</item>
+        <item>n_raider</item>
+        <item>n_raider</item>
+        <item>n_raider</item>
+        <item>n_raider</item>
+
+        <item>n_soldier</item>
+        <item>n_soldier</item>
+        <item>n_pikeman</item>
+        <item>n_pikeman</item>
+        <item>n_pikeman</item>
+        <item>n_guard</item>
+        <item>n_crossbowman</item>
+
+        <item>n_guard</item>
+        <item>n_guard</item>
+        <item>n_guard</item>
+
+        <item>n_lancer</item>
+        <item>n_lancer</item>
+        <item>n_lancer</item>
+        <item>n_lancer</item>
+
+        <item>n_knight</item>
+        <item>n_knight</item>
+        <item>n_knight</item>
+        <item>n_knight</item>
+
+        <item>n_soldier</item>
+        <item>n_soldier</item>
+        <item>n_soldier</item>
+        <item>n_soldier</item>
+
+        <item>n_assassin</item>
+        <item>n_axeman</item>
+        <item>n_axeman</item>
+        <item>n_soldier</item>
+        <item>n_archer</item>
+        <item>n_assassin</item>
+        <item>n_swordsman</item>
+        <item>n_swordsman</item>
+
+        <item>n_guard</item>
+        <item>n_pikeman</item>
+        <item>n_pikeman</item>
+        <item>n_crossbowman</item>
+
+        <item>n_archer</item>
+        <item>n_archer</item>
+        <item>n_archer</item>
+    </string-array>
+
+
 
 
 </resources>

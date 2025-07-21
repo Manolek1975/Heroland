@@ -48,22 +48,15 @@ class DwellingFragment : Fragment() {
             adapter = NativeAdapter()
             binding.rvNative.layoutManager = GridLayoutManager(context, 4)
             binding.rvNative.adapter = adapter
-            viewModel.getNatives()
+            viewModel.getNativeByGroup(group.id)
             lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
                     viewModel.natives.observe(viewLifecycleOwner) {
-                        println(it)
                         adapter.updateList(it)
                     }
                 }
             }
         }
-
-
-
-/*        val bmp = ContextCompat.getDrawable(requireContext(), R.drawable.n_bashkars_t)
-        binding.imageView1.setBackgroundColor(Color.GRAY)
-        binding.imageView2.background = bmp*/
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
