@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
     android:padding="8dp"
     android:layout_width="wrap_content"
@@ -14,8 +13,30 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivNative"
-        tool:background="@drawable/n_knight"
+        tool:background="@drawable/n_swordsman"
         android:layout_width="80dp"
         android:layout_height="80dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/name_native"
+        style="@style/native_text"
+        android:layout_gravity="bottom"
+        android:padding="2dp"
+        android:textSize="11sp"
+        android:textColor="@color/yellow"
+        tool:text="WHQ" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fight_a"
+        style="@style/native_text"
+        android:padding="2dp"
+        tool:text="H4*" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/move_a"
+        style="@style/native_text"
+        android:padding="4dp"
+        android:layout_gravity="end|bottom"
+        tool:text="5" />
 
 </FrameLayout>

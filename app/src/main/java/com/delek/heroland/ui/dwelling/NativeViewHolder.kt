@@ -18,6 +18,9 @@ class NativeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         setGroupColor(native.groupId)
         val id = getResId(native.image, R.drawable::class.java)
         binding.ivNative.setImageResource(id)
+        binding.nameNative.text = native.name
+        binding.fightA.text = native.fightA
+        binding.moveA.text = String.format("%s", native.moveA)
 
     }
 
