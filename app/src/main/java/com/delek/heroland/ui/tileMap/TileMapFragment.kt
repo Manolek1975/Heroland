@@ -115,17 +115,11 @@ class TileMapFragment : Fragment() {
         viewmodel.getSoundChitById(id)
         viewmodel.sound.observe(viewLifecycleOwner) { sound ->
             binding.soundChit.visibility = View.VISIBLE
-            binding.soundChit.text =
-                getString(R.string.advice_chit, sound.name, sound.num.toString())
+            binding.soundChit.text = getString(R.string.advice_chit, sound.name, sound.num.toString())
             if (sound.type == "T" || sound.type == "L") {
                 binding.soundChit.backgroundTintList =
                     ResourcesCompat.getColorStateList(resources, R.color.gold, null)
                 placeTreasureLocations(sound.treasure, sound.num)
-            }
-            binding.boxLayout.getChildAt(6).setOnClickListener {
-                findNavController().navigate(
-                    TileMapFragmentDirections.actionNavTileMapToMapDwelling(sound.treasure)
-                )
             }
         }
     }

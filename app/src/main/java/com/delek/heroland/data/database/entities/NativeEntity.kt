@@ -12,11 +12,15 @@ data class NativeEntity(
     @ColumnInfo(name = "type") val type: String,
     @ColumnInfo(name = "group_id") val groupId: Int,
     @ColumnInfo(name = "image") val image: String,
-    @ColumnInfo(name = "weight") val weight: Int,
-    @ColumnInfo(name = "vulnerability") val vulnerability: Int,
+    @ColumnInfo(name = "weight") val weight: String,
     @ColumnInfo(name = "weapon") val weapon: Int,
-    @ColumnInfo(name = "armor") val armor: Boolean,
+    @ColumnInfo(name = "armor") val armor: Int,
+    @ColumnInfo(name = "fight_a") val fightA: String,
+    @ColumnInfo(name = "move_a") val moveA: Int,
+    @ColumnInfo(name = "fight_b") val fightB: String,
+    @ColumnInfo(name = "move_b") val moveB: Int,
     @ColumnInfo(name = "hire") val hire: Int,
-    @ColumnInfo(name = "bounty") val bounty: Int
+    @ColumnInfo(name = "bounty") val bounty: Int,
+    @ColumnInfo(name = "horse") val horse: Int
 
 )

@@ -9,13 +9,17 @@ data class Native(
     val type: String,
     val groupId: Int,
     val image: String,
-    val weight: Int,
-    val vulnerability: Int,
+    val weight: String,
     val weapon: Int,
-    val armor: Boolean,
+    val armor: Int,
+    val fightA: String,
+    val moveA: Int,
+    val fightB: String,
+    val moveB: Int,
     val hire: Int,
-    val bounty: Int
-
+    val bounty: Int,
+    val horses: Int
 )
 
-fun NativeEntity.toDomain() = Native(id, name, type, groupId, image, weight, vulnerability, weapon, armor, hire, bounty)
+fun NativeEntity.toDomain() = Native(id, name, type, groupId, image, weight,
+    weapon, armor, fightA, moveA, fightB, moveB, hire, bounty, horse)

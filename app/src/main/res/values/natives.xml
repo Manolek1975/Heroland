@@ -34,7 +34,6 @@
         <item>PHQ</item>
         <item>P1</item>
         <item>P2</item>
-        <item>P3</item>
 
         <item>RHQ</item>
         <item>R1</item>
@@ -85,7 +84,6 @@
         <item>KNIGHT</item>
         <item>KNIGHT</item>
 
-        <item>SOLDIER</item>
         <item>SOLDIER</item>
         <item>SOLDIER</item>
         <item>SOLDIER</item>
@@ -142,7 +140,6 @@
         <item>6</item>
         <item>6</item>
         <item>6</item>
-        <item>6</item>
 
         <item>7</item>
         <item>7</item>
@@ -196,7 +193,6 @@
         <item>n_soldier</item>
         <item>n_soldier</item>
         <item>n_soldier</item>
-        <item>n_soldier</item>
 
         <item>n_assassin</item>
         <item>n_axeman</item>
@@ -217,7 +213,410 @@
         <item>n_archer</item>
     </string-array>
 
+    <string-array name="weight_natives">
+        <item>L</item>
+        <item>L</item>
+        <item>L</item>
+        <item>L</item>
+        <item>L</item>
+        <item>L</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>H</item>
+        <item>M</item>
+        <item>H</item>
+        <item>H</item>
+        <item>H</item>
+        <item>L</item>
+        <item>L</item>
+        <item>L</item>
+        <item>L</item>
+        <item>T</item>
+        <item>T</item>
+        <item>T</item>
+        <item>T</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>H</item>
+        <item>H</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>H</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+    </string-array>
 
+    <string-array name="weapon_natives">
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>6</item>
+        <item>3</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>15</item>
+        <item>12</item>
+        <item>12</item>
+        <item>15</item>
+        <item>2</item>
+        <item>15</item>
+        <item>13</item>
+        <item>13</item>
+        <item>6</item>
+        <item>4</item>
+        <item>4</item>
+        <item>3</item>
+        <item>1</item>
+        <item>2</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="armor_natives">
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </string-array>
+
+    <string-array name="fight_a_natives">
+        <item>L4*</item>
+        <item>M3*</item>
+        <item>M4*</item>
+        <item>L4*</item>
+        <item>M5*</item>
+        <item>L2*</item>
+        <item>M3*</item>
+        <item>L3*</item>
+        <item>H6*</item>
+        <item>H6*</item>
+        <item>H6*</item>
+        <item>T4*</item>
+        <item>H6</item>
+        <item>H5*</item>
+        <item>H5*</item>
+        <item>H5*</item>
+        <item>H5*</item>
+        <item>H4*</item>
+        <item>M4*</item>
+        <item>H6*</item>
+        <item>H6*</item>
+        <item>H4*</item>
+        <item>H5*</item>
+        <item>H4*</item>
+        <item>L2*</item>
+        <item>L4*</item>
+        <item>M4*</item>
+        <item>M3*</item>
+        <item>H5*</item>
+        <item>H5*</item>
+        <item>M5*</item>
+        <item />
+        <item>M3*</item>
+        <item>M3*</item>
+        <item>M3*</item>
+        <item>T4*</item>
+        <item>H6*</item>
+        <item>H6*</item>
+        <item>H6</item>
+        <item />
+        <item />
+        <item />
+    </string-array>
+
+    <string-array name="move_a_natives">
+        <item>2</item>
+        <item>3</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>4</item>
+        <item>5</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>6</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>2</item>
+        <item>4</item>
+        <item>6</item>
+        <item>5</item>
+        <item>6</item>
+        <item>5</item>
+        <item>3</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>3</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
+        <item>5</item>
+        <item>6</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="fight_b_natives">
+        <item>M4*</item>
+        <item>L3*</item>
+        <item>L3*</item>
+        <item>L2*</item>
+        <item>L2*</item>
+        <item>L2*</item>
+        <item>M4*</item>
+        <item>M4*</item>
+        <item>M4*</item>
+        <item>M4*</item>
+        <item>M4*</item>
+        <item>H4*</item>
+        <item>H1</item>
+        <item>T4*</item>
+        <item>T4*</item>
+        <item>T4*</item>
+        <item>M3*</item>
+        <item>M3*</item>
+        <item>H4*</item>
+        <item>M4*</item>
+        <item>T4*</item>
+        <item>T5*</item>
+        <item>T5*</item>
+        <item>T5*</item>
+        <item>M4*</item>
+        <item>L4*</item>
+        <item>L4*</item>
+        <item>L4*</item>
+        <item>T3*</item>
+        <item>T3*</item>
+        <item>L3*</item>
+        <item>L1**</item>
+        <item>L4*</item>
+        <item>L3*</item>
+        <item>L3*</item>
+        <item>H5*</item>
+        <item>M4*</item>
+        <item>M4*</item>
+        <item>H1</item>
+        <item>M1**</item>
+        <item>L1**</item>
+        <item>L1**</item>
+    </string-array>
+
+    <string-array name="move_b_natives">
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>4</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>6</item>
+        <item>5</item>
+        <item>6</item>
+        <item>6</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>2</item>
+        <item>5</item>
+        <item>5</item>
+        <item>4</item>
+        <item>4</item>
+        <item>2</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+    </string-array>
+    
+    <string-array name="hire_natives">
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>4</item>
+        <item>2</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>1</item>
+        <item>4</item>
+        <item>4</item>
+        <item>2</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>4</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="bounty_natives">
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>6</item>
+        <item>4</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>12</item>
+        <item>12</item>
+        <item>12</item>
+        <item>12</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>2</item>
+        <item>6</item>
+        <item>6</item>
+        <item>3</item>
+        <item>4</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>6</item>
+        <item>3</item>
+        <item>3</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+    </string-array>
 
 
 </resources>
