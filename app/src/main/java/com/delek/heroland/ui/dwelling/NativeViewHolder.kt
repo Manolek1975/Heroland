@@ -1,6 +1,7 @@
 package com.delek.heroland.ui.dwelling
 
 import android.view.View
+import android.view.animation.LinearInterpolator
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.delek.heroland.R
@@ -13,15 +14,16 @@ class NativeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val binding = ItemNativeBinding.bind(view)
 
-    fun render(native: Native){
-
+    fun render(native: Native, onItemSelected: (Native) -> Unit){
         setGroupColor(native.groupId)
         val id = getResId(native.image, R.drawable::class.java)
         binding.ivNative.setImageResource(id)
         binding.nameNative.text = native.name
         binding.fightA.text = native.fightA
         binding.moveA.text = String.format("%s", native.moveA)
-
+        binding.ivColor.setOnClickListener {
+            flipNative(binding.ivNative, goNative = {onItemSelected(native)})
+        }
     }
 
     private fun setGroupColor(group: Int){
@@ -36,6 +38,16 @@ class NativeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             7 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.rogues))
             8 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.soldiers))
             9 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.woodfolk))
+        }
+    }
+
+    private fun flipNative(view: View, goNative:()->Unit ) {
+        view.animate().apply {
+            duration = 500
+            interpolator = LinearInterpolator()
+            rotationYBy(360f)
+            withEndAction { goNative() }
+            start()
         }
     }
 

@@ -129,6 +129,9 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_nav_dwelling_to_nav_native_detail"
+            app:destination="@id/nav_native_detail" />
     </fragment>
 
     <fragment
@@ -136,6 +139,15 @@
         android:name="com.delek.heroland.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/nav_native_detail"
+        android:name="com.delek.heroland.ui.nativeDetail.NativeDetailFragment"
+        android:label="fragment_native_detail"
+        tools:layout="@layout/fragment_native_detail" >
+        <argument
+            android:name="native_id"
+            app:argType="integer" />
+    </fragment>
 
 
 </navigation>

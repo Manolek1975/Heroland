@@ -11,12 +11,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/head_options"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:textAlignment="center"
-        android:textSize="36sp"
-        android:textStyle="bold"
+        style="@style/head"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

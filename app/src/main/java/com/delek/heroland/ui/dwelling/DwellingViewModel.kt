@@ -42,12 +42,6 @@ class DwellingViewModel @Inject constructor(
         }
     }
 
-    fun getNativeById(id: Int) {
-        viewModelScope.launch {
-            natives.value = nativeRepo.getNativeById(id)
-        }
-    }
-
     fun getNativeByGroup(groupId: Int) {
         viewModelScope.launch {
             natives.value = nativeRepo.getNativeByGroup(groupId)

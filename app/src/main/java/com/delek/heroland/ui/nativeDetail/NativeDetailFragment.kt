@@ -1,0 +1,42 @@
+package com.delek.heroland.ui.nativeDetail
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
+import com.delek.heroland.databinding.FragmentNativeDetailBinding
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+class NativeDetailFragment : Fragment() {
+
+    companion object {
+        fun newInstance() = NativeDetailFragment()
+    }
+
+    private val viewModel: NativeDetailViewModel by viewModels()
+    private var _binding: FragmentNativeDetailBinding? = null
+    private val binding get() = _binding!!
+    private val args: NativeDetailFragmentArgs by navArgs()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentNativeDetailBinding.inflate(inflater, container, false)
+
+        viewModel.getNativeById(args.nativeId)
+        viewModel.native.observe(viewLifecycleOwner) { native ->
+            binding.tvTypeNative.text = native.type
+        }
+
+        binding.arrowBack.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
+        return binding.root
+    }
+}

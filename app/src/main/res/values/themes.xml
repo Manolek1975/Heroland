@@ -11,6 +11,16 @@
 
     <style name="Theme.Heroland" parent="Base.Theme.Heroland" />
 
+    <style name="head" parent="Theme.Heroland">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">36dp</item>
+        <item name="android:text">HEADER</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="AppTheme.AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/layout_dialog</item>
         <!-- Used for the buttons -->
