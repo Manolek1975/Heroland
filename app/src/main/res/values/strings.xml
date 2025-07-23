@@ -43,7 +43,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="player_head">Players</string>
     <string name="delete_player">"Are you sure you want to remove %1$s from the list?"</string>
-
     <!-- SETTINGS -->
     <string name="vibrate">Vibrate</string>
     <string name="desc_vibrate">Vibrate when new character joins</string>
@@ -54,5 +53,7 @@
     <!--TILE MAP-->
     <string name="advice_chit">%1$s \n %2$s</string>
     <string name="sound_chit">%1$s</string>
+    <!-- NATIVE DETAIL -->
+    <string name="alerted">(Alerted)</string>
 
 </resources>

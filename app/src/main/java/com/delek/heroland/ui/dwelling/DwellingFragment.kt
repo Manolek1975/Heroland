@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.delek.heroland.databinding.FragmentDwellingBinding
@@ -46,11 +45,8 @@ class DwellingFragment : Fragment() {
         viewModel.getGroupByStart(args.id)
         viewModel.group.observe(viewLifecycleOwner) { group ->
             binding.groupName.text = group.name
-            //adapter = NativeAdapter()
             nativeAdapter = NativeAdapter(onItemSelected = {
-                findNavController().navigate(
-                    DwellingFragmentDirections.actionNavDwellingToNavNativeDetail(it.id)
-                )
+                nativeAdapter.updateList(viewModel.natives.value!!)
             })
             binding.rvNative.layoutManager = GridLayoutManager(context, 4)
             binding.rvNative.adapter = nativeAdapter

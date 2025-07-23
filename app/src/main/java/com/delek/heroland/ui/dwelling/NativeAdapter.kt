@@ -13,6 +13,8 @@ class NativeAdapter @Inject constructor(
     private val onItemSelected: (Native) -> Unit) :
     RecyclerView.Adapter<NativeViewHolder>() {
 
+    companion object { var selected = false }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NativeViewHolder {
         return NativeViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_native, parent, false)

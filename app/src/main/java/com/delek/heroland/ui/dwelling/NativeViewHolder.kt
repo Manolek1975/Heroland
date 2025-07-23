@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.delek.heroland.R
 import com.delek.heroland.databinding.ItemNativeBinding
 import com.delek.heroland.domain.model.Native
+import com.delek.heroland.ui.dwelling.NativeAdapter.Companion.selected
 import java.lang.reflect.Field
 
 
@@ -19,9 +20,15 @@ class NativeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val id = getResId(native.image, R.drawable::class.java)
         binding.ivNative.setImageResource(id)
         binding.nameNative.text = native.name
-        binding.fightA.text = native.fightA
-        binding.moveA.text = String.format("%s", native.moveA)
+        if (selected) {
+            binding.fightA.text = native.fightB
+            binding.moveA.text = String.format("%s", native.moveB)
+        } else {
+            binding.fightA.text = native.fightA
+            binding.moveA.text = String.format("%s", native.moveA)
+        }
         binding.ivColor.setOnClickListener {
+            selected = !selected
             flipNative(binding.ivNative, goNative = {onItemSelected(native)})
         }
     }

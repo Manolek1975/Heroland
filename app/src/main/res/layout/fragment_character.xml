@@ -9,13 +9,10 @@
 
     <ImageButton
         android:id="@+id/arrow_back"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_margin="30dp"
-        android:background="@drawable/arrow_back"
+        style="@style/arrow_back"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:contentDescription="@string/back" />
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/role_name"
