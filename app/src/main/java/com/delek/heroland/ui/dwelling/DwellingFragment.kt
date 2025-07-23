@@ -12,6 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.delek.heroland.databinding.FragmentDwellingBinding
+import com.delek.heroland.ui.dwelling.NativeAdapter.Companion.alerted
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -46,6 +47,8 @@ class DwellingFragment : Fragment() {
         viewModel.group.observe(viewLifecycleOwner) { group ->
             binding.groupName.text = group.name
             nativeAdapter = NativeAdapter(onItemSelected = {
+                if (alerted) binding.tvAlerted.visibility = View.VISIBLE
+                else binding.tvAlerted.visibility = View.GONE
                 nativeAdapter.updateList(viewModel.natives.value!!)
             })
             binding.rvNative.layoutManager = GridLayoutManager(context, 4)
@@ -64,6 +67,7 @@ class DwellingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.arrowBack.setOnClickListener {
+            alerted = false
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
     }

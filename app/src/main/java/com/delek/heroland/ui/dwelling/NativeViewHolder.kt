@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.delek.heroland.R
 import com.delek.heroland.databinding.ItemNativeBinding
 import com.delek.heroland.domain.model.Native
-import com.delek.heroland.ui.dwelling.NativeAdapter.Companion.selected
+import com.delek.heroland.ui.dwelling.NativeAdapter.Companion.alerted
 import java.lang.reflect.Field
 
 
@@ -16,20 +16,36 @@ class NativeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val binding = ItemNativeBinding.bind(view)
 
     fun render(native: Native, onItemSelected: (Native) -> Unit){
-        setGroupColor(native.groupId)
         val id = getResId(native.image, R.drawable::class.java)
         binding.ivNative.setImageResource(id)
         binding.nameNative.text = native.name
-        if (selected) {
+        if (alerted) {
             binding.fightA.text = native.fightB
             binding.moveA.text = String.format("%s", native.moveB)
+            setGroupColorDark(native.groupId)
         } else {
             binding.fightA.text = native.fightA
             binding.moveA.text = String.format("%s", native.moveA)
+            setGroupColor(native.groupId)
         }
         binding.ivColor.setOnClickListener {
-            selected = !selected
+            alerted = !alerted
             flipNative(binding.ivNative, goNative = {onItemSelected(native)})
+        }
+    }
+
+    private fun setGroupColorDark(group: Int) {
+        val context = binding.ivColor.context
+        when (group) {
+            1 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.bashkars))
+            2 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.company))
+            3 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.guard_dark))
+            4 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.lancers_dark))
+            5 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.order_dark))
+            6 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.patrol))
+            7 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.rogues_dark))
+            8 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.soldiers_dark))
+            9 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.woodfolk_dark))
         }
     }
 

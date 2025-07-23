@@ -13,7 +13,7 @@ class NativeAdapter @Inject constructor(
     private val onItemSelected: (Native) -> Unit) :
     RecyclerView.Adapter<NativeViewHolder>() {
 
-    companion object { var selected = false }
+    companion object { var alerted = false }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NativeViewHolder {
         return NativeViewHolder(
