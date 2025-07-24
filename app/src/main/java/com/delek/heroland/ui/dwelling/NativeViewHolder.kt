@@ -37,12 +37,12 @@ class NativeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private fun setGroupColorDark(group: Int) {
         val context = binding.ivColor.context
         when (group) {
-            1 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.bashkars))
-            2 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.company))
+            1 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.bashkars_dark))
+            2 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.company_dark))
             3 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.guard_dark))
             4 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.lancers_dark))
             5 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.order_dark))
-            6 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.patrol))
+            6 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.patrol_dark))
             7 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.rogues_dark))
             8 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.soldiers_dark))
             9 -> binding.ivColor.setBackgroundColor(ContextCompat.getColor(context, R.color.woodfolk_dark))

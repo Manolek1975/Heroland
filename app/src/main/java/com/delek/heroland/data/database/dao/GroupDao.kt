@@ -19,7 +19,7 @@ interface GroupDao {
     suspend fun getGroupById(id: Int): GroupEntity
 
     @Query("SELECT * FROM groups WHERE start = :start")
-    suspend fun getGroupByStart(start: Int): GroupEntity
+    suspend fun getGroupByStart(start: Int): List<GroupEntity>
 
 
 }

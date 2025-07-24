@@ -22,9 +22,9 @@ class GroupRepository @Inject constructor(private val groupDao: GroupDao) {
         return response.toDomain()
     }
 
-    suspend fun getGroupByStart(start: Int): Group {
-        val response: GroupEntity = groupDao.getGroupByStart(start)
-        return response.toDomain()
+    suspend fun getGroupByStart(start: Int): List<Group> {
+        val response: List<GroupEntity> = groupDao.getGroupByStart(start)
+        return response.map { it.toDomain() }
     }
 
 

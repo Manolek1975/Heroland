@@ -127,8 +127,7 @@ class OptionsFragment : Fragment() {
                 viewmodel.role.observe(viewLifecycleOwner) {
                     numSpells = it.spells
                     if (it.spells != 0) {
-                        binding.selectedSpells.text =
-                            getString(R.string.selected_spells, 0, numSpells)
+                        binding.selectedSpells.text = getString(R.string.selected_spells, 0, numSpells)
                     }
                 }
             }

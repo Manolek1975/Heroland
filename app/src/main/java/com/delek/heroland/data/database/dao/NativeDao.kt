@@ -20,5 +20,5 @@ interface NativeDao {
     suspend fun getNativeById(id: Int): NativeEntity
 
     @Query("SELECT * FROM natives WHERE group_id = :groupId")
-    suspend fun getNativeByGroup(groupId: Int): List<NativeEntity>
+    suspend fun getNativesByGroup(groupId: Int): List<NativeEntity>
 }

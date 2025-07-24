@@ -16,19 +16,22 @@
     <color name="blue">#1D4D8C</color>
     <color name="grey">#575656</color>
     <color name="green">#367C14</color>
-    <color name="company">#DEEFF7</color>
+    <color name="company">#A5C2DC</color>
+    <color name="company_dark">#588999</color>
     <color name="woodfolk">#BAE7A4</color>
     <color name="woodfolk_dark">#6DA859</color>
-    <color name="patrol">#E5BA88</color>
+    <color name="patrol">#C39F6F</color>
+    <color name="patrol_dark">#876C4D</color>
     <color name="lancers">#BAE7A4</color>
     <color name="lancers_dark">#75A865</color>
     <color name="bashkars">#EFC18E</color>
+    <color name="bashkars_dark">#AF7E42</color>
     <color name="order">#E0A431</color>
     <color name="order_dark">#B37C21</color>
     <color name="rogues">#EFC18E</color>
-    <color name="rogues_dark">#E64A4A</color>
+    <color name="rogues_dark">#D37957</color>
     <color name="soldiers">#B47C4E</color>
-    <color name="soldiers_dark">#9E5F4F</color>
+    <color name="soldiers_dark">#925848</color>
     <color name="guard">#EFCC6E</color>
     <color name="guard_dark">#B49232</color>
 </resources>

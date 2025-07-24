@@ -22,7 +22,7 @@ class DwellingViewModel @Inject constructor(
 
     val dwelling = MutableLiveData<Dwelling>()
     val natives = MutableLiveData<List<Native>>()
-    val group = MutableLiveData<Group>()
+    val group = MutableLiveData<List<Group>>()
 
     fun getDwellingById(id: Int) {
         viewModelScope.launch {
@@ -42,7 +42,7 @@ class DwellingViewModel @Inject constructor(
         }
     }
 
-    fun getNativeByGroup(groupId: Int) {
+    fun getNativesByGroup(groupId: Int) {
         viewModelScope.launch {
             natives.value = nativeRepo.getNativeByGroup(groupId)
         }

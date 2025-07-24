@@ -23,7 +23,7 @@ class NativeRepository @Inject constructor(private val nativeDao: NativeDao) {
     }
 
     suspend fun getNativeByGroup(groupId: Int): List<Native> {
-        val response: List<NativeEntity> = nativeDao.getNativeByGroup(groupId)
+        val response: List<NativeEntity> = nativeDao.getNativesByGroup(groupId)
         return response.map { it.toDomain() }
     }
 
