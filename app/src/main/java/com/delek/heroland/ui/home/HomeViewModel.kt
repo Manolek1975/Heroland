@@ -3,15 +3,14 @@ package com.delek.heroland.ui.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.delek.heroland.data.repository.PlayerRepository
 import com.delek.heroland.domain.model.Advantage
 import com.delek.heroland.domain.model.AdviceChit
 import com.delek.heroland.domain.model.Armor
 import com.delek.heroland.domain.model.Chit
 import com.delek.heroland.domain.model.Dwelling
-import com.delek.heroland.domain.model.Native
 import com.delek.heroland.domain.model.Group
-import com.delek.heroland.domain.model.Player
+import com.delek.heroland.domain.model.Monster
+import com.delek.heroland.domain.model.Native
 import com.delek.heroland.domain.model.Role
 import com.delek.heroland.domain.model.RoleAdvantage
 import com.delek.heroland.domain.model.RoleArmor
@@ -32,6 +31,7 @@ import com.delek.heroland.domain.usecase.GetArmorUseCase
 import com.delek.heroland.domain.usecase.GetChitsUseCase
 import com.delek.heroland.domain.usecase.GetDwellingsUseCase
 import com.delek.heroland.domain.usecase.GetGroupUseCase
+import com.delek.heroland.domain.usecase.GetMonsterUseCase
 import com.delek.heroland.domain.usecase.GetNativeUseCase
 import com.delek.heroland.domain.usecase.GetRoleAdvantagesUseCase
 import com.delek.heroland.domain.usecase.GetRoleArmorUseCase
@@ -74,7 +74,7 @@ class HomeViewModel @Inject constructor(
     private val getTilesUseCase: GetTilesUseCase,
     private val getAdviceChitsUseCase: GetAdviceChitUseCase,
     private val getSoundChitsUseCase: GetSoundChitUseCase,
-    private val repoPlayer: PlayerRepository
+    private val getMonsterUseCase: GetMonsterUseCase,
 ) : ViewModel() {
 
     //TODO Create class to load all use cases or insert all in single use, no idea atm!
@@ -99,7 +99,7 @@ class HomeViewModel @Inject constructor(
     private val tileList = MutableLiveData<Tile>()
     private val advicesList = MutableLiveData<List<AdviceChit>>()
     private val soundChitsList = MutableLiveData<List<SoundChit>>()
-    private val playerList = MutableLiveData<List<Player>>()
+    private val monsterList = MutableLiveData<List<Monster>>()
 
 
     fun onCreate() {
@@ -188,12 +188,10 @@ class HomeViewModel @Inject constructor(
             if (sound.isNotEmpty()) {
                 soundChitsList.postValue(sound)
             }
-        }
-    }
-
-    fun getPlayers() {
-        viewModelScope.launch {
-            playerList.value = repoPlayer.getAllPlayers()
+            val monster = getMonsterUseCase()
+            if (monster.isNotEmpty()) {
+                monsterList.postValue(monster)
+            }
         }
     }
 

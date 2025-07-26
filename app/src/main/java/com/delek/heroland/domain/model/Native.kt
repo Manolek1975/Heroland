@@ -3,7 +3,6 @@ package com.delek.heroland.domain.model
 import com.delek.heroland.data.database.entities.NativeEntity
 
 data class Native(
-
     val id: Int,
     val name: String,
     val type: String,

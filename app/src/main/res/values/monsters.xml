@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="name_monsters">
+        <item>TREMENDOUS FLYING DRAGON</item>
+        <item>FLYING DRAGON HEAD</item>
+        <item>TREMENDOUS DRAGON</item>
+        <item>DRAGON HEAD</item>
+        <item>GIANT</item>
+        <item>GIANT CLUB</item>
+        <item>WINGED DEMON</item>
+        <item>DEMON</item>
+        <item>TREMENDOUS TROLL</item>
+        <item>OCTOPUS</item>
+        <item>TREMENDOUS SERPENT</item>
+        <item>TREMENDOUS SPIDER</item>
+        <item>HEAVY FLYING DRAGON</item>
+        <item>HEAVY DRAGON</item>
+        <item>HEAVY TROLL</item>
+        <item>HEAVY SERPENT</item>
+        <item>GIANT BAT</item>
+        <item>HEAVY SPIDER</item>
+        <item>IMP</item>
+        <item>SPEAR GOBLIN</item>
+        <item>SWORD GOBLIN</item>
+        <item>AXE GOBLIN</item>
+        <item>VIPER</item>
+        <item>GHOST</item>
+        <item>OGRE</item>
+        <item>WOLF</item>
+        <item>WOLF</item>
+        <item>WOLF</item>
+        <item>WOLF</item>
+    </string-array>
+
+
+</resources>

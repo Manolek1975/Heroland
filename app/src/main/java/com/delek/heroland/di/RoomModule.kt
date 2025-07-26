@@ -113,5 +113,9 @@ object RoomModule {
     @Provides
     fun provideSoundChitDao(db: HerolandDatabase) = db.getSoundChitDao()
 
+    @Singleton
+    @Provides
+    fun provideMonsterDao(db: HerolandDatabase) = db.getMonsterDao()
+
 
 }
