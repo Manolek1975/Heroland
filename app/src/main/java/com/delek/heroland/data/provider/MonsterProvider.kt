@@ -10,9 +10,10 @@ class MonsterProvider {
         fun loadMonsters(context: Context): List<MonsterEntity> {
             val monsters = mutableListOf<MonsterEntity>()
             val name = context.resources.getStringArray(R.array.name_monsters)
+            val image = context.resources.getStringArray(R.array.image_monsters)
 
             for (i in name.indices) {
-                val value =(MonsterEntity(i, name[i], "", "", "", 0,
+                val value =(MonsterEntity(i+1, name[i], "", image[i], "", 0,
                     "", 0, "", 0, 0, 0))
                 monsters.add(value)
             }

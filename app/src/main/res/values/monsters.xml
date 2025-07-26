@@ -7,31 +7,71 @@
         <item>TREMENDOUS DRAGON</item>
         <item>DRAGON HEAD</item>
         <item>GIANT</item>
+
         <item>GIANT CLUB</item>
         <item>WINGED DEMON</item>
         <item>DEMON</item>
         <item>TREMENDOUS TROLL</item>
         <item>OCTOPUS</item>
+
         <item>TREMENDOUS SERPENT</item>
         <item>TREMENDOUS SPIDER</item>
         <item>HEAVY FLYING DRAGON</item>
         <item>HEAVY DRAGON</item>
         <item>HEAVY TROLL</item>
+
         <item>HEAVY SERPENT</item>
         <item>GIANT BAT</item>
         <item>HEAVY SPIDER</item>
         <item>IMP</item>
         <item>SPEAR GOBLIN</item>
+
         <item>SWORD GOBLIN</item>
         <item>AXE GOBLIN</item>
         <item>VIPER</item>
         <item>GHOST</item>
         <item>OGRE</item>
+
         <item>WOLF</item>
         <item>WOLF</item>
         <item>WOLF</item>
         <item>WOLF</item>
     </string-array>
 
+    <string-array name="image_monsters">
+        <item>m_t_flying_dragon</item>
+        <item>m_t_flying_dragon_head</item>
+        <item>m_dragon</item>
+        <item>m_dragon_head</item>
+        <item>m_giant</item>
 
+        <item>m_giant_club</item>
+        <item>m_winged_demon</item>
+        <item>m_demon</item>
+        <item>m_troll</item>
+        <item>m_octopus</item>
+
+        <item>m_serpent</item>
+        <item>m_spider</item>
+        <item>m_flying_dragon</item>
+        <item>m_dragon</item>
+        <item>m_troll</item>
+
+        <item>m_serpent</item>
+        <item>m_bat</item>
+        <item>m_spider</item>
+        <item>m_imp</item>
+        <item>m_spear_goblin</item>
+
+        <item>m_sword_goblin</item>
+        <item>m_axe_goblin</item>
+        <item>m_serpent</item>
+        <item>m_ghost</item>
+        <item>m_giant</item>
+
+        <item>m_wolf</item>
+        <item>m_wolf</item>
+        <item>m_wolf</item>
+        <item>m_wolf</item>
+    </string-array>
 </resources>
