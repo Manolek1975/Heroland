@@ -16,7 +16,6 @@ class GroupViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun render(group: Group, onItemSelected: (Group) -> Unit) {
         binding.tvGroup.text = group.name
-println("Selected: $selected")
 
         if (selected != adapterPosition) {
             binding.tvGroup.background = ContextCompat.getDrawable(context, R.drawable.layout_group_unselected)

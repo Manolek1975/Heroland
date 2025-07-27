@@ -31,7 +31,7 @@ class TileMapFragment : Fragment() {
 
     private var _binding: FragmentTileMapBinding? = null
     private val binding get() = _binding!!
-    private val viewmodel: TileMapViewModel by viewModels()
+    private val viewModel: TileMapViewModel by viewModels()
     private val args: TileMapFragmentArgs by navArgs()
     private lateinit var data: SharedPreferences
     private var w: Int = 0
@@ -58,8 +58,8 @@ class TileMapFragment : Fragment() {
 
     private fun initUI() {
         initBoxes()
-        viewmodel.getTileById(args.id)
-        viewmodel.tile.observe(viewLifecycleOwner) { tile ->
+        viewModel.getTileById(args.id)
+        viewModel.tile.observe(viewLifecycleOwner) { tile ->
             binding.tileName.text = tile.name
             val id = getResId(tile.image, R.drawable::class.java)
             val bg = ContextCompat.getDrawable(requireContext(), id)
@@ -81,21 +81,32 @@ class TileMapFragment : Fragment() {
 
     private fun placeAdviceChit(id: Int, type: Char) {
         val dwelling = data.getInt("start_dwelling", 0)
-        viewmodel.getAdviceChitById(id)
-        viewmodel.advice.observe(viewLifecycleOwner) { advice ->
+        viewModel.getAdviceChitById(id)
+        viewModel.advice.observe(viewLifecycleOwner) { advice ->
             binding.adviceChit.text = getString(R.string.advice_chit, advice.name, type)
-            if(advice.dwelling == dwelling){
-                placePlayer()
-            }
-            if(advice.dwelling > 0) {
-                placeDwelling(advice.dwelling)
-            }
+            if(advice.dwelling == dwelling) placePlayer()
+            if(advice.dwelling > 0) placeDwelling(advice.dwelling)
+            if(advice.monster > 0) placeMonster(advice.monster)
+
         }
     }
 
+    private fun placeMonster(monsterId: Int) {
+        viewModel.getMonsterById(monsterId)
+        viewModel.monster.observe(viewLifecycleOwner) { monster ->
+            val id = getResId(monster.image, R.drawable::class.java)
+            val bitmap = BitmapFactory.decodeResource(resources, id)
+            val layout = fillDataAndGetBitmap(bitmap, monster.name)
+            val scale = Bitmap.createScaledBitmap(layout, w, w, false)
+            val image = BitmapDrawable(resources, scale)
+            binding.boxLayout.getChildAt(32).background = image
+        }
+
+    }
+
     private fun placeDwelling(advice: Int) {
-        viewmodel.getDwellingById(advice)
-        viewmodel.dwelling.observe(viewLifecycleOwner) { dwelling ->
+        viewModel.getDwellingById(advice)
+        viewModel.dwelling.observe(viewLifecycleOwner) { dwelling ->
             val dwellingId = getResId(dwelling.image, R.drawable::class.java)
             val bitmap = BitmapFactory.decodeResource(resources, dwellingId)
             val layout = fillDataAndGetBitmap(bitmap, dwelling.name)
@@ -112,8 +123,8 @@ class TileMapFragment : Fragment() {
     }
 
     private fun placeSoundChit(id: Int) {
-        viewmodel.getSoundChitById(id)
-        viewmodel.sound.observe(viewLifecycleOwner) { sound ->
+        viewModel.getSoundChitById(id)
+        viewModel.sound.observe(viewLifecycleOwner) { sound ->
             binding.soundChit.visibility = View.VISIBLE
             binding.soundChit.text = getString(R.string.advice_chit, sound.name, sound.num.toString())
             if (sound.type == "T" || sound.type == "L") {
@@ -125,8 +136,8 @@ class TileMapFragment : Fragment() {
     }
 
     private fun placeTreasureLocations(treasure: Int, num: Int) {
-        viewmodel.getDwellingById(treasure)
-        viewmodel.dwelling.observe(viewLifecycleOwner) { dwelling ->
+        viewModel.getDwellingById(treasure)
+        viewModel.dwelling.observe(viewLifecycleOwner) { dwelling ->
             val dwellingId = getResId(dwelling.image, R.drawable::class.java)
             val bitmap = BitmapFactory.decodeResource(resources, dwellingId)
             val layout = fillDataAndGetBitmap(bitmap, dwelling.name)
@@ -140,8 +151,8 @@ class TileMapFragment : Fragment() {
 
     private fun placePlayer() {
         val roleId = data.getInt("role_id", 0)
-        viewmodel.getRoleById(roleId)
-        viewmodel.role.observe(viewLifecycleOwner) { role ->
+        viewModel.getRoleById(roleId)
+        viewModel.role.observe(viewLifecycleOwner) { role ->
             val id = getResId(role.image, R.drawable::class.java)
             val bitmap = BitmapFactory.decodeResource(resources, id)
             val scale = Bitmap.createScaledBitmap(bitmap, w, w, false)

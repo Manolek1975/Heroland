@@ -5,11 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.delek.heroland.data.repository.AdviceChitRepository
 import com.delek.heroland.data.repository.DwellingRepository
+import com.delek.heroland.data.repository.MonsterRepository
 import com.delek.heroland.data.repository.RoleRepository
 import com.delek.heroland.data.repository.SoundChitRepository
 import com.delek.heroland.data.repository.TileRepository
 import com.delek.heroland.domain.model.AdviceChit
 import com.delek.heroland.domain.model.Dwelling
+import com.delek.heroland.domain.model.Monster
 import com.delek.heroland.domain.model.Role
 import com.delek.heroland.domain.model.SoundChit
 import com.delek.heroland.domain.model.Tile
@@ -23,7 +25,8 @@ class TileMapViewModel @Inject constructor(
     private val tileRepository: TileRepository,
     private val dwellingRepository: DwellingRepository,
     private val adviceRepository: AdviceChitRepository,
-    private val soundRepository: SoundChitRepository
+    private val soundRepository: SoundChitRepository,
+    private val monsterRepository: MonsterRepository
 ): ViewModel() {
 
     val role = MutableLiveData<Role>()
@@ -31,6 +34,7 @@ class TileMapViewModel @Inject constructor(
     val dwelling = MutableLiveData<Dwelling>()
     val advice = MutableLiveData<AdviceChit>()
     val sound = MutableLiveData<SoundChit>()
+    val monster = MutableLiveData<Monster>()
 
     fun getRoleById(id: Int) {
         viewModelScope.launch {
@@ -61,6 +65,12 @@ class TileMapViewModel @Inject constructor(
             dwelling.value = dwellingRepository.getDwellingById(id)
         }
 
+    }
+
+    fun getMonsterById(id: Int) {
+        viewModelScope.launch {
+            monster.value = monsterRepository.getMonsterById(id)
+        }
     }
 
 

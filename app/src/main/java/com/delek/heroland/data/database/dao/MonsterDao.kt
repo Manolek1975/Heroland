@@ -15,5 +15,8 @@ interface MonsterDao {
     @Query("SELECT * FROM monsters")
     suspend fun getAllMonsters(): List<MonsterEntity>
 
+    @Query("SELECT * FROM monsters WHERE id = :id")
+    suspend fun getMonsterById(id: Int): MonsterEntity
+
 
 }
