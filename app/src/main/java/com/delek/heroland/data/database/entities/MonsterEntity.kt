@@ -16,5 +16,6 @@ data class MonsterEntity(
     val fightB: String,
     val moveB: Int,
     val bounty: Int,
-    val dice: Int
+    val dice: Int,
+    val color: String
 )

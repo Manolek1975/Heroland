@@ -60,6 +60,7 @@ class DwellingFragment : Fragment() {
         })
         binding.rvNative.layoutManager = GridLayoutManager(context, 4)
         binding.rvNative.adapter = nativeAdapter
+        // Update Adapters
         viewModel.getGroupByStart(args.id)
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {

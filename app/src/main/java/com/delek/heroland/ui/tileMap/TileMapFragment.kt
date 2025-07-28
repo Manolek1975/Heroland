@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,9 +19,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.delek.heroland.R
+import com.delek.heroland.R.color
+import com.delek.heroland.R.drawable
+import com.delek.heroland.R.string
+import com.delek.heroland.R.style
 import com.delek.heroland.databinding.FragmentTileMapBinding
-import com.delek.heroland.databinding.LayoutDataBinding
+import com.delek.heroland.databinding.ItemMonsterBinding
+import com.delek.heroland.domain.model.Monster
 import com.google.android.material.textview.MaterialTextView
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.reflect.Field
@@ -61,7 +66,7 @@ class TileMapFragment : Fragment() {
         viewModel.getTileById(args.id)
         viewModel.tile.observe(viewLifecycleOwner) { tile ->
             binding.tileName.text = tile.name
-            val id = getResId(tile.image, R.drawable::class.java)
+            val id = getResId(tile.image, drawable::class.java)
             val bg = ContextCompat.getDrawable(requireContext(), id)
             binding.root.background = bg
             placeAdviceChit(tile.advice, tile.type.first())
@@ -73,7 +78,7 @@ class TileMapFragment : Fragment() {
 
     private fun initBoxes() {
         for (i in 1..45) {
-            val style = ContextThemeWrapper(requireContext(), R.style.box_cell)
+            val style = ContextThemeWrapper(requireContext(), style.box_cell)
             val box = MaterialTextView(style)
             binding.boxLayout.addView(box)
         }
@@ -83,10 +88,10 @@ class TileMapFragment : Fragment() {
         val dwelling = data.getInt("start_dwelling", 0)
         viewModel.getAdviceChitById(id)
         viewModel.advice.observe(viewLifecycleOwner) { advice ->
-            binding.adviceChit.text = getString(R.string.advice_chit, advice.name, type)
-            if(advice.dwelling == dwelling) placePlayer()
-            if(advice.dwelling > 0) placeDwelling(advice.dwelling)
-            if(advice.monster > 0) placeMonster(advice.monster)
+            binding.adviceChit.text = getString(string.advice_chit, advice.name, type)
+            if (advice.dwelling == dwelling) placePlayer()
+            if (advice.dwelling > 0) placeDwelling(advice.dwelling)
+            if (advice.monster > 0) placeMonster(advice.monster)
 
         }
     }
@@ -94,23 +99,22 @@ class TileMapFragment : Fragment() {
     private fun placeMonster(monsterId: Int) {
         viewModel.getMonsterById(monsterId)
         viewModel.monster.observe(viewLifecycleOwner) { monster ->
-            val id = getResId(monster.image, R.drawable::class.java)
+            val id = getResId(monster.image, drawable::class.java)
             val bitmap = BitmapFactory.decodeResource(resources, id)
-            val layout = fillDataAndGetBitmap(bitmap, monster.name)
+            val layout = fillDataAndGetBitmap(bitmap, monster)
             val scale = Bitmap.createScaledBitmap(layout, w, w, false)
             val image = BitmapDrawable(resources, scale)
             binding.boxLayout.getChildAt(32).background = image
         }
-
     }
 
     private fun placeDwelling(advice: Int) {
         viewModel.getDwellingById(advice)
         viewModel.dwelling.observe(viewLifecycleOwner) { dwelling ->
-            val dwellingId = getResId(dwelling.image, R.drawable::class.java)
+            val dwellingId = getResId(dwelling.image, drawable::class.java)
             val bitmap = BitmapFactory.decodeResource(resources, dwellingId)
-            val layout = fillDataAndGetBitmap(bitmap, dwelling.name)
-            val scale = Bitmap.createScaledBitmap(layout, w, w, false)
+            //val layout = fillDataAndGetBitmap(bitmap, dwelling.name)
+            val scale = Bitmap.createScaledBitmap(bitmap, w, w, false)
             val image = BitmapDrawable(resources, scale)
             binding.boxLayout.getChildAt(32).background = image
             binding.boxLayout.getChildAt(32).setOnClickListener {
@@ -126,10 +130,11 @@ class TileMapFragment : Fragment() {
         viewModel.getSoundChitById(id)
         viewModel.sound.observe(viewLifecycleOwner) { sound ->
             binding.soundChit.visibility = View.VISIBLE
-            binding.soundChit.text = getString(R.string.advice_chit, sound.name, sound.num.toString())
+            binding.soundChit.text =
+                getString(string.advice_chit, sound.name, sound.num.toString())
             if (sound.type == "T" || sound.type == "L") {
                 binding.soundChit.backgroundTintList =
-                    ResourcesCompat.getColorStateList(resources, R.color.gold, null)
+                    ResourcesCompat.getColorStateList(resources, color.gold, null)
                 placeTreasureLocations(sound.treasure, sound.num)
             }
         }
@@ -138,10 +143,10 @@ class TileMapFragment : Fragment() {
     private fun placeTreasureLocations(treasure: Int, num: Int) {
         viewModel.getDwellingById(treasure)
         viewModel.dwelling.observe(viewLifecycleOwner) { dwelling ->
-            val dwellingId = getResId(dwelling.image, R.drawable::class.java)
+            val dwellingId = getResId(dwelling.image, drawable::class.java)
             val bitmap = BitmapFactory.decodeResource(resources, dwellingId)
-            val layout = fillDataAndGetBitmap(bitmap, dwelling.name)
-            val scale = Bitmap.createScaledBitmap(layout, w, w, false)
+            //val layout = fillDataAndGetBitmap(bitmap, dwelling.name)
+            val scale = Bitmap.createScaledBitmap(bitmap, w, w, false)
             val image = BitmapDrawable(resources, scale)
             var cell = num * 6 //Place num in grid
             if (num > 3) cell += 2 //Adjust to no place in borders
@@ -153,7 +158,7 @@ class TileMapFragment : Fragment() {
         val roleId = data.getInt("role_id", 0)
         viewModel.getRoleById(roleId)
         viewModel.role.observe(viewLifecycleOwner) { role ->
-            val id = getResId(role.image, R.drawable::class.java)
+            val id = getResId(role.image, drawable::class.java)
             val bitmap = BitmapFactory.decodeResource(resources, id)
             val scale = Bitmap.createScaledBitmap(bitmap, w, w, false)
             val image = BitmapDrawable(resources, scale)
@@ -164,14 +169,16 @@ class TileMapFragment : Fragment() {
                 TileMapFragmentDirections.actionNavTileMapToNavCharacter(roleId)
             )
         }
-
     }
 
-    private fun fillDataAndGetBitmap(image: Bitmap, title: String): Bitmap {
+    private fun fillDataAndGetBitmap(image: Bitmap, monster: Monster): Bitmap {
         val layoutInflater: LayoutInflater = LayoutInflater.from(requireContext())
-        val layoutDataBinding = LayoutDataBinding.inflate(layoutInflater, null, false)
+        val layoutDataBinding = ItemMonsterBinding.inflate(layoutInflater, null, false)
+        layoutDataBinding.ivColor.setBackgroundColor(Color.parseColor(monster.color))
         layoutDataBinding.ivBackground.setImageBitmap(image)
-        layoutDataBinding.tvCenterText.text = title
+        layoutDataBinding.fightA.text = monster.fightA
+        layoutDataBinding.moveA.text = String.format("%s", monster.moveA)
+
         val outputBitmap = getBitmapFromView(layoutDataBinding.root)
         return outputBitmap
     }

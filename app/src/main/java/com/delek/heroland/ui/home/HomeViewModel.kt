@@ -21,7 +21,6 @@ import com.delek.heroland.domain.model.RoleWeapon
 import com.delek.heroland.domain.model.SoundChit
 import com.delek.heroland.domain.model.Spell
 import com.delek.heroland.domain.model.SpellType
-import com.delek.heroland.domain.model.Spot
 import com.delek.heroland.domain.model.StartSpell
 import com.delek.heroland.domain.model.Tile
 import com.delek.heroland.domain.model.VictoryPoints
@@ -44,7 +43,6 @@ import com.delek.heroland.domain.usecase.GetRolesUseCase
 import com.delek.heroland.domain.usecase.GetSoundChitUseCase
 import com.delek.heroland.domain.usecase.GetSpellTypeUseCase
 import com.delek.heroland.domain.usecase.GetSpellUseCase
-import com.delek.heroland.domain.usecase.GetSpotUseCase
 import com.delek.heroland.domain.usecase.GetStartSpellUseCase
 import com.delek.heroland.domain.usecase.GetTilesUseCase
 import com.delek.heroland.domain.usecase.GetVictoryPointsUseCase
@@ -77,7 +75,6 @@ class HomeViewModel @Inject constructor(
     private val getAdviceChitsUseCase: GetAdviceChitUseCase,
     private val getSoundChitsUseCase: GetSoundChitUseCase,
     private val getMonsterUseCase: GetMonsterUseCase,
-    private val getSpotUseCase: GetSpotUseCase
 ) : ViewModel() {
 
     //TODO Create class to load all use cases or insert all in single use, no idea atm!
@@ -103,7 +100,6 @@ class HomeViewModel @Inject constructor(
     private val advicesList = MutableLiveData<List<AdviceChit>>()
     private val soundChitsList = MutableLiveData<List<SoundChit>>()
     private val monsterList = MutableLiveData<List<Monster>>()
-    private val spotList = MutableLiveData<List<Spot>>()
 
 
     fun onCreate() {
@@ -195,10 +191,6 @@ class HomeViewModel @Inject constructor(
             val monster = getMonsterUseCase()
             if (monster.isNotEmpty()) {
                 monsterList.postValue(monster)
-            }
-            val spot = getSpotUseCase()
-            if (spot.isNotEmpty()) {
-                spotList.postValue(spot)
             }
         }
     }

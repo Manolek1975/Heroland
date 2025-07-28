@@ -8,6 +8,8 @@ data class AdviceChitEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
     val name: String,
     val type: String,
+    val dice: Int,
     val dwelling: Int,
-    val monster: Int
+    val monster: Int,
+    val native: Int
 )

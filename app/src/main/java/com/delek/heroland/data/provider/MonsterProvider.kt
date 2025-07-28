@@ -11,10 +11,11 @@ class MonsterProvider {
             val monsters = mutableListOf<MonsterEntity>()
             val name = context.resources.getStringArray(R.array.name_monsters)
             val image = context.resources.getStringArray(R.array.image_monsters)
+            val color = context.resources.getStringArray(R.array.color_monsters)
 
             for (i in name.indices) {
                 val value =(MonsterEntity(i+1, name[i], "", image[i], "", 0,
-                    "", 0, "", 0, 0, 0))
+                    "", 0, "", 0, 0, 0, color[i]))
                 monsters.add(value)
             }
             return monsters

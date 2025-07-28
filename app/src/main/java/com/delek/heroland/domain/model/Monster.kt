@@ -14,7 +14,8 @@ data class Monster(
     val fightB: String,
     val moveB: Int,
     val bounty: Int,
-    val dice: Int
+    val dice: Int,
+    val color: String
 )
 
-fun MonsterEntity.toDomain() = Monster(id, name, type, image, weight, armor, fightA, moveA, fightB, moveB, bounty, dice)
+fun MonsterEntity.toDomain() = Monster(id, name, type, image, weight, armor, fightA, moveA, fightB, moveB, bounty, dice, color)

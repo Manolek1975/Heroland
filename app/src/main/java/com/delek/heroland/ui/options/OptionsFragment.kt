@@ -244,7 +244,8 @@ class OptionsFragment : Fragment() {
     private fun setAdviceChits() {
         var tileId = 0
         var group = 0
-        var advice: MutableList<AdviceChit>
+        var advice: MutableList<AdviceChit> = mutableListOf()
+        advice.distinct()
         for (i in 1..4) { // 4 groups of 5 tiles
             viewmodel.getAdviceChitsByType("V")
             lifecycleScope.launch {
