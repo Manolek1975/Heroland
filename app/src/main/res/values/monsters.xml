@@ -34,8 +34,6 @@
 
         <item>WOLF</item>
         <item>WOLF</item>
-        <item>WOLF</item>
-        <item>WOLF</item>
     </string-array>
 
     <string-array name="image_monsters">
@@ -71,44 +69,275 @@
 
         <item>m_wolf</item>
         <item>m_wolf</item>
-        <item>m_wolf</item>
-        <item>m_wolf</item>
+    </string-array>
+
+    <string-array name="weight_monsters">
+        <item>T</item>
+        <item> </item>
+        <item>T</item>
+        <item> </item>
+        <item>T</item>
+        <item> </item>
+        <item>T</item>
+        <item>T</item>
+        <item>T</item>
+        <item>T</item>
+        <item>T</item>
+        <item>T</item>
+        <item>H</item>
+        <item>H</item>
+        <item>H</item>
+        <item>H</item>
+        <item>H</item>
+        <item>H</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+    </string-array>
+
+    <string-array name="armor_monsters">
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </string-array>
+
+    <string-array name="fight_a_monsters">
+        <item>M3</item>
+        <item>M3</item>
+        <item>H5</item>
+        <item>H4</item>
+        <item>H5</item>
+        <item>H6</item>
+        <item>V3</item>
+        <item>V2</item>
+        <item>H4</item>
+        <item>L4</item>
+        <item>L4</item>
+        <item>M4</item>
+        <item>H4</item>
+        <item>H4</item>
+        <item>M4</item>
+        <item>M4</item>
+        <item>M2</item>
+        <item>L4</item>
+        <item>VIII2</item>
+        <item />
+        <item>H5*</item>
+        <item>L4</item>
+        <item>M4**</item>
+        <item>H4</item>
+        <item>T5</item>
+        <item>L4</item>
+        <item>M5</item>
+    </string-array>
+
+    <string-array name="move_a_monsters">
+        <item>4</item>
+        <item>0</item>
+        <item>6</item>
+        <item>0</item>
+        <item>5</item>
+        <item>0</item>
+        <item>3</item>
+        <item>4</item>
+        <item>4</item>
+        <item>2</item>
+        <item>4</item>
+        <item>3</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>2</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
+        <item>3</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="fight_b_monsters">
+        <item>6</item>
+        <item>T3</item>
+        <item>3</item>
+        <item>T4</item>
+        <item>4</item>
+        <item>T4</item>
+        <item>5</item>
+        <item>4</item>
+        <item>2</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
+        <item>L4</item>
+        <item>M4</item>
+        <item>H5</item>
+        <item>H5</item>
+        <item>M3</item>
+        <item>T6</item>
+        <item>M4</item>
+        <item>H5</item>
+        <item>T5*</item>
+        <item>M4*</item>
+        <item>L2</item>
+        <item>L2</item>
+        <item>H5</item>
+        <item>M4</item>
+        <item>L3</item>
+    </string-array>
+
+    <string-array name="move_b_monsters">
+        <item>4</item>
+        <item>0</item>
+        <item>6</item>
+        <item>0</item>
+        <item>6</item>
+        <item>0</item>
+        <item>2</item>
+        <item>4</item>
+        <item>6</item>
+        <item>3</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>3</item>
+        <item>4</item>
+        <item>4</item>
+        <item>2</item>
+        <item>4</item>
+        <item>3</item>
+        <item>5</item>
+        <item>5</item>
+        <item>4</item>
+        <item>2</item>
+        <item>2</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="bounty_monsters">
+        <item>12</item>
+        <item>0</item>
+        <item>10</item>
+        <item>0</item>
+        <item>8</item>
+        <item>0</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>8</item>
+        <item>7</item>
+        <item>6</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>2</item>
+        <item>1</item>
+        <item>1</item>
+    </string-array>
+
+    <string-array name="dice_monsters">
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>4</item>
+        <item>0</item>
+        <item>2</item>
+        <item>2</item>
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>4</item>
+        <item>1</item>
+        <item>1</item>
+        <item>4</item>
+        <item>2</item>
+        <item>6</item>
+        <item>5</item>
+        <item>5</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>2</item>
+        <item>0</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
     </string-array>
 
     <string-array name="color_monsters">
-        <item>#A5C2DC</item>
-        <item>FLYING DRAGON HEAD</item>
-        <item>TREMENDOUS DRAGON</item>
-        <item>DRAGON HEAD</item>
-        <item>GIANT</item>
-
-        <item>GIANT CLUB</item>
-        <item>WINGED DEMON</item>
-        <item>DEMON</item>
-        <item>TREMENDOUS TROLL</item>
-        <item>OCTOPUS</item>
-
-        <item>TREMENDOUS SERPENT</item>
-        <item>TREMENDOUS SPIDER</item>
-        <item>HEAVY FLYING DRAGON</item>
-        <item>HEAVY DRAGON</item>
-        <item>HEAVY TROLL</item>
-
-        <item>HEAVY SERPENT</item>
-        <item>GIANT BAT</item>
-        <item>HEAVY SPIDER</item>
-        <item>IMP</item>
-        <item>SPEAR GOBLIN</item>
-
-        <item>SWORD GOBLIN</item>
-        <item>AXE GOBLIN</item>
-        <item>VIPER</item>
+        <item>#DEEFF7</item>
+        <item>#DEEFF7</item>
+        <item>#B491B4</item>
+        <item>#B491B4</item>
+        <item>#DEEFF7</item>
+        <item>#DEEFF7</item>
+        <item>#B491B4</item>
+        <item>#D6D6D6</item>
+        <item>#B491B4</item>
+        <item>#B491B4</item>
+        <item>#D6D6D6</item>
+        <item>#D6D6D6</item>
+        <item>#DEEFF7</item>
+        <item>#D6D6D6</item>
+        <item>#D6D6D6</item>
+        <item>#D6D6D6</item>
+        <item>#DEEFF7</item>
+        <item>#D6D6D6</item>
+        <item>#EFBEDD</item>
+        <item>#EFBEDD</item>
+        <item>#EFBEDD</item>
+        <item>#EFBEDD</item>
         <item>#BAE7A4</item>
-        <item>OGRE</item>
-
-        <item>WOLF</item>
-        <item>WOLF</item>
-        <item>WOLF</item>
-        <item>WOLF</item>
+        <item>#BAE7A4</item>
+        <item>#BAE7A4</item>
+        <item>#BAE7A4</item>
+        <item>#BAE7A4</item>
     </string-array>
 </resources>

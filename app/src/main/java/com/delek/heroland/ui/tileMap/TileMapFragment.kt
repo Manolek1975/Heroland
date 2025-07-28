@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
+import androidx.annotation.ColorInt
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -174,6 +175,7 @@ class TileMapFragment : Fragment() {
     private fun fillDataAndGetBitmap(image: Bitmap, monster: Monster): Bitmap {
         val layoutInflater: LayoutInflater = LayoutInflater.from(requireContext())
         val layoutDataBinding = ItemMonsterBinding.inflate(layoutInflater, null, false)
+        val dark = darkenColor(Color.parseColor(monster.color))
         layoutDataBinding.ivColor.setBackgroundColor(Color.parseColor(monster.color))
         layoutDataBinding.ivBackground.setImageBitmap(image)
         layoutDataBinding.fightA.text = monster.fightA
@@ -227,6 +229,13 @@ class TileMapFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    @ColorInt fun darkenColor(@ColorInt color: Int): Int {
+        return Color.HSVToColor(FloatArray(3).apply {
+            Color.colorToHSV(color, this)
+            this[2] *= 0.6f
+        })
     }
 
 }
