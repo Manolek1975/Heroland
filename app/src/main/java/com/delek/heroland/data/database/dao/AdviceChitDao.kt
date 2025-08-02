@@ -15,8 +15,8 @@ interface AdviceChitDao {
     @Query("SELECT * FROM advice_chits")
     suspend fun getAllAdviceChits(): List<AdviceChitEntity>
 
-    @Query("SELECT * FROM advice_chits WHERE type == :type")
-    suspend fun getAdviceChitsByType(type: String): List<AdviceChitEntity>
+    @Query("SELECT * FROM advice_chits WHERE type == 'V' AND dice == 0")
+    suspend fun getAdviceChitsByStart(): List<AdviceChitEntity>
 
     @Query("SELECT * FROM advice_chits WHERE id == :id")
     suspend fun getAdviceChitById(id: Int): AdviceChitEntity

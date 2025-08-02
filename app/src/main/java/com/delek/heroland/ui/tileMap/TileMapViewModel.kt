@@ -34,7 +34,8 @@ class TileMapViewModel @Inject constructor(
     val dwelling = MutableLiveData<Dwelling>()
     val advice = MutableLiveData<AdviceChit>()
     val sound = MutableLiveData<SoundChit>()
-    val monster = MutableLiveData<Monster>()
+    val adviceMonster = MutableLiveData<Monster>()
+    val soundMonster = MutableLiveData<Monster>()
 
     fun getRoleById(id: Int) {
         viewModelScope.launch {
@@ -67,12 +68,17 @@ class TileMapViewModel @Inject constructor(
 
     }
 
-    fun getMonsterById(id: Int) {
+    fun getAdviceMonsterById(id: Int) {
         viewModelScope.launch {
-            monster.value = monsterRepository.getMonsterById(id)
+            adviceMonster.value = monsterRepository.getAdviceMonsterById(id)
         }
     }
 
+    fun getSoundMonsterById(id: Int) {
+        viewModelScope.launch {
+            soundMonster.value = monsterRepository.getSoundMonsterById(id)
+        }
+    }
 
 
 

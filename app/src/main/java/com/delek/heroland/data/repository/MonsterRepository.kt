@@ -17,8 +17,13 @@ class MonsterRepository @Inject constructor(private val monsterDao: MonsterDao) 
         return response.map { it.toDomain() }
     }
 
-    suspend fun getMonsterById(id: Int): Monster {
-        val response: MonsterEntity = monsterDao.getMonsterById(id)
+    suspend fun getAdviceMonsterById(id: Int): Monster {
+        val response: MonsterEntity = monsterDao.getAdviceMonsterById(id)
+        return response.toDomain()
+    }
+
+    suspend fun getSoundMonsterById(id: Int): Monster {
+        val response: MonsterEntity = monsterDao.getSoundMonsterById(id)
         return response.toDomain()
     }
 }

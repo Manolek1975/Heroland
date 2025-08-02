@@ -3,7 +3,6 @@
 
     <string-array name="name_advice_chits">
         <item>STINK</item>
-        <item>STINK</item>
         <item>SMOKE</item>
         <item>DANK</item>
         <item>RUINS</item>
@@ -23,6 +22,20 @@
         <item>DANK</item>
         <item>RUINS</item>
         <item>BONES</item>
+
+        <item>STINK</item>
+        <item>STINK</item>
+        <item>SMOKE</item>
+        <item>SMOKE</item>
+        <item>STINK</item>
+        <item>SMOKE</item>
+        <item>DANK</item>
+        <item>RUINS</item>
+        <item>RUINS</item>
+        <item>STINK</item>
+        <item>SMOKE</item>
+        <item>STINK</item>
+        <item>SMOKE</item>
     </string-array>
 
     <string-array name="type_advice_chits">
@@ -31,27 +44,39 @@
         <item>V</item>
         <item>V</item>
         <item>V</item>
+        <item>W</item>
+        <item>W</item>
+        <item>W</item>
+        <item>W</item>
+        <item>W</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>M</item>
+        <item>C</item>
+        <item>C</item>
+        <item>C</item>
+        <item>C</item>
+        <item>C</item>
+
+        <item>V</item>
+        <item>W</item>
+        <item>V</item>
+        <item>W</item>
+        <item>V</item>
+        <item>V</item>
+        <item>V</item>
+        <item>V</item>
         <item>V</item>
         <item>W</item>
         <item>W</item>
         <item>W</item>
         <item>W</item>
-        <item>W</item>
-        <item>M</item>
-        <item>M</item>
-        <item>M</item>
-        <item>M</item>
-        <item>M</item>
-        <item>C</item>
-        <item>C</item>
-        <item>C</item>
-        <item>C</item>
-        <item>C</item>
     </string-array>
 
     <string-array name="dice_advice_chits">
         <item>0</item>
-        <item>1</item>
         <item>0</item>
         <item>0</item>
         <item>0</item>
@@ -74,10 +99,23 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
+
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>2</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
+        <item>5</item>
     </string-array>
 
     <string-array name="dwelling_advice_chits">
-        <item>1</item>
         <item>1</item>
         <item>2</item>
         <item>4</item>
@@ -101,10 +139,23 @@
         <item>0</item>
         <item>0</item>
         <item>0</item>
+
+        <item>1</item>
+        <item>6</item>
+        <item>2</item>
+        <item>7</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>4</item>
+        <item>6</item>
+        <item>7</item>
+        <item>6</item>
+        <item>7</item>
     </string-array>
 
     <string-array name="monster_advice_chits">
-        <item>0</item>
         <item>0</item>
         <item>0</item>
         <item>0</item>
@@ -128,33 +179,60 @@
         <item>16</item>
         <item>22</item>
         <item>15</item>
+
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
     </string-array>
 
     <string-array name="native_advice_chits">
         <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+
         <item>1</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
+        <item>1</item>
+        <item>9</item>
+        <item>9</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>6</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>1</item>
+        <item>1</item>
     </string-array>
 
 </resources>

@@ -11,10 +11,13 @@ class SoundChitProvider {
             val sound: MutableList<SoundChitEntity> = mutableListOf()
             val name = context.resources.getStringArray(R.array.name_sound_chits)
             val type = context.resources.getStringArray(R.array.type_sound_chits)
+            val dice = context.resources.getStringArray(R.array.dice_sound_chits)
             val num = context.resources.getStringArray(R.array.num_sound_chits)
             val treasure = context.resources.getStringArray(R.array.treasure_sound_chits)
+            val monster = context.resources.getStringArray(R.array.monster_sound_chits)
             for (i in name.indices) {
-                val s = SoundChitEntity(i + 1, name[i], type[i], num[i].toInt(), treasure[i].toInt(), 0)
+                val s = SoundChitEntity(i + 1, name[i], type[i], dice[i].toInt(),
+                    num[i].toInt(), treasure[i].toInt(), monster[i].toInt())
                 sound.add(s)
             }
             return sound

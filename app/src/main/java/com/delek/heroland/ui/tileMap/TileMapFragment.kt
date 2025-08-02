@@ -26,6 +26,7 @@ import com.delek.heroland.R.string
 import com.delek.heroland.R.style
 import com.delek.heroland.databinding.FragmentTileMapBinding
 import com.delek.heroland.databinding.ItemMonsterBinding
+import com.delek.heroland.databinding.LayoutDataBinding
 import com.delek.heroland.domain.model.Monster
 import com.google.android.material.textview.MaterialTextView
 import dagger.hilt.android.AndroidEntryPoint
@@ -92,14 +93,27 @@ class TileMapFragment : Fragment() {
             binding.adviceChit.text = getString(string.advice_chit, advice.name, type)
             if (advice.dwelling == dwelling) placePlayer()
             if (advice.dwelling > 0) placeDwelling(advice.dwelling)
-            if (advice.monster > 0) placeMonster(advice.monster)
-
+            if (advice.monster > 0) placeAdviceMonster(advice.monster)
+        }
+    }
+    private fun placeSoundChit(id: Int) {
+        viewModel.getSoundChitById(id)
+        viewModel.sound.observe(viewLifecycleOwner) { sound ->
+            binding.soundChit.visibility = View.VISIBLE
+            binding.soundChit.text = getString(string.advice_chit, sound.name, sound.num.toString())
+            if (sound.type == "T" || sound.type == "L") {
+                binding.soundChit.backgroundTintList =
+                    ResourcesCompat.getColorStateList(resources, color.gold, null)
+                placeTreasureLocations(sound.treasure, sound.num)
+            }
+            if (sound.monster > 0) placeSoundMonster(sound.monster, sound.num)
         }
     }
 
-    private fun placeMonster(monsterId: Int) {
-        viewModel.getMonsterById(monsterId)
-        viewModel.monster.observe(viewLifecycleOwner) { monster ->
+    private fun placeAdviceMonster(monsterId: Int) {
+        viewModel.getAdviceMonsterById(monsterId)
+        viewModel.adviceMonster.observe(viewLifecycleOwner) { monster ->
+            println(monster)
             val id = getResId(monster.image, drawable::class.java)
             val bitmap = BitmapFactory.decodeResource(resources, id)
             val layout = fillDataAndGetBitmap(bitmap, monster)
@@ -109,34 +123,37 @@ class TileMapFragment : Fragment() {
         }
     }
 
+    private fun placeSoundMonster(monsterId: Int, num: Int) {
+        viewModel.getSoundMonsterById(monsterId)
+        viewModel.soundMonster.observe(viewLifecycleOwner) { monster ->
+            println(monster)
+            var cell = 32
+            val id = getResId(monster.image, drawable::class.java)
+            val bitmap = BitmapFactory.decodeResource(resources, id)
+            val layout = fillDataAndGetBitmap(bitmap, monster)
+            val scale = Bitmap.createScaledBitmap(layout, w, w, false)
+            val image = BitmapDrawable(resources, scale)
+            if (num != 0) {
+                cell = num * 6 //Place num in grid
+                if (num > 3) cell += 2 //Adjust to no place in borders
+            }
+            binding.boxLayout.getChildAt(cell).background = image
+        }
+    }
+
     private fun placeDwelling(advice: Int) {
         viewModel.getDwellingById(advice)
         viewModel.dwelling.observe(viewLifecycleOwner) { dwelling ->
             val dwellingId = getResId(dwelling.image, drawable::class.java)
             val bitmap = BitmapFactory.decodeResource(resources, dwellingId)
-            //val layout = fillDataAndGetBitmap(bitmap, dwelling.name)
-            val scale = Bitmap.createScaledBitmap(bitmap, w, w, false)
+            val layout = fillNameAndGetBitmap(bitmap, dwelling.name)
+            val scale = Bitmap.createScaledBitmap(layout, w, w, false)
             val image = BitmapDrawable(resources, scale)
             binding.boxLayout.getChildAt(32).background = image
             binding.boxLayout.getChildAt(32).setOnClickListener {
                 findNavController().navigate(
                     TileMapFragmentDirections.actionNavTileMapToMapDwelling(dwelling.id)
                 )
-            }
-        }
-
-    }
-
-    private fun placeSoundChit(id: Int) {
-        viewModel.getSoundChitById(id)
-        viewModel.sound.observe(viewLifecycleOwner) { sound ->
-            binding.soundChit.visibility = View.VISIBLE
-            binding.soundChit.text =
-                getString(string.advice_chit, sound.name, sound.num.toString())
-            if (sound.type == "T" || sound.type == "L") {
-                binding.soundChit.backgroundTintList =
-                    ResourcesCompat.getColorStateList(resources, color.gold, null)
-                placeTreasureLocations(sound.treasure, sound.num)
             }
         }
     }
@@ -146,8 +163,8 @@ class TileMapFragment : Fragment() {
         viewModel.dwelling.observe(viewLifecycleOwner) { dwelling ->
             val dwellingId = getResId(dwelling.image, drawable::class.java)
             val bitmap = BitmapFactory.decodeResource(resources, dwellingId)
-            //val layout = fillDataAndGetBitmap(bitmap, dwelling.name)
-            val scale = Bitmap.createScaledBitmap(bitmap, w, w, false)
+            val layout = fillNameAndGetBitmap(bitmap, dwelling.name)
+            val scale = Bitmap.createScaledBitmap(layout, w, w, false)
             val image = BitmapDrawable(resources, scale)
             var cell = num * 6 //Place num in grid
             if (num > 3) cell += 2 //Adjust to no place in borders
@@ -170,6 +187,15 @@ class TileMapFragment : Fragment() {
                 TileMapFragmentDirections.actionNavTileMapToNavCharacter(roleId)
             )
         }
+    }
+
+    private fun fillNameAndGetBitmap(image: Bitmap, name: String): Bitmap {
+        val layoutInflater: LayoutInflater = LayoutInflater.from(requireContext())
+        val layoutDataBinding = LayoutDataBinding.inflate(layoutInflater, null, false)
+        layoutDataBinding.ivBackground.setImageBitmap(image)
+        layoutDataBinding.tvCenterText.text = name
+        val outputBitmap = getBitmapFromView(layoutDataBinding.root)
+        return outputBitmap
     }
 
     private fun fillDataAndGetBitmap(image: Bitmap, monster: Monster): Bitmap {

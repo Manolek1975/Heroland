@@ -8,6 +8,7 @@ data class SoundChitEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
     val name: String,
     val type: String,
+    val dice: Int,
     val num: Int,
     val treasure: Int,
     val monster: Int

@@ -6,9 +6,10 @@ data class SoundChit(
     val id: Int,
     val name: String,
     val type: String,
+    val dice: Int,
     val num: Int,
     val treasure: Int,
     val monster: Int
 )
 
-fun SoundChitEntity.toDomain() = SoundChit(id, name, type, num, treasure, monster)
+fun SoundChitEntity.toDomain() = SoundChit(id, name, type, dice, num, treasure, monster)
