@@ -3,12 +3,16 @@ package com.delek.heroland.ui.tileMap
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.graphics.scale
 import androidx.fragment.app.Fragment
@@ -22,8 +26,9 @@ import com.delek.heroland.databinding.FragmentTileBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.reflect.Field
 
+
 @AndroidEntryPoint
-class TileFragment : Fragment() {
+open class TileFragment : Fragment() {
 
     private var _binding: FragmentTileBinding? = null
     private val binding get() = _binding!!
@@ -60,6 +65,7 @@ class TileFragment : Fragment() {
                 TileFragmentDirections.actionNavTileToNavMap()
             )
         }
+
     }
 
     private fun placeTiles(type: String) {
@@ -67,6 +73,7 @@ class TileFragment : Fragment() {
             "VALLEY" -> {
                 binding.c3.visibility = View.GONE
                 binding.c6.visibility = View.GONE
+                drawConnections()
             }
             "WOOD" -> {
                 binding.c1.visibility = View.GONE
@@ -74,6 +81,23 @@ class TileFragment : Fragment() {
                 binding.c6.visibility = View.GONE
             }
         }
+    }
+
+    private fun drawConnections() {
+        val width = binding.c2.width
+        val w = binding.con1.width - width*2
+        val h = binding.con1.height
+        println(width)
+        val bitmap = createBitmap(w, h)
+        val canvas = Canvas(bitmap)
+        val paint = Paint().apply {
+            color = Color.YELLOW
+            strokeWidth = 5f
+        }
+        canvas.drawLine(0f, h/2f, w.toFloat(), h/2f, paint)
+        canvas.drawBitmap(bitmap, 0f, 0f, paint)
+        binding.con1.setImageBitmap(bitmap)
+        binding.con2.setImageBitmap(bitmap)
     }
 
     private fun placePlayer() {

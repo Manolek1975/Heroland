@@ -57,37 +57,49 @@
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="120dp">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/c1"
             style="@style/clearing"
             android:layout_gravity="top|start"
             android:background="@drawable/clearing_1" />
 
-        <ImageView
-            android:id="@+id/c2"
-            style="@style/clearing"
-            android:layout_gravity="top|end"
-            android:background="@drawable/clearing_2" />
-
-        <ImageView
-            android:id="@+id/c3"
-            style="@style/clearing"
-            android:layout_gravity="center|start"
-            android:background="@drawable/clearing_3" />
-
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/c4"
             style="@style/clearing"
-            android:layout_gravity="center|end"
+            android:layout_gravity="top|end"
             android:background="@drawable/clearing_4" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/con1"
+            android:layout_width="match_parent"
+            style="@style/clearing"
+            android:layout_gravity="top|center" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/c2"
+            style="@style/clearing"
+            android:layout_gravity="center|start"
+            android:background="@drawable/clearing_2" />
+
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/c5"
             style="@style/clearing"
-            android:layout_gravity="bottom|start"
+            android:layout_gravity="center|end"
             android:background="@drawable/clearing_5" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/con2"
+            android:layout_width="match_parent"
+            style="@style/clearing"
+            android:layout_gravity="center|start" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/c3"
+            style="@style/clearing"
+            android:layout_gravity="bottom|start"
+            android:background="@drawable/clearing_3" />
+
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/c6"
             style="@style/clearing"
             android:layout_gravity="bottom|end"
