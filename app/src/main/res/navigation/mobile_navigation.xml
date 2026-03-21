@@ -95,11 +95,8 @@
         android:label="fragment_map"
         tools:layout="@layout/fragment_map" >
         <action
-            android:id="@+id/action_nav_map_to_nav_tile_map"
-            app:destination="@id/nav_tile_map"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/nav_map"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_nav_map_to_nav_tile"
+            app:destination="@id/nav_tile" />
     </fragment>
 
     <fragment
@@ -110,15 +107,6 @@
         <argument
             android:name="id"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_nav_tile_map_to_map_dwelling"
-            app:destination="@id/nav_dwelling" />
-        <action
-            android:id="@+id/action_nav_tile_map_to_nav_character"
-            app:destination="@id/nav_character" />
-        <action
-            android:id="@+id/action_nav_tile_map_to_nav_map"
-            app:destination="@id/nav_map" />
     </fragment>
 
     <fragment
@@ -146,6 +134,24 @@
         tools:layout="@layout/fragment_native_detail" >
         <argument
             android:name="native_id"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_tile"
+        android:name="com.delek.heroland.ui.tileMap.TileFragment"
+        android:label="fragment_tile"
+        tools:layout="@layout/fragment_tile" >
+        <action
+            android:id="@+id/action_nav_tile_to_nav_map"
+            app:destination="@id/nav_map" />
+        <action
+            android:id="@+id/action_nav_tile_to_nav_character"
+            app:destination="@id/nav_character" />
+        <action
+            android:id="@+id/action_nav_tile_to_nav_dwelling"
+            app:destination="@id/nav_dwelling" />
+        <argument
+            android:name="id"
             app:argType="integer" />
     </fragment>
 

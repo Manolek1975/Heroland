@@ -58,7 +58,7 @@ class TileMapFragment : Fragment() {
         side()
         binding.arrowBack.setOnClickListener {
             findNavController().navigate(
-                TileMapFragmentDirections.actionNavTileMapToNavMap()
+                TileFragmentDirections.actionNavTileToNavMap()
             )
         }
     }
@@ -146,15 +146,14 @@ class TileMapFragment : Fragment() {
         viewModel.dwelling.observe(viewLifecycleOwner) { dwelling ->
             val dwellingId = getResId(dwelling.image, drawable::class.java)
             val bitmap = BitmapFactory.decodeResource(resources, dwellingId)
-            val layout = fillNameAndGetBitmap(bitmap, dwelling.name)
-            val scale = Bitmap.createScaledBitmap(layout, w, w, false)
+            val scale = Bitmap.createScaledBitmap(bitmap, w, w, false)
             val image = BitmapDrawable(resources, scale)
             binding.boxLayout.getChildAt(32).background = image
-            binding.boxLayout.getChildAt(32).setOnClickListener {
+/*            binding.boxLayout.getChildAt(32).setOnClickListener {
                 findNavController().navigate(
-                    TileMapFragmentDirections.actionNavTileMapToMapDwelling(dwelling.id)
+                    TileFragmentDirections.actionNavTileToMapDwelling(dwelling.id)
                 )
-            }
+            }*/
         }
     }
 
@@ -182,11 +181,11 @@ class TileMapFragment : Fragment() {
             val image = BitmapDrawable(resources, scale)
             binding.boxLayout.getChildAt(22).background = image
         }
-        binding.boxLayout.getChildAt(22).setOnClickListener {
+/*        binding.boxLayout.getChildAt(22).setOnClickListener {
             findNavController().navigate(
                 TileMapFragmentDirections.actionNavTileMapToNavCharacter(roleId)
             )
-        }
+        }*/
     }
 
     private fun fillNameAndGetBitmap(image: Bitmap, name: String): Bitmap {

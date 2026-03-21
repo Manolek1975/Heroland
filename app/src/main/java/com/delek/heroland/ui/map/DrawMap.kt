@@ -19,6 +19,9 @@ import com.delek.heroland.data.repository.TileRepository
 import com.delek.heroland.domain.model.Tile
 import java.lang.reflect.Field
 import javax.inject.Inject
+import androidx.core.graphics.withSave
+import androidx.core.content.edit
+import androidx.core.graphics.scale
 
 
 class DrawMap @Inject constructor(context: Context) : View(context) {
@@ -41,17 +44,17 @@ class DrawMap @Inject constructor(context: Context) : View(context) {
         super.onDraw(canvas)
         //canvas.translate(cx, cy)
         canvas.apply {
-            save()
-            setPaint()
-            canvas.drawBitmap(bitmap, 0f, 0f, null)
-            for (cord in tiles) {
-                val x1 = cord.x.toFloat()
-                val y1 = cord.y.toFloat()
-                canvas.drawText(cord.name, x1, y1 - 20, p)
-                canvas.drawCircle(x1, y1, 15F, p)
-                //p.color = ResourcesCompat.getColor(resources, R.color.white, null)
+            withSave {
+                setPaint()
+                canvas.drawBitmap(bitmap, 0f, 0f, null)
+                for (cord in tiles) {
+                    val x1 = cord.x.toFloat()
+                    val y1 = cord.y.toFloat()
+                    canvas.drawText(cord.name, x1, y1 - 20, p)
+                    canvas.drawCircle(x1, y1, 15F, p)
+                    //p.color = ResourcesCompat.getColor(resources, R.color.white, null)
+                }
             }
-            restore()
         }
         invalidate()
         db.close()
@@ -73,9 +76,9 @@ class DrawMap @Inject constructor(context: Context) : View(context) {
             MotionEvent.ACTION_DOWN -> {
                 val touchedTile = findTile(event.x, event.y)
                 touchedTile?.let {
-                    data.edit().putInt("tileId", touchedTile.id).apply()
+                    data.edit { putInt("tileId", touchedTile.id) }
                     findNavController().navigate(
-                        MapFragmentDirections.actionNavMapToNavTileMap(touchedTile.id)
+                        MapFragmentDirections.actionNavMapToNavTile(touchedTile.id)
                     )
                 }
                 return true
@@ -99,7 +102,7 @@ class DrawMap @Inject constructor(context: Context) : View(context) {
     private fun getBitmap(tile: Tile): Bitmap {
         val id = getResId(tile.image, R.drawable::class.java)
         val bitmap = BitmapFactory.decodeResource(resources, id)
-        val scale = Bitmap.createScaledBitmap(bitmap, 120, 120, false)
+        val scale = bitmap.scale(120, 120, false)
         return scale
     }
 
