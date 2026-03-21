@@ -8,43 +8,90 @@
     android:background="@color/black"
     tools:context=".ui.tileMap.TileFragment">
 
-    <ImageButton
+    <!-- BACK ARROW -->
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/arrow_back"
         style="@style/arrow_back"
-        android:backgroundTint="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="ContentDescription" />
+        android:backgroundTint="@color/white" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/advice_chit"
-        style="@style/Base.Theme.Advice.Layout"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/yellow"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/barrier" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/sound_chit"
-        style="@style/Base.Theme.Advice.Layout"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/red"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/advice_chit"/>
-
+    <!-- TILE NAME -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="40dp"
         android:padding="2dp"
         android:textColor="@color/yellow"
         android:textSize="30sp"
         android:textStyle="bold"
         tools:text="CRAG" />
 
+    <!-- ADVICE CHIT -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/advice_chit"
+        style="@style/Base.Theme.Advice.Layout"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/yellow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/barrier"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- SOUND CHIT -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/sound_chit"
+        style="@style/Base.Theme.Advice.Layout"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/red"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/advice_chit"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- TILE CLEARINGS -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="120dp">
+
+        <ImageView
+            android:id="@+id/c1"
+            style="@style/clearing"
+            android:layout_gravity="top|start"
+            android:background="@drawable/clearing_1" />
+
+        <ImageView
+            android:id="@+id/c2"
+            style="@style/clearing"
+            android:layout_gravity="top|end"
+            android:background="@drawable/clearing_2" />
+
+        <ImageView
+            android:id="@+id/c3"
+            style="@style/clearing"
+            android:layout_gravity="center|start"
+            android:background="@drawable/clearing_3" />
+
+        <ImageView
+            android:id="@+id/c4"
+            style="@style/clearing"
+            android:layout_gravity="center|end"
+            android:background="@drawable/clearing_4" />
+
+        <ImageView
+            android:id="@+id/c5"
+            style="@style/clearing"
+            android:layout_gravity="bottom|start"
+            android:background="@drawable/clearing_5" />
+
+        <ImageView
+            android:id="@+id/c6"
+            style="@style/clearing"
+            android:layout_gravity="bottom|end"
+            android:background="@drawable/clearing_6" />
+
+    </FrameLayout>
 </FrameLayout>

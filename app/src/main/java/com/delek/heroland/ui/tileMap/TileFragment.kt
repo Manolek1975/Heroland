@@ -49,6 +49,7 @@ class TileFragment : Fragment() {
             val id = getResId(tile.image, drawable::class.java)
             val bg = ContextCompat.getDrawable(requireContext(), id)
             binding.root.background = bg
+            placeTiles(tile.type)
             placeAdviceChit(tile.advice, tile.type.first())
             if (tile.sound > 0) {
                 placeSoundChit(tile.sound)
@@ -58,6 +59,20 @@ class TileFragment : Fragment() {
             findNavController().navigate(
                 TileFragmentDirections.actionNavTileToNavMap()
             )
+        }
+    }
+
+    private fun placeTiles(type: String) {
+        when (type) {
+            "VALLEY" -> {
+                binding.c3.visibility = View.GONE
+                binding.c6.visibility = View.GONE
+            }
+            "WOOD" -> {
+                binding.c1.visibility = View.GONE
+                binding.c3.visibility = View.GONE
+                binding.c6.visibility = View.GONE
+            }
         }
     }
 
