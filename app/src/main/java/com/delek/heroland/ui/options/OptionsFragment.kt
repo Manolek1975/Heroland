@@ -28,6 +28,7 @@ import com.delek.heroland.domain.model.Spell
 import com.delek.heroland.ui.options.VictoryPointsAdapter.Companion.total
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import androidx.core.content.edit
 
 @AndroidEntryPoint
 class OptionsFragment : Fragment() {
@@ -99,6 +100,7 @@ class OptionsFragment : Fragment() {
         binding.rgDwelling.check(dwelling[0].id)
         binding.rgDwelling.setOnCheckedChangeListener { _, checkedId ->
             dwellingSelected = checkedId
+            data.edit { putInt("start_dwelling", dwellingSelected) }
         }
     }
 
@@ -237,8 +239,8 @@ class OptionsFragment : Fragment() {
     }
 
     private fun setPlayer() {
-        data.edit().putInt("role_id", args.id).apply()
-        data.edit().putInt("start_dwelling", dwellingSelected).apply()
+        data.edit { putInt("role_id", args.id) }
+        data.edit { putInt("start_dwelling", dwellingSelected) }
     }
 
     private fun setAdviceChits() {

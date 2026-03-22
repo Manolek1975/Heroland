@@ -52,6 +52,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
         android:layout_marginStart="60dp"
         android:layout_marginTop="120dp"
         android:layout_marginEnd="60dp"
@@ -105,5 +106,26 @@
             android:layout_gravity="bottom|end"
             android:background="@drawable/clearing_6" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/player"
+            style="@style/clearing"
+            android:layout_gravity="center|end"
+            android:visibility="gone"
+            android:background="@drawable/img_amazon" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dwelling"
+            style="@style/clearing"
+            android:layout_gravity="center|end"
+            android:visibility="gone"
+            android:background="@drawable/d_inn" />
+
     </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_phases"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"/>
+
 </FrameLayout>

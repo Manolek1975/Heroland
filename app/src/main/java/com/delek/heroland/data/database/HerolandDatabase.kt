@@ -10,6 +10,7 @@ import com.delek.heroland.data.database.dao.DwellingDao
 import com.delek.heroland.data.database.dao.NativeDao
 import com.delek.heroland.data.database.dao.GroupDao
 import com.delek.heroland.data.database.dao.MonsterDao
+import com.delek.heroland.data.database.dao.PhaseDao
 import com.delek.heroland.data.database.dao.PlayerDao
 import com.delek.heroland.data.database.dao.RoleAdvantageDao
 import com.delek.heroland.data.database.dao.RoleArmorDao
@@ -34,6 +35,7 @@ import com.delek.heroland.data.database.entities.DwellingEntity
 import com.delek.heroland.data.database.entities.NativeEntity
 import com.delek.heroland.data.database.entities.GroupEntity
 import com.delek.heroland.data.database.entities.MonsterEntity
+import com.delek.heroland.data.database.entities.PhaseEntity
 import com.delek.heroland.data.database.entities.PlayerEntity
 import com.delek.heroland.data.database.entities.RoleAdvantageEntity
 import com.delek.heroland.data.database.entities.RoleArmorEntity
@@ -76,7 +78,9 @@ import com.delek.heroland.data.database.entities.WeaponEntity
         TileEntity::class,
         AdviceChitEntity::class,
         SoundChitEntity::class,
-        MonsterEntity::class],
+        MonsterEntity::class,
+        PhaseEntity::class
+    ],
     version = 1,
     exportSchema = false
 )
@@ -105,5 +109,6 @@ abstract class HerolandDatabase : RoomDatabase() {
     abstract fun getAdviceChitDao(): AdviceChitDao
     abstract fun getSoundChitDao(): SoundChitDao
     abstract fun getMonsterDao(): MonsterDao
+    abstract fun getPhaseDao(): PhaseDao
 
 }

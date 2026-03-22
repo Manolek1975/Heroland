@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="phase_names">
+        <item>HIDE</item>
+        <item>MOVE</item>
+        <item>SEARCH</item>
+        <item>REST</item>
+        <item>ALERT</item>
+        <item>SPELL</item>
+        <item>TRADE</item>
+        <item>HIRE</item>
+        <item>FOLLOW</item>
+        <item>PEER</item>
+        <item>FLY</item>
+        <item>CACHE</item>
+    </string-array>
+
+</resources>

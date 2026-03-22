@@ -11,6 +11,7 @@ import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Group
 import com.delek.heroland.domain.model.Monster
 import com.delek.heroland.domain.model.Native
+import com.delek.heroland.domain.model.Phase
 import com.delek.heroland.domain.model.Role
 import com.delek.heroland.domain.model.RoleAdvantage
 import com.delek.heroland.domain.model.RoleArmor
@@ -47,6 +48,7 @@ import com.delek.heroland.domain.usecase.GetStartSpellUseCase
 import com.delek.heroland.domain.usecase.GetTilesUseCase
 import com.delek.heroland.domain.usecase.GetVictoryPointsUseCase
 import com.delek.heroland.domain.usecase.GetWeaponsUseCase
+import com.delek.heroland.domain.usecase.GetPhasesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -75,6 +77,7 @@ class HomeViewModel @Inject constructor(
     private val getAdviceChitsUseCase: GetAdviceChitUseCase,
     private val getSoundChitsUseCase: GetSoundChitUseCase,
     private val getMonsterUseCase: GetMonsterUseCase,
+    private val getPhasesUseCase: GetPhasesUseCase
 ) : ViewModel() {
 
     //TODO Create class to load all use cases or insert all in single use, no idea atm!
@@ -100,7 +103,7 @@ class HomeViewModel @Inject constructor(
     private val advicesList = MutableLiveData<List<AdviceChit>>()
     private val soundChitsList = MutableLiveData<List<SoundChit>>()
     private val monsterList = MutableLiveData<List<Monster>>()
-
+    private val phaseList = MutableLiveData<List<Phase>>()
 
     fun onCreate() {
         viewModelScope.launch {
@@ -192,6 +195,11 @@ class HomeViewModel @Inject constructor(
             if (monster.isNotEmpty()) {
                 monsterList.postValue(monster)
             }
+            val phase = getPhasesUseCase()
+            if (phase.isNotEmpty()) {
+                phaseList.postValue(phase)
+            }
+
         }
     }
 
