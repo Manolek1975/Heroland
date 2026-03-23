@@ -19,8 +19,6 @@ import com.delek.heroland.domain.model.Role
 import com.delek.heroland.domain.model.SoundChit
 import com.delek.heroland.domain.model.Tile
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -47,7 +45,7 @@ class TileViewModel @Inject constructor(
     val dayPhases = MutableLiveData<List<Phase>>()
 
     fun insertDayPhase(day: Int, phase: Int) {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch {
             dayPhaseRepository.insertDayPhase(day, phase)
         }
     }

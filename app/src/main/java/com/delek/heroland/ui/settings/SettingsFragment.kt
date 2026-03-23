@@ -143,6 +143,7 @@ class SettingsFragment : Fragment() {
             data.edit().putInt("role_id", 0).apply()
             viewModel.deleteTiles()
             viewModel.deletePrimaryKeyIndex()
+            viewModel.deleteDayPhases()
             val i = Intent(activity, MainActivity::class.java)
             MainActivity.stopPlayer()
             startActivity(i) // To Main Activity
