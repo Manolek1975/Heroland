@@ -1,4 +1,4 @@
-package com.delek.heroland.ui.tileMap
+package com.delek.heroland.ui.tile
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -14,7 +14,7 @@ class PhaseAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhaseViewHolder {
         return PhaseViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_type, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_phase, parent, false)
         )
     }
 

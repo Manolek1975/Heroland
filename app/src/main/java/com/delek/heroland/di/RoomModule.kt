@@ -121,4 +121,8 @@ object RoomModule {
     @Provides
     fun providePhaseDao(db: HerolandDatabase) = db.getPhaseDao()
 
+    @Singleton
+    @Provides
+    fun provideDayPhaseDao(db: HerolandDatabase) = db.getDayPhaseDao()
+
 }

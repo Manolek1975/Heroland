@@ -239,6 +239,7 @@ class OptionsFragment : Fragment() {
     }
 
     private fun setPlayer() {
+        data.edit { putInt("day", 1) }
         data.edit { putInt("role_id", args.id) }
         data.edit { putInt("start_dwelling", dwellingSelected) }
     }

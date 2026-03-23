@@ -1,9 +1,10 @@
-package com.delek.heroland.ui.tileMap
+package com.delek.heroland.ui.tile
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.delek.heroland.data.repository.AdviceChitRepository
+import com.delek.heroland.data.repository.DayPhaseRepository
 import com.delek.heroland.data.repository.DwellingRepository
 import com.delek.heroland.data.repository.MonsterRepository
 import com.delek.heroland.data.repository.PhaseRepository
@@ -18,6 +19,8 @@ import com.delek.heroland.domain.model.Role
 import com.delek.heroland.domain.model.SoundChit
 import com.delek.heroland.domain.model.Tile
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,7 +32,8 @@ class TileViewModel @Inject constructor(
     private val soundRepository: SoundChitRepository,
     private val dwellingRepository: DwellingRepository,
     private val monsterRepository: MonsterRepository,
-    private val phaseRepository: PhaseRepository
+    private val phaseRepository: PhaseRepository,
+    private val dayPhaseRepository: DayPhaseRepository
 
 ) : ViewModel() {
     val role = MutableLiveData<Role>()
@@ -40,6 +44,13 @@ class TileViewModel @Inject constructor(
     val adviceMonster = MutableLiveData<Monster>()
     val soundMonster = MutableLiveData<Monster>()
     val phases = MutableLiveData<List<Phase>>()
+    val dayPhases = MutableLiveData<List<Phase>>()
+
+    fun insertDayPhase(day: Int, phase: Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            dayPhaseRepository.insertDayPhase(day, phase)
+        }
+    }
 
     fun getRoleById(id: Int) {
         viewModelScope.launch {

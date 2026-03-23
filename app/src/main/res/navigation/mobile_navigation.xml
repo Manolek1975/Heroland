@@ -100,16 +100,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_tile_map"
-        android:name="com.delek.heroland.ui.tileMap.TileMapFragment"
-        android:label="fragment_tile_map"
-        tools:layout="@layout/fragment_tile_map" >
-        <argument
-            android:name="id"
-            app:argType="integer" />
-    </fragment>
-
-    <fragment
         android:id="@+id/nav_dwelling"
         android:name="com.delek.heroland.ui.dwelling.DwellingFragment"
         android:label="fragment_dwelling"
@@ -138,7 +128,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_tile"
-        android:name="com.delek.heroland.ui.tileMap.TileFragment"
+        android:name="com.delek.heroland.ui.tile.TileFragment"
         android:label="fragment_tile"
         tools:layout="@layout/fragment_tile" >
         <action
