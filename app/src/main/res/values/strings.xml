@@ -55,5 +55,7 @@
     <string name="sound_chit">%1$s</string>
     <!-- NATIVE DETAIL -->
     <string name="alerted">(Alerted)</string>
+    <!-- PHASES -->
+    <string name="phases">Phases</string>
 
 </resources>

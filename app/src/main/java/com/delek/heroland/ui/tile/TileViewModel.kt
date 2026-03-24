@@ -42,9 +42,9 @@ class TileViewModel @Inject constructor(
     val adviceMonster = MutableLiveData<Monster>()
     val soundMonster = MutableLiveData<Monster>()
     val phases = MutableLiveData<List<Phase>>()
-    val dayPhases = MutableLiveData<List<Phase>>()
 
-    fun insertDayPhase(day: Int, phase: Int) {
+
+    fun insertDayPhase(day: Int, phase: String) {
         viewModelScope.launch {
             dayPhaseRepository.insertDayPhase(day, phase)
         }

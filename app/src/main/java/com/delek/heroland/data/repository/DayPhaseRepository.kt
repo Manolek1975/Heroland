@@ -9,7 +9,7 @@ import javax.inject.Inject
 class DayPhaseRepository @Inject constructor(
     private val dayPhaseDao: DayPhaseDao
 ) {
-    suspend fun insertDayPhase(day: Int, phase: Int) {
+    suspend fun insertDayPhase(day: Int, phase: String) {
         dayPhaseDao.insertDayPhase(day, phase)
     }
 
@@ -18,7 +18,7 @@ class DayPhaseRepository @Inject constructor(
         return response.map { it.toDomain() }
     }
 
-    suspend fun getDayPhasesByDay(day: Int): List<DayPhase> {
+    suspend fun getPhasesByDay(day: Int): List<DayPhase> {
         val response: List<DayPhaseEntity> = dayPhaseDao.getDayPhasesByDay(day)
         return response.map { it.toDomain() }
     }

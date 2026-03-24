@@ -13,11 +13,11 @@ class PhaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         binding.tvPhase.text = phase.name
 
         binding.tvPhase.setOnClickListener {
-            exitPhase(binding.tvPhase, goPhase = { onItemSelected(phase) })
+            selectedPhase(binding.tvPhase, goPhase = { onItemSelected(phase) })
         }
     }
 
-    private fun exitPhase(view: View, goPhase:()->Unit ) {
+    private fun selectedPhase(view: View, goPhase:()->Unit ) {
         goPhase()
     }
 }

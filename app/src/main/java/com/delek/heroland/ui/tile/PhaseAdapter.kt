@@ -9,8 +9,8 @@ import com.delek.heroland.domain.model.Phase
 
 class PhaseAdapter(
     private var phaseList: List<Phase> = emptyList(),
-    private val onItemSelected: (Phase) -> Unit):
-    RecyclerView.Adapter<PhaseViewHolder>() {
+    private val onItemSelected: (Phase) -> Unit
+):    RecyclerView.Adapter<PhaseViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhaseViewHolder {
         return PhaseViewHolder(

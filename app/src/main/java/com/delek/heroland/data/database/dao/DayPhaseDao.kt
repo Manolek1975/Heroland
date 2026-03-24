@@ -8,7 +8,7 @@ import com.delek.heroland.data.database.entities.DayPhaseEntity
 interface DayPhaseDao {
 
     @Query("INSERT INTO day_phases (day, phase) VALUES (:day, :phase)")
-    suspend fun insertDayPhase(day: Int, phase: Int)
+    suspend fun insertDayPhase(day: Int, phase: String)
 
     @Query("SELECT * FROM day_phases")
     suspend fun getAllDayPhases(): List<DayPhaseEntity>

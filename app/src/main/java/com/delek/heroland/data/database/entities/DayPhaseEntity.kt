@@ -8,5 +8,5 @@ data class DayPhaseEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val day: Int,
-    val phase: Int
+    val phase: String
 )

@@ -5,7 +5,7 @@ import com.delek.heroland.data.database.entities.DayPhaseEntity
 data class DayPhase(
     val id: Int,
     val day: Int,
-    val phase: Int
+    val phase: String
 )
 
 fun DayPhaseEntity.toDomain() = DayPhase(id, day, phase)

@@ -31,7 +31,6 @@ import com.delek.heroland.databinding.FragmentTileBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.lang.reflect.Field
-import kotlin.getValue
 
 
 @AndroidEntryPoint
@@ -134,14 +133,12 @@ open class TileFragment : Fragment() {
         }
     }
 
-    fun placePhases(){
+    fun placePhases() {
         val day = data.getInt("day", 0)
         viewModel.getPhases()
         val phaseAdapter = PhaseAdapter(onItemSelected = {
             binding.rvPhases.visibility = View.GONE
-            viewModel.insertDayPhase(1, it.id)
-            println("Day: $day Phase: ${it.name}")
-
+            viewModel.insertDayPhase(day, it.name)
         })
         binding.rvPhases.layoutManager = GridLayoutManager(context, 4)
         binding.rvPhases.adapter = phaseAdapter
@@ -178,6 +175,7 @@ open class TileFragment : Fragment() {
                 binding.c6.visibility = View.GONE
                 //drawConnections()
             }
+
             "WOOD" -> {
                 binding.c1.visibility = View.GONE
                 binding.c3.visibility = View.GONE
