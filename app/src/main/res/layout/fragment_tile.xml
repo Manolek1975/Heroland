@@ -40,7 +40,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-<!--    &lt;!&ndash; SOUND CHIT &ndash;&gt;
+    <!--    &lt;!&ndash; SOUND CHIT &ndash;&gt;
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/sound_chit"
         style="@style/Base.Theme.Advice.Layout"
@@ -86,15 +86,36 @@
     <include
         android:id="@+id/ly_wood"
         android:visibility="gone"
-        layout="@layout/layout_valley"/>
+        layout="@layout/layout_wood"/>
 
     <include
         android:id="@+id/ly_mountain"
         android:visibility="gone"
-        layout="@layout/layout_valley"/>
+        layout="@layout/layout_mountain"/>
 
     <include
         android:id="@+id/ly_cave"
         android:visibility="gone"
-        layout="@layout/layout_valley"/>
+        layout="@layout/layout_cave"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/dice_w"
+        style="@style/dice"
+        android:background="@drawable/dice_1w"
+        android:tint="@color/white"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/dice_r"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/dice_r"
+        style="@style/dice"
+        android:background="@drawable/dice_1r"
+        android:tint="@color/white"
+        app:layout_constraintStart_toEndOf="@id/dice_w"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

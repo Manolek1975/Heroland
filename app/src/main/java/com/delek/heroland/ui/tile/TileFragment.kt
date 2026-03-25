@@ -3,6 +3,7 @@ package com.delek.heroland.ui.tile
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -81,19 +82,19 @@ open class TileFragment : Fragment() {
         }
     }
 
-/*    private fun placeSoundChit(id: Int) {
-        viewModel.getSoundChitById(id)
-        viewModel.sound.observe(viewLifecycleOwner) { sound ->
-            binding.soundChit.visibility = View.VISIBLE
-            binding.soundChit.text = getString(string.advice_chit, sound.name, sound.num.toString())
-            if (sound.type == "T" || sound.type == "L") {
-                binding.soundChit.backgroundTintList =
-                    ResourcesCompat.getColorStateList(resources, color.gold, null)
-                //placeTreasureLocations(sound.treasure, sound.num)
+    /*    private fun placeSoundChit(id: Int) {
+            viewModel.getSoundChitById(id)
+            viewModel.sound.observe(viewLifecycleOwner) { sound ->
+                binding.soundChit.visibility = View.VISIBLE
+                binding.soundChit.text = getString(string.advice_chit, sound.name, sound.num.toString())
+                if (sound.type == "T" || sound.type == "L") {
+                    binding.soundChit.backgroundTintList =
+                        ResourcesCompat.getColorStateList(resources, color.gold, null)
+                    //placeTreasureLocations(sound.treasure, sound.num)
+                }
+                //if (sound.monster > 0) placeSoundMonster(sound.monster, sound.num)
             }
-            //if (sound.monster > 0) placeSoundMonster(sound.monster, sound.num)
-        }
-    }*/
+        }*/
 
     private fun placeDwelling(advice: Int) {
         val start = data.getInt("start_dwelling", 0)
@@ -114,7 +115,7 @@ open class TileFragment : Fragment() {
     private fun placePlayer() {
         val x = binding.lyValley.c5.x
         val y = binding.lyValley.c5.y
-        val padding = 40
+        val padding = 40 //Padding apply for clearing in themes
         val roleId = data.getInt("role_id", 0)
         viewModel.getRoleById(roleId)
         viewModel.role.observe(viewLifecycleOwner) { role ->
@@ -137,7 +138,8 @@ open class TileFragment : Fragment() {
         viewModel.getPhases()
         val phaseAdapter = PhaseAdapter(onItemSelected = {
             binding.rvPhases.visibility = View.GONE
-            viewModel.insertDayPhase(day, it.name)
+            //viewModel.insertDayPhase(day, it.name)
+            playPhase(it.id)
         })
         binding.rvPhases.layoutManager = GridLayoutManager(context, 6)
         binding.rvPhases.adapter = phaseAdapter
@@ -150,17 +152,53 @@ open class TileFragment : Fragment() {
         }
     }
 
+    private fun playPhase(phase: Int) {
+        if (phase == 1) {
+            rollDie()
+        }
+
+    }
+
+    fun rollDie() {
+        val wDice = (1..6).random()
+        val rDice = (1..6).random()
+        val roll = maxOf(wDice, rDice)
+        imageDies(wDice, rDice)
+        if (roll != 6) {
+
+            binding.player.background.setColorFilter(
+                Color.GRAY,
+                android.graphics.PorterDuff.Mode.MULTIPLY
+            )
+        }
+        println("Blanco: $wDice Rojo: $rDice Roll: $roll")
+    }
+
+    private fun imageDies(wDie: Int, rDiew: Int) {
+        binding.diceW.visibility = View.VISIBLE
+        binding.diceR.visibility = View.VISIBLE
+        when (wDie) {
+            1 -> binding.diceW.setImageResource(drawable.dice_1w)
+        }
+        when (rDiew) {
+            1 -> binding.diceR.setImageResource(drawable.dice_1r)
+        }
+    }
+
     private fun placeClearings(type: String) {
         when (type) {
             "VALLEY" -> {
                 binding.lyValley.layoutValley.visibility = View.VISIBLE
             }
+
             "WOOD" -> {
                 binding.lyWood.layoutValley.visibility = View.VISIBLE
             }
+
             "MOUNTAIN" -> {
                 binding.lyMountain.layoutValley.visibility = View.VISIBLE
             }
+
             "CAVE" -> {
                 binding.lyCave.layoutValley.visibility = View.VISIBLE
             }
@@ -176,21 +214,21 @@ open class TileFragment : Fragment() {
     }
 
     /*    private fun drawConnections() {
-        val width = binding.c2.width
-        val w = binding.con1.width - width * 2
-        val h = binding.con1.height
-        println(width)
-        val bitmap = createBitmap(w, h)
-        val canvas = Canvas(bitmap)
-        val paint = Paint().apply {
-            color = Color.YELLOW
-            strokeWidth = 5f
-        }
-        canvas.drawLine(0f, h / 2f, w.toFloat(), h / 2f, paint)
-        canvas.drawBitmap(bitmap, 0f, 0f, paint)
-        binding.con1.setImageBitmap(bitmap)
-        binding.con2.setImageBitmap(bitmap)
-    }*/
+    val width = binding.c2.width
+    val w = binding.con1.width - width * 2
+    val h = binding.con1.height
+    println(width)
+    val bitmap = createBitmap(w, h)
+    val canvas = Canvas(bitmap)
+    val paint = Paint().apply {
+        color = Color.YELLOW
+        strokeWidth = 5f
+    }
+    canvas.drawLine(0f, h / 2f, w.toFloat(), h / 2f, paint)
+    canvas.drawBitmap(bitmap, 0f, 0f, paint)
+    binding.con1.setImageBitmap(bitmap)
+    binding.con2.setImageBitmap(bitmap)
+}*/
 
     private fun getResId(resName: String?, c: Class<*>): Int {
         try {
@@ -202,4 +240,5 @@ open class TileFragment : Fragment() {
         }
     }
 }
+
 
