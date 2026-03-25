@@ -3,17 +3,12 @@ package com.delek.heroland.ui.tile
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.BitmapFactory
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.graphics.scale
 import androidx.fragment.app.Fragment
@@ -24,7 +19,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import com.delek.heroland.R.color
 import com.delek.heroland.R.drawable
 import com.delek.heroland.R.string
 import com.delek.heroland.databinding.FragmentTileBinding
@@ -72,7 +66,7 @@ open class TileFragment : Fragment() {
             binding.root.background = bg
             placeClearings(tile.type)
             placeAdviceChit(tile.advice, tile.type.first())
-            if (tile.sound > 0) placeSoundChit(tile.sound)
+            //if (tile.sound > 0) placeSoundChit(tile.sound)
         }
     }
 
@@ -87,7 +81,7 @@ open class TileFragment : Fragment() {
         }
     }
 
-    private fun placeSoundChit(id: Int) {
+/*    private fun placeSoundChit(id: Int) {
         viewModel.getSoundChitById(id)
         viewModel.sound.observe(viewLifecycleOwner) { sound ->
             binding.soundChit.visibility = View.VISIBLE
@@ -99,7 +93,7 @@ open class TileFragment : Fragment() {
             }
             //if (sound.monster > 0) placeSoundMonster(sound.monster, sound.num)
         }
-    }
+    }*/
 
     private fun placeDwelling(advice: Int) {
         val start = data.getInt("start_dwelling", 0)
@@ -107,9 +101,9 @@ open class TileFragment : Fragment() {
         viewModel.dwelling.observe(viewLifecycleOwner) { dwelling ->
             val dwellingId = getResId(dwelling.image, drawable::class.java)
             val bitmap = BitmapFactory.decodeResource(resources, dwellingId)
-            binding.c5.background = bitmap.toDrawable(resources)
-            if (dwelling.id == start) binding.c5.translationY = 220f
-            binding.c5.setOnClickListener {
+            binding.lyValley.c5.background = bitmap.toDrawable(resources)
+            if (dwelling.id == start) binding.lyValley.c5.translationY = 220f
+            binding.lyValley.c5.setOnClickListener {
                 findNavController().navigate(
                     TileFragmentDirections.actionNavTileToNavDwelling(dwelling.id)
                 )
@@ -118,6 +112,9 @@ open class TileFragment : Fragment() {
     }
 
     private fun placePlayer() {
+        val x = binding.lyValley.c5.x
+        val y = binding.lyValley.c5.y
+        val padding = 40
         val roleId = data.getInt("role_id", 0)
         viewModel.getRoleById(roleId)
         viewModel.role.observe(viewLifecycleOwner) { role ->
@@ -125,6 +122,8 @@ open class TileFragment : Fragment() {
             val bitmap = BitmapFactory.decodeResource(resources, id)
             val scale = bitmap.scale(w, w, false)
             val image = scale.toDrawable(resources)
+            binding.player.x = x - padding
+            binding.player.y = y - padding
             binding.player.background = image
             binding.player.visibility = View.VISIBLE
         }
@@ -140,7 +139,7 @@ open class TileFragment : Fragment() {
             binding.rvPhases.visibility = View.GONE
             viewModel.insertDayPhase(day, it.name)
         })
-        binding.rvPhases.layoutManager = GridLayoutManager(context, 4)
+        binding.rvPhases.layoutManager = GridLayoutManager(context, 6)
         binding.rvPhases.adapter = phaseAdapter
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -151,7 +150,32 @@ open class TileFragment : Fragment() {
         }
     }
 
-    private fun drawConnections() {
+    private fun placeClearings(type: String) {
+        when (type) {
+            "VALLEY" -> {
+                binding.lyValley.layoutValley.visibility = View.VISIBLE
+            }
+            "WOOD" -> {
+                binding.lyWood.layoutValley.visibility = View.VISIBLE
+            }
+            "MOUNTAIN" -> {
+                binding.lyMountain.layoutValley.visibility = View.VISIBLE
+            }
+            "CAVE" -> {
+                binding.lyCave.layoutValley.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private fun arrowBack() {
+        binding.arrowBack.setOnClickListener {
+            findNavController().navigate(
+                TileFragmentDirections.actionNavTileToNavMap()
+            )
+        }
+    }
+
+    /*    private fun drawConnections() {
         val width = binding.c2.width
         val w = binding.con1.width - width * 2
         val h = binding.con1.height
@@ -166,31 +190,7 @@ open class TileFragment : Fragment() {
         canvas.drawBitmap(bitmap, 0f, 0f, paint)
         binding.con1.setImageBitmap(bitmap)
         binding.con2.setImageBitmap(bitmap)
-    }
-
-    private fun placeClearings(type: String) {
-        when (type) {
-            "VALLEY" -> {
-                binding.c3.visibility = View.GONE
-                binding.c6.visibility = View.GONE
-                //drawConnections()
-            }
-
-            "WOOD" -> {
-                binding.c1.visibility = View.GONE
-                binding.c3.visibility = View.GONE
-                binding.c6.visibility = View.GONE
-            }
-        }
-    }
-
-    private fun arrowBack() {
-        binding.arrowBack.setOnClickListener {
-            findNavController().navigate(
-                TileFragmentDirections.actionNavTileToNavMap()
-            )
-        }
-    }
+    }*/
 
     private fun getResId(resName: String?, c: Class<*>): Int {
         try {
