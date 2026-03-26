@@ -65,9 +65,9 @@ open class TileFragment : Fragment() {
             val id = getResId(tile.image, drawable::class.java)
             val bg = ContextCompat.getDrawable(requireContext(), id)
             binding.root.background = bg
-            placeClearings(tile.type)
             placeAdviceChit(tile.advice, tile.type.first())
             //if (tile.sound > 0) placeSoundChit(tile.sound)
+            placeClearings(tile.type)
         }
     }
 
@@ -76,8 +76,8 @@ open class TileFragment : Fragment() {
         viewModel.getAdviceChitById(id)
         viewModel.advice.observe(viewLifecycleOwner) { advice ->
             binding.adviceChit.text = getString(string.advice_chit, advice.name, type)
-            if (advice.dwelling == dwelling) placePlayer()
             if (advice.dwelling > 0) placeDwelling(advice.dwelling)
+            if (advice.dwelling == dwelling) placePlayer()
             //if (advice.monster > 0) placeAdviceMonster(advice.monster)
         }
     }
@@ -104,7 +104,7 @@ open class TileFragment : Fragment() {
             val bitmap = BitmapFactory.decodeResource(resources, dwellingId)
             binding.lyValley.c5.background = bitmap.toDrawable(resources)
             if (dwelling.id == start) binding.lyValley.c5.translationY = 220f
-            binding.lyValley.c5.setOnClickListener {
+            binding.dwelling.setOnClickListener {
                 findNavController().navigate(
                     TileFragmentDirections.actionNavTileToNavDwelling(dwelling.id)
                 )
@@ -115,6 +115,7 @@ open class TileFragment : Fragment() {
     private fun placePlayer() {
         val x = binding.lyValley.c5.x
         val y = binding.lyValley.c5.y
+        println("Player: $x,$y")
         val padding = 40 //Padding apply for clearing in themes
         val roleId = data.getInt("role_id", 0)
         viewModel.getRoleById(roleId)
@@ -165,24 +166,34 @@ open class TileFragment : Fragment() {
         val roll = maxOf(wDice, rDice)
         imageDies(wDice, rDice)
         if (roll != 6) {
-
             binding.player.background.setColorFilter(
                 Color.GRAY,
                 android.graphics.PorterDuff.Mode.MULTIPLY
             )
         }
-        println("Blanco: $wDice Rojo: $rDice Roll: $roll")
     }
 
-    private fun imageDies(wDie: Int, rDiew: Int) {
+    private fun imageDies(wDie: Int, rDie: Int) {
+        val idW = when (wDie) {
+            1 -> drawable.dice_1w
+            2 -> drawable.dice_2w
+            3 -> drawable.dice_3w
+            4 -> drawable.dice_4w
+            5 -> drawable.dice_5w
+            else -> drawable.dice_6w
+        }
+        val idR = when (rDie) {
+            1 -> drawable.dice_1r
+            2 -> drawable.dice_2r
+            3 -> drawable.dice_3r
+            4 -> drawable.dice_4r
+            5 -> drawable.dice_5r
+            else -> drawable.dice_6r
+        }
+        binding.diceW.setBackgroundResource(idW)
+        binding.diceR.setBackgroundResource(idR)
         binding.diceW.visibility = View.VISIBLE
         binding.diceR.visibility = View.VISIBLE
-        when (wDie) {
-            1 -> binding.diceW.setImageResource(drawable.dice_1w)
-        }
-        when (rDiew) {
-            1 -> binding.diceR.setImageResource(drawable.dice_1r)
-        }
     }
 
     private fun placeClearings(type: String) {
