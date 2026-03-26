@@ -69,15 +69,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/dwelling"
-        style="@style/clearing"
-        android:layout_gravity="center|end"
-        android:background="@drawable/d_inn"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
     <include
         android:id="@+id/ly_valley"
         android:visibility="gone"

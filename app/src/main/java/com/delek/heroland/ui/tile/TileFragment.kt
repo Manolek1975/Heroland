@@ -65,9 +65,18 @@ open class TileFragment : Fragment() {
             val id = getResId(tile.image, drawable::class.java)
             val bg = ContextCompat.getDrawable(requireContext(), id)
             binding.root.background = bg
+            placeClearings(tile.type)
+            binding.lyValley.c5.post {
+                val point = IntArray(2)
+                binding.lyValley.c5.getLocationOnScreen(point)
+                val (x, y) = point
+                data.edit { putInt("posX", x) }
+                data.edit { putInt("posY", y) }
+                println("x: $x, y:$y")
+            }
             placeAdviceChit(tile.advice, tile.type.first())
             //if (tile.sound > 0) placeSoundChit(tile.sound)
-            placeClearings(tile.type)
+
         }
     }
 
@@ -76,8 +85,8 @@ open class TileFragment : Fragment() {
         viewModel.getAdviceChitById(id)
         viewModel.advice.observe(viewLifecycleOwner) { advice ->
             binding.adviceChit.text = getString(string.advice_chit, advice.name, type)
-            if (advice.dwelling > 0) placeDwelling(advice.dwelling)
             if (advice.dwelling == dwelling) placePlayer()
+            if (advice.dwelling > 0) placeDwelling(advice.dwelling)
             //if (advice.monster > 0) placeAdviceMonster(advice.monster)
         }
     }
@@ -102,9 +111,9 @@ open class TileFragment : Fragment() {
         viewModel.dwelling.observe(viewLifecycleOwner) { dwelling ->
             val dwellingId = getResId(dwelling.image, drawable::class.java)
             val bitmap = BitmapFactory.decodeResource(resources, dwellingId)
-            binding.lyValley.c5.background = bitmap.toDrawable(resources)
-            if (dwelling.id == start) binding.lyValley.c5.translationY = 220f
-            binding.dwelling.setOnClickListener {
+            binding.lyValley.dwelling.background = bitmap.toDrawable(resources)
+            if (dwelling.id == start) binding.lyValley.dwelling.translationY = 220f
+            binding.lyValley.dwelling.setOnClickListener {
                 findNavController().navigate(
                     TileFragmentDirections.actionNavTileToNavDwelling(dwelling.id)
                 )
@@ -113,10 +122,9 @@ open class TileFragment : Fragment() {
     }
 
     private fun placePlayer() {
-        val x = binding.lyValley.c5.x
-        val y = binding.lyValley.c5.y
-        println("Player: $x,$y")
-        val padding = 40 //Padding apply for clearing in themes
+        val x = data.getInt("posX", 0)
+        val y = data.getInt("posY", 0)
+        val padding = 40f //Padding apply for clearing in themes
         val roleId = data.getInt("role_id", 0)
         viewModel.getRoleById(roleId)
         viewModel.role.observe(viewLifecycleOwner) { role ->
@@ -124,7 +132,7 @@ open class TileFragment : Fragment() {
             val bitmap = BitmapFactory.decodeResource(resources, id)
             val scale = bitmap.scale(w, w, false)
             val image = scale.toDrawable(resources)
-            binding.player.x = x - padding
+            binding.player.x = x - padding*2
             binding.player.y = y - padding
             binding.player.background = image
             binding.player.visibility = View.VISIBLE
@@ -201,15 +209,12 @@ open class TileFragment : Fragment() {
             "VALLEY" -> {
                 binding.lyValley.layoutValley.visibility = View.VISIBLE
             }
-
             "WOOD" -> {
                 binding.lyWood.layoutValley.visibility = View.VISIBLE
             }
-
             "MOUNTAIN" -> {
                 binding.lyMountain.layoutValley.visibility = View.VISIBLE
             }
-
             "CAVE" -> {
                 binding.lyCave.layoutValley.visibility = View.VISIBLE
             }
