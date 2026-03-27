@@ -3,7 +3,6 @@ package com.delek.heroland.ui.tile
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +21,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.delek.heroland.R.drawable
 import com.delek.heroland.R.string
+import com.delek.heroland.core.Dice
 import com.delek.heroland.databinding.FragmentTileBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -162,46 +162,17 @@ open class TileFragment : Fragment() {
     }
 
     private fun playPhase(phase: Int) {
+        val dice = Dice()
         if (phase == 1) {
-            rollDie()
+            val result = dice.rollDice()
+            println(result)
+            val dices = dice.rollImages()
+            binding.diceW.setBackgroundResource(dices.first)
+            binding.diceR.setBackgroundResource(dices.second)
+            binding.diceW.visibility = View.VISIBLE
+            binding.diceR.visibility = View.VISIBLE
         }
 
-    }
-
-    fun rollDie() {
-        val wDice = (1..6).random()
-        val rDice = (1..6).random()
-        val roll = maxOf(wDice, rDice)
-        imageDies(wDice, rDice)
-        if (roll != 6) {
-            binding.player.background.setColorFilter(
-                Color.GRAY,
-                android.graphics.PorterDuff.Mode.MULTIPLY
-            )
-        }
-    }
-
-    private fun imageDies(wDie: Int, rDie: Int) {
-        val idW = when (wDie) {
-            1 -> drawable.dice_1w
-            2 -> drawable.dice_2w
-            3 -> drawable.dice_3w
-            4 -> drawable.dice_4w
-            5 -> drawable.dice_5w
-            else -> drawable.dice_6w
-        }
-        val idR = when (rDie) {
-            1 -> drawable.dice_1r
-            2 -> drawable.dice_2r
-            3 -> drawable.dice_3r
-            4 -> drawable.dice_4r
-            5 -> drawable.dice_5r
-            else -> drawable.dice_6r
-        }
-        binding.diceW.setBackgroundResource(idW)
-        binding.diceR.setBackgroundResource(idR)
-        binding.diceW.visibility = View.VISIBLE
-        binding.diceR.visibility = View.VISIBLE
     }
 
     private fun placeClearings(type: String) {
