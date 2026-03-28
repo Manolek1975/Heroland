@@ -23,11 +23,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.delek.heroland.R.drawable
 import com.delek.heroland.R.string
 import com.delek.heroland.core.Dice
+import com.delek.heroland.core.Game
 import com.delek.heroland.core.Phase
 import com.delek.heroland.databinding.FragmentTileBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.lang.reflect.Field
 
 
 @AndroidEntryPoint
@@ -64,7 +64,7 @@ open class TileFragment : Fragment() {
         viewModel.tile.observe(viewLifecycleOwner) { tile ->
             data.edit { putInt("location", 5) }
             binding.tileName.text = tile.name
-            val id = getResId(tile.image, drawable::class.java)
+            val id = Game().getResId(tile.image, drawable::class.java)
             val bg = ContextCompat.getDrawable(requireContext(), id)
             binding.root.background = bg
             placeClearings(tile.type)
@@ -111,7 +111,7 @@ open class TileFragment : Fragment() {
         val start = data.getInt("start_dwelling", 0)
         viewModel.getDwellingById(advice)
         viewModel.dwelling.observe(viewLifecycleOwner) { dwelling ->
-            val dwellingId = getResId(dwelling.image, drawable::class.java)
+            val dwellingId = Game().getResId(dwelling.image, drawable::class.java)
             val bitmap = BitmapFactory.decodeResource(resources, dwellingId)
             binding.lyValley.dwelling.background = bitmap.toDrawable(resources)
             if (dwelling.id == start) binding.lyValley.dwelling.translationY = 220f
@@ -130,7 +130,7 @@ open class TileFragment : Fragment() {
         val roleId = data.getInt("role_id", 0)
         viewModel.getRoleById(roleId)
         viewModel.role.observe(viewLifecycleOwner) { role ->
-            val id = getResId(role.image, drawable::class.java)
+            val id = Game().getResId(role.image, drawable::class.java)
             val bitmap = BitmapFactory.decodeResource(resources, id)
             val scale = bitmap.scale(w, w, false)
             val image = scale.toDrawable(resources)
@@ -232,15 +232,6 @@ open class TileFragment : Fragment() {
     binding.con2.setImageBitmap(bitmap)
 }*/
 
-    private fun getResId(resName: String?, c: Class<*>): Int {
-        try {
-            val idField: Field = c.getDeclaredField(resName!!)
-            return idField.getInt(idField)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return -1
-        }
-    }
 }
 
 

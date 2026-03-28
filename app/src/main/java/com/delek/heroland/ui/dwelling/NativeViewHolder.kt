@@ -5,10 +5,10 @@ import android.view.animation.LinearInterpolator
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.delek.heroland.R
+import com.delek.heroland.core.Game
 import com.delek.heroland.databinding.ItemNativeBinding
 import com.delek.heroland.domain.model.Native
 import com.delek.heroland.ui.dwelling.NativeAdapter.Companion.alerted
-import java.lang.reflect.Field
 
 
 class NativeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -16,7 +16,7 @@ class NativeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val binding = ItemNativeBinding.bind(view)
 
     fun render(native: Native, onItemSelected: (Native) -> Unit){
-        val id = getResId(native.image, R.drawable::class.java)
+        val id = Game().getResId(native.image, R.drawable::class.java)
         binding.ivNative.setImageResource(id)
         binding.nameNative.text = native.name
         if (alerted) {
@@ -71,16 +71,6 @@ class NativeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             rotationYBy(360f)
             withEndAction { goNative() }
             start()
-        }
-    }
-
-    private fun getResId(resName: String?, c: Class<*>): Int {
-        try {
-            val idField: Field = c.getDeclaredField(resName!!)
-            return idField.getInt(idField)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return -1
         }
     }
 

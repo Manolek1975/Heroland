@@ -14,10 +14,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.delek.heroland.R
+import com.delek.heroland.core.Game
 import com.delek.heroland.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.lang.reflect.Field
 
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
@@ -70,7 +70,7 @@ class DetailFragment : Fragment() {
                     binding.tvName.text = it.name
                     binding.tvSymbol.text = it.symbol
                     binding.tvWeight.text = getString(R.string.weight_vulnerability, it.weight)
-                    val id = getResId(it.icon, R.drawable::class.java)
+                    val id = Game().getResId(it.icon, R.drawable::class.java)
                     binding.ivIcon.setImageResource(id)
                 }
             }
@@ -259,16 +259,6 @@ class DetailFragment : Fragment() {
         dialogBuilder.setTitle(name)
         dialogBuilder.setMessage(description)
         dialogBuilder.setPositiveButton("OK"){_, _: Int ->}.show()
-    }
-
-    private fun getResId(resName: String?, c: Class<*>): Int {
-        try {
-            val idField: Field = c.getDeclaredField(resName!!)
-            return idField.getInt(idField)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return -1
-        }
     }
 
 }

@@ -40,6 +40,16 @@ class DwellingFragment : Fragment() {
         return binding.root
     }
 
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.arrowBack.setOnClickListener {
+            alerted = false
+            selected = 0
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+    }
+
     private fun initUI() {
         viewModel.getDwellingById(args.id)
         viewModel.dwelling.observe(viewLifecycleOwner) { dwelling ->
@@ -75,12 +85,4 @@ class DwellingFragment : Fragment() {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.arrowBack.setOnClickListener {
-            alerted = false
-            selected = 0
-            requireActivity().onBackPressedDispatcher.onBackPressed()
-        }
-    }
 }

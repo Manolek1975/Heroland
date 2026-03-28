@@ -8,9 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.delek.heroland.R
+import com.delek.heroland.core.Game
 import com.delek.heroland.databinding.FragmentNativeDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.reflect.Field
+
 
 @AndroidEntryPoint
 class NativeDetailFragment : Fragment() {
@@ -33,7 +34,7 @@ class NativeDetailFragment : Fragment() {
         viewModel.getNativeById(args.nativeId)
         viewModel.native.observe(viewLifecycleOwner) { native ->
             binding.tvTypeNative.text = native.type
-            val id = getResId(native.image, R.drawable::class.java)
+            val id = Game().getResId(native.image, R.drawable::class.java)
             binding.ivNative.ivNative.setImageResource(id)
             binding.ivNativeAlerted.ivNative.setImageResource(id)
             binding.ivNative.nameNative.text = native.name
@@ -52,13 +53,4 @@ class NativeDetailFragment : Fragment() {
         return binding.root
     }
 
-    private fun getResId(resName: String?, c: Class<*>): Int {
-        try {
-            val idField: Field = c.getDeclaredField(resName!!)
-            return idField.getInt(idField)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return -1
-        }
-    }
 }
