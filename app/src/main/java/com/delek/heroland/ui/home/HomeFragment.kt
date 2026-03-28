@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
                 )
             } else {
                 findNavController().navigate(
-                    HomeFragmentDirections.actionNavHomeToNavMap()
+                    HomeFragmentDirections.actionNavHomeToNavPlayer()
                 )
             }
         }

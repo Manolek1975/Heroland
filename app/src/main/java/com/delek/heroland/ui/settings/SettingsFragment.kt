@@ -142,6 +142,7 @@ class SettingsFragment : Fragment() {
         dialogBuilder.setPositiveButton("DELETE") { _, _: Int ->
             data.edit().putInt("role_id", 0).apply()
             viewModel.deleteTiles()
+            viewModel.deletePlayers()
             viewModel.deletePrimaryKeyIndex()
             viewModel.deleteDayPhases()
             val i = Intent(activity, MainActivity::class.java)

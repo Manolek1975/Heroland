@@ -135,9 +135,6 @@
             android:id="@+id/action_nav_tile_to_nav_map"
             app:destination="@id/nav_map" />
         <action
-            android:id="@+id/action_nav_tile_to_nav_character"
-            app:destination="@id/nav_character" />
-        <action
             android:id="@+id/action_nav_tile_to_nav_dwelling"
             app:destination="@id/nav_dwelling" />
         <argument

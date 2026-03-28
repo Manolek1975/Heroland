@@ -29,6 +29,7 @@ import com.delek.heroland.ui.options.VictoryPointsAdapter.Companion.total
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import androidx.core.content.edit
+import com.delek.heroland.data.database.entities.PlayerEntity
 
 @AndroidEntryPoint
 class OptionsFragment : Fragment() {
@@ -233,7 +234,7 @@ class OptionsFragment : Fragment() {
             setAdviceChits()
             setSoundChits()
             findNavController().navigate(
-                OptionsFragmentDirections.actionNavOptionsToNavMap()
+                OptionsFragmentDirections.actionNavOptionsToNavPlayer()
             )
         }
     }
@@ -242,6 +243,12 @@ class OptionsFragment : Fragment() {
         data.edit { putInt("day", 1) }
         data.edit { putInt("role_id", args.id) }
         data.edit { putInt("start_dwelling", dwellingSelected) }
+        viewmodel.role.observe(viewLifecycleOwner) { role ->
+            val playerEntity = PlayerEntity(0, role.name, role.id, dwellingSelected,
+                role.spells,0, 0,0, 0, "")
+            viewmodel.insertPlayer(playerEntity)
+        }
+
     }
 
     private fun setAdviceChits() {

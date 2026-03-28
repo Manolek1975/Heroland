@@ -57,5 +57,7 @@
     <string name="alerted">(Alerted)</string>
     <!-- PHASES -->
     <string name="phases">Phases</string>
+    <string name="add_player">Add player</string>
+    <string name="go_map">GO Map </string>
 
 </resources>
