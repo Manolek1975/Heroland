@@ -3,6 +3,7 @@ package com.delek.heroland.ui.tile
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.delek.heroland.R.drawable
 import com.delek.heroland.R.string
 import com.delek.heroland.core.Dice
+import com.delek.heroland.core.Phase
 import com.delek.heroland.databinding.FragmentTileBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -161,17 +163,30 @@ open class TileFragment : Fragment() {
         }
     }
 
-    private fun playPhase(phase: Int) {
+    private fun playPhase(id: Int) {
+        val phase = Phase(id)
         val dice = Dice()
-        if (phase == 1) {
-            val result = dice.rollDice()
-            println(result)
-            val dices = dice.rollImages()
-            binding.diceW.setBackgroundResource(dices.first)
-            binding.diceR.setBackgroundResource(dices.second)
-            binding.diceW.visibility = View.VISIBLE
-            binding.diceR.visibility = View.VISIBLE
+
+        val result = phase.getPhase(id, dice.rollDice())
+        when (id){
+            1-> phaseHide(result)
+
         }
+
+        val dices = dice.rollImages()
+        binding.diceW.setBackgroundResource(dices.first)
+        binding.diceR.setBackgroundResource(dices.second)
+        binding.diceW.visibility = View.VISIBLE
+        binding.diceR.visibility = View.VISIBLE
+
+    }
+
+    fun phaseHide(result: Boolean) {
+        if(result)
+            binding.player.background.setColorFilter(
+                Color.GRAY,
+                android.graphics.PorterDuff.Mode.MULTIPLY
+            )
 
     }
 

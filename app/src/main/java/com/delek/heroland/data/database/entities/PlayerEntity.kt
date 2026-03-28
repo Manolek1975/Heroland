@@ -14,5 +14,7 @@ data class PlayerEntity(
     @ColumnInfo("vp") val vp: Int,
     @ColumnInfo("weapon") val weapon: Int,
     @ColumnInfo("armor") val armor: Int,
-    @ColumnInfo("treasures") val treasures: Int
+    @ColumnInfo("treasures") val treasures: Int,
+    @ColumnInfo("status") val status: String
+
 )
