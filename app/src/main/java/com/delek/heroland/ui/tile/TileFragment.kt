@@ -114,7 +114,7 @@ open class TileFragment : Fragment() {
             val dwellingId = Game().getResId(dwelling.image, drawable::class.java)
             val bitmap = BitmapFactory.decodeResource(resources, dwellingId)
             binding.lyValley.dwelling.background = bitmap.toDrawable(resources)
-            if (dwelling.id == start) binding.lyValley.dwelling.translationY = 220f
+            if (dwelling.id == start) binding.lyValley.dwelling.translationX = 220f
             binding.lyValley.dwelling.setOnClickListener {
                 findNavController().navigate(
                     TileFragmentDirections.actionNavTileToNavDwelling(dwelling.id)
@@ -134,8 +134,8 @@ open class TileFragment : Fragment() {
             val bitmap = BitmapFactory.decodeResource(resources, id)
             val scale = bitmap.scale(w, w, false)
             val image = scale.toDrawable(resources)
-            binding.player.x = x - padding*2
-            binding.player.y = y - padding
+            binding.player.x = x - padding
+            binding.player.y = y - padding*2
             binding.player.background = image
             binding.player.visibility = View.VISIBLE
         }
