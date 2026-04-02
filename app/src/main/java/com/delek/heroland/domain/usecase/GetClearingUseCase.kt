@@ -9,7 +9,8 @@ import javax.inject.Inject
 
 class GetClearingUseCase @Inject constructor(
     @param:ApplicationContext private val context: Context,
-    private val repository: ClearingRepository) {
+    private val repository: ClearingRepository
+) {
 
     suspend operator fun invoke(): List<Clearing> {
         val clearings = repository.getAllClearings()

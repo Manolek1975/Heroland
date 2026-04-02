@@ -4,11 +4,11 @@ import com.delek.heroland.data.database.entities.ClearingEntity
 
 data class Clearing(
     val id: Int,
-    val name: String,
     val idTile: Int,
-    val con1: Int,
-    val con2: Int
+    val name: String,
+    val con1: String,
+    val con2: String
 )
 
-fun ClearingEntity.toDomain() = Clearing(id, name, idTile, con1, con2)
+fun ClearingEntity.toDomain() = Clearing(id, idTile, name, con1, con2)
 
