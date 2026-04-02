@@ -221,7 +221,7 @@ class OptionsFragment : Fragment() {
     }
 
     private fun checkStartConditions() {
-        if (victoryPoints != 5) { // Must choice 5 victory points
+        if (victoryPoints != 0) { // Must choice 5 victory points
             Toast.makeText(
                 context, getString(R.string.toast_start), Toast.LENGTH_LONG
             ).show()

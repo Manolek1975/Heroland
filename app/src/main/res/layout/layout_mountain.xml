@@ -19,7 +19,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/c4"
         style="@style/clearing"
-        android:background="@drawable/clearing_4"
+        android:background="@drawable/clearing_4_vector"
         app:layout_constraintBottom_toTopOf="@id/c5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/c1"
@@ -28,7 +28,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/c2"
         style="@style/clearing"
-        android:background="@drawable/clearing_2"
+        android:background="@drawable/clearing_2_vector"
         app:layout_constraintEnd_toStartOf="@id/c5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/c5"
         style="@style/clearing"
-        android:background="@drawable/clearing_5"
+        android:background="@drawable/clearing_5_vector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/c2"
         app:layout_constraintTop_toBottomOf="@id/c4"
@@ -47,7 +47,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/c3"
         style="@style/clearing"
-        android:background="@drawable/clearing_3"
+        android:background="@drawable/clearing_3_vector"
         app:layout_constraintEnd_toStartOf="@id/c6"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +57,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/c6"
         style="@style/clearing"
-        android:background="@drawable/clearing_6"
+        android:background="@drawable/clearing_6_vector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/c3"
         app:layout_constraintTop_toBottomOf="@id/c5"

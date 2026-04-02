@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/c4"
         style="@style/clearing"
-        android:background="@drawable/clearing_4"
+        android:background="@drawable/clearing_4_vector"
         app:layout_constraintBottom_toTopOf="@id/c5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +18,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/c2"
         style="@style/clearing"
-        android:background="@drawable/clearing_2"
+        android:background="@drawable/clearing_2_vector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/c5"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
         android:id="@+id/c5"
         style="@style/clearing"
         android:layout_gravity="center|end"
-        android:background="@drawable/clearing_5"
+        android:background="@drawable/clearing_5_vector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/c2"

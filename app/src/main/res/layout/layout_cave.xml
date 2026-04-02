@@ -29,7 +29,7 @@
         android:id="@+id/c4"
         style="@style/clearing"
         android:layout_gravity="top|end"
-        android:background="@drawable/clearing_4" />
+        android:background="@drawable/clearing_4_vector" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/con1"
@@ -41,13 +41,13 @@
         android:id="@+id/c2"
         style="@style/clearing"
         android:layout_gravity="center|start"
-        android:background="@drawable/clearing_2" />
+        android:background="@drawable/clearing_2_vector" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/c5"
         style="@style/clearing"
         android:layout_gravity="center|end"
-        android:background="@drawable/clearing_5" />
+        android:background="@drawable/clearing_5_vector" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/con2"
@@ -59,13 +59,13 @@
         android:id="@+id/c3"
         style="@style/clearing"
         android:layout_gravity="bottom|start"
-        android:background="@drawable/clearing_3" />
+        android:background="@drawable/clearing_3_vector" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/c6"
         style="@style/clearing"
         android:layout_gravity="bottom|end"
-        android:background="@drawable/clearing_6" />
+        android:background="@drawable/clearing_6_vector" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/player"

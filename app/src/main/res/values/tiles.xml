@@ -33,16 +33,19 @@
         <item>CV</item>
         <item>DV</item>
         <item>EV</item>
+
         <item>LW</item>
         <item>MW</item>
         <item>NW</item>
         <item>OW</item>
         <item>PW</item>
+
         <item>DW</item>
         <item>CF</item>
         <item>CG</item>
         <item>LD</item>
         <item>MN</item>
+
         <item>BL</item>
         <item>CN</item>
         <item>CV</item>
@@ -51,7 +54,7 @@
     </string-array>
 
     <string-array name="tile_images">
-        <item>bg_valley</item>
+        <item>bg_awful_valley</item>
         <item>bg_bad_valley</item>
         <item>bg_curst_valley</item>
         <item>bg_dark_valley</item>
@@ -68,6 +71,7 @@
         <item>bg_crag</item>
         <item>bg_ledges</item>
         <item>bg_mountain</item>
+
         <item>bg_borderland</item>
         <item>bg_cavern</item>
         <item>bg_caves</item>
@@ -126,7 +130,7 @@
         <item>250</item>
         <item>820</item>
         <item>880</item>
-        <item>700</item>
+        <item>650</item>
 
         <item>940</item>
         <item>850</item>
@@ -138,12 +142,12 @@
         <item>250</item>
         <item>150</item>
         <item>640</item>
-        <item>280</item>
+        <item>140</item>
 
-        <item>650</item>
+        <item>480</item>
         <item>180</item>
         <item>160</item>
-        <item>140</item>
+        <item>240</item>
         <item>540</item>
     </string-array>
 
@@ -152,7 +156,7 @@
         <item>800</item>
         <item>350</item>
         <item>1460</item>
-        <item>2060</item>
+        <item>1900</item>
 
         <item>480</item>
         <item>1080</item>
@@ -164,12 +168,12 @@
         <item>1100</item>
         <item>320</item>
         <item>1150</item>
-        <item>1560</item>
+        <item>1280</item>
 
-        <item>950</item>
+        <item>920</item>
         <item>1860</item>
         <item>620</item>
-        <item>1280</item>
+        <item>1560</item>
         <item>560</item>
     </string-array>
 </resources>

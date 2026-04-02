@@ -7,6 +7,7 @@ import com.delek.heroland.domain.model.Advantage
 import com.delek.heroland.domain.model.AdviceChit
 import com.delek.heroland.domain.model.Armor
 import com.delek.heroland.domain.model.Chit
+import com.delek.heroland.domain.model.Clearing
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Group
 import com.delek.heroland.domain.model.Monster
@@ -30,6 +31,7 @@ import com.delek.heroland.domain.usecase.GetAdvantagesUseCase
 import com.delek.heroland.domain.usecase.GetAdviceChitUseCase
 import com.delek.heroland.domain.usecase.GetArmorUseCase
 import com.delek.heroland.domain.usecase.GetChitsUseCase
+import com.delek.heroland.domain.usecase.GetClearingUseCase
 import com.delek.heroland.domain.usecase.GetDwellingsUseCase
 import com.delek.heroland.domain.usecase.GetGroupUseCase
 import com.delek.heroland.domain.usecase.GetMonsterUseCase
@@ -77,7 +79,8 @@ class HomeViewModel @Inject constructor(
     private val getAdviceChitsUseCase: GetAdviceChitUseCase,
     private val getSoundChitsUseCase: GetSoundChitUseCase,
     private val getMonsterUseCase: GetMonsterUseCase,
-    private val getPhasesUseCase: GetPhasesUseCase
+    private val getPhasesUseCase: GetPhasesUseCase,
+    private val getClearingUseCase: GetClearingUseCase
 ) : ViewModel() {
 
     //TODO Create class to load all use cases or insert all in single use, no idea atm!
@@ -104,6 +107,8 @@ class HomeViewModel @Inject constructor(
     private val soundChitsList = MutableLiveData<List<SoundChit>>()
     private val monsterList = MutableLiveData<List<Monster>>()
     private val phaseList = MutableLiveData<List<Phase>>()
+    private val clearingList = MutableLiveData<List<Clearing>>()
+
 
     fun onCreate() {
         viewModelScope.launch {
@@ -198,6 +203,10 @@ class HomeViewModel @Inject constructor(
             val phase = getPhasesUseCase()
             if (phase.isNotEmpty()) {
                 phaseList.postValue(phase)
+            }
+            val clearing = getClearingUseCase()
+            if (clearing.isNotEmpty()) {
+                clearingList.postValue(clearing)
             }
 
         }

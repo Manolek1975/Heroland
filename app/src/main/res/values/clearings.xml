@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="clearing_names">
+        <!-- AWFUL VALLEY -->
+        <item>C1</item>
+        <item>C2</item>
+        <item>C4</item>
+        <item>C5</item>
+        <!-- BAD VALLEY -->
+        <item>C1</item>
+        <item>C2</item>
+        <item>C4</item>
+        <item>C5</item>
+        <!-- CURST VALLEY -->
+        <item>C1</item>
+        <item>C2</item>
+        <item>C4</item>
+        <item>C5</item>
+        <!-- DARK VALLEY -->
+        <item>C1</item>
+        <item>C2</item>
+        <item>C4</item>
+        <item>C5</item>
+        <!-- EVIL VALLEY -->
+        <item>C1</item>
+        <item>C2</item>
+        <item>C4</item>
+        <item>C5</item>
+    </string-array>
+
+    <string-array name="clearing_tiles">
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>2</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>3</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>4</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="clearing_con1">
+        <!-- AWFUL VALLEY -->
+        <item>4AW</item>
+        <item>5AW</item>
+        <item>1AW</item>
+        <item>2AW</item>
+        <!-- BAD VALLEY -->
+        <item>4AW</item>
+        <item>5AW</item>
+        <item>1AW</item>
+        <item>2AW</item>
+        <!-- CURST VALLEY -->
+        <item>4AW</item>
+        <item>5AW</item>
+        <item>1AW</item>
+        <item>2AW</item>
+        <!-- DARK VALLEY -->
+        <item>4AW</item>
+        <item>5AW</item>
+        <item>1AW</item>
+        <item>2AW</item>
+        <!-- EVIL VALLEY -->
+        <item>4AW</item>
+        <item>5AW</item>
+        <item>1AW</item>
+        <item>2AW</item>
+    </string-array>
+
+    <string-array name="clearing_con2">
+        <!-- AWFUL VALLEY -->
+        <item>5MN</item>
+        <item>2BL</item>
+        <item>5LD</item>
+        <item>2NW</item>
+        <!-- BAD VALLEY -->
+        <item />
+        <item>1CV</item>
+        <item>5RN</item>
+        <item>1BL</item>
+        <!-- CURST VALLEY -->
+        <item>5PW</item>
+        <item />
+        <item>5lW</item>
+        <item>2RN</item>
+        <!-- DARK VALLEY -->
+        <item>4NW</item>
+        <item>4MW</item>
+        <item />
+        <item>5OW</item>
+        <!-- EVIL VALLEY -->
+        <item>1CV</item>
+        <item>5NW</item>
+        <item>1AW</item>
+        <item>4OW</item>
+
+    </string-array>
+</resources>

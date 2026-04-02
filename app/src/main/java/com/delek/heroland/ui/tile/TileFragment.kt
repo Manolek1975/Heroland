@@ -37,7 +37,7 @@ open class TileFragment : Fragment() {
     private val args: TileFragmentArgs by navArgs()
     private lateinit var data: SharedPreferences
     private val viewModel: TileViewModel by viewModels()
-    private var w: Int = 210
+    private var w: Int = 220
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -134,8 +134,8 @@ open class TileFragment : Fragment() {
             val bitmap = BitmapFactory.decodeResource(resources, id)
             val scale = bitmap.scale(w, w, false)
             val image = scale.toDrawable(resources)
-            binding.player.x = x - padding
-            binding.player.y = y - padding*2
+            binding.player.x = x.toFloat()
+            binding.player.y = y.toFloat()
             binding.player.background = image
             binding.player.visibility = View.VISIBLE
         }
