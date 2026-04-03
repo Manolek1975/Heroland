@@ -22,6 +22,11 @@ class TileRepository @Inject constructor(private val tileDao: TileDao) {
         return response.toDomain()
     }
 
+    suspend fun getTileByAdviceId(id: Int): Tile {
+        val response: TileEntity = tileDao.getTileByAdviceId(id)
+        return response.toDomain()
+    }
+
     fun getTiles(): List<Tile> {
         val response: List<TileEntity> = tileDao.getTiles()
         return response.map { it.toDomain() }

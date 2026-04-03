@@ -25,7 +25,7 @@ interface TileDao {
     suspend fun getTilesByType(type: String): List<TileEntity>
 
     @Query("SELECT * FROM tiles WHERE advice = :id")
-    suspend fun getAdviceChitById(id: Int): TileEntity
+    suspend fun getTileByAdviceId(id: Int): TileEntity
 
     @Query("UPDATE tiles SET advice = :advice WHERE id = :id")
     suspend fun updateTileAdvice(advice: Int, id: Int)

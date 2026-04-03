@@ -62,7 +62,6 @@ open class TileFragment : Fragment() {
     private fun placeChits() {
         viewModel.getTileById(args.id)
         viewModel.tile.observe(viewLifecycleOwner) { tile ->
-            data.edit { putInt("location", 5) }
             binding.tileName.text = tile.name
             val id = Game().getResId(tile.image, drawable::class.java)
             val bg = ContextCompat.getDrawable(requireContext(), id)
@@ -74,11 +73,9 @@ open class TileFragment : Fragment() {
                 val (x, y) = point
                 data.edit { putInt("posX", x) }
                 data.edit { putInt("posY", y) }
-                println("x: $x, y:$y")
             }
             placeAdviceChit(tile.advice, tile.type.first())
             //if (tile.sound > 0) placeSoundChit(tile.sound)
-
         }
     }
 
@@ -166,11 +163,10 @@ open class TileFragment : Fragment() {
     private fun playPhase(id: Int) {
         val phase = Phase(id)
         val dice = Dice()
-
         val result = phase.getPhase(id, dice.rollDice())
-        when (id){
-            1-> phaseHide(result)
-
+        when (id) {
+            1 -> phaseHide(result)
+            2 -> phaseMove()
         }
 
         val dices = dice.rollImages()
@@ -182,11 +178,14 @@ open class TileFragment : Fragment() {
     }
 
     fun phaseHide(result: Boolean) {
-        if(result)
+        if (result)
             binding.player.background.setColorFilter(
-                Color.GRAY,
-                android.graphics.PorterDuff.Mode.MULTIPLY
+                Color.GRAY,android.graphics.PorterDuff.Mode.MULTIPLY
             )
+    }
+
+    fun phaseMove(){
+        //viewModel.getMoves()
 
     }
 
@@ -195,12 +194,15 @@ open class TileFragment : Fragment() {
             "VALLEY" -> {
                 binding.lyValley.layoutValley.visibility = View.VISIBLE
             }
+
             "WOOD" -> {
                 binding.lyWood.layoutValley.visibility = View.VISIBLE
             }
+
             "MOUNTAIN" -> {
                 binding.lyMountain.layoutValley.visibility = View.VISIBLE
             }
+
             "CAVE" -> {
                 binding.lyCave.layoutValley.visibility = View.VISIBLE
             }

@@ -9,7 +9,7 @@ data class PlayerEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
     @ColumnInfo("name") val name: String,
     @ColumnInfo("role") val role: Int,
-    @ColumnInfo("location") val location: Int,
+    @ColumnInfo("location") val location: String,
     @ColumnInfo("spells") val spells: Int,
     @ColumnInfo("vp") val vp: Int,
     @ColumnInfo("weapon") val weapon: Int,

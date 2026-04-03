@@ -6,7 +6,7 @@ data class Player(
     val id: Int,
     val name: String,
     val role: Int,
-    val location: Int,
+    val location: String,
     val spells: Int,
     val vp: Int,
     val weapon: Int,

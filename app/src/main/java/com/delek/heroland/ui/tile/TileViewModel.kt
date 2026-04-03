@@ -8,6 +8,7 @@ import com.delek.heroland.data.repository.DayPhaseRepository
 import com.delek.heroland.data.repository.DwellingRepository
 import com.delek.heroland.data.repository.MonsterRepository
 import com.delek.heroland.data.repository.PhaseRepository
+import com.delek.heroland.data.repository.PlayerRepository
 import com.delek.heroland.data.repository.RoleRepository
 import com.delek.heroland.data.repository.SoundChitRepository
 import com.delek.heroland.data.repository.TileRepository
@@ -15,6 +16,7 @@ import com.delek.heroland.domain.model.AdviceChit
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Monster
 import com.delek.heroland.domain.model.Phase
+import com.delek.heroland.domain.model.Player
 import com.delek.heroland.domain.model.Role
 import com.delek.heroland.domain.model.SoundChit
 import com.delek.heroland.domain.model.Tile
@@ -31,7 +33,8 @@ class TileViewModel @Inject constructor(
     private val dwellingRepository: DwellingRepository,
     private val monsterRepository: MonsterRepository,
     private val phaseRepository: PhaseRepository,
-    private val dayPhaseRepository: DayPhaseRepository
+    private val dayPhaseRepository: DayPhaseRepository,
+    private val playerRepository: PlayerRepository
 
 ) : ViewModel() {
     val role = MutableLiveData<Role>()
@@ -42,6 +45,7 @@ class TileViewModel @Inject constructor(
     val adviceMonster = MutableLiveData<Monster>()
     val soundMonster = MutableLiveData<Monster>()
     val phases = MutableLiveData<List<Phase>>()
+    val player = MutableLiveData<Player>()
 
 
     fun insertDayPhase(day: Int, phase: String) {
@@ -98,5 +102,18 @@ class TileViewModel @Inject constructor(
         }
     }
 
+    fun getPlayerById(id: Int) {
+        viewModelScope.launch {
+            player.value = playerRepository.getPlayerById(id)
+        }
+    }
+
+    fun updateLocation(loc: String, id: Int) {
+        viewModelScope.launch {
+            playerRepository.updateLocation(loc, id)
+        }
+    }
 
 }
+
+

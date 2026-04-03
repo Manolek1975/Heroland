@@ -43,7 +43,7 @@ class OptionsViewModel @Inject constructor(
     val vp = MutableLiveData<List<VictoryPoints>>()
     val player = MutableLiveData<List<Player>>()
     val vpRole = MutableLiveData<List<VpRole>>()
-    val tile = MutableLiveData<List<Tile>>()
+    val tile = MutableLiveData<Tile>()
     val advice = MutableLiveData<List<AdviceChit>>()
 
     fun getRole(id: Int) {

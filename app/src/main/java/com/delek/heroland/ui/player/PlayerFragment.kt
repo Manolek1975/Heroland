@@ -1,6 +1,8 @@
 package com.delek.heroland.ui.player
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +27,7 @@ class PlayerFragment : Fragment() {
     private var _binding: FragmentPlayerBinding? = null
     private val binding get() = _binding!!
     private val viewModel: PlayerViewModel by viewModels()
+    private lateinit var data: SharedPreferences
     private lateinit var playerAdapter: PlayerAdapter
 
     override fun onCreateView(
@@ -32,6 +35,7 @@ class PlayerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentPlayerBinding.inflate(inflater, container, false)
+        data = requireContext().getSharedPreferences("data", Context.MODE_PRIVATE)
         initUI()
         return binding.root
     }
@@ -42,7 +46,7 @@ class PlayerFragment : Fragment() {
         initPlayers()
     }
 
-    private fun initListeners(){
+    private fun initListeners() {
         binding.fabGo.setOnClickListener {
             findNavController().navigate(
                 PlayerFragmentDirections.actionNavPlayerToMapFragment()
@@ -56,7 +60,7 @@ class PlayerFragment : Fragment() {
         }
     }
 
-    private fun initPlayers(){
+    private fun initPlayers() {
         checkPlayers()
         viewModel.getRolesByPlayer()
         playerAdapter = PlayerAdapter(onItemSelected = {
@@ -64,13 +68,28 @@ class PlayerFragment : Fragment() {
         })
         binding.rvPlayer.layoutManager = LinearLayoutManager(context)
         binding.rvPlayer.adapter = playerAdapter
-
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.roles.observe(viewLifecycleOwner) {
                     playerAdapter.updateList(it)
                 }
             }
+        }
+        updateLocation()
+    }
+
+    private fun updateLocation() {
+        val role = data.getInt("role", 0)
+        val dwelling = data.getInt("start_dwelling", 0)
+        viewModel.getTileByAdviceChit(dwelling)
+        viewModel.tile.observe(viewLifecycleOwner) { tile ->
+            viewModel.updateLocation("5${tile.short}", 1)
+            //viewModel.getPlayerById(role)
+/*
+            viewModel.player.observe(viewLifecycleOwner) {
+                if (it.location.isEmpty()) viewModel.updateLocation(tile.short, 1)
+            }
+*/
         }
     }
 
@@ -79,8 +98,8 @@ class PlayerFragment : Fragment() {
         dialogBuilder.setIcon(android.R.drawable.ic_dialog_alert)
         dialogBuilder.setTitle(it.name)
         dialogBuilder.setMessage(getString(R.string.delete_player, it.name))
-        dialogBuilder.setNegativeButton("Cancel"){_, _: Int ->}
-        dialogBuilder.setPositiveButton("OK"){_, _: Int ->
+        dialogBuilder.setNegativeButton("Cancel") { _, _: Int -> }
+        dialogBuilder.setPositiveButton("OK") { _, _: Int ->
             viewModel.deletePlayer(it.id)
             playerAdapter.notifyItemRemoved(pos)
             viewModel.getRolesByPlayer()

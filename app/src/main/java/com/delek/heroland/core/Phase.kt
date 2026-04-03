@@ -3,10 +3,10 @@ package com.delek.heroland.core
 
 class Phase(private val id: Int): IPhase {
 
-
     override fun getPhase(id: Int, dice:Int): Boolean {
         val result = when (id) {
             1 -> phaseHide(dice)
+            2 -> phaseMove()
             else -> false
         }
         return result
@@ -18,6 +18,13 @@ class Phase(private val id: Int): IPhase {
             else -> true
         }
         return result
+    }
+
+    private fun phaseMove(): Boolean {
+        val result = true
+
+        return result
+
     }
 
 }

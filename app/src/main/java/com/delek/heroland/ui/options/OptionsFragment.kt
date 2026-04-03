@@ -230,9 +230,9 @@ class OptionsFragment : Fragment() {
                 context, getString(R.string.toast_start_spells, numSpells), Toast.LENGTH_LONG
             ).show()
         } else {
-            setPlayer()
             setAdviceChits()
             setSoundChits()
+            setPlayer()
             findNavController().navigate(
                 OptionsFragmentDirections.actionNavOptionsToNavPlayer()
             )
@@ -244,11 +244,14 @@ class OptionsFragment : Fragment() {
         data.edit { putInt("role_id", args.id) }
         data.edit { putInt("start_dwelling", dwellingSelected) }
         viewmodel.role.observe(viewLifecycleOwner) { role ->
-            val playerEntity = PlayerEntity(0, role.name, role.id, dwellingSelected,
+            val playerEntity = PlayerEntity(0, role.name, role.id, "",
                 role.spells,0, 0,0, 0, "")
             viewmodel.insertPlayer(playerEntity)
         }
-
+/*        viewmodel.getTileByAdviceChit(1)
+        viewmodel.tile.observe(viewLifecycleOwner) {
+            data.edit { putString("location", it.short) }
+        }*/
     }
 
     private fun setAdviceChits() {
@@ -271,6 +274,7 @@ class OptionsFragment : Fragment() {
                 }
             }
         }
+
     }
 
     private fun setSoundChits() {

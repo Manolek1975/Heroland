@@ -22,6 +22,11 @@ class PlayerRepository@Inject constructor(private val playerDao: PlayerDao) {
         return response.toDomain()
     }
 
+    suspend fun updateLocation(loc: String, id: Int) {
+        playerDao.updateLocation(loc, id)
+    }
+
+
     suspend fun deleteAllPlayers() {
         playerDao.deleteAllPlayers()
     }
