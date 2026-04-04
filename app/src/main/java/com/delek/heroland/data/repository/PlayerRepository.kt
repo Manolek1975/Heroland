@@ -17,13 +17,13 @@ class PlayerRepository@Inject constructor(private val playerDao: PlayerDao) {
         return response.map { it.toDomain() }
     }
 
-    suspend fun getPlayerById(id: Int): Player {
-        val response: PlayerEntity = playerDao.getPlayerById(id)
+    suspend fun getPlayerByRole(role: Int): Player {
+        val response: PlayerEntity = playerDao.getPlayerByRole(role)
         return response.toDomain()
     }
 
-    suspend fun updateLocation(loc: String, id: Int) {
-        playerDao.updateLocation(loc, id)
+    suspend fun updateLocation(loc: String, role: Int) {
+        playerDao.updateLocation(loc, role)
     }
 
 

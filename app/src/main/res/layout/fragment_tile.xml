@@ -48,6 +48,7 @@
         android:backgroundTint="@color/red"
         android:visibility="gone" />-->
 
+    <!-- PHASES -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_phases"
         android:layout_width="match_parent"
@@ -58,15 +59,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_moves"
+
+<!--    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_clearings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="1dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"/>-->
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/player"
@@ -116,6 +118,23 @@
         android:background="@drawable/dice_1r"
         android:tint="@color/white"
         app:layout_constraintStart_toEndOf="@id/dice_w"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <!-- CLEARINGS -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/toClearing1"
+        style="@style/clearing_button"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/toClearing2"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/toClearing2"
+        style="@style/clearing_button"
+        app:layout_constraintStart_toEndOf="@id/toClearing1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 

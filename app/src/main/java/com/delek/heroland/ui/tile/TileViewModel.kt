@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.delek.heroland.data.repository.AdviceChitRepository
+import com.delek.heroland.data.repository.ClearingRepository
 import com.delek.heroland.data.repository.DayPhaseRepository
 import com.delek.heroland.data.repository.DwellingRepository
 import com.delek.heroland.data.repository.MonsterRepository
@@ -13,6 +14,7 @@ import com.delek.heroland.data.repository.RoleRepository
 import com.delek.heroland.data.repository.SoundChitRepository
 import com.delek.heroland.data.repository.TileRepository
 import com.delek.heroland.domain.model.AdviceChit
+import com.delek.heroland.domain.model.Clearing
 import com.delek.heroland.domain.model.Dwelling
 import com.delek.heroland.domain.model.Monster
 import com.delek.heroland.domain.model.Phase
@@ -34,7 +36,8 @@ class TileViewModel @Inject constructor(
     private val monsterRepository: MonsterRepository,
     private val phaseRepository: PhaseRepository,
     private val dayPhaseRepository: DayPhaseRepository,
-    private val playerRepository: PlayerRepository
+    private val playerRepository: PlayerRepository,
+    private val clearingRepository: ClearingRepository
 
 ) : ViewModel() {
     val role = MutableLiveData<Role>()
@@ -46,6 +49,8 @@ class TileViewModel @Inject constructor(
     val soundMonster = MutableLiveData<Monster>()
     val phases = MutableLiveData<List<Phase>>()
     val player = MutableLiveData<Player>()
+    val clearing = MutableLiveData<Clearing>()
+
 
 
     fun insertDayPhase(day: Int, phase: String) {
@@ -102,9 +107,9 @@ class TileViewModel @Inject constructor(
         }
     }
 
-    fun getPlayerById(id: Int) {
+    fun getPlayerByRole(role: Int) {
         viewModelScope.launch {
-            player.value = playerRepository.getPlayerById(id)
+            player.value = playerRepository.getPlayerByRole(role)
         }
     }
 
@@ -113,6 +118,13 @@ class TileViewModel @Inject constructor(
             playerRepository.updateLocation(loc, id)
         }
     }
+
+    fun getClearingByName(name: String){
+        viewModelScope.launch {
+            clearing.value = clearingRepository.getClearingByName(name)
+        }
+    }
+
 
 }
 

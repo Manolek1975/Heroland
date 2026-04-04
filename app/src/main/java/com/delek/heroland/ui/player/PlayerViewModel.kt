@@ -43,15 +43,9 @@ class PlayerViewModel @Inject constructor(
         }
     }
 
-    fun getPlayerById(id: Int) {
+    fun updateLocation(loc: String, role: Int) {
         viewModelScope.launch {
-            player.value = playerRepository.getPlayerById(id)
-        }
-    }
-
-    fun updateLocation(loc: String, id: Int) {
-        viewModelScope.launch {
-            playerRepository.updateLocation(loc, id)
+            playerRepository.updateLocation(loc, role)
         }
     }
 

@@ -18,4 +18,7 @@ interface ClearingDao {
     @Query("SELECT * FROM clearings WHERE id = :id")
     suspend fun getClearingById(id: Int): ClearingEntity
 
+    @Query("SELECT * FROM clearings WHERE name = :name")
+    suspend fun getClearingByName(name: String): ClearingEntity
+
 }

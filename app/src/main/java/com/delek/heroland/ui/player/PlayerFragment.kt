@@ -79,17 +79,11 @@ class PlayerFragment : Fragment() {
     }
 
     private fun updateLocation() {
-        val role = data.getInt("role", 0)
+        val role = data.getInt("role_id", 0)
         val dwelling = data.getInt("start_dwelling", 0)
         viewModel.getTileByAdviceChit(dwelling)
         viewModel.tile.observe(viewLifecycleOwner) { tile ->
-            viewModel.updateLocation("5${tile.short}", 1)
-            //viewModel.getPlayerById(role)
-/*
-            viewModel.player.observe(viewLifecycleOwner) {
-                if (it.location.isEmpty()) viewModel.updateLocation(tile.short, 1)
-            }
-*/
+            viewModel.updateLocation("5${tile.short}", role)
         }
     }
 

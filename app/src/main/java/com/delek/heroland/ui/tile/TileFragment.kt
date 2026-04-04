@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -123,7 +124,6 @@ open class TileFragment : Fragment() {
     private fun placePlayer() {
         val x = data.getInt("posX", 0)
         val y = data.getInt("posY", 0)
-        val padding = 40f //Padding apply for clearing in themes
         val roleId = data.getInt("role_id", 0)
         viewModel.getRoleById(roleId)
         viewModel.role.observe(viewLifecycleOwner) { role ->
@@ -142,7 +142,6 @@ open class TileFragment : Fragment() {
     }
 
     fun placePhases() {
-        val day = data.getInt("day", 0)
         viewModel.getPhases()
         val phaseAdapter = PhaseAdapter(onItemSelected = {
             binding.rvPhases.visibility = View.GONE
@@ -164,29 +163,40 @@ open class TileFragment : Fragment() {
         val phase = Phase(id)
         val dice = Dice()
         val result = phase.getPhase(id, dice.rollDice())
-        when (id) {
-            1 -> phaseHide(result)
-            2 -> phaseMove()
-        }
-
         val dices = dice.rollImages()
         binding.diceW.setBackgroundResource(dices.first)
         binding.diceR.setBackgroundResource(dices.second)
         binding.diceW.visibility = View.VISIBLE
         binding.diceR.visibility = View.VISIBLE
-
+        when (id) {
+            1 -> phaseHide(result)
+            2 -> phaseMove()
+        }
     }
 
     fun phaseHide(result: Boolean) {
         if (result)
-            binding.player.background.setColorFilter(
-                Color.GRAY,android.graphics.PorterDuff.Mode.MULTIPLY
+            binding.player.background.colorFilter = android.graphics.PorterDuffColorFilter(
+                Color.GRAY, PorterDuff.Mode.MULTIPLY
             )
     }
 
     fun phaseMove(){
-        //viewModel.getMoves()
+        binding.diceW.visibility = View.GONE
+        binding.diceR.visibility = View.GONE
+        binding.toClearing1.visibility = View.VISIBLE
+        binding.toClearing2.visibility = View.VISIBLE
 
+        val role = data.getInt("role_id", 0)
+        viewModel.getPlayerByRole(role)
+        viewModel.player.observe(viewLifecycleOwner){ player ->
+            val location = player.location
+            viewModel.getClearingByName(location)
+            viewModel.clearing.observe(viewLifecycleOwner){ clearing ->
+                binding.toClearing1.text = clearing.con1
+                binding.toClearing2.text = clearing.con2
+            }
+        }
     }
 
     private fun placeClearings(type: String) {

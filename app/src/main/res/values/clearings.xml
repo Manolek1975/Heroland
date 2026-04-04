@@ -3,30 +3,30 @@
 
     <string-array name="clearing_names">
         <!-- AWFUL VALLEY -->
-        <item>C1</item>
-        <item>C2</item>
-        <item>C4</item>
-        <item>C5</item>
+        <item>1AV</item>
+        <item>2AV</item>
+        <item>4AV</item>
+        <item>5AV</item>
         <!-- BAD VALLEY -->
-        <item>C1</item>
-        <item>C2</item>
-        <item>C4</item>
-        <item>C5</item>
+        <item>1BV</item>
+        <item>2BV</item>
+        <item>4BV</item>
+        <item>5BV</item>
         <!-- CURST VALLEY -->
-        <item>C1</item>
-        <item>C2</item>
-        <item>C4</item>
-        <item>C5</item>
+        <item>1CV</item>
+        <item>2CV</item>
+        <item>4CV</item>
+        <item>5CV</item>
         <!-- DARK VALLEY -->
-        <item>C1</item>
-        <item>C2</item>
-        <item>C4</item>
-        <item>C5</item>
+        <item>1DV</item>
+        <item>2DV</item>
+        <item>4DV</item>
+        <item>5DV</item>
         <!-- EVIL VALLEY -->
-        <item>C1</item>
-        <item>C2</item>
-        <item>C4</item>
-        <item>C5</item>
+        <item>1EV</item>
+        <item>2EV</item>
+        <item>4EV</item>
+        <item>5EV</item>
     </string-array>
 
     <string-array name="clearing_tiles">
@@ -54,30 +54,30 @@
 
     <string-array name="clearing_con1">
         <!-- AWFUL VALLEY -->
-        <item>4AW</item>
-        <item>5AW</item>
-        <item>1AW</item>
-        <item>2AW</item>
+        <item>4AV</item>
+        <item>5AV</item>
+        <item>1AV</item>
+        <item>2AV</item>
         <!-- BAD VALLEY -->
-        <item>4AW</item>
-        <item>5AW</item>
-        <item>1AW</item>
-        <item>2AW</item>
+        <item>4BV</item>
+        <item>5BV</item>
+        <item>1BV</item>
+        <item>2BV</item>
         <!-- CURST VALLEY -->
-        <item>4AW</item>
-        <item>5AW</item>
-        <item>1AW</item>
-        <item>2AW</item>
+        <item>4CV</item>
+        <item>5CV</item>
+        <item>1CV</item>
+        <item>2CV</item>
         <!-- DARK VALLEY -->
-        <item>4AW</item>
-        <item>5AW</item>
-        <item>1AW</item>
-        <item>2AW</item>
+        <item>4DV</item>
+        <item>5DV</item>
+        <item>1DV</item>
+        <item>2DV</item>
         <!-- EVIL VALLEY -->
-        <item>4AW</item>
-        <item>5AW</item>
-        <item>1AW</item>
-        <item>2AW</item>
+        <item>4EV</item>
+        <item>5EV</item>
+        <item>1EV</item>
+        <item>2EV</item>
     </string-array>
 
     <string-array name="clearing_con2">
