@@ -18,8 +18,8 @@ interface PlayerDao {
     @Query("SELECT * FROM players WHERE role = :role")
     suspend fun getPlayerByRole(role: Int): PlayerEntity
 
-    @Query("UPDATE players SET location = :loc WHERE role = :role")
-    suspend fun updateLocation(loc: String, role: Int)
+    @Query("UPDATE players SET tile = :tile, clearing = :clearing WHERE role = :role")
+    suspend fun updateLocation(tile: Int, clearing: Int, role: Int)
 
     @Query("DELETE FROM players")
     suspend fun deleteAllPlayers()

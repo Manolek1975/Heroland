@@ -113,15 +113,15 @@ class TileViewModel @Inject constructor(
         }
     }
 
-    fun updateLocation(loc: String, id: Int) {
+    fun updateLocation(tile: Int, clearing: Int, role: Int) {
         viewModelScope.launch {
-            playerRepository.updateLocation(loc, id)
+            playerRepository.updateLocation(tile, clearing, role)
         }
     }
 
-    fun getClearingByName(name: String){
+    fun getClearingByLocation(tile: Int, clearingNum: Int){
         viewModelScope.launch {
-            clearing.value = clearingRepository.getClearingByName(name)
+            clearing.value = clearingRepository.getClearingByLocation(tile, clearingNum)
         }
     }
 

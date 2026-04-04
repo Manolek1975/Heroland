@@ -52,6 +52,30 @@
         <item>5</item>
     </string-array>
 
+    <string-array name="clearing_num">
+        <!-- AWFUL VALLEY -->
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>5</item>
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>5</item>
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>5</item>
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>5</item>
+        <item>1</item>
+        <item>2</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
     <string-array name="clearing_con1">
         <!-- AWFUL VALLEY -->
         <item>4AV</item>

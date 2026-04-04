@@ -244,7 +244,7 @@ class OptionsFragment : Fragment() {
         data.edit { putInt("role_id", args.id) }
         data.edit { putInt("start_dwelling", dwellingSelected) }
         viewmodel.role.observe(viewLifecycleOwner) { role ->
-            val playerEntity = PlayerEntity(0, role.name, role.id, "",
+            val playerEntity = PlayerEntity(0, role.name, role.id, 0, 0,
                 role.spells,0, 0,0, 0, "")
             viewmodel.insertPlayer(playerEntity)
         }

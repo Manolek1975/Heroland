@@ -83,7 +83,7 @@ class PlayerFragment : Fragment() {
         val dwelling = data.getInt("start_dwelling", 0)
         viewModel.getTileByAdviceChit(dwelling)
         viewModel.tile.observe(viewLifecycleOwner) { tile ->
-            viewModel.updateLocation("5${tile.short}", role)
+            viewModel.updateLocation(tile.id, 5, role)
         }
     }
 

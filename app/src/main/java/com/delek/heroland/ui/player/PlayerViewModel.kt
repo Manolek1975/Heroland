@@ -43,9 +43,9 @@ class PlayerViewModel @Inject constructor(
         }
     }
 
-    fun updateLocation(loc: String, role: Int) {
+    fun updateLocation(tile: Int, clearing: Int, role: Int) {
         viewModelScope.launch {
-            playerRepository.updateLocation(loc, role)
+            playerRepository.updateLocation(tile, clearing, role)
         }
     }
 

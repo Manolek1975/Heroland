@@ -22,8 +22,8 @@ class ClearingRepository @Inject constructor(private val clearingDao: ClearingDa
         return response.toDomain()
     }
 
-    suspend fun getClearingByName(name: String): Clearing {
-        val response: ClearingEntity = clearingDao.getClearingByName(name)
+    suspend fun getClearingByLocation(tile: Int, clearing: Int): Clearing {
+        val response: ClearingEntity = clearingDao.getClearingByLocation(tile, clearing)
         return response.toDomain()
     }
 

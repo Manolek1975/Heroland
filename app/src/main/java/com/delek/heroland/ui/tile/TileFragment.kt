@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.content.edit
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.graphics.scale
 import androidx.fragment.app.Fragment
@@ -55,9 +54,17 @@ open class TileFragment : Fragment() {
     }
 
     private fun initUI() {
+        arrowBack()
         placeChits()
         placePhases()
-        arrowBack()
+    }
+
+    private fun arrowBack() {
+        binding.arrowBack.setOnClickListener {
+            findNavController().navigate(
+                TileFragmentDirections.actionNavTileToNavMap()
+            )
+        }
     }
 
     private fun placeChits() {
@@ -68,13 +75,6 @@ open class TileFragment : Fragment() {
             val bg = ContextCompat.getDrawable(requireContext(), id)
             binding.root.background = bg
             placeClearings(tile.type)
-            binding.lyValley.c5.post {
-                val point = IntArray(2)
-                binding.lyValley.c5.getLocationOnScreen(point)
-                val (x, y) = point
-                data.edit { putInt("posX", x) }
-                data.edit { putInt("posY", y) }
-            }
             placeAdviceChit(tile.advice, tile.type.first())
             //if (tile.sound > 0) placeSoundChit(tile.sound)
         }
@@ -122,22 +122,45 @@ open class TileFragment : Fragment() {
     }
 
     private fun placePlayer() {
-        val x = data.getInt("posX", 0)
-        val y = data.getInt("posY", 0)
         val roleId = data.getInt("role_id", 0)
-        viewModel.getRoleById(roleId)
-        viewModel.role.observe(viewLifecycleOwner) { role ->
-            val id = Game().getResId(role.image, drawable::class.java)
-            val bitmap = BitmapFactory.decodeResource(resources, id)
-            val scale = bitmap.scale(w, w, false)
-            val image = scale.toDrawable(resources)
-            binding.player.x = x.toFloat()
-            binding.player.y = y.toFloat()
-            binding.player.background = image
-            binding.player.visibility = View.VISIBLE
+        viewModel.getPlayerByRole(roleId)
+        viewModel.player.observe(viewLifecycleOwner) { player ->
+            val clearing = (player.clearing)
+            viewModel.getRoleById(roleId)
+            val (x, y) = coordinates(clearing)
+            viewModel.role.observe(viewLifecycleOwner) { role ->
+                val id = Game().getResId(role.image, drawable::class.java)
+                val bitmap = BitmapFactory.decodeResource(resources, id)
+                val scale = bitmap.scale(w, w, false)
+                val image = scale.toDrawable(resources)
+                binding.player.x = x.toFloat()
+                binding.player.y = y.toFloat()
+                binding.player.background = image
+                binding.player.visibility = View.VISIBLE
+            }
         }
         binding.player.setOnClickListener {
             binding.rvPhases.visibility = View.VISIBLE
+        }
+    }
+
+    private fun placeClearings(type: String) {
+        when (type) {
+            "VALLEY" -> {
+                binding.lyValley.layoutValley.visibility = View.VISIBLE
+            }
+
+            "WOOD" -> {
+                binding.lyWood.layoutValley.visibility = View.VISIBLE
+            }
+
+            "MOUNTAIN" -> {
+                binding.lyMountain.layoutValley.visibility = View.VISIBLE
+            }
+
+            "CAVE" -> {
+                binding.lyCave.layoutValley.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -190,42 +213,41 @@ open class TileFragment : Fragment() {
         val role = data.getInt("role_id", 0)
         viewModel.getPlayerByRole(role)
         viewModel.player.observe(viewLifecycleOwner){ player ->
-            val location = player.location
-            viewModel.getClearingByName(location)
+            viewModel.getClearingByLocation(player.tile, player.clearing)
             viewModel.clearing.observe(viewLifecycleOwner){ clearing ->
                 binding.toClearing1.text = clearing.con1
                 binding.toClearing2.text = clearing.con2
+                binding.toClearing1.setOnClickListener {
+                    val num = clearing.con1.first()
+                    viewModel.updateLocation(clearing.tile, num.digitToInt(), role)
+                    placePlayer()
+                    binding.toClearing1.visibility = View.GONE
+                    binding.toClearing2.visibility = View.GONE
+                }
+                binding.toClearing2.setOnClickListener {
+                    viewModel.updateLocation(clearing.tile, clearing.clearing, role)
+                    placePlayer()
+                    binding.toClearing1.visibility = View.GONE
+                    binding.toClearing2.visibility = View.GONE
+                }
             }
         }
+
     }
 
-    private fun placeClearings(type: String) {
-        when (type) {
-            "VALLEY" -> {
-                binding.lyValley.layoutValley.visibility = View.VISIBLE
-            }
-
-            "WOOD" -> {
-                binding.lyWood.layoutValley.visibility = View.VISIBLE
-            }
-
-            "MOUNTAIN" -> {
-                binding.lyMountain.layoutValley.visibility = View.VISIBLE
-            }
-
-            "CAVE" -> {
-                binding.lyCave.layoutValley.visibility = View.VISIBLE
-            }
+    fun coordinates(clearing: Int): Pair<Int, Int>{
+        val point = IntArray(2)
+        when(clearing){
+            1 -> binding.lyValley.c1.getLocationOnScreen(point)
+            2 -> binding.lyValley.c2.getLocationOnScreen(point)
+            4 -> binding.lyValley.c4.getLocationOnScreen(point)
+            5 -> binding.lyValley.c5.getLocationOnScreen(point)
         }
+        val (x, y) = point
+        return Pair(x, y)
+
     }
 
-    private fun arrowBack() {
-        binding.arrowBack.setOnClickListener {
-            findNavController().navigate(
-                TileFragmentDirections.actionNavTileToNavMap()
-            )
-        }
-    }
 
     /*    private fun drawConnections() {
     val width = binding.c2.width

@@ -22,8 +22,8 @@ class PlayerRepository@Inject constructor(private val playerDao: PlayerDao) {
         return response.toDomain()
     }
 
-    suspend fun updateLocation(loc: String, role: Int) {
-        playerDao.updateLocation(loc, role)
+    suspend fun updateLocation(tile: Int, clearing: Int, role: Int) {
+        playerDao.updateLocation(tile, clearing, role)
     }
 
 

@@ -6,7 +6,8 @@ data class Player(
     val id: Int,
     val name: String,
     val role: Int,
-    val location: String,
+    val tile: Int,
+    val clearing: Int,
     val spells: Int,
     val vp: Int,
     val weapon: Int,
@@ -16,4 +17,5 @@ data class Player(
 
 )
 
-fun PlayerEntity.toDomain() = Player(id, name, role, location, spells, vp, weapon, armor, treasures, status)
+fun PlayerEntity.toDomain() =
+    Player(id, name, role, tile, clearing, spells, vp, weapon, armor, treasures, status)
