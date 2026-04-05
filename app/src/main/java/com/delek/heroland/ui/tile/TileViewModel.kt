@@ -50,7 +50,7 @@ class TileViewModel @Inject constructor(
     val phases = MutableLiveData<List<Phase>>()
     val player = MutableLiveData<Player>()
     val clearing = MutableLiveData<Clearing>()
-
+    val tileId = MutableLiveData<Tile>()
 
 
     fun insertDayPhase(day: Int, phase: String) {
@@ -125,6 +125,11 @@ class TileViewModel @Inject constructor(
         }
     }
 
+    fun getTileByShort(short: String){
+        viewModelScope.launch {
+            tileId.value = tileRepository.getTileByShort(short)
+        }
+    }
 
 }
 

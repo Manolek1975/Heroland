@@ -1,6 +1,5 @@
 package com.delek.heroland.ui.player
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -40,7 +39,6 @@ class PlayerFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     private fun initUI() {
         initListeners()
         initPlayers()

@@ -140,6 +140,9 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_nav_tile_self"
+            app:destination="@id/nav_tile" />
     </fragment>
     <fragment
         android:id="@+id/nav_phase"

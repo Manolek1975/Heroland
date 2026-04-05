@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_cave"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center_vertical"
-    android:layout_marginStart="60dp"
-    android:layout_marginTop="120dp"
-    android:layout_marginEnd="60dp"
-    android:background="@color/black"
-    android:layout_marginBottom="120dp"
-    android:id="@+id/layout_valley">
-    <!-- TILE CLEARINGS -->
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_phases"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|start"
-        android:elevation="1dp"
-        android:visibility="gone" />
+    android:layout_marginTop="150dp"
+    android:layout_marginBottom="150dp"
+    android:background="@color/transparent">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/c1"
@@ -26,59 +14,33 @@
         android:background="@drawable/clearing_1" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/c4"
-        style="@style/clearing"
-        android:layout_gravity="top|end"
-        android:background="@drawable/clearing_4_vector" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/con1"
-        style="@style/clearing"
-        android:layout_width="match_parent"
-        android:layout_gravity="top|center" />
-
-    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/c2"
         style="@style/clearing"
-        android:layout_gravity="center|start"
-        android:background="@drawable/clearing_2_vector" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/c5"
-        style="@style/clearing"
-        android:layout_gravity="center|end"
-        android:background="@drawable/clearing_5_vector" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/con2"
-        style="@style/clearing"
-        android:layout_width="match_parent"
-        android:layout_gravity="center|start" />
+        android:layout_gravity="top|end"
+        android:background="@drawable/clearing_2" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/c3"
         style="@style/clearing"
+        android:layout_gravity="center|start"
+        android:background="@drawable/clearing_3" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/c4"
+        style="@style/clearing"
+        android:layout_gravity="center|end"
+        android:background="@drawable/clearing_4" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/c5"
+        style="@style/clearing"
         android:layout_gravity="bottom|start"
-        android:background="@drawable/clearing_3_vector" />
+        android:background="@drawable/clearing_5" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/c6"
         style="@style/clearing"
         android:layout_gravity="bottom|end"
-        android:background="@drawable/clearing_6_vector" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/player"
-        style="@style/clearing"
-        android:layout_gravity="center|end"
-        android:background="@drawable/img_amazon"
-        android:visibility="gone" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/dwelling"
-        style="@style/clearing"
-        android:layout_gravity="center|end"
-        android:background="@drawable/d_inn"
-        android:visibility="gone" />
+        android:background="@drawable/clearing_6" />
 
 </FrameLayout>

@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.LinearInterpolator
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.graphics.scale
@@ -32,6 +33,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 open class TileFragment : Fragment() {
+
     private var _binding: FragmentTileBinding? = null
     private val binding get() = _binding!!
     private val args: TileFragmentArgs by navArgs()
@@ -75,7 +77,10 @@ open class TileFragment : Fragment() {
             val bg = ContextCompat.getDrawable(requireContext(), id)
             binding.root.background = bg
             placeClearings(tile.type)
-            placeAdviceChit(tile.advice, tile.type.first())
+            // Inserta un retraso de 10ms para darle tiempo a leer el layout
+            android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                placeAdviceChit(tile.advice, tile.type.first())
+            }, 10)
             //if (tile.sound > 0) placeSoundChit(tile.sound)
         }
     }
@@ -109,11 +114,14 @@ open class TileFragment : Fragment() {
         val start = data.getInt("start_dwelling", 0)
         viewModel.getDwellingById(advice)
         viewModel.dwelling.observe(viewLifecycleOwner) { dwelling ->
+            val loc = coordinates(5)
             val dwellingId = Game().getResId(dwelling.image, drawable::class.java)
             val bitmap = BitmapFactory.decodeResource(resources, dwellingId)
-            binding.lyValley.dwelling.background = bitmap.toDrawable(resources)
-            if (dwelling.id == start) binding.lyValley.dwelling.translationX = 220f
-            binding.lyValley.dwelling.setOnClickListener {
+            binding.dwelling.background = bitmap.toDrawable(resources)
+            binding.dwelling.x = loc.first.toFloat()
+            binding.dwelling.y = loc.second.toFloat()
+            if (dwelling.id == start) binding.dwelling.translationX = binding.dwelling.x + 220f
+            binding.dwelling.setOnClickListener {
                 findNavController().navigate(
                     TileFragmentDirections.actionNavTileToNavDwelling(dwelling.id)
                 )
@@ -126,15 +134,16 @@ open class TileFragment : Fragment() {
         viewModel.getPlayerByRole(roleId)
         viewModel.player.observe(viewLifecycleOwner) { player ->
             val clearing = (player.clearing)
-            viewModel.getRoleById(roleId)
-            val (x, y) = coordinates(clearing)
+            val loc = coordinates(clearing)
+            println("LOC: ${loc.first}, ${loc.first}")
+            viewModel.getRoleById(player.role)
             viewModel.role.observe(viewLifecycleOwner) { role ->
                 val id = Game().getResId(role.image, drawable::class.java)
                 val bitmap = BitmapFactory.decodeResource(resources, id)
                 val scale = bitmap.scale(w, w, false)
                 val image = scale.toDrawable(resources)
-                binding.player.x = x.toFloat()
-                binding.player.y = y.toFloat()
+                binding.player.x = loc.first.toFloat()
+                binding.player.y = loc.second.toFloat()
                 binding.player.background = image
                 binding.player.visibility = View.VISIBLE
             }
@@ -142,6 +151,7 @@ open class TileFragment : Fragment() {
         binding.player.setOnClickListener {
             binding.rvPhases.visibility = View.VISIBLE
         }
+
     }
 
     private fun placeClearings(type: String) {
@@ -151,15 +161,15 @@ open class TileFragment : Fragment() {
             }
 
             "WOOD" -> {
-                binding.lyWood.layoutValley.visibility = View.VISIBLE
+                binding.lyWood.layoutWood.visibility = View.VISIBLE
             }
 
             "MOUNTAIN" -> {
-                binding.lyMountain.layoutValley.visibility = View.VISIBLE
+                binding.lyMountain.layoutMountain.visibility = View.VISIBLE
             }
 
             "CAVE" -> {
-                binding.lyCave.layoutValley.visibility = View.VISIBLE
+                binding.lyCave.layoutCave.visibility = View.VISIBLE
             }
         }
     }
@@ -204,50 +214,72 @@ open class TileFragment : Fragment() {
             )
     }
 
-    fun phaseMove(){
+    fun phaseMove() {
         binding.diceW.visibility = View.GONE
         binding.diceR.visibility = View.GONE
         binding.toClearing1.visibility = View.VISIBLE
         binding.toClearing2.visibility = View.VISIBLE
-
         val role = data.getInt("role_id", 0)
         viewModel.getPlayerByRole(role)
-        viewModel.player.observe(viewLifecycleOwner){ player ->
+        viewModel.player.observe(viewLifecycleOwner) { player ->
             viewModel.getClearingByLocation(player.tile, player.clearing)
-            viewModel.clearing.observe(viewLifecycleOwner){ clearing ->
+            viewModel.clearing.observe(viewLifecycleOwner) { clearing ->
                 binding.toClearing1.text = clearing.con1
                 binding.toClearing2.text = clearing.con2
+                val name = clearing.name.substring(1)
                 binding.toClearing1.setOnClickListener {
-                    val num = clearing.con1.first()
-                    viewModel.updateLocation(clearing.tile, num.digitToInt(), role)
-                    placePlayer()
-                    binding.toClearing1.visibility = View.GONE
-                    binding.toClearing2.visibility = View.GONE
+                    updateLocation(name, clearing.con1, role)
                 }
                 binding.toClearing2.setOnClickListener {
-                    viewModel.updateLocation(clearing.tile, clearing.clearing, role)
-                    placePlayer()
-                    binding.toClearing1.visibility = View.GONE
-                    binding.toClearing2.visibility = View.GONE
+                    updateLocation(name, clearing.con2, role)
                 }
             }
         }
 
     }
 
-    fun coordinates(clearing: Int): Pair<Int, Int>{
+    private fun updateLocation(name: String, con: String, role: Int) {
+        val c1 = con.first()
+        val last = con.substring(1)
+        viewModel.getTileByShort(last)
+        viewModel.tileId.observe(viewLifecycleOwner) {
+            viewModel.updateLocation(it.id, c1.digitToInt(), role)
+            if (it.short != name) {
+                findNavController().navigate(
+                    //TileFragmentDirections.actionNavTileToNavMap()
+                    TileFragmentDirections.actionNavTileSelf(it.id)
+                )
+            }
+        }
+        movePlayer(binding.player)
+        binding.toClearing1.visibility = View.GONE
+        binding.toClearing2.visibility = View.GONE
+    }
+
+    private fun movePlayer(view: View) {
+        view.animate().apply {
+            duration = 200
+            interpolator = LinearInterpolator()
+            rotationYBy(360f)
+            withEndAction { placePlayer() }
+            start()
+        }
+    }
+
+
+    fun coordinates(clearing: Int): Pair<Int, Int> {
         val point = IntArray(2)
-        when(clearing){
+        when (clearing) {
             1 -> binding.lyValley.c1.getLocationOnScreen(point)
             2 -> binding.lyValley.c2.getLocationOnScreen(point)
             4 -> binding.lyValley.c4.getLocationOnScreen(point)
             5 -> binding.lyValley.c5.getLocationOnScreen(point)
         }
         val (x, y) = point
+        println("X: $x, Y: $y")
         return Pair(x, y)
 
     }
-
 
     /*    private fun drawConnections() {
     val width = binding.c2.width

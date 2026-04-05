@@ -141,6 +141,8 @@ class SettingsFragment : Fragment() {
         dialogBuilder.setNegativeButton("NO") { _, _ -> }
         dialogBuilder.setPositiveButton("DELETE") { _, _: Int ->
             data.edit().putInt("role_id", 0).apply()
+            data.edit().putInt("start_dwelling", 0).apply()
+            data.edit().putInt("day", 1).apply()
             viewModel.deleteTiles()
             viewModel.deletePlayers()
             viewModel.deletePrimaryKeyIndex()

@@ -11,6 +11,8 @@ import android.graphics.Typeface
 import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.view.View
+import androidx.core.graphics.scale
+import androidx.core.graphics.withSave
 import androidx.navigation.findNavController
 import androidx.room.Room
 import com.delek.heroland.R
@@ -19,9 +21,6 @@ import com.delek.heroland.data.repository.TileRepository
 import com.delek.heroland.domain.model.Tile
 import java.lang.reflect.Field
 import javax.inject.Inject
-import androidx.core.graphics.withSave
-import androidx.core.content.edit
-import androidx.core.graphics.scale
 
 
 class DrawMap @Inject constructor(context: Context) : View(context) {
@@ -62,7 +61,7 @@ class DrawMap @Inject constructor(context: Context) : View(context) {
 
     private fun setPaint() {
         //val tf = Typeface.createFromAsset(context.assets, "font/macondo.ttf")
-        p.setTypeface(Typeface.DEFAULT_BOLD)
+        p.typeface = Typeface.DEFAULT_BOLD
         p.isAntiAlias = true
         p.textSize = 32f
         p.textAlign = Paint.Align.CENTER
@@ -76,7 +75,6 @@ class DrawMap @Inject constructor(context: Context) : View(context) {
             MotionEvent.ACTION_DOWN -> {
                 val touchedTile = findTile(event.x, event.y)
                 touchedTile?.let {
-                    data.edit { putInt("tileId", touchedTile.id) }
                     findNavController().navigate(
                         MapFragmentDirections.actionNavMapToNavTile(touchedTile.id)
                     )
